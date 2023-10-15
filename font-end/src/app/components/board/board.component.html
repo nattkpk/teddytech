@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+
+    <div *ngFor="let item of dataArray2" class="custom-div" [style.background-image]="'url(' + imgUrl + ')'">
+        <p class="textSticker">{{ item.text }}</p>
+        <img src="{{ item.imageUrl }}" alt="" class="icon">
+    </div>
+    
+      
+
+</body>
+</html>

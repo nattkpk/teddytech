@@ -1,0 +1,27 @@
+
+.custom-div {
+    width: 125px; /* กำหนดความกว้างของ div */
+    height: 120px; /* กำหนดความสูงของ div */
+    background-size: cover; /* ปรับขนาดรูปภาพให้ครอบ div ทั้งหมด */
+    background-position: center; /* ตำแหน่งรูปภาพใน div */
+    color: rgb(53, 53, 53); /* สีข้อความภายใน div */
+    padding: 20px; /* ระยะห่างรอบขอบของ div */
+    margin: 10px; /* ระยะห่างระหว่าง div */
+    text-align: center;
+    border-radius: 10px;
+    border: 5px solid rgb(227, 227, 227);
+  }
+
+.icon{
+    width: 65px; 
+    margin: 0px;
+}
+
+.textSticker{
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: 5px;
+    padding-left:  5px;
+    padding-right:  5px;
+}
+  
