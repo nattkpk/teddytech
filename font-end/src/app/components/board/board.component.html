@@ -1,15 +1,57 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 </head>
+
 <body>
-
-    <div *ngFor="let item of dataArray2" class="custom-div" [style.background-image]="'url(' + imgUrl + ')'">
-        <p class="textSticker">{{ item.text }}</p>
-        <img src="{{ item.imageUrl }}" alt="" class="icon">
-    </div>
     
-      
+    <div class="container">
+        <ul class="nav nav-tabs ">
 
+            <li class="nav-item">
+                <a 
+                (click)="selectedgenre = 'Activity'"
+                [class.active]="selectedgenre === 'Activity'"
+                class="nav-link" aria-current="page"  href="javascript:void">Activity</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" 
+                (click)="selectedgenre = 'Praise'"
+                [class.active]="selectedgenre === 'Praise'"
+                aria-current="page" href="javascript:void">Praise</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" 
+                (click)="selectedgenre = 'Feeling'"
+                [class.active]="selectedgenre === 'Feeling'"
+                aria-current="page"  href="javascript:void">Feeling</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" 
+                (click)="selectedgenre = 'Point'"
+                [class.active]="selectedgenre === 'Point'"
+                aria-current="page"  href="javascript:void">Point</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" 
+                (click)="selectedgenre = 'Reward'"
+                [class.active]="selectedgenre === 'Reward'"
+                aria-current="page"  href="javascript:void">Reward</a>
+            </li>
+            
+        </ul>
+
+        <div class="sticker" cdkDrag *ngFor="let item of dataArray2"  [style.background-image]="'url(' + imgUrl + ')'">
+            <p class="textSticker">{{ item.text }}</p>
+            <img src="{{ item.imageUrl }}" alt="" class="icon">
+        </div>
+    </div>
+   
 </body>
+
 </html>

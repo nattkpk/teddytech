@@ -1,13 +1,18 @@
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from "@angular/cdk/drag-drop";
 import { Component } from "@angular/core";
 
 @Component({
   selector: 'board',
   templateUrl: './board.component.html',
-  styleUrls: ['./board.component.css']
+  styleUrls: ['./board.component.css'],
 })
 export class Board {
 
-  constructor() {}
+  selectedgenre: string;
+
+  constructor() {
+    this.selectedgenre = "Activity";
+  }
 
   imgUrl = '../../../assets/img/BgSticker/Diamon2.png'
 
@@ -23,8 +28,11 @@ export class Board {
       text: 'Help to water the plant',
       imageUrl: '../../../assets/img/ActivityIcon/watering-plants (1).png',
     },
+    {
+      text: 'Help to water the plant',
+      imageUrl: '../../../assets/img/ActivityIcon/watering-plants (1).png',
+    },
   ];
- 
-  
+
   
 }
