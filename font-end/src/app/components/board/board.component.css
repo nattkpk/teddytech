@@ -1,33 +1,108 @@
+.containerAll{
+  display: flex;
+  margin: 10px;
+}
 
-.nav-link {
+.container-board .nav-link {
+  color: #BB7979;
+  background-color: #EFCCCC;
+  font-size: 24px;
+}
+
+.container-board .nav-link.active {
+  color: #BB7979; 
+  background-color: #FFDDDD;
+  font-size: 24px;
+}
+
+.container-board{
+  border-radius: 20px;
+  background-color: #EFCCCC;
+  margin: 20px 5px 20px 5px;
+  width: 80vw;
+  height: 700px;
+}
+
+
+.col-title{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-top: 10px;
+  border-radius: 10px;
+  width: 120px;
+  height: 40px;
+}
+
+.col-title.activity{
+  color: #6B8614;
+  background-color: #CADD7D;
+}
+
+.col-title.sun{
+  color: #8E3535;;
+  background-color: #FF8686;
+}
+.col-title.mon{
+  color: #7A722B;;
+  background-color: #F9F25C;
+}
+
+.col-title.tue{
+  color: #A24FA3;;
+  background-color: #FBC7FF;
+}
+
+.col-title.wed{
+  color: #5E8455;;
+  background-color: #B3FFAC;
+}
+
+.col-title.thu{
+  color: #985F2B;;
+  background-color: #FFB178;
+}
+
+.col-title.fri{
+  color: #4590B0;;
+  background-color: #C3EAFF;
+}
+
+.col-title.sat{
+  color: #795682;;
+  background-color: #D299FF;
+}
+
+
+.container-stickerBoard .nav-link {
   color: #BB7979;
   background-color: #EFCCCC;
 }
 
-.nav-link.active {
+.container-stickerBoard .nav-link.active {
   color: #BB7979; 
   background-color: #FFDDDD;
 }
 
-.container{
+.container-stickerBoard{
   border-radius: 20px;
   background-color: #EFCCCC;
-  margin: 20px;
-  width: 320px;
+  margin: 20px 5px 20px 5px;
+  width: 380px;
   height: 700px;
 }
 
 .sticker {
-    width: 140px; 
-    height: 140px; 
+    width: 110px; 
+    height: 110px; 
     background-size: cover; 
     background-position: center; 
     color: rgb(53, 53, 53); 
-    padding: 20px;
-    margin: 5px;
+    margin: 2px;
     text-align: center;
     border-radius: 10px;
-    border: 5px solid rgb(227, 227, 227);
+    border: 3px solid rgb(255, 255, 255);
     z-index: 1;
     cursor: grab;
   }
@@ -37,14 +112,19 @@
 }
 
 .icon{
-    width: 50px; 
+    width: 40px; 
     margin: 0px;
 }
 
 .textSticker{
+    width: 100px;
     font-size: 14px;
     font-weight: 500;
-    margin-top: 2px;
-    /* padding-left:  5px;
-    padding-right:  5px; */
+    margin-top: 5px;
 }
+
+.stickers-container {
+  display: flex;
+  margin: 10px;
+}
+

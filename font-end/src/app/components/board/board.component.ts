@@ -14,6 +14,7 @@ export class Board {
     this.selectedgenre = "Activity";
   }
 
+
   imgUrl = '../../../assets/img/BgSticker/Diamon2.png'
 
 
@@ -26,11 +27,11 @@ export class Board {
     },
     {
       text: 'Help to water the plant',
-      imageUrl: '../../../assets/img/ActivityIcon/watering-plants (1).png',
+      imageUrl: '../../../assets/img/ActivityIcon/watering-plants.png',
     },
     {
-      text: 'Help to water the plant',
-      imageUrl: '../../../assets/img/ActivityIcon/watering-plants (1).png',
+      text: 'Brush teeth',
+      imageUrl: '../../../assets/img/ActivityIcon/tooth-brush.png',
     },
   ];
 
