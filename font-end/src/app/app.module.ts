@@ -5,11 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {Board} from './components/board/board.component'
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { Signin } from './components/signin/signin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    Board
+    Board,
+    Signin
   ],
   imports: [
     BrowserModule,
