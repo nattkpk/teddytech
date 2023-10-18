@@ -67,38 +67,53 @@
                     </th>
                   </tr>
                 </thead>
-                <tbody class="table-group-divider">
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
+
+                <tbody class="table">
+
+                  <tr *ngFor="let row of dataRows">
+                    <td>
+                        <div class=" stickArea activity-stick">
+                            <p>Add <br> Activity !</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class=" stickArea sunday-stick">
+                            <p>Give <br>🎔 Point 🎔</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class=" stickArea mon-stick">
+                            <p>Give <br>🎔 Point 🎔</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class=" stickArea tue-stick">
+                            <p>Give <br>🎔 Point 🎔</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class=" stickArea wed-stick">
+                            <p>Give <br>🎔 Point 🎔</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class=" stickArea thu-stick">
+                            <p>Give <br>🎔 Point 🎔</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class=" stickArea fri-stick">
+                            <p>Give <br>🎔 Point 🎔</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class=" stickArea sat-stick">
+                            <p>Give <br>🎔 Point 🎔</p>
+                        </div>
+                    </td>
                   </tr>
                   
+  
                 </tbody>
               </table>
 

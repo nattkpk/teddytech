@@ -9,6 +9,7 @@ import { Component } from "@angular/core";
 export class Board {
 
   selectedgenre: string;
+  dataRows = new Array(5).fill({});
 
   constructor() {
     this.selectedgenre = "Activity";
