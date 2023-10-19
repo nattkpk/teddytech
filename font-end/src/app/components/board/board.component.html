@@ -1,176 +1,239 @@
 <!DOCTYPE html>
 <html>
+  <head> </head>
 
-<head>
-</head>
+  <body>
+    <div class="containerAll" cdkDropListGroup>
+      <div class="container-board">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a
+              class="nav-link active"
+              aria-current="page"
+              href="javascript:void"
+              >Board</a
+            >
+          </li>
 
-<body>
-    
-    <div class="containerAll">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="javascript:void"
+              >Carlendar</a
+            >
+          </li>
+        </ul>
 
-        <div class="container-board">
-            <ul class="nav nav-tabs ">
-                <li class="nav-item">
-                    <a 
-                    class="nav-link active" aria-current="page"  href="javascript:void">Board</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" 
-                    aria-current="page" href="javascript:void">Carlendar</a>
-                </li>         
-            </ul>
-
-            
-            <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col"> 
-                        <div class="col-title activity">
-                            <p> Activity </p>
-                        </div>
-                    </th>
-                    <th scope="col">
-                        <div class="col-title sun">
-                            <p> Sun. </p>
-                        </div>
-                    </th>
-                    <th scope="col">
-                        <div class="col-title mon">
-                            <p> Mon. </p>
-                        </div>
-                    </th>
-                    <th scope="col">
-                        <div class="col-title tue">
-                            <p> Tue. </p>
-                        </div>
-                    </th>
-                    <th scope="col">
-                        <div class="col-title wed">
-                            <p> Wed. </p>
-                        </div>
-                    </th>
-                    <th scope="col">
-                        <div class="col-title thu">
-                            <p> Thu. </p>
-                        </div>
-                    </th>
-                    <th scope="col">
-                        <div class="col-title fri">
-                            <p> Fri. </p>
-                        </div>
-                    </th>
-                    <th scope="col">
-                        <div class="col-title sat">
-                            <p> Sat. </p>
-                        </div>
-                    </th>
-                  </tr>
-                </thead>
-
-                <tbody class="table">
-
-                  <tr *ngFor="let row of dataRows">
-                    <td>
-                        <div class=" stickArea activity-stick">
-                            <p>Add <br> Activity !</p>
-                        </div>
-                    </td>
-                    <td>
-                        <div class=" stickArea sunday-stick">
-                            <p>Give <br>🎔 Point 🎔</p>
-                        </div>
-                    </td>
-                    <td>
-                        <div class=" stickArea mon-stick">
-                            <p>Give <br>🎔 Point 🎔</p>
-                        </div>
-                    </td>
-                    <td>
-                        <div class=" stickArea tue-stick">
-                            <p>Give <br>🎔 Point 🎔</p>
-                        </div>
-                    </td>
-                    <td>
-                        <div class=" stickArea wed-stick">
-                            <p>Give <br>🎔 Point 🎔</p>
-                        </div>
-                    </td>
-                    <td>
-                        <div class=" stickArea thu-stick">
-                            <p>Give <br>🎔 Point 🎔</p>
-                        </div>
-                    </td>
-                    <td>
-                        <div class=" stickArea fri-stick">
-                            <p>Give <br>🎔 Point 🎔</p>
-                        </div>
-                    </td>
-                    <td>
-                        <div class=" stickArea sat-stick">
-                            <p>Give <br>🎔 Point 🎔</p>
-                        </div>
-                    </td>
-                  </tr>
-                  
-  
-                </tbody>
-              </table>
-
+        <div class="b">
+          <ul class="title-board">
+            <li>
+              <div class="col-title activity">
+                <p>Activity</p>
+              </div>
+            </li>
+            <li>
+              <div class="col-title sun">
+                <p>Sun.</p>
+              </div>
+            </li>
+            <li>
+              <div class="col-title mon">
+                <p>Mon.</p>
+              </div>
+            </li>
+            <li>
+              <div class="col-title tue">
+                <p>Tue.</p>
+              </div>
+            </li>
+            <li>
+              <div class="col-title wed">
+                <p>Wed.</p>
+              </div>
+            </li>
+            <li>
+              <div class="col-title thu">
+                <p>Thu.</p>
+              </div>
+            </li>
+            <li>
+              <div class="col-title fri">
+                <p>Fri.</p>
+              </div>
+            </li>
+            <li>
+              <div class="col-title sat">
+                <p>Sat.</p>
+              </div>
+            </li>
+          </ul>
         </div>
 
-        <div class="container-stickerBoard">
-            <ul class="nav nav-tabs ">
-
-                <li class="nav-item">
-                    <a 
-                    (click)="selectedgenre = 'Activity'"
-                    [class.active]="selectedgenre === 'Activity'"
-                    class="nav-link" aria-current="page"  href="javascript:void">Activity</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" 
-                    (click)="selectedgenre = 'Praise'"
-                    [class.active]="selectedgenre === 'Praise'"
-                    aria-current="page" href="javascript:void">Praise</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" 
-                    (click)="selectedgenre = 'Feeling'"
-                    [class.active]="selectedgenre === 'Feeling'"
-                    aria-current="page"  href="javascript:void">Feeling</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" 
-                    (click)="selectedgenre = 'Point'"
-                    [class.active]="selectedgenre === 'Point'"
-                    aria-current="page"  href="javascript:void">Point</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" 
-                    (click)="selectedgenre = 'Reward'"
-                    [class.active]="selectedgenre === 'Reward'"
-                    aria-current="page"  href="javascript:void">Reward</a>
-                </li>
-                
-            </ul>
-
-            <div class="stickers-container">
-                <div class="sticker" cdkDrag *ngFor="let item of dataArray2"  [style.background-image]="'url(' + imgUrl + ')'">
+        <div class="a">
+          <ul class="stickto">
+            <li>
+            <div 
+            class="pasteSticker"
+            cdkDropList
+            [cdkDropListData]="activity_sticked"
+            (cdkDropListDropped)="dropActivitySticker($event)">
+                <div
+                    class="sticker"
+                    cdkDrag
+                    *ngFor="let item of activity_sticked"
+                    [style.background-image]="'url(' + imgUrl + ')'"
+                >
                     <p class="textSticker">{{ item.text }}</p>
-                    <img src="{{ item.imageUrl }}" alt="" class="icon">
+                    <img src="{{ item.imageUrl }}" alt="" class="icon" />
                 </div>
             </div>
+              <div
+                class="stickArea activity-stick"
+                *ngFor="let item of activity_space; let i = index"
+              >
+                <p>
+                  Add <br />
+                  Activity !
+                </p>
+              </div>
+              
+            </li>
+          </ul>
 
-            
+          <ul class="stickto">
+            <li>
+              <div class="stickArea sunday-stick">
+                <p>Give <br />🎔 Point 🎔</p>
+              </div>
+            </li>
+          </ul>
+
+          <ul class="stickto">
+            <li>
+              <div class="stickArea mon-stick">
+                <p>Give <br />🎔 Point 🎔</p>
+              </div>
+            </li>
+          </ul>
+
+          <ul class="stickto">
+            <li>
+              <div class="stickArea tue-stick">
+                <p>Give <br />🎔 Point 🎔</p>
+              </div>
+            </li>
+          </ul>
+
+          <ul class="stickto">
+            <li>
+              <div class="stickArea wed-stick">
+                <p>Give <br />🎔 Point 🎔</p>
+              </div>
+            </li>
+          </ul>
+
+          <ul class="stickto">
+            <li>
+              <div class="stickArea thu-stick">
+                <p>Give <br />🎔 Point 🎔</p>
+              </div>
+            </li>
+          </ul>
+
+          <ul class="stickto">
+            <li>
+              <div class="stickArea fri-stick">
+                <p>Give <br />🎔 Point 🎔</p>
+              </div>
+            </li>
+          </ul>
+
+          <ul class="stickto">
+            <li>
+              <div class="stickArea sat-stick">
+                <p>Give <br />🎔 Point 🎔</p>
+              </div>
+            </li>
+          </ul>
         </div>
+      </div>
 
+      <div class="container-stickerBoard">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a
+              (click)="selectedgenre = 'Activity'"
+              [class.active]="selectedgenre === 'Activity'"
+              class="nav-link"
+              aria-current="page"
+              href="javascript:void"
+              >Activity</a
+            >
+          </li>
+
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              (click)="selectedgenre = 'Praise'"
+              [class.active]="selectedgenre === 'Praise'"
+              aria-current="page"
+              href="javascript:void"
+              >Praise</a
+            >
+          </li>
+
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              (click)="selectedgenre = 'Feeling'"
+              [class.active]="selectedgenre === 'Feeling'"
+              aria-current="page"
+              href="javascript:void"
+              >Feeling</a
+            >
+          </li>
+
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              (click)="selectedgenre = 'Point'"
+              [class.active]="selectedgenre === 'Point'"
+              aria-current="page"
+              href="javascript:void"
+              >Point</a
+            >
+          </li>
+
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              (click)="selectedgenre = 'Reward'"
+              [class.active]="selectedgenre === 'Reward'"
+              aria-current="page"
+              href="javascript:void"
+              >Reward</a
+            >
+          </li>
+        </ul>
+
+        <div
+          class="stickers-container"
+          cdkDropList
+          [cdkDropListData]="activityData"
+          (cdkDropListDropped)="dropActivitySticker($event)"
+        >
+          <div
+            class="sticker"
+            cdkDrag
+            *ngFor="let item of activityData"
+            [style.background-image]="'url(' + imgUrl + ')'"
+          >
+            <p class="textSticker">{{ item.text }}</p>
+            <img src="{{ item.imageUrl }}" alt="" class="icon" />
+          </div>
+        </div>
+      </div>
     </div>
-   
-</body>
 
+
+
+  </body>
 </html>

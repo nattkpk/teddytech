@@ -19,7 +19,7 @@
   border-radius: 20px;
   background-color: #EFCCCC;
   margin: 20px 5px 20px 5px;
-  width: 80vw;
+  width: 70vw;
   height: 750px;
 }
 
@@ -34,7 +34,7 @@
   height: 40px;
 }
 
-th{
+/* th{
   background-color: #EFCCCC;
   border: none;
 }
@@ -42,6 +42,15 @@ th{
 td{
   background-color: #EFCCCC;
   border: none;
+} */
+
+.title-board li{
+  display: inline-block; 
+  margin: 20px 2px 0px 0px;
+}
+
+.b{
+  margin-left: 0px;
 }
 
 .col-title.activity{
@@ -95,6 +104,7 @@ td{
 .container-stickerBoard .nav-link {
   color: #BB7979;
   background-color: #EFCCCC;
+  font-size: 16px;
 }
 
 .container-stickerBoard .nav-link.active {
@@ -110,7 +120,7 @@ td{
   text-align: center;
   padding-top: 10px;
   border-radius: 10px;
-  margin: 0 auto;
+  margin: 0px auto 10px auto;
   width: 110px;
   height: 110px;
   border: solid 3px rgba(0, 0, 0, 0.1);
@@ -120,7 +130,6 @@ td{
   color: black;
   opacity: 0.25;
 }
-
 .activity-stick{
   /* color: #9bb545; */
   background-color: #deebac ; 
@@ -156,31 +165,60 @@ td{
   background-color: #dcb8f7;
 }
 
+.stickto{
+  margin-left: 5px;
+  margin-right: -25px
+}
+
+.a{
+  display: flex; 
+  /* background-color: rgb(96, 153, 203);  */
+  justify-content: flex-start;
+  margin-left: 0px;
+}
+.a ul {
+  list-style: none;
+}
+
+.a li{
+  margin-bottom: 5px;
+}
+
+
 .container-stickerBoard{
   border-radius: 20px;
   background-color: #EFCCCC;
   margin: 20px 5px 20px 5px;
-  width: 380px;
+  width: 400px;
   height: 750px;
 }
 
+.stickers-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px;
+  width: 380px;
+  /* background-color: #795682; */
+  justify-content: center;
+}
+
 .sticker {
-    width: 110px; 
-    height: 110px; 
-    background-size: cover; 
-    background-position: center; 
-    color: rgb(53, 53, 53); 
-    margin: 2px;
-    text-align: center;
-    border-radius: 10px;
-    border: 3px solid rgb(255, 255, 255);
-    z-index: 1;
-    cursor: grab;
-  }
+  width: 110px;
+  height: 110px;
+  background-size: cover;
+  background-position: center;
+  color: rgb(53, 53, 53);
+  margin: 2px;
+  text-align: center;
+  border-radius: 10px;
+  border: 3px solid rgb(255, 255, 255);
+  cursor: grab;
+}
 
 .sticker:active{
   cursor: grabbing;
 }
+
 
 .icon{
     width: 40px; 
@@ -194,8 +232,64 @@ td{
     margin-top: 5px;
 }
 
-.stickers-container {
-  display: flex;
-  margin: 10px;
+
+.example-container {
+  width: 400px;
+  max-width: 100%;
+  margin: 0 25px 25px 0;
+  display: inline-block;
+  vertical-align: top;
 }
+
+.example-list {
+  border: solid 1px #ccc;
+  min-height: 60px;
+  background: white;
+  border-radius: 4px;
+  overflow: hidden;
+  display: block;
+}
+
+.example-box {
+  padding: 20px 10px;
+  border-bottom: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: move;
+  background: white;
+  font-size: 14px;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+              0 8px 10px 1px rgba(0, 0, 0, 0.14),
+              0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-box:last-child {
+  border: none;
+}
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.pasteSticker{
+  
+}
+
 
