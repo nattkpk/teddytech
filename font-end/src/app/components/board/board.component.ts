@@ -17,14 +17,21 @@ export class Board {
   }
 
 
-  imgUrl = '../../../assets/img/BgSticker/Diamon2.png'
+  imgUrl = '../../../assets/img/BgSticker/Diamon4.png'
 
 
   dataArray = ["ข้อความ1" , "ข้อความ2"];
 
   
-  activity_space = new Array(5);
-  activity_sticked: any[] = []; ;
+  // activity_space = new Array(5);
+  activity_sticked: any[] = [
+    {text: ''},
+    {text: ''},
+    {text: ''},
+    {text: ''},
+    {text: ''},
+  ];
+  
   activityData: any[] = [
     {
       text: 'Take a Shower',
@@ -59,14 +66,35 @@ export class Board {
   dropActivitySticker(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex,
-      );
+    } 
+    //else {
+    //   this.deleteByIndex(event.currentIndex,this.activity_sticked)
+    //   transferArrayItem(
+    //     event.previousContainer.data,
+    //     event.container.data,
+    //     event.previousIndex,
+    //     event.currentIndex,
+    //   );
+      
+    // }
+  }
+
+  stickertext = ''
+  stickericon = ''
+  addActicity(){
+    this.activity_sticked.unshift({
+      text: this.stickertext,
+      imageUrl: this.stickericon,
+    },)
+    this.activity_sticked.pop()
+  }
+
+
+  deleteByIndex(indexToDelete: number ,array: any[]): void {
+    if (indexToDelete >= 0 && indexToDelete < array.length) {
+      array.splice(indexToDelete, 1);
     }
   }
 
+  
 }

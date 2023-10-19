@@ -71,10 +71,10 @@
           <ul class="stickto">
             <li>
             <div 
-            class="pasteSticker"
             cdkDropList
             [cdkDropListData]="activity_sticked"
-            (cdkDropListDropped)="dropActivitySticker($event)">
+            (cdkDropListDropped)="dropActivitySticker($event)"
+            >
                 <div
                     class="sticker"
                     cdkDrag
@@ -85,7 +85,8 @@
                     <img src="{{ item.imageUrl }}" alt="" class="icon" />
                 </div>
             </div>
-              <div
+            
+              <!-- <div
                 class="stickArea activity-stick"
                 *ngFor="let item of activity_space; let i = index"
               >
@@ -94,7 +95,7 @@
                   Activity !
                 </p>
               </div>
-              
+               -->
             </li>
           </ul>
 
@@ -225,6 +226,9 @@
             cdkDrag
             *ngFor="let item of activityData"
             [style.background-image]="'url(' + imgUrl + ')'"
+            (click)="stickertext=this.item.text; 
+            stickericon=this.item.imageUrl; 
+            addActicity();"
           >
             <p class="textSticker">{{ item.text }}</p>
             <img src="{{ item.imageUrl }}" alt="" class="icon" />
@@ -233,6 +237,8 @@
       </div>
     </div>
 
+
+    
 
 
   </body>
