@@ -69,12 +69,12 @@
           <!-- Sunday -->
           <ul class="stickto">
             <li>
-              <div class="col-title sun">
+              <div class="col-title sun" (click)="currentday = 0">
                 <p>Sun.</p>
               </div>
               <div
                 class="day"
-                [class.border-day]="currentday == 0"
+                [class.border-sun]="currentday == 0"
                 cdkDropList
                 [cdkDropListData]="sun_sticked"
                 (cdkDropListDropped)="dropSticker($event)"
@@ -101,12 +101,12 @@
           <!-- Monday -->
           <ul class="stickto">
             <li>
-              <div class="col-title mon">
+              <div class="col-title mon" (click)="currentday = 1">
                 <p>Mon.</p>
               </div>
               <div
                 class="day"
-                [class.border-day]="currentday == 1"
+                [class.border-mon]="currentday == 1"
                 cdkDropList
                 [cdkDropListData]="mon_sticked"
                 (cdkDropListDropped)="dropSticker($event)"
@@ -130,60 +130,167 @@
             </li>
           </ul>
 
+          <!-- Tuesday -->
           <ul class="stickto">
             <li>
-              <div class="col-title tue">
+              <div class="col-title tue" (click)="currentday = 2">
                 <p>Tue.</p>
               </div>
-              <div class="stickArea tue-stick">
-                <p>Give <br />🎔 Point 🎔</p>
+              <div
+                class="day"
+                [class.border-tue]="currentday == 2"
+                cdkDropList
+                [cdkDropListData]="tue_sticked"
+                (cdkDropListDropped)="dropSticker($event)"
+              >
+                <div
+                  [class.point-sticker]="item.icon"
+                  [class.stickArea]="!item.icon"
+                  [class.tue-stick]="!item.icon"
+                  cdkDrag
+                  cdkDragBoundary=".stickto"
+                  *ngFor="let item of tue_sticked"
+                  [style.background-image]="
+                    item.bgImage
+                      ? 'url(' + item.bgImage + ')'
+                      : 'url(' + addBg + ')'
+                  "
+                >
+                  <img src="{{ item.icon }}" alt="" class="icon" />
+                </div>
               </div>
             </li>
           </ul>
 
+          <!-- Wednesday -->
           <ul class="stickto">
             <li>
-              <div class="col-title wed">
+              <div class="col-title wed" (click)="currentday = 3">
                 <p>Wed.</p>
               </div>
-              <div class="stickArea wed-stick">
-                <p>Give <br />🎔 Point 🎔</p>
+              <div
+                class="day"
+                [class.border-wed]="currentday == 3"
+                cdkDropList
+                [cdkDropListData]="wed_sticked"
+                (cdkDropListDropped)="dropSticker($event)"
+              >
+                <div
+                  [class.point-sticker]="item.icon"
+                  [class.stickArea]="!item.icon"
+                  [class.wed-stick]="!item.icon"
+                  cdkDrag
+                  cdkDragBoundary=".stickto"
+                  *ngFor="let item of wed_sticked"
+                  [style.background-image]="
+                    item.bgImage
+                      ? 'url(' + item.bgImage + ')'
+                      : 'url(' + addBg + ')'
+                  "
+                >
+                  <img src="{{ item.icon }}" alt="" class="icon" />
+                </div>
               </div>
             </li>
           </ul>
 
+
+          <!-- Thursday -->
           <ul class="stickto">
-            <div class="col-title thu">
-              <p>Thu.</p>
-            </div>
             <li>
-              <div class="stickArea thu-stick">
-                <p>Give <br />🎔 Point 🎔</p>
+              <div class="col-title thu" (click)="currentday = 4">
+                <p>Thu.</p>
+              </div>
+              <div
+                class="day"
+                [class.border-thu]="currentday == 4"
+                cdkDropList
+                [cdkDropListData]="thu_sticked"
+                (cdkDropListDropped)="dropSticker($event)"
+              >
+                <div
+                  [class.point-sticker]="item.icon"
+                  [class.stickArea]="!item.icon"
+                  [class.thu-stick]="!item.icon"
+                  cdkDrag
+                  cdkDragBoundary=".stickto"
+                  *ngFor="let item of thu_sticked"
+                  [style.background-image]="
+                    item.bgImage
+                      ? 'url(' + item.bgImage + ')'
+                      : 'url(' + addBg + ')'
+                  "
+                >
+                  <img src="{{ item.icon }}" alt="" class="icon" />
+                </div>
               </div>
             </li>
           </ul>
 
+          <!-- Friday -->
           <ul class="stickto">
             <li>
-              <div class="col-title fri">
+              <div class="col-title fri" (click)="currentday = 5">
                 <p>Fri.</p>
               </div>
-              <div class="stickArea fri-stick">
-                <p>Give <br />🎔 Point 🎔</p>
+              <div
+                class="day"
+                [class.border-fri]="currentday == 5"
+                cdkDropList
+                [cdkDropListData]="fri_sticked"
+                (cdkDropListDropped)="dropSticker($event)"
+              >
+                <div
+                  [class.point-sticker]="item.icon"
+                  [class.stickArea]="!item.icon"
+                  [class.fri-stick]="!item.icon"
+                  cdkDrag
+                  cdkDragBoundary=".stickto"
+                  *ngFor="let item of fri_sticked"
+                  [style.background-image]="
+                    item.bgImage
+                      ? 'url(' + item.bgImage + ')'
+                      : 'url(' + addBg + ')'
+                  "
+                >
+                  <img src="{{ item.icon }}" alt="" class="icon" />
+                </div>
               </div>
             </li>
           </ul>
 
+          <!-- Saturday -->
           <ul class="stickto">
             <li>
-              <div class="col-title sat">
+              <div class="col-title sat" (click)="currentday = 6">
                 <p>Sat.</p>
               </div>
-              <div class="stickArea sat-stick">
-                <p>Give <br />🎔 Point 🎔</p>
+              <div
+                class="day"
+                [class.border-sat]="currentday == 6"
+                cdkDropList
+                [cdkDropListData]="sat_sticked"
+                (cdkDropListDropped)="dropSticker($event)"
+              >
+                <div
+                  [class.point-sticker]="item.icon"
+                  [class.stickArea]="!item.icon"
+                  [class.sat-stick]="!item.icon"
+                  cdkDrag
+                  cdkDragBoundary=".stickto"
+                  *ngFor="let item of sat_sticked"
+                  [style.background-image]="
+                    item.bgImage
+                      ? 'url(' + item.bgImage + ')'
+                      : 'url(' + addBg + ')'
+                  "
+                >
+                  <img src="{{ item.icon }}" alt="" class="icon" />
+                </div>
               </div>
             </li>
           </ul>
+
         </div>
       </div>
 

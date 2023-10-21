@@ -1,6 +1,11 @@
-import { CdkDragDrop, CdkDragStart, moveItemInArray, transferArrayItem } from "@angular/cdk/drag-drop";
-import { Component } from "@angular/core";
-import { Sticker1 } from "src/app/models/stickerModel/sticker.model";
+import {
+  CdkDragDrop,
+  CdkDragStart,
+  moveItemInArray,
+  transferArrayItem,
+} from '@angular/cdk/drag-drop';
+import { Component } from '@angular/core';
+import { Sticker1 } from 'src/app/models/stickerModel/sticker.model';
 
 @Component({
   selector: 'board',
@@ -8,32 +13,33 @@ import { Sticker1 } from "src/app/models/stickerModel/sticker.model";
   styleUrls: ['./board.component.css'],
 })
 export class Board {
-
   selectedgenre: string;
   dataRows = new Array(5).fill({});
 
   constructor() {
-    this.selectedgenre = "Point";
+    this.selectedgenre = 'Point';
   }
 
   dropSticker(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } 
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    }
   }
-  
-  addBg = ''
 
+  addBg = '';
 
-
-  activityBg = '../../../assets/img/BgSticker/Diamon4.png'
-  dataArray = ["ข้อความ1" , "ข้อความ2"];
+  activityBg = '../../../assets/img/BgSticker/Diamon4.png';
+  dataArray = ['ข้อความ1', 'ข้อความ2'];
   activity_sticked: any[] = [
-    {text: ''},
-    {text: ''},
-    {text: ''},
-    {text: ''},
-    {text: ''},
+    { text: '' },
+    { text: '' },
+    { text: '' },
+    { text: '' },
+    { text: '' },
   ];
   activityData: any[] = [
     {
@@ -62,32 +68,34 @@ export class Board {
     },
   ];
 
-  stickertext = ''
-  stickericon = ''
-  
+  stickertext = '';
+  stickericon = '';
+
   // addActivity(){
   //   this.activity_sticked.unshift({
   //     text: this.stickertext,
   //     imageUrl: this.stickericon,
   //   },)
   //   this.activity_sticked.pop()
-  // } 
+  // }
 
-  addActivity(){
-    for(let i = 0 ; i<this.activity_sticked.length ; i++){
-      if(!this.activity_sticked[i].imageUrl){
-        this.activity_sticked[i] = { text: this.stickertext,imageUrl: this.stickericon,};
+  addActivity() {
+    for (let i = 0; i < this.activity_sticked.length; i++) {
+      if (!this.activity_sticked[i].imageUrl) {
+        this.activity_sticked[i] = {
+          text: this.stickertext,
+          imageUrl: this.stickericon,
+        };
         break;
       }
     }
-  } 
-  
-  deleteActivity(index: number): void {
-    if (index >= 0 && index < this.activity_sticked.length) {
-        this.activity_sticked[index] = { text: '' };
-    }
   }
 
+  deleteActivity(index: number): void {
+    if (index >= 0 && index < this.activity_sticked.length) {
+      this.activity_sticked[index] = { text: '' };
+    }
+  }
 
   // deleteByIndex(indexToDelete: number ,array: any[]): void {
   //   if (indexToDelete >= 0 && indexToDelete < array.length) {
@@ -95,7 +103,6 @@ export class Board {
   //   }
   // }
 
-  
   pointData: any[] = [
     {
       icon: '../../../assets/img/PointSticker/Icon/heart.png',
@@ -109,90 +116,156 @@ export class Board {
       icon: '../../../assets/img/PointSticker/Icon/shooting-star.png',
       bgImage: '../../../assets/img/PointSticker/Bg/Bgpoint3.png',
     },
-  ]
+  ];
 
   sun_sticked: any[] = [
-    {text: ''},
-    {text: ''},
-    {text: ''},
-    {text: ''},
-    {text: ''},
+    { text: '' },
+    { text: '' },
+    { text: '' },
+    { text: '' },
+    { text: '' },
   ];
   mon_sticked: any[] = [
-    {text: ''},
-    {text: ''},
-    {text: ''},
-    {text: ''},
-    {text: ''},
+    { text: '' },
+    { text: '' },
+    { text: '' },
+    { text: '' },
+    { text: '' },
   ];
   tue_sticked: any[] = [
-    {text: ''},
-    {text: ''},
-    {text: ''},
-    {text: ''},
-    {text: ''},
+    { text: '' },
+    { text: '' },
+    { text: '' },
+    { text: '' },
+    { text: '' },
   ];
   wed_sticked: any[] = [
-    {text: ''},
-    {text: ''},
-    {text: ''},
-    {text: ''},
-    {text: ''},
+    { text: '' },
+    { text: '' },
+    { text: '' },
+    { text: '' },
+    { text: '' },
   ];
   thu_sticked: any[] = [
-    {text: ''},
-    {text: ''},
-    {text: ''},
-    {text: ''},
-    {text: ''},
+    { text: '' },
+    { text: '' },
+    { text: '' },
+    { text: '' },
+    { text: '' },
   ];
   fri_sticked: any[] = [
-    {text: ''},
-    {text: ''},
-    {text: ''},
-    {text: ''},
-    {text: ''},
+    { text: '' },
+    { text: '' },
+    { text: '' },
+    { text: '' },
+    { text: '' },
   ];
   sat_sticked: any[] = [
-    {text: ''},
-    {text: ''},
-    {text: ''},
-    {text: ''},
-    {text: ''},
+    { text: '' },
+    { text: '' },
+    { text: '' },
+    { text: '' },
+    { text: '' },
   ];
 
- 
+  point_bg = '';
+  point_icon = '';
 
-  point_bg = ''
-  point_icon = ''
-  
-  day = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-  currentday = 0;
+  day = [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ];
+  currentday = 6;
 
-  addPoint(){
-      switch (this.currentday) {
-        case 0:
-          for(let i = 0 ; i<this.sun_sticked.length ; i++){
-            if(!this.sun_sticked[i].icon){
-              this.sun_sticked[i] = { icon: this.point_icon,bgImage: this.point_bg,};
-              break;
-            }
-          }
+  addPoint() {
+    switch (this.currentday) {
+      case 0:
+        for (let i = 0; i < this.sun_sticked.length; i++) {
+          if (!this.sun_sticked[i].icon) {
+            this.sun_sticked[i] = {
+              icon: this.point_icon,
+              bgImage: this.point_bg,
+            };
             break;
-        case 1:
-          for(let i = 0 ; i<this.mon_sticked.length ; i++){
-            if(!this.mon_sticked[i].icon){
-              this.mon_sticked[i] = { icon: this.point_icon,bgImage: this.point_bg,};
-              break;
-            }
           }
+        }
+        break;
+      case 1:
+        for (let i = 0; i < this.mon_sticked.length; i++) {
+          if (!this.mon_sticked[i].icon) {
+            this.mon_sticked[i] = {
+              icon: this.point_icon,
+              bgImage: this.point_bg,
+            };
             break;
+          }
+        }
+        break;
+      case 2:
+        for (let i = 0; i < this.tue_sticked.length; i++) {
+          if (!this.tue_sticked[i].icon) {
+            this.tue_sticked[i] = {
+              icon: this.point_icon,
+              bgImage: this.point_bg,
+            };
+            break;
+          }
+        }
+        break;
+      case 3:
+        for (let i = 0; i < this.wed_sticked.length; i++) {
+          if (!this.wed_sticked[i].icon) {
+            this.wed_sticked[i] = {
+              icon: this.point_icon,
+              bgImage: this.point_bg,
+            };
+            break;
+          }
+        }
+        break;
+      case 4:
+        for (let i = 0; i < this.thu_sticked.length; i++) {
+          if (!this.thu_sticked[i].icon) {
+            this.thu_sticked[i] = {
+              icon: this.point_icon,
+              bgImage: this.point_bg,
+            };
+            break;
+          }
+        }
+        break;
+      case 5:
+        for (let i = 0; i < this.fri_sticked.length; i++) {
+          if (!this.fri_sticked[i].icon) {
+            this.fri_sticked[i] = {
+              icon: this.point_icon,
+              bgImage: this.point_bg,
+            };
+            break;
+          }
+        }
+        break;
+      case 6:
+        for (let i = 0; i < this.sat_sticked.length; i++) {
+          if (!this.sat_sticked[i].icon) {
+            this.sat_sticked[i] = {
+              icon: this.point_icon,
+              bgImage: this.point_bg,
+            };
+            break;
+          }
+        }
+        break;
     }
-    
   }
 
   change_day_plus() {
-    if (this.currentday < this.day.length-1) {
+    if (this.currentday < this.day.length - 1) {
       this.currentday++;
     } else {
       this.currentday = 0;
@@ -203,8 +276,7 @@ export class Board {
     if (this.currentday > 0) {
       this.currentday--;
     } else {
-      this.currentday = this.day.length-1;
+      this.currentday = this.day.length - 1;
     }
   }
-
 }

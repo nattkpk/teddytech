@@ -35,6 +35,7 @@
   height: 40px;
 }
 
+
 /* th{
   background-color: #EFCCCC;
   border: none;
@@ -57,46 +58,95 @@ td{
 }
 
 .col-title.sun{
-  color: #8E3535;;
+  color: #8E3535;
   background-color: #FF8686;
   border: solid 3px #C46767;
+  transition: 0.2s;
 }
+
+.col-title.sun:hover{
+  color: #ffffff;
+  background-color: #f76a6a;
+  transition: 0.2s;
+}
+
 .col-title.mon{
   color: #7A722B;;
   background-color: #F9F25C;
   border: solid 3px #beb853;
+  transition: 0.2s;
+}
+
+.col-title.mon:hover{
+  color: #ffffff;
+  background-color: #d3ca17;
+  transition: 0.2s;
 }
 
 .col-title.tue{
   color: #A24FA3;;
   background-color: #FBC7FF;
   border: solid 3px #c190c5;
+  transition: 0.2s;
+}
+
+.col-title.tue:hover{
+  color: #ffffff;
+  background-color: #ee8ff5;
+  transition: 0.2s;
 }
 
 .col-title.wed{
   color: #5E8455;;
   background-color: #B3FFAC;
   border: solid 3px #7FBE79;
+  transition: 0.2s;
+}
+
+.col-title.wed:hover{
+  color: #ffffff;
+  background-color: #84df7c;
+  transition: 0.2s;
 }
 
 .col-title.thu{
   color: #985F2B;;
   background-color: #FFB178;
   border: solid 3px #C1865B;
+  transition: 0.2s;
+}
+
+.col-title.thu:hover{
+  color: #ffffff;
+  background-color: #ec8a43;
+  transition: 0.2s;
 }
 
 .col-title.fri{
   color: #4590B0;;
   background-color: #C3EAFF;
   border: solid 3px #8EA9B8;
+  transition: 0.2s;
+}
+
+.col-title.fri:hover{
+  color: #ffffff;
+  background-color: #74c6f3;
+  transition: 0.2s;
 }
 
 .col-title.sat{
   color: #795682;;
   background-color: #D299FF;
   border: solid 3px #AC7BD3;
+  transition: 0.2s;
 }
 
+.col-title.sat:hover{
+  color: #ffffff;
+  background-color: #c57dfc;
+  transition: 0.2s;
+}
 
 .container-stickerBoard .nav-link {
   color: #BB7979;
@@ -188,10 +238,52 @@ td{
   padding: 5px 0px 5px 0px;
 }
 
-.border-day{
+.border-sun{
   /* border: solid 5px #C46767; */
   transition: 0.5s;
   background-color: #db7878;
+  border-radius: 15px;
+}
+
+.border-mon{
+  /* border: solid 5px #C46767; */
+  transition: 0.5s;
+  background-color: #d5c13a;
+  border-radius: 15px;
+}
+
+.border-tue{
+  /* border: solid 5px #C46767; */
+  transition: 0.5s;
+  background-color: #e7a1ca;
+  border-radius: 15px;
+}
+
+.border-wed{
+  /* border: solid 5px #C46767; */
+  transition: 0.5s;
+  background-color: #93d4a8;
+  border-radius: 15px;
+}
+
+.border-thu{
+  /* border: solid 5px #C46767; */
+  transition: 0.5s;
+  background-color: #e4ab6b;
+  border-radius: 15px;
+}
+
+.border-fri{
+  /* border: solid 5px #C46767; */
+  transition: 0.5s;
+  background-color: #93bee1;
+  border-radius: 15px;
+}
+
+.border-sat{
+  /* border: solid 5px #C46767; */
+  transition: 0.5s;
+  background-color: #c392da;
   border-radius: 15px;
 }
 /*--------------------------- sticker Board ------------------------*/
