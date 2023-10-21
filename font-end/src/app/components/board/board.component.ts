@@ -13,19 +13,21 @@ export class Board {
   dataRows = new Array(5).fill({});
 
   constructor() {
-    this.selectedgenre = "Activity";
+    this.selectedgenre = "Point";
   }
 
-
-  a=1
-  activityBg = '../../../assets/img/BgSticker/Diamon4.png'
-  addActivityBg = ''
-
-
-  dataArray = ["ข้อความ1" , "ข้อความ2"];
-
+  dropSticker(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } 
+  }
   
-  // activity_space = new Array(5);
+  addBg = ''
+
+
+
+  activityBg = '../../../assets/img/BgSticker/Diamon4.png'
+  dataArray = ["ข้อความ1" , "ข้อความ2"];
   activity_sticked: any[] = [
     {text: ''},
     {text: ''},
@@ -33,7 +35,6 @@ export class Board {
     {text: ''},
     {text: ''},
   ];
-  
   activityData: any[] = [
     {
       text: 'Take a Shower',
@@ -61,35 +62,10 @@ export class Board {
     },
   ];
 
-  getClassForActivity(item: any): string {
-    // Your logic to determine the class based on item's properties
-    // For example, check if imageUrl is present
-    return item && item.imageUrl ? 'sticker' : 'stickArea activity-stick';
-  }
-  
-  // dropActivitySticker(event: CdkDragDrop<string[]>) {
-  //   moveItemInArray(this.activityData, event.previousIndex, event.currentIndex);
-  // }
-
-  dropActivitySticker(event: CdkDragDrop<string[]>) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } 
-    //else {
-    //   this.deleteByIndex(event.currentIndex,this.activity_sticked)
-    //   transferArrayItem(
-    //     event.previousContainer.data,
-    //     event.container.data,
-    //     event.previousIndex,
-    //     event.currentIndex,
-    //   );
-      
-    // }
-  }
-
   stickertext = ''
   stickericon = ''
-  addActicity(){
+  
+  addActivity(){
     this.activity_sticked.unshift({
       text: this.stickertext,
       imageUrl: this.stickericon,
@@ -98,11 +74,106 @@ export class Board {
   }
 
 
-  deleteByIndex(indexToDelete: number ,array: any[]): void {
-    if (indexToDelete >= 0 && indexToDelete < array.length) {
-      array.splice(indexToDelete, 1);
+  // deleteByIndex(indexToDelete: number ,array: any[]): void {
+  //   if (indexToDelete >= 0 && indexToDelete < array.length) {
+  //     array.splice(indexToDelete, 1);
+  //   }
+  // }
+
+  
+  pointData: any[] = [
+    {
+      icon: '../../../assets/img/PointSticker/Icon/heart.png',
+      bgImage: '../../../assets/img/PointSticker/Bg/Bgpoint1.png',
+    },
+    {
+      icon: '../../../assets/img/PointSticker/Icon/star.png',
+      bgImage: '../../../assets/img/PointSticker/Bg/Bgpoint2.png',
+    },
+    {
+      icon: '../../../assets/img/PointSticker/Icon/shooting-star.png',
+      bgImage: '../../../assets/img/PointSticker/Bg/Bgpoint3.png',
+    },
+  ]
+
+  sun_sticked: any[] = [
+    {text: ''},
+    {text: ''},
+    {text: ''},
+    {text: ''},
+    {text: ''},
+  ];
+  mon_sticked: any[] = [
+    {text: ''},
+    {text: ''},
+    {text: ''},
+    {text: ''},
+    {text: ''},
+  ];
+  tue_sticked: any[] = [
+    {text: ''},
+    {text: ''},
+    {text: ''},
+    {text: ''},
+    {text: ''},
+  ];
+  wed_sticked: any[] = [
+    {text: ''},
+    {text: ''},
+    {text: ''},
+    {text: ''},
+    {text: ''},
+  ];
+  thu_sticked: any[] = [
+    {text: ''},
+    {text: ''},
+    {text: ''},
+    {text: ''},
+    {text: ''},
+  ];
+  fri_sticked: any[] = [
+    {text: ''},
+    {text: ''},
+    {text: ''},
+    {text: ''},
+    {text: ''},
+  ];
+  sat_sticked: any[] = [
+    {text: ''},
+    {text: ''},
+    {text: ''},
+    {text: ''},
+    {text: ''},
+  ];
+
+  point_bg = ''
+  point_icon = ''
+  
+  day = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  currentday = 0;
+
+  addPoint(){
+    this.activity_sticked.unshift({
+      text: this.stickertext,
+      imageUrl: this.stickericon,
+    },)
+    this.activity_sticked.pop()
+  }
+
+  change_day_plus() {
+    if (this.currentday < this.day.length-1) {
+      this.currentday++;
+    } else {
+      this.currentday = 0;
     }
   }
 
-  
+  change_day_minus() {
+    if (this.currentday > 0) {
+      this.currentday--;
+    } else {
+      this.currentday = this.day.length-1;
+    }
+  }
+
 }
