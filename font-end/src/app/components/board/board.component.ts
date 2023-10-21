@@ -17,7 +17,9 @@ export class Board {
   }
 
 
-  imgUrl = '../../../assets/img/BgSticker/Diamon4.png'
+  a=1
+  activityBg = '../../../assets/img/BgSticker/Diamon4.png'
+  addActivityBg = ''
 
 
   dataArray = ["ข้อความ1" , "ข้อความ2"];
@@ -58,6 +60,12 @@ export class Board {
       imageUrl: '../../../assets/img/ActivityIcon/wash-your-hands.png',
     },
   ];
+
+  getClassForActivity(item: any): string {
+    // Your logic to determine the class based on item's properties
+    // For example, check if imageUrl is present
+    return item && item.imageUrl ? 'sticker' : 'stickArea activity-stick';
+  }
   
   // dropActivitySticker(event: CdkDragDrop<string[]>) {
   //   moveItemInArray(this.activityData, event.previousIndex, event.currentIndex);

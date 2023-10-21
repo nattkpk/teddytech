@@ -67,25 +67,31 @@
           </ul>
         </div>
 
-        <div class="a">
+        <div class="areaStick">
           <ul class="stickto">
             <li>
-            <div 
-            cdkDropList
-            [cdkDropListData]="activity_sticked"
-            (cdkDropListDropped)="dropActivitySticker($event)"
-            >
+              <div
+                cdkDropList
+                [cdkDropListData]="activity_sticked"
+                (cdkDropListDropped)="dropActivitySticker($event)"
+              >
                 <div
-                    class="sticker"
-                    cdkDrag
-                    *ngFor="let item of activity_sticked"
-                    [style.background-image]="'url(' + imgUrl + ')'"
+                  [class.sticker]="item.imageUrl"
+                  [class.stickArea]="!item.imageUrl"
+                  [class.activity-stick]="!item.imageUrl"
+                  cdkDrag
+                  *ngFor="let item of activity_sticked"
+                  [style.background-image]="
+                    item.imageUrl
+                      ? 'url(' + activityBg + ')'
+                      : 'url(' + addActivityBg + ')'
+                  "
                 >
-                    <p class="textSticker">{{ item.text }}</p>
-                    <img src="{{ item.imageUrl }}" alt="" class="icon" />
+                  <p class="textSticker">{{ item.text }}</p>
+                  <img [src]="item.imageUrl" alt="" class="icon" />
                 </div>
-            </div>
-            
+              </div>
+
               <!-- <div
                 class="stickArea activity-stick"
                 *ngFor="let item of activity_space; let i = index"
@@ -225,10 +231,12 @@
             class="sticker"
             cdkDrag
             *ngFor="let item of activityData"
-            [style.background-image]="'url(' + imgUrl + ')'"
-            (click)="stickertext=this.item.text; 
-            stickericon=this.item.imageUrl; 
-            addActicity();"
+            [style.background-image]="'url(' + activityBg + ')'"
+            (click)="
+              stickertext = this.item.text;
+              stickericon = this.item.imageUrl;
+              addActicity()
+            "
           >
             <p class="textSticker">{{ item.text }}</p>
             <img src="{{ item.imageUrl }}" alt="" class="icon" />
@@ -236,10 +244,5 @@
         </div>
       </div>
     </div>
-
-
-    
-
-
   </body>
 </html>

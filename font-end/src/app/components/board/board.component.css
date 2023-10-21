@@ -170,17 +170,18 @@ td{
   margin-right: -25px
 }
 
-.a{
+.areaStick{
   display: flex; 
+  flex-wrap: wrap;
   /* background-color: rgb(96, 153, 203);  */
   justify-content: flex-start;
   margin-left: 0px;
 }
-.a ul {
+.areaStick ul {
   list-style: none;
 }
 
-.a li{
+.areaStick li{
   margin-bottom: 5px;
 }
 
