@@ -85,7 +85,8 @@
                   [class.sunday-stick]="!item.icon"
                   cdkDrag
                   cdkDragBoundary=".stickto"
-                  *ngFor="let item of sun_sticked"
+                  *ngFor="let item of sun_sticked; let i = index"
+                  (dblclick)="deletePoint(i)"
                   [style.background-image]="
                     item.bgImage
                       ? 'url(' + item.bgImage + ')'
@@ -117,7 +118,8 @@
                   [class.mon-stick]="!item.icon"
                   cdkDrag
                   cdkDragBoundary=".stickto"
-                  *ngFor="let item of mon_sticked"
+                  *ngFor="let item of mon_sticked; let i = index"
+                  (dblclick)="deletePoint(i)"
                   [style.background-image]="
                     item.bgImage
                       ? 'url(' + item.bgImage + ')'
@@ -149,7 +151,8 @@
                   [class.tue-stick]="!item.icon"
                   cdkDrag
                   cdkDragBoundary=".stickto"
-                  *ngFor="let item of tue_sticked"
+                  *ngFor="let item of tue_sticked; let i = index"
+                  (dblclick)="deletePoint(i)"
                   [style.background-image]="
                     item.bgImage
                       ? 'url(' + item.bgImage + ')'
@@ -181,7 +184,8 @@
                   [class.wed-stick]="!item.icon"
                   cdkDrag
                   cdkDragBoundary=".stickto"
-                  *ngFor="let item of wed_sticked"
+                  *ngFor="let item of wed_sticked; let i = index"
+                  (dblclick)="deletePoint(i)"
                   [style.background-image]="
                     item.bgImage
                       ? 'url(' + item.bgImage + ')'
@@ -214,7 +218,8 @@
                   [class.thu-stick]="!item.icon"
                   cdkDrag
                   cdkDragBoundary=".stickto"
-                  *ngFor="let item of thu_sticked"
+                  *ngFor="let item of thu_sticked; let i = index"
+                  (dblclick)="deletePoint(i)"
                   [style.background-image]="
                     item.bgImage
                       ? 'url(' + item.bgImage + ')'
@@ -246,7 +251,8 @@
                   [class.fri-stick]="!item.icon"
                   cdkDrag
                   cdkDragBoundary=".stickto"
-                  *ngFor="let item of fri_sticked"
+                  *ngFor="let item of fri_sticked; let i = index"
+                  (dblclick)="deletePoint(i)"
                   [style.background-image]="
                     item.bgImage
                       ? 'url(' + item.bgImage + ')'
@@ -278,7 +284,8 @@
                   [class.sat-stick]="!item.icon"
                   cdkDrag
                   cdkDragBoundary=".stickto"
-                  *ngFor="let item of sat_sticked"
+                  *ngFor="let item of sat_sticked; let i = index"
+                  (dblclick)="deletePoint(i)"
                   [style.background-image]="
                     item.bgImage
                       ? 'url(' + item.bgImage + ')'

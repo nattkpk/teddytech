@@ -180,7 +180,7 @@ export class Board {
     'Friday',
     'Saturday',
   ];
-  currentday = 6;
+  currentday = 0;
 
   addPoint() {
     switch (this.currentday) {
@@ -262,6 +262,46 @@ export class Board {
         }
         break;
     }
+  }
+
+  deletePoint(index: number): void {
+    switch (this.currentday) {
+      case 0:
+    if (index >= 0 && index < this.sun_sticked.length) {
+      this.sun_sticked[index] = { text: '' };
+    }
+    break;
+    case 1:
+    if (index >= 0 && index < this.mon_sticked.length) {
+      this.mon_sticked[index] = { text: '' };
+    }
+    break;
+    case 2:
+    if (index >= 0 && index < this.tue_sticked.length) {
+      this.tue_sticked[index] = { text: '' };
+    }
+    break;
+    case 3:
+    if (index >= 0 && index < this.wed_sticked.length) {
+      this.wed_sticked[index] = { text: '' };
+    }
+    break;
+    case 4:
+    if (index >= 0 && index < this.thu_sticked.length) {
+      this.thu_sticked[index] = { text: '' };
+    }
+    break;
+    case 5:
+    if (index >= 0 && index < this.fri_sticked.length) {
+      this.fri_sticked[index] = { text: '' };
+    }
+    break;
+    case 6:
+    if (index >= 0 && index < this.sat_sticked.length) {
+      this.sat_sticked[index] = { text: '' };
+    }
+    break;
+  }
   }
 
   change_day_plus() {
