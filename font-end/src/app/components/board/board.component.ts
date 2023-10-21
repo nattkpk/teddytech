@@ -65,12 +65,27 @@ export class Board {
   stickertext = ''
   stickericon = ''
   
+  // addActivity(){
+  //   this.activity_sticked.unshift({
+  //     text: this.stickertext,
+  //     imageUrl: this.stickericon,
+  //   },)
+  //   this.activity_sticked.pop()
+  // } 
+
   addActivity(){
-    this.activity_sticked.unshift({
-      text: this.stickertext,
-      imageUrl: this.stickericon,
-    },)
-    this.activity_sticked.pop()
+    for(let i = 0 ; i<this.activity_sticked.length ; i++){
+      if(!this.activity_sticked[i].imageUrl){
+        this.activity_sticked[i] = { text: this.stickertext,imageUrl: this.stickericon,};
+        break;
+      }
+    }
+  } 
+  
+  deleteActivity(index: number): void {
+    if (index >= 0 && index < this.activity_sticked.length) {
+        this.activity_sticked[index] = { text: '' };
+    }
   }
 
 
@@ -146,6 +161,8 @@ export class Board {
     {text: ''},
   ];
 
+ 
+
   point_bg = ''
   point_icon = ''
   
@@ -153,11 +170,25 @@ export class Board {
   currentday = 0;
 
   addPoint(){
-    this.activity_sticked.unshift({
-      text: this.stickertext,
-      imageUrl: this.stickericon,
-    },)
-    this.activity_sticked.pop()
+      switch (this.currentday) {
+        case 0:
+          for(let i = 0 ; i<this.sun_sticked.length ; i++){
+            if(!this.sun_sticked[i].icon){
+              this.sun_sticked[i] = { icon: this.point_icon,bgImage: this.point_bg,};
+              break;
+            }
+          }
+            break;
+        case 1:
+          for(let i = 0 ; i<this.mon_sticked.length ; i++){
+            if(!this.mon_sticked[i].icon){
+              this.mon_sticked[i] = { icon: this.point_icon,bgImage: this.point_bg,};
+              break;
+            }
+          }
+            break;
+    }
+    
   }
 
   change_day_plus() {

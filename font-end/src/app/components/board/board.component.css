@@ -190,6 +190,7 @@ td{
 
 .border-day{
   /* border: solid 5px #C46767; */
+  transition: 0.5s;
   background-color: #db7878;
   border-radius: 15px;
 }
