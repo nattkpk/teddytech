@@ -31,12 +31,13 @@
                 <p>Activity</p>
               </div>
               <div
-                class="day"
+                class="day border-activity"
                 cdkDropList
                 [cdkDropListData]="activity_sticked"
                 (cdkDropListDropped)="dropSticker($event)"
               >
-                <div
+                <div  
+                  [class.center-sticker]="item.imageUrl"
                   [class.sticker]="item.imageUrl"
                   [class.stickArea]="!item.imageUrl"
                   [class.activity-stick]="!item.imageUrl"

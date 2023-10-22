@@ -20,7 +20,7 @@
   border-radius: 20px;
   background-color: #EFCCCC;
   margin: 20px 5px 20px 5px;
-  width: 70vw;
+  width: 72vw;
   height: 770px;
 }
 
@@ -60,6 +60,10 @@ td{
 .title-board li{
   display: inline-block; 
   margin: 20px 2px 0px 5px;
+}
+
+.col-title{
+  cursor: pointer;
 }
 
 .col-title.activity{
@@ -184,6 +188,11 @@ td{
   border: dashed  3px rgba(0, 0, 0, 0.1);
 }
 
+.center-sticker{
+  margin: 5px auto;
+  align-items: center;
+}
+
 .stickArea p{
   color: black;
   opacity: 0.25;
@@ -232,7 +241,8 @@ td{
   display: flex; 
   flex-wrap: wrap;
   /* background-color: rgb(96, 153, 203);  */
-  justify-content: flex-start;
+  justify-content: center;
+  align-items: center;
   margin: 20px;
   margin-left: -22px;
 }
@@ -247,6 +257,11 @@ td{
 
 .day{
   padding: 5px 0px 5px 0px;
+}
+
+.border-activity{
+  background-color: #b4c66b;
+  border-radius: 15px
 }
 
 .border-sun{
@@ -303,7 +318,7 @@ td{
   border-radius: 20px;
   background-color: #EFCCCC;
   margin: 20px 5px 20px 5px;
-  width: 360px;
+  width: 23vw;
   height: 770px;
 }
 
@@ -311,7 +326,7 @@ td{
   display: flex;
   flex-wrap: wrap;
   margin: 10px;
-  width: 350px;
+  width: 22vw;
   /* background-color: #795682; */
   justify-content: start;
 }
@@ -342,7 +357,6 @@ td{
   background-size: cover;
   background-position: center;
   color: rgb(53, 53, 53);
-  margin: 2px;
   text-align: center;
   border-radius: 10px;
   border: 3px solid rgb(255, 255, 255);
@@ -372,13 +386,17 @@ td{
   background-size: cover;
   background-position: center;
   color: rgb(53, 53, 53);
-  margin: 2px;
+  margin: 5px 0px 5px 0px;
   border-radius: 50%;
   border: 3px solid rgb(255, 255, 255);
   cursor: grab;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.point-sticker:active{
+  cursor: grabbing;
 }
 
 .point-sticker .icon{
