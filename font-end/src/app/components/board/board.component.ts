@@ -17,7 +17,7 @@ export class Board {
   dataRows = new Array(5).fill({});
 
   constructor() {
-    this.selectedgenre = 'Praise';
+    this.selectedgenre = 'Feeling';
   }
 
   dropSticker(event: CdkDragDrop<string[]>) {
@@ -360,6 +360,45 @@ addPraise(index:number){
 deletePraise(index: number): void {
   if (index >= 0 && index < this.praise_sticked.length) {
     this.praise_sticked[index] = { text: '' };
+  }
+}
+
+
+// -------------------------------------Feeling Sticker---------------------------------------------
+feeling_fontColor: string = '#947218';
+feelingBg = '../../../assets/img/BgSticker/Star5.png';
+
+feeling_data: any[] = [
+  { text: 'Good !' },
+  { text: 'Amazing !' },
+  { text: 'Bored' },
+  { text: 'Happy' },
+  { text: 'Sleepy' },
+  { text: 'Joyful' },
+]
+
+
+
+feeling_sticked: any[] = [
+  { text: '' },
+  { text: '' },
+  { text: '' },
+];
+
+addFeeling(index:number){
+  for (let i = 0; i < this.feeling_sticked.length; i++) {
+    if (this.feeling_sticked[i].text == '') {
+      this.feeling_sticked[i] = {
+        text: this.feeling_data[index].text,
+      };
+      break;
+    }
+  }
+}
+
+deleteFeeling(index: number): void {
+  if (index >= 0 && index < this.feeling_sticked.length) {
+    this.feeling_sticked[index] = { text: '' };
   }
 }
 

@@ -36,7 +36,7 @@
                 [cdkDropListData]="activity_sticked"
                 (cdkDropListDropped)="dropSticker($event)"
               >
-                <div  
+                <div
                   [class.center-sticker]="item.imageUrl"
                   [class.sticker]="item.imageUrl"
                   [class.stickArea]="!item.imageUrl"
@@ -202,7 +202,6 @@
             </li>
           </ul>
 
-
           <!-- Thursday -->
           <ul class="stickto">
             <li>
@@ -301,7 +300,6 @@
               </div>
             </li>
           </ul>
-
         </div>
       </div>
 
@@ -365,7 +363,7 @@
           </li>
         </ul>
 
-<!-- ----------------------- Activity --------------------------------- -->
+        <!-- ----------------------- Activity ------------------------------------>
 
         <div *ngIf="selectedgenre === 'Activity'">
           <div
@@ -378,7 +376,7 @@
               class="sticker"
               cdkDrag
               cdkDragBoundary=".stickers-container"
-              *ngFor="let item of activityData;"
+              *ngFor="let item of activityData"
               [style.color]="activity_fontColor"
               [style.background-image]="'url(' + activityBg + ')'"
               (click)="
@@ -393,7 +391,49 @@
           </div>
         </div>
 
-<!-- ----------------------- Point --------------------------------- -->
+        <!-- ----------------------- Praise ------------------------------------>
+
+        <div *ngIf="selectedgenre === 'Praise'">
+          <div
+            class="stickers-container"
+            cdkDropList
+            [cdkDropListData]="praise_data"
+            (cdkDropListDropped)="dropSticker($event)"
+          >
+            <div
+              class="praiseSticker"
+              cdkDrag
+              cdkDragBoundary=".stickers-container"
+              *ngFor="let item of praise_data; let i = index"
+              [style.background-image]="'url(' + praiseBg + ')'"
+              (click)="addPraise(i)"
+            >
+              <p [style.color]="praise_fontColor">{{ item.text }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ----------------------- Feeling ------------------------------------>
+        <div *ngIf="selectedgenre === 'Feeling'">
+          <div
+            class="stickers-container"
+            cdkDropList
+            [cdkDropListData]="feeling_data"
+            (cdkDropListDropped)="dropSticker($event)"
+          >
+            <div
+              class="feelingSticker"
+              cdkDrag
+              cdkDragBoundary=".stickers-container"
+              *ngFor="let item of feeling_data; let i = index"
+              [style.background-image]="'url(' + feelingBg + ')'"
+              (click)="addFeeling(i)"
+            >
+              <p [style.color]="feeling_fontColor">{{ item.text }}</p>
+            </div>
+          </div>
+        </div>
+        <!-- ----------------------- Point ------------------------------------>
 
         <div *ngIf="selectedgenre === 'Point'">
           <div class="select-day">
@@ -428,69 +468,87 @@
             </div>
           </div>
         </div>
-
-<!-- ----------------------- Praise --------------------------------- -->
-
-        <div *ngIf="selectedgenre === 'Praise'">
-         
-          <div
-            class="stickers-container"
-            cdkDropList
-            [cdkDropListData]="praise_data"
-            (cdkDropListDropped)="dropSticker($event)"
-          >
-            <div
-              class="praiseSticker"
-              cdkDrag
-              cdkDragBoundary=".stickers-container"
-              *ngFor="let item of praise_data; let i = index"
-              [style.background-image]="'url(' + praiseBg + ')'"
-              (click)="
-                addPraise(i)
-              "
-            >
-              <p [style.color]="praise_fontColor"> {{item.text}}</p>
-            </div>
-          </div>
-        </div>
-
-        
       </div>
     </div>
 
     <div class="containerAll">
-
+      <!-- ----------------------- Praise ------------------------------------>
       <div class="container-praiseStickers">
-        <h5> Give 3 Praise Stickers&ensp;<i class="fa-solid fa-face-laugh-wink"></i></h5>
-        
+        <h5>
+          Give 3 Praise Stickers&ensp;<i
+            class="fa-solid fa-face-grin-hearts"
+          ></i>
+        </h5>
+
         <div
-            class="praiseSticker-sticked"
-            cdkDropList
-            [cdkDropListData]="praise_sticked"
-            (cdkDropListDropped)="dropSticker($event)"
+          class="praiseSticker-sticked"
+          cdkDropList
+          [cdkDropListData]="praise_sticked"
+          (cdkDropListDropped)="dropSticker($event)"
+        >
+          <div
+            [class.stickArea]="item.text == ''"
+            [class.stickArea2]="item.text == ''"
+            [class.praiseSticker]="item.text != ''"
+            cdkDrag
+            cdkDragBoundary=".praiseSticker-sticked"
+            *ngFor="let item of praise_sticked; let i = index"
+            (dblclick)="deletePraise(i)"
+            [style.background-image]="
+                    item.text != ''
+                      ? 'url(' + praiseBg + ')'
+                      : 'url(' + addBg + ')'
+                  "
+            (click)="
+              stickertext = this.item.text;
+              stickericon = this.item.imageUrl;
+              addActivity()
+            "
           >
-            <div
-              class="praiseSticker"
-              cdkDrag
-              cdkDragBoundary=".praiseSticker-sticked"
-              *ngFor="let item of praise_sticked;let i = index"
-              (dblclick)="deletePraise(i)"
-              [style.background-image]="'url(' + praiseBg + ')'"
-              (click)="
-                stickertext = this.item.text;
-                stickericon = this.item.imageUrl;
-                addActivity()
-              "
-            >
-              <p [style.color]="praise_fontColor">{{ item.text }}</p>
-              <img src="{{ item.imageUrl }}" alt="" class="icon" />
-            </div>
+            <p [style.color]="praise_fontColor">{{ item.text }}</p>
+            <img src="{{ item.imageUrl }}" alt="" class="icon" />
+          </div>
         </div>
       </div>
 
-      
+      <!-- ----------------------- Feeling ------------------------------------>
+      <div class="container-feelingStickers ">
+        <h5>
+          Give 3 Feeling Stickers&ensp;<i class="fa-solid fa-face-laugh"></i>
+        </h5>
 
+        <div
+          class="feelingStickers-sticked"
+          cdkDropList
+          [cdkDropListData]="feeling_sticked"
+          (cdkDropListDropped)="dropSticker($event)"
+        >
+          <div
+            [class.stickArea]="item.text == ''"
+            [class.stickArea2]="item.text == ''"
+            [class.feelingSticker]="item.text != ''"
+            cdkDrag
+            cdkDragBoundary=".feelingStickers-sticked"
+            *ngFor="let item of feeling_sticked; let i = index"
+            (dblclick)="deleteFeeling(i)"
+            [style.background-image]="
+                    item.text != ''
+                      ? 'url(' + feelingBg + ')'
+                      : 'url(' + addBg + ')'
+                  "
+            (click)="
+              stickertext = this.item.text;
+              stickericon = this.item.imageUrl;
+              addActivity()
+            "
+          >
+            <p [style.color]="feeling_fontColor">{{ item.text }}</p>
+            <img src="{{ item.imageUrl }}" alt="" class="icon" />
+          </div>
+        </div>
+      </div>
+
+      <!-- ----------------------- ----- --------------------------------- -->
     </div>
-
   </body>
 </html>
