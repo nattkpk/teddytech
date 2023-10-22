@@ -17,7 +17,7 @@ export class Board {
   dataRows = new Array(5).fill({});
 
   constructor() {
-    this.selectedgenre = 'Point';
+    this.selectedgenre = 'Praise';
   }
 
   dropSticker(event: CdkDragDrop<string[]>) {
@@ -32,7 +32,10 @@ export class Board {
 
   addBg = '';
 
+  // ---------------------------- Activity Sticker -------------------------------------
+
   activityBg = '../../../assets/img/BgSticker/Diamon4.png';
+  activity_fontColor = 'black';
   dataArray = ['ข้อความ1', 'ข้อความ2'];
   activity_sticked: any[] = [
     { text: '' },
@@ -103,6 +106,7 @@ export class Board {
   //   }
   // }
 
+// --------------------------------Point Sticker---------------------------------------------
   pointData: any[] = [
     {
       icon: '../../../assets/img/PointSticker/Icon/heart.png',
@@ -319,4 +323,46 @@ export class Board {
       this.currentday = this.day.length - 1;
     }
   }
+
+
+// -------------------------------------Praise Sticker---------------------------------------------
+praise_fontColor: string = '#dd689d';
+praiseBg = '../../../assets/img/BgSticker/Heart8.png';
+
+praise_data: any[] = [
+  { text: 'I am so proud of you' },
+  { text: 'You did a fantastic job!' },
+  { text: 'Thank you for your help' },
+  { text: 'I love you' },
+  { text: 'Your help means a lot' },
+  { text: 'You amaze me every day' },
+]
+
+
+
+praise_sticked: any[] = [
+  { text: '' },
+  { text: '' },
+  { text: '' },
+];
+
+addPraise(index:number){
+  for (let i = 0; i < this.praise_sticked.length; i++) {
+    if (this.praise_sticked[i].text == '') {
+      this.praise_sticked[i] = {
+        text: this.praise_data[index].text,
+      };
+      break;
+    }
+  }
+}
+
+deletePraise(index: number): void {
+  if (index >= 0 && index < this.praise_sticked.length) {
+    this.praise_sticked[index] = { text: '' };
+  }
+}
+
+
+
 }
