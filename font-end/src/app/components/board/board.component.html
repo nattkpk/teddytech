@@ -487,7 +487,6 @@
           (cdkDropListDropped)="dropSticker($event)"
         >
           <div
-            [class.stickArea]="item.text == ''"
             [class.stickArea2]="item.text == ''"
             [class.praiseSticker]="item.text != ''"
             cdkDrag
@@ -524,7 +523,6 @@
           (cdkDropListDropped)="dropSticker($event)"
         >
           <div
-            [class.stickArea]="item.text == ''"
             [class.stickArea2]="item.text == ''"
             [class.feelingSticker]="item.text != ''"
             cdkDrag
