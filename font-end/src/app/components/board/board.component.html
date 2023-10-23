@@ -307,6 +307,16 @@
               </div>
             </li>
           </ul>
+
+          <div class="btn-clear-board">
+              <button class="btn btn_act" (click)="clear_activity()">
+                <i class="fa-solid fa-xmark"></i>&ensp;Clear Activity
+              </button>
+              <button class="btn btn_pts" (click)="clear_point()">
+                <i class="fa-solid fa-xmark"></i>&ensp;Clear Poins
+              </button>
+          </div>
+
         </div>
       </div>
 
@@ -388,9 +398,7 @@
               *ngFor="let item of activityData; let i = index"
               [style.color]="activity_fontColor"
               [style.background-image]="'url(' + activityBg + ')'"
-              (click)="
-                addActivity(i)
-              "
+              (click)="addActivity(i)"
             >
               <p class="textSticker">{{ item.text }}</p>
               <img src="{{ item.imageUrl }}" alt="" class="icon" />
@@ -465,9 +473,7 @@
               cdkDragBoundary=".stickers-container"
               *ngFor="let item of pointData; let i = index"
               [style.background-image]="'url(' + item.bgImage + ')'"
-              (click)="
-                addPoint(i)
-              "
+              (click)="addPoint(i)"
             >
               <img src="{{ item.icon }}" alt="" class="icon" />
             </div>
@@ -528,6 +534,13 @@
           >
             <p [style.color]="praise_fontColor">{{ item.text }}</p>
           </div>
+
+          <div class="container_btn_clear">
+            <button class="btn btn_praise" (click)="clear_praise()">
+              <i class="fa-solid fa-xmark"></i>&ensp;Clear
+            </button>
+        </div>
+
         </div>
       </div>
 
@@ -556,6 +569,11 @@
           >
             <p [style.color]="feeling_fontColor">{{ item.text }}</p>
           </div>
+          <div class="container_btn_clear">
+            <button class="btn btn_feeling" (click)="clear_feeling()">
+              <i class="fa-solid fa-xmark"></i>&ensp;Clear
+            </button>
+        </div>
         </div>
       </div>
 
@@ -581,16 +599,24 @@
               item.text != '' ? 'url(' + rewardBg + ')' : 'url(' + addBg + ')'
             "
           >
-            <p [style.color]="reward_fontColor" class="textSticker">{{ item.text }}</p>
+            <p [style.color]="reward_fontColor" class="textSticker">
+              {{ item.text }}
+            </p>
             <img src="{{ item.imageUrl }}" alt="" class="icon" />
           </div>
         </div>
         <div class="calpoint">
-          <p>Point :<span>{{pointA}}</span></p>
-          <p>Point :<span>{{pointB}}</span></p>
+          <p>
+            Point :<span>{{ pointA }}</span>
+          </p>
+          <p>
+            Point :<span>{{ pointB }}</span>
+          </p>
         </div>
         <div class="calpoint">
-          <p>Now :<span>{{now_points}}</span></p>
+          <p>
+            Now :<span>{{ now_points }}</span>
+          </p>
         </div>
       </div>
 

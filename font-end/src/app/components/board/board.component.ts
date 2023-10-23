@@ -542,4 +542,191 @@ export class Board {
       this.rewardB=true;
     }
   }
+
+    // -----------------------------------Clear buttons------------------------------------------
+
+    clear_activity(){
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn-success',
+          cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+      })
+      
+      swalWithBootstrapButtons.fire({
+        title: 'Clear activity on the board',
+        text: "Are you sure?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes !',
+        cancelButtonText: 'cancel !',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.activity_sticked = [
+            { text: '' },
+            { text: '' },
+            { text: '' },
+            { text: '' },
+            { text: '' },
+          ];
+          swalWithBootstrapButtons.fire(
+            'Clear!',
+            'All activity have been deleted.',
+            'success'
+          )
+        }
+      }) 
+      
+      
+    }
+
+
+    clear_point(){
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn-success',
+          cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+      })
+      
+      swalWithBootstrapButtons.fire({
+        title: 'Clear points on the board',
+        text: "Are you sure?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes !',
+        cancelButtonText: 'cancel !',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.clear_point_all()
+          swalWithBootstrapButtons.fire(
+            'Clear!',
+            'All points have been deleted.',
+            'success'
+          )
+        } 
+      })
+    }
+
+  clear_point_all(){
+      this.sun_sticked= [
+        { text: '' },
+        { text: '' },
+        { text: '' },
+        { text: '' },
+        { text: '' },
+      ];
+      this.mon_sticked= [
+        { text: '' },
+        { text: '' },
+        { text: '' },
+        { text: '' },
+        { text: '' },
+      ];
+      this.tue_sticked= [
+        { text: '' },
+        { text: '' },
+        { text: '' },
+        { text: '' },
+        { text: '' },
+      ];
+      this.wed_sticked= [
+        { text: '' },
+        { text: '' },
+        { text: '' },
+        { text: '' },
+        { text: '' },
+      ];
+      this.thu_sticked= [
+        { text: '' },
+        { text: '' },
+        { text: '' },
+        { text: '' },
+        { text: '' },
+      ];
+      this.fri_sticked= [
+        { text: '' },
+        { text: '' },
+        { text: '' },
+        { text: '' },
+        { text: '' },
+      ];
+      this.sat_sticked= [
+        { text: '' },
+        { text: '' },
+        { text: '' },
+        { text: '' },
+        { text: '' },
+      ];
+    }
+
+    clear_praise(){
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn-success',
+          cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+      })
+      
+      swalWithBootstrapButtons.fire({
+        title: 'Clear praise sticker on the board',
+        text: "Are you sure?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes !',
+        cancelButtonText: 'cancel !',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.praise_sticked = [
+            { text: '' },
+            { text: '' },
+            { text: '' },
+          ];
+          swalWithBootstrapButtons.fire(
+            'Clear!',
+            'All praise sticker have been deleted.',
+            'success'
+          )
+        }
+      }) 
+    }
+
+    clear_feeling(){
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn-success',
+          cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+      })
+      
+      swalWithBootstrapButtons.fire({
+        title: 'Clear feeling sticker on the board',
+        text: "Are you sure?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes !',
+        cancelButtonText: 'cancel !',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.feeling_sticked = [
+            { text: '' },
+            { text: '' },
+            { text: '' },
+          ];
+          swalWithBootstrapButtons.fire(
+            'Clear!',
+            'All feeling sticker have been deleted.',
+            'success'
+          )
+        }
+      }) 
+    }
 }

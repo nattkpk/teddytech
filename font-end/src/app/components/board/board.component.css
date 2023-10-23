@@ -21,7 +21,7 @@
   background-color: #EFCCCC;
   margin: 20px 5px 0px 5px;
   width: 72vw;
-  height: 770px;
+  height: 820px;
 }
 
 .container-board h5{
@@ -272,8 +272,8 @@ td{
   /* background-color: rgb(96, 153, 203);  */
   justify-content: center;
   align-items: center;
-  margin: 20px;
-  margin-left: -22px;
+  margin-top: 15px;
+  margin-left: -5%;
 }
 
 .areaStick ul {
@@ -348,7 +348,7 @@ td{
   background-color: #EFCCCC;
   margin: 20px 5px 0px 5px;
   width: 23vw;
-  height: 770px;
+  height: 820px;
 }
 
 .stickers-container {
@@ -663,6 +663,51 @@ td{
   align-items: center;
 }
 
+/* --------------------------clear button---------------------------- */
+.btn-clear-board{
+  width: 820px;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+
+.btn {
+  background-color: #daa2a2;
+  color: #FFFFFF;
+  border: none; 
+  padding: 10px 20px; 
+  border-radius: 5px;
+  cursor: pointer; 
+  margin-left: 10px;
+}
+
+.btn:hover {
+  background-color: #c98f8f;
+}
+
+.container_btn_clear{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 10px auto;
+}
+
+.btn_praise{
+  background-color: #fda7c5;
+}
+
+.btn_praise:hover {
+  background-color: #e897b3;
+}
+
+.btn_feeling{
+  background-color: #fcd196;
+}
+
+.btn_feeling:hover {
+  background-color: #f1c68a;
+}
 /* ------------------responsive------------------ */
 @media  screen and (max-width:480px) {
 
