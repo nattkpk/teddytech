@@ -282,49 +282,49 @@ export class Board {
   deletePoint(index: number): void {
     switch (this.currentday) {
       case 0:
-    if (index >= 0 && index < this.sun_sticked.length) {
+    if (index >= 0 && index < this.sun_sticked.length && this.sun_sticked[index].text !=  '' ) {
       const decrease = parseInt(this.sun_sticked[index].point)
       this.now_points = this.now_points - decrease
       this.sun_sticked[index] = { text: '' };
     }
     break;
     case 1:
-    if (index >= 0 && index < this.mon_sticked.length) {
+    if (index >= 0 && index < this.mon_sticked.length && this.mon_sticked[index].text !=  '') {
       const decrease = parseInt(this.mon_sticked[index].point)
       this.now_points = this.now_points - decrease
       this.mon_sticked[index] = { text: '' };
     }
     break;
     case 2:
-    if (index >= 0 && index < this.tue_sticked.length) {
+    if (index >= 0 && index < this.tue_sticked.length && this.tue_sticked[index].text !=  '') {
       const decrease = parseInt(this.tue_sticked[index].point)
       this.now_points = this.now_points - decrease
       this.tue_sticked[index] = { text: '' };
     }
     break;
     case 3:
-    if (index >= 0 && index < this.wed_sticked.length) {
+    if (index >= 0 && index < this.wed_sticked.length && this.wed_sticked[index].text !=  '') {
       const decrease = parseInt(this.wed_sticked[index].point)
       this.now_points = this.now_points - decrease
       this.wed_sticked[index] = { text: '' };
     }
     break;
     case 4:
-    if (index >= 0 && index < this.thu_sticked.length) {
+    if (index >= 0 && index < this.thu_sticked.length && this.thu_sticked[index].text !=  '') {
       const decrease = parseInt(this.thu_sticked[index].point)
       this.now_points = this.now_points - decrease
       this.thu_sticked[index] = { text: '' };
     }
     break;
     case 5:
-    if (index >= 0 && index < this.fri_sticked.length) {
+    if (index >= 0 && index < this.fri_sticked.length && this.fri_sticked[index].text !=  '') {
       const decrease = parseInt(this.fri_sticked[index].point)
       this.now_points = this.now_points - decrease
       this.fri_sticked[index] = { text: '' };
     }
     break;
     case 6:
-    if (index >= 0 && index < this.sat_sticked.length) {
+    if (index >= 0 && index < this.sat_sticked.length && this.sat_sticked[index].text !=  '') {
       const decrease = parseInt(this.sat_sticked[index].point)
       this.now_points = this.now_points - decrease
       this.sat_sticked[index] = { text: '' };
