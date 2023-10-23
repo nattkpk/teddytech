@@ -1,57 +1,552 @@
 <!DOCTYPE html>
 <html>
+  <head> </head>
 
-<head>
-</head>
+  <body>
+    <div class="containerAll" cdkDropListGroup>
+      <div class="container-board">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a
+              class="nav-link active"
+              aria-current="page"
+              href="javascript:void"
+              >Board</a
+            >
+          </li>
 
-<body>
-    
-    <div class="container">
-        <ul class="nav nav-tabs ">
-
-            <li class="nav-item">
-                <a 
-                (click)="selectedgenre = 'Activity'"
-                [class.active]="selectedgenre === 'Activity'"
-                class="nav-link" aria-current="page"  href="javascript:void">Activity</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" 
-                (click)="selectedgenre = 'Praise'"
-                [class.active]="selectedgenre === 'Praise'"
-                aria-current="page" href="javascript:void">Praise</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" 
-                (click)="selectedgenre = 'Feeling'"
-                [class.active]="selectedgenre === 'Feeling'"
-                aria-current="page"  href="javascript:void">Feeling</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" 
-                (click)="selectedgenre = 'Point'"
-                [class.active]="selectedgenre === 'Point'"
-                aria-current="page"  href="javascript:void">Point</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" 
-                (click)="selectedgenre = 'Reward'"
-                [class.active]="selectedgenre === 'Reward'"
-                aria-current="page"  href="javascript:void">Reward</a>
-            </li>
-            
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="javascript:void"
+              >Carlendar</a
+            >
+          </li>
         </ul>
 
-        <div class="sticker" cdkDrag *ngFor="let item of dataArray2"  [style.background-image]="'url(' + imgUrl + ')'">
-            <p class="textSticker">{{ item.text }}</p>
-            <img src="{{ item.imageUrl }}" alt="" class="icon">
-        </div>
-    </div>
-   
-</body>
+        <h5>Double click to remove sticker | คลิกสองครั้งเพื่อลบสติกเกอร์</h5>
 
+        <div class="areaStick">
+          <ul class="stickto">
+            <li>
+              <div class="col-title activity">
+                <p>Activity</p>
+              </div>
+              <div
+                class="day border-activity"
+                cdkDropList
+                [cdkDropListData]="activity_sticked"
+                (cdkDropListDropped)="dropSticker($event)"
+              >
+                <div
+                  [class.center-sticker]="item.imageUrl"
+                  [class.sticker]="item.imageUrl"
+                  [class.stickArea]="!item.imageUrl"
+                  [class.activity-stick]="!item.imageUrl"
+                  cdkDrag
+                  cdkDragBoundary=".stickto"
+                  *ngFor="let item of activity_sticked; let i = index"
+                  (dblclick)="deleteActivity(i)"
+                  [style.color]="activity_fontColor"
+                  [style.background-image]="
+                    item.imageUrl
+                      ? 'url(' + activityBg + ')'
+                      : 'url(' + addBg + ')'
+                  "
+                >
+                  <p class="textSticker">{{ item.text }}</p>
+                  <img [src]="item.imageUrl" alt="" class="icon" />
+                </div>
+              </div>
+
+              <!-- <div
+                class="stickArea activity-stick"
+                *ngFor="let item of activity_space; let i = index"
+              >
+                <p>
+                  Add <br />
+                  Activity !
+                </p>
+              </div>
+               -->
+            </li>
+          </ul>
+
+          <!-- Sunday -->
+          <ul class="stickto">
+            <li>
+              <div class="col-title sun" (click)="currentday = 0">
+                <p>Sun.</p>
+              </div>
+              <div
+                class="day"
+                [class.border-sun]="currentday == 0"
+                cdkDropList
+                [cdkDropListData]="sun_sticked"
+                (cdkDropListDropped)="dropSticker($event)"
+              >
+                <div
+                  [class.point-sticker]="item.icon"
+                  [class.stickArea]="!item.icon"
+                  [class.sunday-stick]="!item.icon"
+                  cdkDrag
+                  cdkDragBoundary=".stickto"
+                  *ngFor="let item of sun_sticked; let i = index"
+                  (dblclick)="deletePoint(i)"
+                  [style.background-image]="
+                    item.bgImage
+                      ? 'url(' + item.bgImage + ')'
+                      : 'url(' + addBg + ')'
+                  "
+                >
+                  <img src="{{ item.icon }}" alt="" class="icon" />
+                </div>
+              </div>
+            </li>
+          </ul>
+
+          <!-- Monday -->
+          <ul class="stickto">
+            <li>
+              <div class="col-title mon" (click)="currentday = 1">
+                <p>Mon.</p>
+              </div>
+              <div
+                class="day"
+                [class.border-mon]="currentday == 1"
+                cdkDropList
+                [cdkDropListData]="mon_sticked"
+                (cdkDropListDropped)="dropSticker($event)"
+              >
+                <div
+                  [class.point-sticker]="item.icon"
+                  [class.stickArea]="!item.icon"
+                  [class.mon-stick]="!item.icon"
+                  cdkDrag
+                  cdkDragBoundary=".stickto"
+                  *ngFor="let item of mon_sticked; let i = index"
+                  (dblclick)="deletePoint(i)"
+                  [style.background-image]="
+                    item.bgImage
+                      ? 'url(' + item.bgImage + ')'
+                      : 'url(' + addBg + ')'
+                  "
+                >
+                  <img src="{{ item.icon }}" alt="" class="icon" />
+                </div>
+              </div>
+            </li>
+          </ul>
+
+          <!-- Tuesday -->
+          <ul class="stickto">
+            <li>
+              <div class="col-title tue" (click)="currentday = 2">
+                <p>Tue.</p>
+              </div>
+              <div
+                class="day"
+                [class.border-tue]="currentday == 2"
+                cdkDropList
+                [cdkDropListData]="tue_sticked"
+                (cdkDropListDropped)="dropSticker($event)"
+              >
+                <div
+                  [class.point-sticker]="item.icon"
+                  [class.stickArea]="!item.icon"
+                  [class.tue-stick]="!item.icon"
+                  cdkDrag
+                  cdkDragBoundary=".stickto"
+                  *ngFor="let item of tue_sticked; let i = index"
+                  (dblclick)="deletePoint(i)"
+                  [style.background-image]="
+                    item.bgImage
+                      ? 'url(' + item.bgImage + ')'
+                      : 'url(' + addBg + ')'
+                  "
+                >
+                  <img src="{{ item.icon }}" alt="" class="icon" />
+                </div>
+              </div>
+            </li>
+          </ul>
+
+          <!-- Wednesday -->
+          <ul class="stickto">
+            <li>
+              <div class="col-title wed" (click)="currentday = 3">
+                <p>Wed.</p>
+              </div>
+              <div
+                class="day"
+                [class.border-wed]="currentday == 3"
+                cdkDropList
+                [cdkDropListData]="wed_sticked"
+                (cdkDropListDropped)="dropSticker($event)"
+              >
+                <div
+                  [class.point-sticker]="item.icon"
+                  [class.stickArea]="!item.icon"
+                  [class.wed-stick]="!item.icon"
+                  cdkDrag
+                  cdkDragBoundary=".stickto"
+                  *ngFor="let item of wed_sticked; let i = index"
+                  (dblclick)="deletePoint(i)"
+                  [style.background-image]="
+                    item.bgImage
+                      ? 'url(' + item.bgImage + ')'
+                      : 'url(' + addBg + ')'
+                  "
+                >
+                  <img src="{{ item.icon }}" alt="" class="icon" />
+                </div>
+              </div>
+            </li>
+          </ul>
+
+          <!-- Thursday -->
+          <ul class="stickto">
+            <li>
+              <div class="col-title thu" (click)="currentday = 4">
+                <p>Thu.</p>
+              </div>
+              <div
+                class="day"
+                [class.border-thu]="currentday == 4"
+                cdkDropList
+                [cdkDropListData]="thu_sticked"
+                (cdkDropListDropped)="dropSticker($event)"
+              >
+                <div
+                  [class.point-sticker]="item.icon"
+                  [class.stickArea]="!item.icon"
+                  [class.thu-stick]="!item.icon"
+                  cdkDrag
+                  cdkDragBoundary=".stickto"
+                  *ngFor="let item of thu_sticked; let i = index"
+                  (dblclick)="deletePoint(i)"
+                  [style.background-image]="
+                    item.bgImage
+                      ? 'url(' + item.bgImage + ')'
+                      : 'url(' + addBg + ')'
+                  "
+                >
+                  <img src="{{ item.icon }}" alt="" class="icon" />
+                </div>
+              </div>
+            </li>
+          </ul>
+
+          <!-- Friday -->
+          <ul class="stickto">
+            <li>
+              <div class="col-title fri" (click)="currentday = 5">
+                <p>Fri.</p>
+              </div>
+              <div
+                class="day"
+                [class.border-fri]="currentday == 5"
+                cdkDropList
+                [cdkDropListData]="fri_sticked"
+                (cdkDropListDropped)="dropSticker($event)"
+              >
+                <div
+                  [class.point-sticker]="item.icon"
+                  [class.stickArea]="!item.icon"
+                  [class.fri-stick]="!item.icon"
+                  cdkDrag
+                  cdkDragBoundary=".stickto"
+                  *ngFor="let item of fri_sticked; let i = index"
+                  (dblclick)="deletePoint(i)"
+                  [style.background-image]="
+                    item.bgImage
+                      ? 'url(' + item.bgImage + ')'
+                      : 'url(' + addBg + ')'
+                  "
+                >
+                  <img src="{{ item.icon }}" alt="" class="icon" />
+                </div>
+              </div>
+            </li>
+          </ul>
+
+          <!-- Saturday -->
+          <ul class="stickto">
+            <li>
+              <div class="col-title sat" (click)="currentday = 6">
+                <p>Sat.</p>
+              </div>
+              <div
+                class="day"
+                [class.border-sat]="currentday == 6"
+                cdkDropList
+                [cdkDropListData]="sat_sticked"
+                (cdkDropListDropped)="dropSticker($event)"
+              >
+                <div
+                  [class.point-sticker]="item.icon"
+                  [class.stickArea]="!item.icon"
+                  [class.sat-stick]="!item.icon"
+                  cdkDrag
+                  cdkDragBoundary=".stickto"
+                  *ngFor="let item of sat_sticked; let i = index"
+                  (dblclick)="deletePoint(i)"
+                  [style.background-image]="
+                    item.bgImage
+                      ? 'url(' + item.bgImage + ')'
+                      : 'url(' + addBg + ')'
+                  "
+                >
+                  <img src="{{ item.icon }}" alt="" class="icon" />
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="container-stickerBoard">
+        <h5>♥️ Click to add sticker ♥️</h5>
+        <h6>คลิกเพื่อเพิ่มสติกเกอร์</h6>
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a
+              (click)="selectedgenre = 'Activity'"
+              [class.active]="selectedgenre === 'Activity'"
+              class="nav-link"
+              aria-current="page"
+              href="javascript:void"
+              >Activity</a
+            >
+          </li>
+
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              (click)="selectedgenre = 'Praise'"
+              [class.active]="selectedgenre === 'Praise'"
+              aria-current="page"
+              href="javascript:void"
+              >Praise</a
+            >
+          </li>
+
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              (click)="selectedgenre = 'Feeling'"
+              [class.active]="selectedgenre === 'Feeling'"
+              aria-current="page"
+              href="javascript:void"
+              >Feeling</a
+            >
+          </li>
+
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              (click)="selectedgenre = 'Point'"
+              [class.active]="selectedgenre === 'Point'"
+              aria-current="page"
+              href="javascript:void"
+              >Point</a
+            >
+          </li>
+
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              (click)="selectedgenre = 'Reward'"
+              [class.active]="selectedgenre === 'Reward'"
+              aria-current="page"
+              href="javascript:void"
+              >Reward</a
+            >
+          </li>
+        </ul>
+
+        <!-- ----------------------- Activity ------------------------------------>
+
+        <div *ngIf="selectedgenre === 'Activity'">
+          <div
+            class="stickers-container"
+            cdkDropList
+            [cdkDropListData]="activityData"
+            (cdkDropListDropped)="dropSticker($event)"
+          >
+            <div
+              class="sticker"
+              cdkDrag
+              cdkDragBoundary=".stickers-container"
+              *ngFor="let item of activityData"
+              [style.color]="activity_fontColor"
+              [style.background-image]="'url(' + activityBg + ')'"
+              (click)="
+                stickertext = this.item.text;
+                stickericon = this.item.imageUrl;
+                addActivity()
+              "
+            >
+              <p class="textSticker">{{ item.text }}</p>
+              <img src="{{ item.imageUrl }}" alt="" class="icon" />
+            </div>
+          </div>
+        </div>
+
+        <!-- ----------------------- Praise ------------------------------------>
+
+        <div *ngIf="selectedgenre === 'Praise'">
+          <div
+            class="stickers-container"
+            cdkDropList
+            [cdkDropListData]="praise_data"
+            (cdkDropListDropped)="dropSticker($event)"
+          >
+            <div
+              class="praiseSticker"
+              cdkDrag
+              cdkDragBoundary=".stickers-container"
+              *ngFor="let item of praise_data; let i = index"
+              [style.background-image]="'url(' + praiseBg + ')'"
+              (click)="addPraise(i)"
+            >
+              <p [style.color]="praise_fontColor">{{ item.text }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ----------------------- Feeling ------------------------------------>
+        <div *ngIf="selectedgenre === 'Feeling'">
+          <div
+            class="stickers-container"
+            cdkDropList
+            [cdkDropListData]="feeling_data"
+            (cdkDropListDropped)="dropSticker($event)"
+          >
+            <div
+              class="feelingSticker"
+              cdkDrag
+              cdkDragBoundary=".stickers-container"
+              *ngFor="let item of feeling_data; let i = index"
+              [style.background-image]="'url(' + feelingBg + ')'"
+              (click)="addFeeling(i)"
+            >
+              <p [style.color]="feeling_fontColor">{{ item.text }}</p>
+            </div>
+          </div>
+        </div>
+        <!-- ----------------------- Point ------------------------------------>
+
+        <div *ngIf="selectedgenre === 'Point'">
+          <div class="select-day">
+            <h4 (click)="change_day_minus()">
+              <i class="fa-solid fa-caret-left"></i>
+            </h4>
+            <h4>{{ day[currentday] }}</h4>
+            <h4 (click)="change_day_plus()">
+              <i class="fa-solid fa-caret-right"></i>
+            </h4>
+          </div>
+
+          <div
+            class="stickers-container"
+            cdkDropList
+            [cdkDropListData]="pointData"
+            (cdkDropListDropped)="dropSticker($event)"
+          >
+            <div
+              class="point-sticker"
+              cdkDrag
+              cdkDragBoundary=".stickers-container"
+              *ngFor="let item of pointData"
+              [style.background-image]="'url(' + item.bgImage + ')'"
+              (click)="
+                point_bg = this.item.bgImage;
+                point_icon = this.item.icon;
+                addPoint()
+              "
+            >
+              <img src="{{ item.icon }}" alt="" class="icon" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="containerAll">
+      <!-- ----------------------- Praise ------------------------------------>
+      <div class="container-praiseStickers">
+        <h5>
+          Give 3 Praise Stickers&ensp;<i
+            class="fa-solid fa-face-grin-hearts"
+          ></i>
+        </h5>
+
+        <div
+          class="praiseSticker-sticked"
+          cdkDropList
+          [cdkDropListData]="praise_sticked"
+          (cdkDropListDropped)="dropSticker($event)"
+        >
+          <div
+            [class.stickArea2]="item.text == ''"
+            [class.praiseSticker]="item.text != ''"
+            cdkDrag
+            cdkDragBoundary=".praiseSticker-sticked"
+            *ngFor="let item of praise_sticked; let i = index"
+            (dblclick)="deletePraise(i)"
+            [style.background-image]="
+                    item.text != ''
+                      ? 'url(' + praiseBg + ')'
+                      : 'url(' + addBg + ')'
+                  "
+            (click)="
+              stickertext = this.item.text;
+              stickericon = this.item.imageUrl;
+              addActivity()
+            "
+          >
+            <p [style.color]="praise_fontColor">{{ item.text }}</p>
+            <img src="{{ item.imageUrl }}" alt="" class="icon" />
+          </div>
+        </div>
+      </div>
+
+      <!-- ----------------------- Feeling ------------------------------------>
+      <div class="container-feelingStickers ">
+        <h5>
+          Give 3 Feeling Stickers&ensp;<i class="fa-solid fa-face-laugh"></i>
+        </h5>
+
+        <div
+          class="feelingStickers-sticked"
+          cdkDropList
+          [cdkDropListData]="feeling_sticked"
+          (cdkDropListDropped)="dropSticker($event)"
+        >
+          <div
+            [class.stickArea2]="item.text == ''"
+            [class.feelingSticker]="item.text != ''"
+            cdkDrag
+            cdkDragBoundary=".feelingStickers-sticked"
+            *ngFor="let item of feeling_sticked; let i = index"
+            (dblclick)="deleteFeeling(i)"
+            [style.background-image]="
+                    item.text != ''
+                      ? 'url(' + feelingBg + ')'
+                      : 'url(' + addBg + ')'
+                  "
+            (click)="
+              stickertext = this.item.text;
+              stickericon = this.item.imageUrl;
+              addActivity()
+            "
+          >
+            <p [style.color]="feeling_fontColor">{{ item.text }}</p>
+            <img src="{{ item.imageUrl }}" alt="" class="icon" />
+          </div>
+        </div>
+      </div>
+
+      <!-- ----------------------- ----- --------------------------------- -->
+    </div>
+  </body>
 </html>
