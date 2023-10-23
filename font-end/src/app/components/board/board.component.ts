@@ -71,9 +71,6 @@ export class Board {
     },
   ];
 
-  stickertext = '';
-  stickericon = '';
-
   // addActivity(){
   //   this.activity_sticked.unshift({
   //     text: this.stickertext,
@@ -82,12 +79,12 @@ export class Board {
   //   this.activity_sticked.pop()
   // }
 
-  addActivity() {
+  addActivity(index: number) {
     for (let i = 0; i < this.activity_sticked.length; i++) {
       if (!this.activity_sticked[i].imageUrl) {
         this.activity_sticked[i] = {
-          text: this.stickertext,
-          imageUrl: this.stickericon,
+          text: this.activityData[index].text,
+          imageUrl: this.activityData[index].imageUrl,
         };
         break;
       }
@@ -111,14 +108,17 @@ export class Board {
     {
       icon: '../../../assets/img/PointSticker/Icon/heart.png',
       bgImage: '../../../assets/img/PointSticker/Bg/Bgpoint1.png',
+      point: '1'
     },
     {
       icon: '../../../assets/img/PointSticker/Icon/star.png',
       bgImage: '../../../assets/img/PointSticker/Bg/Bgpoint2.png',
+      point: '2'
     },
     {
       icon: '../../../assets/img/PointSticker/Icon/shooting-star.png',
       bgImage: '../../../assets/img/PointSticker/Bg/Bgpoint3.png',
+      point: '3'
     },
   ];
 
@@ -172,9 +172,6 @@ export class Board {
     { text: '' },
   ];
 
-  point_bg = '';
-  point_icon = '';
-
   day = [
     'Sunday',
     'Monday',
@@ -186,15 +183,17 @@ export class Board {
   ];
   currentday = 0;
 
-  addPoint() {
+  addPoint(index:number) {
     switch (this.currentday) {
       case 0:
         for (let i = 0; i < this.sun_sticked.length; i++) {
           if (!this.sun_sticked[i].icon) {
             this.sun_sticked[i] = {
-              icon: this.point_icon,
-              bgImage: this.point_bg,
+              icon: this.pointData[index].icon,
+              bgImage: this.pointData[index].bgImage,
+              point: this.pointData[index].point, 
             };
+            this.calculate_point(index);
             break;
           }
         }
@@ -203,9 +202,11 @@ export class Board {
         for (let i = 0; i < this.mon_sticked.length; i++) {
           if (!this.mon_sticked[i].icon) {
             this.mon_sticked[i] = {
-              icon: this.point_icon,
-              bgImage: this.point_bg,
+              icon: this.pointData[index].icon,
+              bgImage: this.pointData[index].bgImage,
+              point: this.pointData[index].point,
             };
+            this.calculate_point(index);
             break;
           }
         }
@@ -214,9 +215,11 @@ export class Board {
         for (let i = 0; i < this.tue_sticked.length; i++) {
           if (!this.tue_sticked[i].icon) {
             this.tue_sticked[i] = {
-              icon: this.point_icon,
-              bgImage: this.point_bg,
+              icon: this.pointData[index].icon,
+              bgImage: this.pointData[index].bgImage,
+              point: this.pointData[index].point,
             };
+            this.calculate_point(index);
             break;
           }
         }
@@ -225,9 +228,11 @@ export class Board {
         for (let i = 0; i < this.wed_sticked.length; i++) {
           if (!this.wed_sticked[i].icon) {
             this.wed_sticked[i] = {
-              icon: this.point_icon,
-              bgImage: this.point_bg,
+              icon: this.pointData[index].icon,
+              bgImage: this.pointData[index].bgImage,
+              point: this.pointData[index].point,
             };
+            this.calculate_point(index);
             break;
           }
         }
@@ -236,9 +241,11 @@ export class Board {
         for (let i = 0; i < this.thu_sticked.length; i++) {
           if (!this.thu_sticked[i].icon) {
             this.thu_sticked[i] = {
-              icon: this.point_icon,
-              bgImage: this.point_bg,
+              icon: this.pointData[index].icon,
+              bgImage: this.pointData[index].bgImage,
+              point: this.pointData[index].point,
             };
+            this.calculate_point(index);
             break;
           }
         }
@@ -247,9 +254,11 @@ export class Board {
         for (let i = 0; i < this.fri_sticked.length; i++) {
           if (!this.fri_sticked[i].icon) {
             this.fri_sticked[i] = {
-              icon: this.point_icon,
-              bgImage: this.point_bg,
+              icon: this.pointData[index].icon,
+              bgImage: this.pointData[index].bgImage,
+              point: this.pointData[index].point,
             };
+            this.calculate_point(index);
             break;
           }
         }
@@ -258,9 +267,11 @@ export class Board {
         for (let i = 0; i < this.sat_sticked.length; i++) {
           if (!this.sat_sticked[i].icon) {
             this.sat_sticked[i] = {
-              icon: this.point_icon,
-              bgImage: this.point_bg,
+              icon: this.pointData[index].icon,
+              bgImage: this.pointData[index].bgImage,
+              point: this.pointData[index].point,
             };
+            this.calculate_point(index);
             break;
           }
         }
@@ -272,36 +283,50 @@ export class Board {
     switch (this.currentday) {
       case 0:
     if (index >= 0 && index < this.sun_sticked.length) {
+      const decrease = parseInt(this.sun_sticked[index].point)
+      this.now_points = this.now_points - decrease
       this.sun_sticked[index] = { text: '' };
     }
     break;
     case 1:
     if (index >= 0 && index < this.mon_sticked.length) {
+      const decrease = parseInt(this.mon_sticked[index].point)
+      this.now_points = this.now_points - decrease
       this.mon_sticked[index] = { text: '' };
     }
     break;
     case 2:
     if (index >= 0 && index < this.tue_sticked.length) {
+      const decrease = parseInt(this.tue_sticked[index].point)
+      this.now_points = this.now_points - decrease
       this.tue_sticked[index] = { text: '' };
     }
     break;
     case 3:
     if (index >= 0 && index < this.wed_sticked.length) {
+      const decrease = parseInt(this.wed_sticked[index].point)
+      this.now_points = this.now_points - decrease
       this.wed_sticked[index] = { text: '' };
     }
     break;
     case 4:
     if (index >= 0 && index < this.thu_sticked.length) {
+      const decrease = parseInt(this.thu_sticked[index].point)
+      this.now_points = this.now_points - decrease
       this.thu_sticked[index] = { text: '' };
     }
     break;
     case 5:
     if (index >= 0 && index < this.fri_sticked.length) {
+      const decrease = parseInt(this.fri_sticked[index].point)
+      this.now_points = this.now_points - decrease
       this.fri_sticked[index] = { text: '' };
     }
     break;
     case 6:
     if (index >= 0 && index < this.sat_sticked.length) {
+      const decrease = parseInt(this.sat_sticked[index].point)
+      this.now_points = this.now_points - decrease
       this.sat_sticked[index] = { text: '' };
     }
     break;
@@ -454,5 +479,14 @@ deleteReward(index: number): void {
       this.reward_sticked[index] = { text: '' };
     }
   }
-  
+  // -----------------------------------calculate point-------------------------------------------
+now_points = 0;
+pointA = 20;
+pointB = 15;
+
+calculate_point(index:number){
+  const point = parseInt(this.pointData[index].point);
+  this.now_points = this.now_points + point;
+}
+
 }
