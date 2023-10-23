@@ -303,6 +303,8 @@
         </div>
       </div>
 
+      <!--------------------------------stickerBoard----------------------------------->
+
       <div class="container-stickerBoard">
         <h5>♥️ Click to add sticker ♥️</h5>
         <h6>คลิกเพื่อเพิ่มสติกเกอร์</h6>
@@ -468,11 +470,38 @@
             </div>
           </div>
         </div>
+        <!-- ----------------------- Reward ------------------------------------>
+        <div *ngIf="selectedgenre === 'Reward'">
+          <div
+            class="stickers-container"
+            cdkDropList
+            [cdkDropListData]="rewardData"
+            (cdkDropListDropped)="dropSticker($event)"
+          >
+            <div
+              class="sticker"
+              cdkDrag
+              cdkDragBoundary=".stickers-container"
+              *ngFor="let item of rewardData; let i = index"
+              [style.color]="reward_fontColor"
+              [style.background-image]="'url(' + rewardBg + ')'"
+              (click)="
+                stickertext = this.item.text;
+                stickericon = this.item.imageUrl;
+                addReward(i)
+              "
+            >
+              <p class="textSticker">{{ item.text }}</p>
+              <img src="{{ item.imageUrl }}" alt="" class="icon" />
+            </div>
+          </div>
+        </div>
+        <!-- ------------------------------------------------------- -->
       </div>
     </div>
 
     <div class="containerAll">
-      <!-- ----------------------- Praise ------------------------------------>
+      <!-- ----------------------- Praise Board------------------------------------>
       <div class="container-praiseStickers">
         <h5>
           Give 3 Praise Stickers&ensp;<i
@@ -494,10 +523,8 @@
             *ngFor="let item of praise_sticked; let i = index"
             (dblclick)="deletePraise(i)"
             [style.background-image]="
-                    item.text != ''
-                      ? 'url(' + praiseBg + ')'
-                      : 'url(' + addBg + ')'
-                  "
+              item.text != '' ? 'url(' + praiseBg + ')' : 'url(' + addBg + ')'
+            "
             (click)="
               stickertext = this.item.text;
               stickericon = this.item.imageUrl;
@@ -510,8 +537,8 @@
         </div>
       </div>
 
-      <!-- ----------------------- Feeling ------------------------------------>
-      <div class="container-feelingStickers ">
+      <!-- ----------------------- Feeling Board------------------------------------>
+      <div class="container-feelingStickers">
         <h5>
           Give 3 Feeling Stickers&ensp;<i class="fa-solid fa-face-laugh"></i>
         </h5>
@@ -530,10 +557,42 @@
             *ngFor="let item of feeling_sticked; let i = index"
             (dblclick)="deleteFeeling(i)"
             [style.background-image]="
-                    item.text != ''
-                      ? 'url(' + feelingBg + ')'
-                      : 'url(' + addBg + ')'
-                  "
+              item.text != '' ? 'url(' + feelingBg + ')' : 'url(' + addBg + ')'
+            "
+            (click)="
+              stickertext = this.item.text;
+              stickericon = this.item.imageUrl;
+              addActivity()
+            "
+          >
+            <p [style.color]="feeling_fontColor">{{ item.text }}</p>
+            <img src="{{ item.imageUrl }}" alt="" class="icon" />
+          </div>
+        </div>
+      </div>
+
+      <!-- ----------------------- Reward Board------------------------------------>
+      <div class="container-feelingStickers">
+        <h5>
+          Reward of the week&ensp;<i class="fa-solid fa-award"></i>
+        </h5>
+
+        <div
+          class="feelingStickers-sticked"
+          cdkDropList
+          [cdkDropListData]="reward_sticked"
+          (cdkDropListDropped)="dropSticker($event)"
+        >
+          <div
+            [class.stickArea3]="item.text == ''"
+            [class.feelingSticker]="item.text != ''"
+            cdkDrag
+            cdkDragBoundary=".feelingStickers-sticked"
+            *ngFor="let item of reward_sticked; let i = index"
+            (dblclick)="deleteFeeling(i)"
+            [style.background-image]="
+              item.text != '' ? 'url(' + feelingBg + ')' : 'url(' + addBg + ')'
+            "
             (click)="
               stickertext = this.item.text;
               stickericon = this.item.imageUrl;

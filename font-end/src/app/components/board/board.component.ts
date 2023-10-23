@@ -17,7 +17,7 @@ export class Board {
   dataRows = new Array(5).fill({});
 
   constructor() {
-    this.selectedgenre = 'Feeling';
+    this.selectedgenre = 'Reward';
   }
 
   dropSticker(event: CdkDragDrop<string[]>) {
@@ -402,6 +402,57 @@ deleteFeeling(index: number): void {
   }
 }
 
+// -------------------------------------Reward Sticker---------------------------------------------
 
+rewardBg = '../../../assets/img/BgSticker/wow2.png';
+reward_fontColor = '#225E92';
+reward_sticked: any[] = [
+    { text: '' },
+    { text: '' },
+  ];
+rewardData: any[] = [
+    {
+      text: 'Teddy doll',
+      imageUrl: '../../../assets/img/RewardIcon/teddy-bear.png',
+    },
+    {
+      text: 'New book',
+      imageUrl: '../../../assets/img/RewardIcon/book.png',
+    },
+    {
+      text: 'Cotton candy',
+      imageUrl: '../../../assets/img/RewardIcon/cotton-candy.png',
+    },
+    {
+      text: 'Ice cream',
+      imageUrl: '../../../assets/img/RewardIcon/ice-cream1.png',
+    },
+    {
+      text: 'New Pencil',
+      imageUrl: '../../../assets/img/RewardIcon/pencil-case.png',
+    },
+    {
+      text: 'New Toy',
+      imageUrl: '../../../assets/img/RewardIcon/storage-box.png',
+    },
+  ];
 
+  addReward(index:number){
+    for (let i = 0; i < this.reward_sticked.length; i++) {
+      if (this.reward_sticked[i].text == '') {
+        this.reward_sticked[i] = {
+          text: this.rewardData[index].text,
+          imageUrl: this.rewardData[index].imageUrl
+        };
+        break;
+      }
+    }
+  }
+  
+deleteReward(index: number): void {
+    if (index >= 0 && index < this.reward_sticked.length) {
+      this.reward_sticked[index] = { text: '' };
+    }
+  }
+  
 }
