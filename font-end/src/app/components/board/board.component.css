@@ -644,6 +644,16 @@ td{
   color: #4B80D0;
 }
 
+.calpoint i{
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.calpoint i:hover{
+  cursor: pointer;
+  color: #3563a8;
+}
+
 .calpoint p{
   margin-left: 20px;
 }
@@ -654,7 +664,7 @@ td{
   background-color: #ffffff;
   border-radius: 10px;
   margin-left: 10px;
-  width: 70px;
+  width: 55px;
   display: inline-block;
 }
 
