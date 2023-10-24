@@ -13,7 +13,6 @@
 .container-board .nav-link.active {
   color: #BB7979; 
   background-color: #FFDDDD;
-  font-size: 24px;
 }
 
 .container-board{
@@ -387,7 +386,7 @@ td{
   height: 110px;
   background-size: cover;
   background-position: center;
-  color: rgb(53, 53, 53);
+  color: rgb(59, 59, 59);
   margin: 3px 1px;
   border-radius: 50%;
   border: 3px solid rgb(255, 255, 255);
@@ -395,6 +394,9 @@ td{
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 14px;
+  flex-direction: column;
+  text-shadow: 2px 2px 1px rgba(255, 255, 255, 0.75);
 }
 
 .point-sticker:active{
@@ -402,8 +404,8 @@ td{
 }
 
 .point-sticker .icon{
-  width: 60px; 
-  margin: 0px;
+  margin-top: 20px;
+  max-width: 50%; 
 }
 
 .select-day{
@@ -718,37 +720,35 @@ td{
 .btn_feeling:hover {
   background-color: #f1c68a;
 }
-/* ------------------responsive------------------ */
+
+/* ------------------responsive อาจไม่ทำ------------------ */
 @media  screen and (max-width:480px) {
 
   .containerAll{
     display: block;
   }
 
+  .container-board .nav-link {
+    font-size: 12px;
+  }
+
   .col-title{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding-top: 10px;
-    border-radius: 10px;
     width: 50px;
     height: 30px;
     font-size: 12px;
   }
 
   .stickArea{
-    font-size: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding-top: 10px;
-    border-radius: 10px;
-    margin: 5px auto 5px auto;
-    width: 55px;
-    height: 55px;
-    border: dashed  3px rgba(0, 0, 0, 0.1);
+    width: 30px;
+    height: 30px;
+  }
+
+  .container-board{
+    border-radius: 20px;
+    background-color: #EFCCCC;
+    margin: 20px 5px 0px 5px;
+    width: 90vw;
+    height: 820px;
   }
   
 }

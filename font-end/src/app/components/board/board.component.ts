@@ -5,7 +5,6 @@ import {
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
 import { Component } from '@angular/core';
-import { Sticker1 } from 'src/app/models/stickerModel/sticker.model';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -18,7 +17,7 @@ export class Board {
   dataRows = new Array(5).fill({});
 
   constructor() {
-    this.selectedgenre = 'Reward';
+    this.selectedgenre = 'Activity';
   }
 
   dropSticker(event: CdkDragDrop<string[]>) {
@@ -51,8 +50,8 @@ export class Board {
       imageUrl: '../../../assets/img/ActivityIcon/shower.png',
     },
     {
-      text: 'Help to water the plant',
-      imageUrl: '../../../assets/img/ActivityIcon/watering-plants.png',
+      text: 'Wake up on time',
+      imageUrl: '../../../assets/img/ActivityIcon/clock.png',
     },
     {
       text: 'Brush teeth',
@@ -67,7 +66,7 @@ export class Board {
       imageUrl: '../../../assets/img/ActivityIcon/milk-box.png',
     },
     {
-      text: 'Wash your hands',
+      text: 'Wash hands',
       imageUrl: '../../../assets/img/ActivityIcon/wash-your-hands.png',
     },
   ];
@@ -383,12 +382,12 @@ export class Board {
   praiseBg = '../../../assets/img/BgSticker/Heart8.png';
 
   praise_data: any[] = [
-    { text: 'I am so proud of you' },
-    { text: 'You did a fantastic job!' },
-    { text: 'Thank you for your help' },
-    { text: 'I love you' },
-    { text: 'Your help means a lot' },
-    { text: 'You amaze me every day' },
+    { text: "I'm so proud of you" },
+    { text: "You did a fantastic job!" },
+    { text: "Thank you for your help"},
+    { text: "I love you"},
+    { text: "Your help means a lot" },
+    { text: "You amaze me every day" },
   ];
 
   praise_sticked: any[] = [{ text: '' }, { text: '' }, { text: '' }];
