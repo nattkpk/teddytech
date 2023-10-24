@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { User } from './user.model';
 import { userStaticData } from './user_static_data';
+import { UserDataService } from 'src/app/services/user-data.service';
+import Swal from 'sweetalert2';
 
 @Injectable()
 export class UserRepository {
   private users: User[] = [];
 
-  constructor(private dataSource: userStaticData) {}
+  constructor(private dataSource: userStaticData,private userDataService: UserDataService) {}
   ngOnInit() {
         this.dataSource.getUsers().subscribe((data) => {
         this.users = data;
@@ -14,8 +16,18 @@ export class UserRepository {
   }
 
   //get by ID
-  getUserById(id: string): User | undefined {
-    return this.users.find((user) => user.id === id);
+  getUserById(id: string): User | null {
+    const user = this.users.find((user) => user.id === id);
+    if (user) {
+        this.userDataService.setUserId(id);
+        return user;
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'User Not Found',
+      });
+      return null;
+    }
   }
 
   //get all users
