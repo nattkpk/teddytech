@@ -99,7 +99,7 @@
                   "
                 >
                   <img src="{{ item.icon }}" alt="" class="icon" />
-                  <p *ngIf="item.point">{{ item.point }} pts</p> 
+                  <p *ngIf="item.point">{{ item.point }} pts</p>
                 </div>
               </div>
             </li>
@@ -134,7 +134,7 @@
                   "
                 >
                   <img src="{{ item.icon }}" alt="" class="icon" />
-                  <p *ngIf="item.point">{{ item.point }} pts</p> 
+                  <p *ngIf="item.point">{{ item.point }} pts</p>
                 </div>
               </div>
             </li>
@@ -169,7 +169,7 @@
                   "
                 >
                   <img src="{{ item.icon }}" alt="" class="icon" />
-                  <p *ngIf="item.point">{{ item.point }} pts</p> 
+                  <p *ngIf="item.point">{{ item.point }} pts</p>
                 </div>
               </div>
             </li>
@@ -204,7 +204,7 @@
                   "
                 >
                   <img src="{{ item.icon }}" alt="" class="icon" />
-                  <p *ngIf="item.point">{{ item.point }} pts</p> 
+                  <p *ngIf="item.point">{{ item.point }} pts</p>
                 </div>
               </div>
             </li>
@@ -239,7 +239,7 @@
                   "
                 >
                   <img src="{{ item.icon }}" alt="" class="icon" />
-                  <p *ngIf="item.point">{{ item.point }} pts</p> 
+                  <p *ngIf="item.point">{{ item.point }} pts</p>
                 </div>
               </div>
             </li>
@@ -274,7 +274,7 @@
                   "
                 >
                   <img src="{{ item.icon }}" alt="" class="icon" />
-                  <p *ngIf="item.point">{{ item.point }} pts</p> 
+                  <p *ngIf="item.point">{{ item.point }} pts</p>
                 </div>
               </div>
             </li>
@@ -309,21 +309,20 @@
                   "
                 >
                   <img src="{{ item.icon }}" alt="" class="icon" />
-                  <p *ngIf="item.point">{{ item.point }} pts</p> 
+                  <p *ngIf="item.point">{{ item.point }} pts</p>
                 </div>
               </div>
             </li>
           </ul>
 
           <div class="btn-clear-board">
-              <button class="btn btn_act" (click)="clear_activity()">
-                <i class="fa-solid fa-xmark"></i>&ensp;Clear Activity
-              </button>
-              <button class="btn btn_pts" (click)="clear_point()">
-                <i class="fa-solid fa-xmark"></i>&ensp;Clear Poins
-              </button>
+            <button class="btn btn_act" (click)="clear_activity()">
+              <i class="fa-solid fa-xmark"></i>&ensp;Clear Activity
+            </button>
+            <button class="btn btn_pts" (click)="clear_point()">
+              <i class="fa-solid fa-xmark"></i>&ensp;Clear Poins
+            </button>
           </div>
-
         </div>
       </div>
 
@@ -335,7 +334,7 @@
         <ul class="nav nav-tabs">
           <li class="nav-item">
             <a
-              (click)="selectedgenre = 'Activity'"
+              (click)="selectedgenre = 'Activity'; currentPage = 1"
               [class.active]="selectedgenre === 'Activity'"
               class="nav-link"
               aria-current="page"
@@ -347,7 +346,7 @@
           <li class="nav-item">
             <a
               class="nav-link"
-              (click)="selectedgenre = 'Praise'"
+              (click)="selectedgenre = 'Praise'; currentPage = 1"
               [class.active]="selectedgenre === 'Praise'"
               aria-current="page"
               href="javascript:void"
@@ -358,7 +357,7 @@
           <li class="nav-item">
             <a
               class="nav-link"
-              (click)="selectedgenre = 'Feeling'"
+              (click)="selectedgenre = 'Feeling'; currentPage = 1"
               [class.active]="selectedgenre === 'Feeling'"
               aria-current="page"
               href="javascript:void"
@@ -369,7 +368,7 @@
           <li class="nav-item">
             <a
               class="nav-link"
-              (click)="selectedgenre = 'Point'"
+              (click)="selectedgenre = 'Point'; currentPage = 1"
               [class.active]="selectedgenre === 'Point'"
               aria-current="page"
               href="javascript:void"
@@ -380,7 +379,7 @@
           <li class="nav-item">
             <a
               class="nav-link"
-              (click)="selectedgenre = 'Reward'"
+              (click)="selectedgenre = 'Reward'; currentPage = 1"
               [class.active]="selectedgenre === 'Reward'"
               aria-current="page"
               href="javascript:void"
@@ -402,7 +401,10 @@
               class="sticker"
               cdkDrag
               cdkDragBoundary=".stickers-container"
-              *ngFor="let item of activityData; let i = index"
+              *ngFor="
+                let item of getActivityDataForPage(currentPage);
+                let i = index
+              "
               [style.color]="activity_fontColor"
               [style.background-image]="'url(' + activityBg + ')'"
               (click)="addActivity(i)"
@@ -410,6 +412,22 @@
               <p class="textSticker">{{ item.text }}</p>
               <img src="{{ item.imageUrl }}" alt="" class="icon" />
             </div>
+          </div>
+          <div class="d-flex justify-content-center my-1">
+            <button
+              *ngIf="currentPage > 1"
+              (click)="changePage(-1)"
+              class="btn btn-primary"
+            >
+              <i class="fa-solid fa-caret-left"></i>&ensp;Previous Page
+            </button>
+            <button
+              *ngIf="currentPage < totalNumberOfActivityPages"
+              (click)="changePage(1)"
+              class="btn btn-primary"
+            >
+              Next Page&ensp;<i class="fa-solid fa-caret-right"></i>
+            </button>
           </div>
         </div>
 
@@ -426,12 +444,31 @@
               class="praiseSticker"
               cdkDrag
               cdkDragBoundary=".stickers-container"
-              *ngFor="let item of praise_data; let i = index"
+              *ngFor="
+                let item of getPraiseDataForPage(currentPage);
+                let i = index
+              "
               [style.background-image]="'url(' + praiseBg + ')'"
               (click)="addPraise(i)"
             >
               <p [style.color]="praise_fontColor">{{ item.text }}</p>
             </div>
+          </div>
+          <div class="d-flex justify-content-center my-1">
+            <button
+              *ngIf="currentPage > 1"
+              (click)="changePage(-1)"
+              class="btn btn-primary"
+            >
+              <i class="fa-solid fa-caret-left"></i>&ensp;Previous Page
+            </button>
+            <button
+              *ngIf="currentPage < totalNumberOfPraisePages"
+              (click)="changePage(1)"
+              class="btn btn-primary"
+            >
+              Next Page&ensp;<i class="fa-solid fa-caret-right"></i>
+            </button>
           </div>
         </div>
 
@@ -440,19 +477,38 @@
           <div
             class="stickers-container"
             cdkDropList
-            [cdkDropListData]="feeling_data"
+            [cdkDropListData]="feelingData"
             (cdkDropListDropped)="dropSticker($event)"
           >
             <div
               class="feelingSticker"
               cdkDrag
               cdkDragBoundary=".stickers-container"
-              *ngFor="let item of feeling_data; let i = index"
+              *ngFor="
+                let item of getFeelingDataForPage(currentPage);
+                let i = index
+              "
               [style.background-image]="'url(' + feelingBg + ')'"
               (click)="addFeeling(i)"
             >
               <p [style.color]="feeling_fontColor">{{ item.text }}</p>
             </div>
+          </div>
+          <div class="d-flex justify-content-center my-1">
+            <button
+              *ngIf="currentPage > 1"
+              (click)="changePage(-1)"
+              class="btn btn-primary"
+            >
+              <i class="fa-solid fa-caret-left"></i>&ensp;Previous Page
+            </button>
+            <button
+              *ngIf="currentPage < totalNumberOfFeelingPages"
+              (click)="changePage(1)"
+              class="btn btn-primary"
+            >
+              Next Page&ensp;<i class="fa-solid fa-caret-right"></i>
+            </button>
           </div>
         </div>
         <!-- ----------------------- Point ------------------------------------>
@@ -478,7 +534,10 @@
               class="point-sticker"
               cdkDrag
               cdkDragBoundary=".stickers-container"
-              *ngFor="let item of pointData; let i = index"
+              *ngFor="
+                let item of getPointDataForPage(currentPage);
+                let i = index
+              "
               [style.background-image]="'url(' + item.bgImage + ')'"
               (click)="addPoint(i)"
             >
@@ -486,7 +545,24 @@
               <p>{{ item.point }} pts</p>
             </div>
           </div>
+          <div class="d-flex justify-content-center my-1">
+            <button
+              *ngIf="currentPage > 1"
+              (click)="changePage(-1)"
+              class="btn btn-primary"
+            >
+              <i class="fa-solid fa-caret-left"></i>&ensp;Previous Page
+            </button>
+            <button
+              *ngIf="currentPage < totalNumberOfPointPages"
+              (click)="changePage(1)"
+              class="btn btn-primary"
+            >
+              Next Page&ensp;<i class="fa-solid fa-caret-right"></i>
+            </button>
+          </div>
         </div>
+
         <!-- ----------------------- Reward ------------------------------------>
 
         <div *ngIf="selectedgenre === 'Reward'">
@@ -500,7 +576,7 @@
               class="sticker"
               cdkDrag
               cdkDragBoundary=".stickers-container"
-              *ngFor="let item of rewardData; let i = index"
+              *ngFor="let item of getRewardDataForPage(currentPage); let i = index"
               [style.color]="reward_fontColor"
               [style.background-image]="'url(' + rewardBg + ')'"
               (click)="addReward(i)"
@@ -508,6 +584,22 @@
               <p class="textSticker">{{ item.text }}</p>
               <img src="{{ item.imageUrl }}" alt="" class="icon" />
             </div>
+          </div>
+          <div class="d-flex justify-content-center my-1">
+            <button
+              *ngIf="currentPage > 1"
+              (click)="changePage(-1)"
+              class="btn btn-primary"
+            >
+              <i class="fa-solid fa-caret-left"></i>&ensp;Previous Page
+            </button>
+            <button
+              *ngIf="currentPage < totalNumberOfRewardPages"
+              (click)="changePage(1)"
+              class="btn btn-primary"
+            >
+              Next Page&ensp;<i class="fa-solid fa-caret-right"></i>
+            </button>
           </div>
         </div>
         <!-- ------------------------------------------------------- -->
@@ -547,8 +639,7 @@
             <button class="btn btn_praise" (click)="clear_praise()">
               <i class="fa-solid fa-xmark"></i>&ensp;Clear
             </button>
-        </div>
-
+          </div>
         </div>
       </div>
 
@@ -581,7 +672,7 @@
             <button class="btn btn_feeling" (click)="clear_feeling()">
               <i class="fa-solid fa-xmark"></i>&ensp;Clear
             </button>
-        </div>
+          </div>
         </div>
       </div>
 
@@ -615,10 +706,12 @@
         </div>
         <div class="calpoint">
           <p>
-            Point :<span>{{ pointA }}</span> <i class="fa-solid fa-pencil" (click)="change_pointA()"></i>
+            Point :<span>{{ pointA }}</span>
+            <i class="fa-solid fa-pencil" (click)="change_pointA()"></i>
           </p>
           <p>
-            Point :<span>{{ pointB }}</span> <i class="fa-solid fa-pencil" (click)="change_pointB()"></i>
+            Point :<span>{{ pointB }}</span>
+            <i class="fa-solid fa-pencil" (click)="change_pointB()"></i>
           </p>
         </div>
         <div class="calpoint">

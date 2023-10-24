@@ -13,8 +13,11 @@ import Swal from 'sweetalert2';
   styleUrls: ['./board.component.css'],
 })
 export class Board {
+  
   selectedgenre: string;
-  dataRows = new Array(5).fill({});
+  addBg = '';
+  itemsPerPage: number = 15;
+  currentPage: number = 1;
 
   constructor() {
     this.selectedgenre = 'Activity';
@@ -28,15 +31,16 @@ export class Board {
         event.currentIndex
       );
     }
+  }  
+  
+  changePage(offset: number): void {
+    this.currentPage += offset;
   }
-
-  addBg = '';
 
   // ---------------------------- Activity Sticker -------------------------------------
 
   activityBg = '../../../assets/img/BgSticker/Diamon4.png';
   activity_fontColor = 'black';
-  dataArray = ['ข้อความ1', 'ข้อความ2'];
   activity_sticked: any[] = [
     { text: '' },
     { text: '' },
@@ -71,14 +75,16 @@ export class Board {
     },
   ];
 
-  // addActivity(){
-  //   this.activity_sticked.unshift({
-  //     text: this.stickertext,
-  //     imageUrl: this.stickericon,
-  //   },)
-  //   this.activity_sticked.pop()
-  // }
-
+  getActivityDataForPage(page: number): any[] {
+    const startIndex = (page - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return this.activityData.slice(startIndex, endIndex);
+  }
+  
+  get totalNumberOfActivityPages(): number {
+    return Math.ceil(this.activityData.length / this.itemsPerPage);
+  }
+  
   addActivity(index: number) {
     for (let i = 0; i < this.activity_sticked.length; i++) {
       if (!this.activity_sticked[i].imageUrl) {
@@ -97,11 +103,6 @@ export class Board {
     }
   }
 
-  // deleteByIndex(indexToDelete: number ,array: any[]): void {
-  //   if (indexToDelete >= 0 && indexToDelete < array.length) {
-  //     array.splice(indexToDelete, 1);
-  //   }
-  // }
 
   // --------------------------------Point Sticker---------------------------------------------
   pointData: any[] = [
@@ -120,7 +121,18 @@ export class Board {
       bgImage: '../../../assets/img/PointSticker/Bg/Bgpoint3.png',
       point: '3',
     },
+    
   ];
+
+  getPointDataForPage(page: number): any[] {
+    const startIndex = (page - 1) * 12;
+    const endIndex = startIndex + 12;
+    return this.pointData.slice(startIndex, endIndex);
+  }
+  
+  get totalNumberOfPointPages(): number {
+    return Math.ceil(this.pointData.length / 12);
+  }
 
   sun_sticked: any[] = [
     { text: '' },
@@ -392,6 +404,16 @@ export class Board {
 
   praise_sticked: any[] = [{ text: '' }, { text: '' }, { text: '' }];
 
+  getPraiseDataForPage(page: number): any[] {
+    const startIndex = (page - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return this.praise_data.slice(startIndex, endIndex);
+  }
+  
+  get totalNumberOfPraisePages(): number {
+    return Math.ceil(this.praise_data.length / this.itemsPerPage);
+  }
+
   addPraise(index: number) {
     for (let i = 0; i < this.praise_sticked.length; i++) {
       if (this.praise_sticked[i].text == '') {
@@ -413,7 +435,7 @@ export class Board {
   feeling_fontColor: string = '#947218';
   feelingBg = '../../../assets/img/BgSticker/Star5.png';
 
-  feeling_data: any[] = [
+  feelingData: any[] = [
     { text: 'Good !' },
     { text: 'Amazing !' },
     { text: 'Bored' },
@@ -422,13 +444,23 @@ export class Board {
     { text: 'Joyful' },
   ];
 
+  getFeelingDataForPage(page: number): any[] {
+    const startIndex = (page - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return this.feelingData.slice(startIndex, endIndex);
+  }
+  
+  get totalNumberOfFeelingPages(): number {
+    return Math.ceil(this.feelingData.length / this.itemsPerPage);
+  }
+
   feeling_sticked: any[] = [{ text: '' }, { text: '' }, { text: '' }];
 
   addFeeling(index: number) {
     for (let i = 0; i < this.feeling_sticked.length; i++) {
       if (this.feeling_sticked[i].text == '') {
         this.feeling_sticked[i] = {
-          text: this.feeling_data[index].text,
+          text: this.feelingData[index].text,
         };
         break;
       }
@@ -472,6 +504,17 @@ export class Board {
       imageUrl: '../../../assets/img/RewardIcon/storage-box.png',
     },
   ];
+
+  getRewardDataForPage(page: number): any[] {
+    const startIndex = (page - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return this.rewardData.slice(startIndex, endIndex);
+  }
+  
+  get totalNumberOfRewardPages(): number {
+    return Math.ceil(this.rewardData.length / this.itemsPerPage);
+  }
+
 
   addReward(index: number) {
     for (let i = 0; i < this.reward_sticked.length; i++) {
