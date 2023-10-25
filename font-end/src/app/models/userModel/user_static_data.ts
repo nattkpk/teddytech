@@ -39,8 +39,8 @@ export class userStaticData {
               ],
               point: [
                 new PointSticker("../../../assets/img/PointSticker/Icon/heart.png", "../../../assets/img/PointSticker/Bg/Bgpoint1.png", "1"),
-                new PointSticker("../../../assets/img/PointSticker/Icon/star.png", "../../../assets/img/PointSticker/Bg/Bgpoint2.png", "1"),
-                new PointSticker("../../../assets/img/PointSticker/Icon/shooting-star.png", "../../../assets/img/PointSticker/Bg/Bgpoint3.png", "1"),
+                new PointSticker("../../../assets/img/PointSticker/Icon/star.png", "../../../assets/img/PointSticker/Bg/Bgpoint2.png", "2"),
+                new PointSticker("../../../assets/img/PointSticker/Icon/shooting-star.png", "../../../assets/img/PointSticker/Bg/Bgpoint3.png", "3"),
               ],
               reward: [
                 new RewardSticker("Teddy doll", "../../../assets/img/RewardIcon/teddy-bear.png"),

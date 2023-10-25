@@ -618,6 +618,7 @@
         <div
           class="praiseSticker-sticked"
           cdkDropList
+          cdkDropListOrientation="horizontal"
           [cdkDropListData]="praise_sticked"
           (cdkDropListDropped)="dropSticker($event)"
         >
@@ -652,6 +653,7 @@
         <div
           class="feelingStickers-sticked"
           cdkDropList
+          cdkDropListOrientation="horizontal"
           [cdkDropListData]="feeling_sticked"
           (cdkDropListDropped)="dropSticker($event)"
         >
@@ -684,6 +686,7 @@
         <div
           class="rewardStickers-sticked"
           cdkDropList
+          cdkDropListOrientation="horizontal"
           [cdkDropListData]="reward_sticked"
           (cdkDropListDropped)="dropSticker($event)"
         >
