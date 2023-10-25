@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {Board} from './components/board/board.component'
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ModelModule } from './models/userModel/model.module';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     Board
   ],
   imports: [
+    ModelModule,
     BrowserModule,
     DragDropModule,
     AppRoutingModule,

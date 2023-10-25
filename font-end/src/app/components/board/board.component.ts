@@ -4,7 +4,10 @@ import {
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
-import { Component } from '@angular/core';
+import { Component } from '@angular/core';import { User } from 'src/app/models/userModel/user.model';
+import { UserRepository } from 'src/app/models/userModel/user.repository';
+import { UserDataService } from 'src/app/services/user-data.service';
+;
 import Swal from 'sweetalert2';
 
 @Component({
@@ -19,8 +22,17 @@ export class Board {
   itemsPerPage: number = 15;
   currentPage: number = 1;
 
-  constructor() {
+  constructor(private user_repository: UserRepository,private userDataService: UserDataService,) {
     this.selectedgenre = 'Activity';
+    this.activityData = this.user?.stickers?.activity ? this.user.stickers.activity : [];
+    this.praise_data = this.user?.stickers?.praise ? this.user.stickers.praise : [];
+    this.feelingData = this.user?.stickers?.feeling ? this.user.stickers.feeling : [];
+    this.pointData = this.user?.stickers?.point ? this.user.stickers.point : [];
+    this.rewardData = this.user?.stickers?.reward ? this.user.stickers.reward : [];
+  }
+
+  get user(): User | null {
+    return this.user_repository.getUserById(this.userDataService.getUserId());
   }
 
   dropSticker(event: CdkDragDrop<string[]>) {
@@ -48,32 +60,9 @@ export class Board {
     { text: '' },
     { text: '' },
   ];
-  activityData: any[] = [
-    {
-      text: 'Take a Shower',
-      imageUrl: '../../../assets/img/ActivityIcon/shower.png',
-    },
-    {
-      text: 'Wake up on time',
-      imageUrl: '../../../assets/img/ActivityIcon/clock.png',
-    },
-    {
-      text: 'Brush teeth',
-      imageUrl: '../../../assets/img/ActivityIcon/tooth-brush.png',
-    },
-    {
-      text: 'Make the bed',
-      imageUrl: '../../../assets/img/ActivityIcon/make-the-bed.png',
-    },
-    {
-      text: 'Drink milk',
-      imageUrl: '../../../assets/img/ActivityIcon/milk-box.png',
-    },
-    {
-      text: 'Wash hands',
-      imageUrl: '../../../assets/img/ActivityIcon/wash-your-hands.png',
-    },
-  ];
+
+
+  activityData : any[]
 
   getActivityDataForPage(page: number): any[] {
     const startIndex = (page - 1) * this.itemsPerPage;
@@ -105,24 +94,7 @@ export class Board {
 
 
   // --------------------------------Point Sticker---------------------------------------------
-  pointData: any[] = [
-    {
-      icon: '../../../assets/img/PointSticker/Icon/heart.png',
-      bgImage: '../../../assets/img/PointSticker/Bg/Bgpoint1.png',
-      point: '1',
-    },
-    {
-      icon: '../../../assets/img/PointSticker/Icon/star.png',
-      bgImage: '../../../assets/img/PointSticker/Bg/Bgpoint2.png',
-      point: '2',
-    },
-    {
-      icon: '../../../assets/img/PointSticker/Icon/shooting-star.png',
-      bgImage: '../../../assets/img/PointSticker/Bg/Bgpoint3.png',
-      point: '3',
-    },
-    
-  ];
+  pointData: any[]
 
   getPointDataForPage(page: number): any[] {
     const startIndex = (page - 1) * 12;
@@ -393,14 +365,7 @@ export class Board {
   praise_fontColor: string = '#dd689d';
   praiseBg = '../../../assets/img/BgSticker/Heart8.png';
 
-  praise_data: any[] = [
-    { text: "I'm so proud of you" },
-    { text: "You did a fantastic job!" },
-    { text: "Thank you for your help"},
-    { text: "I love you"},
-    { text: "Your help means a lot" },
-    { text: "You amaze me every day" },
-  ];
+  praise_data: any[]
 
   praise_sticked: any[] = [{ text: '' }, { text: '' }, { text: '' }];
 
@@ -435,14 +400,7 @@ export class Board {
   feeling_fontColor: string = '#947218';
   feelingBg = '../../../assets/img/BgSticker/Star5.png';
 
-  feelingData: any[] = [
-    { text: 'Good !' },
-    { text: 'Amazing !' },
-    { text: 'Bored' },
-    { text: 'Happy' },
-    { text: 'Sleepy' },
-    { text: 'Joyful' },
-  ];
+  feelingData: any[]
 
   getFeelingDataForPage(page: number): any[] {
     const startIndex = (page - 1) * this.itemsPerPage;
@@ -478,32 +436,7 @@ export class Board {
   rewardBg = '../../../assets/img/BgSticker/wow2.png';
   reward_fontColor = '#225E92';
   reward_sticked: any[] = [{ text: '' }, { text: '' }];
-  rewardData: any[] = [
-    {
-      text: 'Teddy doll',
-      imageUrl: '../../../assets/img/RewardIcon/teddy-bear.png',
-    },
-    {
-      text: 'New book',
-      imageUrl: '../../../assets/img/RewardIcon/book.png',
-    },
-    {
-      text: 'Cotton candy',
-      imageUrl: '../../../assets/img/RewardIcon/cotton-candy.png',
-    },
-    {
-      text: 'Ice cream',
-      imageUrl: '../../../assets/img/RewardIcon/ice-cream1.png',
-    },
-    {
-      text: 'New Pencil',
-      imageUrl: '../../../assets/img/RewardIcon/pencil-case.png',
-    },
-    {
-      text: 'New Toy',
-      imageUrl: '../../../assets/img/RewardIcon/storage-box.png',
-    },
-  ];
+  rewardData: any[]
 
   getRewardDataForPage(page: number): any[] {
     const startIndex = (page - 1) * this.itemsPerPage;

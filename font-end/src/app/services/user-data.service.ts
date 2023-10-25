@@ -12,7 +12,7 @@ export class UserDataService {
 
   getUserId(): string {
     // return this.userId;
-    return '1';
+    return '1'
   }
 
 }

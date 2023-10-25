@@ -8,12 +8,12 @@ import Swal from 'sweetalert2';
 export class UserRepository {
   private users: User[] = [];
 
-  constructor(private dataSource: userStaticData,private userDataService: UserDataService) {}
-  ngOnInit() {
+  constructor(private dataSource: userStaticData,private userDataService: UserDataService) {
         this.dataSource.getUsers().subscribe((data) => {
         this.users = data;
-    });
+      });
   }
+  
 
   //get by ID
   getUserById(id: string): User | null {

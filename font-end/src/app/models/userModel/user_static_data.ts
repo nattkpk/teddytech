@@ -15,7 +15,7 @@ export class userStaticData {
             {
               activity: [
                 new ActivitySticker("Take a Shower", "../../../assets/img/ActivityIcon/shower.png"),
-                new ActivitySticker("Wake up on time", "../../../assets/img/clock/shower.png"),
+                new ActivitySticker("Wake up on time", "../../../assets/img/ActivityIcon/clock.png"),
                 new ActivitySticker("Wash hands", "../../../assets/img/ActivityIcon/wash-your-hands.png"),
                 new ActivitySticker("Brush teeth", "../../../assets/img/ActivityIcon/tooth-brush.png"),
                 new ActivitySticker("Make the bed", "../../../assets/img/ActivityIcon/make-the-bed.png"),
