@@ -20,7 +20,7 @@
   background-color: #EFCCCC;
   margin: 20px 5px 0px 5px;
   width: 72vw;
-  height: 820px;
+  height: 830px;
 }
 
 .container-board h5{
@@ -165,6 +165,7 @@ td{
 .container-stickerBoard .nav-link {
   color: #BB7979;
   background-color: #EFCCCC;
+  padding: 10px;
   font-size: 16px;
 }
 
@@ -346,7 +347,7 @@ td{
   background-color: #EFCCCC;
   margin: 20px 5px 0px 5px;
   width: 23vw;
-  height: 820px;
+  height: 830px;
 }
 
 .stickers-container {
@@ -676,7 +677,6 @@ td{
 
 /* --------------------------clear button---------------------------- */
 .btn-clear-board{
-  width: 820px;
   display: flex;
   justify-content: center;
   margin: 0 auto;
@@ -693,6 +693,28 @@ td{
   margin-left: 10px;
   width: 10vw;
   font-size: 1vw;
+  box-shadow: 2px 2px 1px rgba(192, 192, 192, 0.75);
+}
+
+
+.btn_edit{
+  background-color: #A1C554;
+  color: #ffffff;
+  border: none; 
+  padding: 10px 20px; 
+  border-radius: 5px;
+  cursor: pointer; 
+  margin-left: 10px;
+  margin-top: 10px;
+  width: 14vw;
+  font-size: 1vw;
+  box-shadow: 2px 2px 1px rgba(162, 162, 162, 0.75);
+  transition: 0.2s;
+}
+
+.btn_edit:hover{
+  background-color: #90b53f;
+  transition: 0.2s;
 }
 
 .btn:hover {
@@ -721,6 +743,7 @@ td{
 .btn_feeling:hover {
   background-color: #f1c68a;
 }
+
 
 /* ------------------responsive อาจไม่ทำ------------------ */
 @media  screen and (max-width:480px) {
