@@ -6,7 +6,7 @@ import { EditActivity } from './components/editActicitySticker/editActivity.comp
 const routes: Routes = [
   { path: 'board', component: Board },
   { path: 'edit_activity_sticker', component: EditActivity },
-  { path: '**', redirectTo: '/edit_activity_sticker' },
+  { path: '**', redirectTo: '/board' },
 ];
 
 @NgModule({

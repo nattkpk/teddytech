@@ -11,8 +11,8 @@ import { EditActivity } from './components/editActicitySticker/editActivity.comp
 @NgModule({
   declarations: [
     AppComponent,
+    Board,
     EditActivity,
-    Board
   ],
   imports: [
     ModelModule,

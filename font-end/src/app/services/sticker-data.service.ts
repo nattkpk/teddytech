@@ -7,10 +7,27 @@ import { UserRepository } from '../models/userModel/user.repository';
 })
 export class StickerDataService {
   
-    constructor(
-        private service: UserDataService,
-        private repository: UserRepository,
-        ){}
+    constructor(){
+      this.activityBg = '../../../assets/img/BgSticker/Diamon4.png';
+      this.activityFontColor = '#5E7255';
+    }
+
+    activityBg: string;
+    activityFontColor: string;
+
+    setActivitySticker(bg: string,font:string) {
+      this.activityBg = bg;
+      this.activityFontColor = font;
+      console.log("set!");
+    }
+  
+    getActivityBg(): string {
+      return this.activityBg
+    }
+
+    getActivityFontColor(): string {
+      return this.activityFontColor
+    }
     
     
 

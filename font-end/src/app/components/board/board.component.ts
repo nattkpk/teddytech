@@ -7,6 +7,8 @@ import {
 import { Component } from '@angular/core';import { User } from 'src/app/models/userModel/user.model';
 import { UserRepository } from 'src/app/models/userModel/user.repository';
 import { UserDataService } from 'src/app/services/user-data.service';
+import { Router } from '@angular/router';
+import { StickerDataService } from 'src/app/services/sticker-data.service';
 ;
 import Swal from 'sweetalert2';
 
@@ -22,7 +24,12 @@ export class Board {
   itemsPerPage: number = 15;
   currentPage: number = 1;
 
-  constructor(private user_repository: UserRepository,private userDataService: UserDataService,) {
+  constructor(
+    private router: Router,
+    private user_repository: UserRepository,
+    private userDataService: UserDataService,
+    private sticker_service: StickerDataService
+    ) {
     this.selectedgenre = 'Activity';
     this.activityData = this.user?.stickers?.activity ? this.user.stickers.activity : [];
     this.praise_data = this.user?.stickers?.praise ? this.user.stickers.praise : [];
@@ -49,10 +56,14 @@ export class Board {
     this.currentPage += offset;
   }
 
+  goToEditActivity(){
+    this.router.navigate(['/edit_activity_sticker']); 
+  }
+
   // ---------------------------- Activity Sticker -------------------------------------
 
-  activityBg = '../../../assets/img/BgSticker/Diamon4.png';
-  activity_fontColor = 'black';
+  activityBg = this.sticker_service.getActivityBg();
+  activity_fontColor = this.sticker_service.getActivityFontColor();
   activity_sticked: any[] = [
     { text: '' },
     { text: '' },
@@ -487,6 +498,7 @@ export class Board {
       confirmButtonText: 'Change',
       confirmButtonColor:'#A1C554',
       cancelButtonColor: '#FC6F6F',
+      reverseButtons: true,
       showLoaderOnConfirm: true,
       preConfirm: (newValue) => {
         if (newValue == '') {
@@ -518,6 +530,7 @@ export class Board {
       confirmButtonText: 'Change',
       confirmButtonColor:'#A1C554',
       cancelButtonColor: '#FC6F6F',
+      reverseButtons: true,
       showLoaderOnConfirm: true,
       preConfirm: (newValue) => {
         if (newValue == '') {
@@ -616,16 +629,7 @@ export class Board {
   // -----------------------------------Clear buttons------------------------------------------
 
   clear_activity() {
-    const swalWithBootstrapButtons = Swal.mixin({
-      customClass: {
-        confirmButton: 'btn btn-success',
-        cancelButton: 'btn btn-danger',
-      },
-      buttonsStyling: false,
-    });
-
-    swalWithBootstrapButtons
-      .fire({
+    Swal.fire({
         title: 'Clear activity on the board',
         text: 'Are you sure?',
         icon: 'warning',
@@ -633,6 +637,8 @@ export class Board {
         confirmButtonText: 'Yes !',
         cancelButtonText: 'cancel !',
         reverseButtons: true,
+        confirmButtonColor:'#A1C554',
+        cancelButtonColor: '#FC6F6F',
       })
       .then((result) => {
         if (result.isConfirmed) {
@@ -643,26 +649,18 @@ export class Board {
             { text: '' },
             { text: '' },
           ];
-          swalWithBootstrapButtons.fire(
-            'Clear!',
-            'All activity have been deleted.',
-            'success'
-          );
+            Swal.fire({
+              icon: 'success',
+              title: 'Clear!',
+              text: 'All activity have been deleted.',
+              confirmButtonColor:'#A1C554',
+            });
         }
       });
   }
 
   clear_point() {
-    const swalWithBootstrapButtons = Swal.mixin({
-      customClass: {
-        confirmButton: 'btn btn-success',
-        cancelButton: 'btn btn-danger',
-      },
-      buttonsStyling: false,
-    });
-
-    swalWithBootstrapButtons
-      .fire({
+    Swal.fire({
         title: 'Clear points on the board',
         text: 'Are you sure?',
         icon: 'warning',
@@ -670,15 +668,18 @@ export class Board {
         confirmButtonText: 'Yes !',
         cancelButtonText: 'cancel !',
         reverseButtons: true,
+        confirmButtonColor:'#A1C554',
+        cancelButtonColor: '#FC6F6F',
       })
       .then((result) => {
         if (result.isConfirmed) {
           this.clear_point_all();
-          swalWithBootstrapButtons.fire(
-            'Clear!',
-            'All points have been deleted.',
-            'success'
-          );
+          Swal.fire({
+            icon: 'success',
+            title: 'Clear!',
+            text: 'All points have been deleted.',
+            confirmButtonColor:'#A1C554',
+          });
         }
       });
   }
@@ -737,16 +738,7 @@ export class Board {
   }
 
   clear_praise() {
-    const swalWithBootstrapButtons = Swal.mixin({
-      customClass: {
-        confirmButton: 'btn btn-success',
-        cancelButton: 'btn btn-danger',
-      },
-      buttonsStyling: false,
-    });
-
-    swalWithBootstrapButtons
-      .fire({
+    Swal.fire({
         title: 'Clear praise sticker on the board',
         text: 'Are you sure?',
         icon: 'warning',
@@ -754,30 +746,24 @@ export class Board {
         confirmButtonText: 'Yes !',
         cancelButtonText: 'cancel !',
         reverseButtons: true,
+        confirmButtonColor:'#A1C554',
+        cancelButtonColor: '#FC6F6F',
       })
       .then((result) => {
         if (result.isConfirmed) {
           this.praise_sticked = [{ text: '' }, { text: '' }, { text: '' }];
-          swalWithBootstrapButtons.fire(
-            'Clear!',
-            'All praise sticker have been deleted.',
-            'success'
-          );
+          Swal.fire({
+            icon: 'success',
+            title: 'Clear!',
+            text: 'All praise sticker have been deleted.',
+            confirmButtonColor:'#A1C554',
+          });
         }
       });
   }
 
   clear_feeling() {
-    const swalWithBootstrapButtons = Swal.mixin({
-      customClass: {
-        confirmButton: 'btn btn-success',
-        cancelButton: 'btn btn-danger',
-      },
-      buttonsStyling: false,
-    });
-
-    swalWithBootstrapButtons
-      .fire({
+    Swal.fire({
         title: 'Clear feeling sticker on the board',
         text: 'Are you sure?',
         icon: 'warning',
@@ -785,15 +771,18 @@ export class Board {
         confirmButtonText: 'Yes !',
         cancelButtonText: 'cancel !',
         reverseButtons: true,
+        confirmButtonColor:'#A1C554',
+        cancelButtonColor: '#FC6F6F',
       })
       .then((result) => {
         if (result.isConfirmed) {
           this.feeling_sticked = [{ text: '' }, { text: '' }, { text: '' }];
-          swalWithBootstrapButtons.fire(
-            'Clear!',
-            'All feeling sticker have been deleted.',
-            'success'
-          );
+          Swal.fire({
+            icon: 'success',
+            title: 'Clear!',
+            text: 'All feeling sticker have been deleted.',
+            confirmButtonColor:'#A1C554',
+          });
         }
       });
   }
