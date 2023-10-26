@@ -36,7 +36,7 @@ export class EditActivity {
       '../../../assets/img/BgSticker/Diamon8.png',
       '../../../assets/img/BgSticker/Diamon9.png',
     ];
-    this.fontColor = ["#775189","#678CA2","#444C96","#5E7255","#8F834F","#A46F4F","#AF5E5E","#AF5771","#645232"];
+    this.fontColor = ["#775189","#678CA2","#444C96","#3F5236","#8F834F","#A46F4F","#AF5E5E","#AF5771","#645232"];
     this.selectedBgIndex = 3;
   }
 

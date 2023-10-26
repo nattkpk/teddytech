@@ -9,7 +9,7 @@ export class StickerDataService {
   
     constructor(){
       this.activityBg = '../../../assets/img/BgSticker/Diamon4.png';
-      this.activityFontColor = '#5E7255';
+      this.activityFontColor = '#3F5236';
     }
 
     activityBg: string;
