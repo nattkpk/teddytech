@@ -6,14 +6,13 @@
     background-color: FFFFFF, 0.8;
     border: 10px solid #A1BD92;
     border-radius: 20px;
-    
     width: 468px;
     height: 350px;
     
 }
 .img-fluid{
     
-    width: 130px;
+    width: 150px;
     padding: 10px;
     padding-bottom: 50px;
 }
