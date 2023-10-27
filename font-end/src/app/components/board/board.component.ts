@@ -4,7 +4,8 @@ import {
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
-import { Component } from '@angular/core';import { User } from 'src/app/models/userModel/user.model';
+import { Component } from '@angular/core';
+import { User } from 'src/app/models/userModel/user.model';
 import { UserRepository } from 'src/app/models/userModel/user.repository';
 import { UserDataService } from 'src/app/services/user-data.service';
 import { Router } from '@angular/router';

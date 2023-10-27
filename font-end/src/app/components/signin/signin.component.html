@@ -1,40 +1,37 @@
 <div class="container">
-    <div class="forms-container">
-      <div class="form-control signup-form">
-        <form action="#">
-
-          <h2>Signup</h2>
-          <input type="text" placeholder="Username" required />
-          <input type="email" placeholder="Email" required />
-          <input type="password" placeholder="Password" required />
-          <input type="password" placeholder="Confirm password" required />
-          <button>Signup</button>
-        </form>
-
-        <span>or signup with</span>
-        <div class="socials">
-          <i class="fab fa-facebook-f"></i>
-          <i class="fab fa-google-plus-g"></i>
-          <i class="fab fa-linkedin-in"></i>
-        </div>
-      </div>
-
-
-      <div class="form-control signin-form">
-        <form action="#">
-          <h2>Signin</h2>
-          <input type="text" placeholder="Username" required />
-          <input type="password" placeholder="Password" required />
-          <button>Signin</button>
-        </form>
-        <span>or signin with</span>
-        <div class="socials">
-          <i class="fab fa-facebook-f"></i>
-          <i class="fab fa-google-plus-g"></i>
-          <i class="fab fa-linkedin-in"></i>
-        </div>
+  <div class="forms-container">
+    <div class="form-control signup-form">
+      <form (submit)="register()">
+        <h2>Signup</h2>
+        <input type="text" placeholder="Username" [(ngModel)]="username" name="username" required />
+        <input type="email" placeholder="Email" [(ngModel)]="email" name="email" required />
+        <input type="password" placeholder="Password" [(ngModel)]="password" name="password" required />
+        <input type="password" placeholder="Confirm password" [(ngModel)]="checkPassword" name="checkPassword" required />
+        <button type="submit">Signup</button>
+      </form>
+      <span>or signup with</span>
+      <div class="socials">
+        <i class="fab fa-facebook-f"></i>
+        <i class="fab fa-google-plus-g"></i>
+        <i class="fab fa-linkedin-in"></i>
       </div>
     </div>
+
+    <div class="form-control signin-form">
+      <form (submit)="login()">
+        <h2>Signin</h2>
+        <input type="text" placeholder="Username" [(ngModel)]="username" name="username" required />
+        <input type="password" placeholder="Password" [(ngModel)]="password" name="password" required />
+        <button type="submit">Signin</button>
+      </form>
+      <span>or signin with</span>
+      <div class="socials">
+        <i class="fab fa-facebook-f"></i>
+        <i class="fab fa-google-plus-g"></i>
+        <i class="fab fa-linkedin-in"></i>
+      </div>
+    </div>
+  </div>
 
     <div class="intros-container">
       <div class="intro-control signin-intro">
