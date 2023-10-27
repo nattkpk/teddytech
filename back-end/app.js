@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const teddyusers = require('./routes/teddyUsers')
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb+srv://imwee:teddy1234@cluster0.khe7cle.mongodb.net/Teddy-tech?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://Pud:11112@cluster0.khe7cle.mongodb.net/Teddy-tech?retryWrites=true&w=majority')
   .then(() => console.log('Connection successfully!'))
   .catch((error) => console.error(err))
 
@@ -20,9 +20,9 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-
 app.use(logger('dev'));
 app.use(express.json());
+
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
