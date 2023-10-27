@@ -23,15 +23,21 @@ export class EditActivity {
     this.itemsPerPage = 13;
     this.currentPage = 1;
     this.changeThemeOn = false;
+    this.createStickerOn = true;
+
     this.activityBg = this.sticker_service.getActivityBg();
     this.activity_fontColor = this.sticker_service.getActivityFontColor();
     this.selectedBgIndex = 3;
+
+    this.activityIcon = this.sticker_service.getAllActivityIcon();
   }
 
   activityTheme = this.sticker_service.getAllActivityTheme();
   itemsPerPage: number = 13;
   currentPage: number = 1;
-  changeThemeOn: boolean = true;
+
+  changeThemeOn: boolean = false;
+  createStickerOn: boolean = false;
 
   activityBg = this.sticker_service.getActivityBg();
   activity_fontColor = this.sticker_service.getActivityFontColor();
@@ -51,20 +57,25 @@ export class EditActivity {
     }
   }
 
-  changePage(offset: number): void {
-    this.currentPage += offset;
-  }
+  
 
   getActivityDataForPage(page: number): any[] {
     const startIndex = (page - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
     return this.activityData.slice(startIndex, endIndex);
   }
+  
+  changePage(offset: number): void {
+    this.currentPage += offset;
+  }
 
   get totalNumberOfActivityPages(): number {
     return Math.ceil(this.activityData.length / this.itemsPerPage);
   }
 
+  // ----------------------------- change Theme------------------------------------------
+
+  activityIcon: any[];
   change_themeOnOff() {
     this.changeThemeOn = this.changeThemeOn ? false : true;
   }
@@ -95,5 +106,38 @@ export class EditActivity {
   isBgSelected(index: number) {
     return this.selectedBgIndex === index;
   }
+
+  //-------------------------------- create sticker ----------------------------
+  selectedIconIndex: number = -1;
+  currentIconPage: number = 1;
+  itemsIconPerPage: number = 27;
+
+  create_stickerOnOff() {
+    this.createStickerOn = this.createStickerOn ? false : true;
+  }
+
+  selectIcon(index: number) {
+    this.selectedIconIndex = index;
+  }
+
+  isIconSelected(index: number) {
+    return this.selectedIconIndex === index;
+  }
+
+  changeIconPage(offset: number): void {
+    this.currentIconPage += offset;
+  }
+
+  get totalNumberOfIconPages(): number {
+    return Math.ceil(this.activityIcon.length / this.itemsIconPerPage);
+  }
+
+  getIconDataForPage(page: number): any[] {
+    const startIndex = (page - 1) * this.itemsIconPerPage;
+    const endIndex = startIndex + this.itemsIconPerPage;
+    return this.activityIcon.slice(startIndex, endIndex);
+  }
+
+  
 
 }

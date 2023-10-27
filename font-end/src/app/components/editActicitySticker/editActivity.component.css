@@ -1,172 +1,172 @@
-
 .container {
-    width: 80%;
-    height: 90vh;
-    margin: 30px auto;
-    padding: 20px;
-    text-align: center;
-    background-color: #ffe1cfd9;
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    border-radius: 50px;
-    flex-direction: column;
-    position: relative; 
+  width: 80%;
+  height: 90vh;
+  margin: 30px auto;
+  padding: 20px;
+  text-align: center;
+  background-color: #ffe1cfd9;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  border-radius: 50px;
+  flex-direction: column;
+  position: relative;
 }
 
-
-
-h1{
-    color: #AD8250;
-    text-shadow: 2px 2px 1px rgba(255, 255, 255, 0.75);
-    background-color: #f5cb88;
-    border-radius: 10px;
-    padding: 10px;
-    width: 100%;
+h1 {
+  color: #ad8250;
+  text-shadow: 2px 2px 1px rgba(255, 255, 255, 0.75);
+  background-color: #f5cb88;
+  border-radius: 10px;
+  padding: 10px;
+  width: 100%;
 }
 
-  .btn {
-    align-self: flex-start;
-    margin-left: 20px;
-    background-color: #f5cb88;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    margin-bottom: 20px;
-    border-radius: 20px;
-    width: 100px;
-    transition: 0.2s;
-  }
+h3 {
+  color: #ad8250;
+  text-shadow: 2px 2px 1px rgba(255, 255, 255, 0.75);
+  border-radius: 10px;
+  padding: 10px;
+}
 
-  .btn:hover{
-    transition: 0.2s;
-    background-color: #f4bf68;
-  }
-  
+.btn {
+  align-self: flex-start;
+  margin-left: 20px;
+  background-color: #f5cb88;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  width: 100px;
+  transition: 0.2s;
+}
 
-  .stickers-container {
-    padding: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  .sticker {
-    background-size: cover;
-    background-position: center;
-    width: 140px;
-    height: 140px;
-    margin: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: 3px solid #ffffff;
-    border-radius: 20px;
-    cursor: grab;
-  }
+.btn:hover {
+  transition: 0.2s;
+  background-color: #f4bf68;
+}
 
-  .sticker:active{
-    cursor: grabbing;
-  }
-  
-  .textSticker {
-    font-size: 16px;
-    font-weight: bold;
-    text-shadow: 2px 2px 1px rgba(255, 255, 255, 0.75);
-  }
-  
-  .icon {
-    width: 50px;
-    height: 50px;
-  }
+.stickers-container {
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
-  .red-corner {
-    width: 140px;
-    height: 140px;
-    position: absolute;
-    display: flex;
-    justify-content: end;
-  }
-  
+.sticker {
+  background-size: cover;
+  background-position: center;
+  width: 140px;
+  height: 140px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid #ffffff;
+  border-radius: 20px;
+  cursor: grab;
+}
 
-  .red-corner i{
-    font-size: 24px;
-    color: #e15d5d;
-    transition: 0.3s;
-    cursor: pointer;
-  }
+.sticker:active {
+  cursor: grabbing;
+}
 
-  .red-corner i:hover{
-    color: #bc4242;
-    transition: 0.2s;
-  }
-  
-  
-  .btn-warning {
-    width: 12vw;
-    color: #fff;
-    padding: 10px 20px;
-    background-color: #a8a8a8;
-    border: none;
-    cursor: pointer;
-    margin: 10px;
-    transition: 0.2s;
-  }
+.textSticker {
+  font-size: 16px;
+  font-weight: bold;
+  text-shadow: 2px 2px 1px rgba(255, 255, 255, 0.75);
+}
 
-  .btn-warning:hover{
-    transition: 0.2s;
-    background-color: #c0c0c0;
-  }
+.icon {
+  width: 50px;
+  height: 50px;
+}
 
+.red-corner {
+  width: 140px;
+  height: 140px;
+  position: absolute;
+  display: flex;
+  justify-content: end;
+}
+
+.red-corner i {
+  font-size: 24px;
+  color: #e15d5d;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.red-corner i:hover {
+  color: #bc4242;
+  transition: 0.2s;
+}
+
+.btn-warning {
+  width: 12vw;
+  color: #fff;
+  padding: 10px 20px;
+  background-color: #a8a8a8;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
+  transition: 0.2s;
+}
+
+.btn-warning:hover {
+  transition: 0.2s;
+  background-color: #c0c0c0;
+}
 
 .btn-changetheme {
-    position: absolute;
-    bottom: 20px; 
-    color: #fff;
-    padding: 10px 20px;
-    background-color: #edb254;
-    border: none;
-    cursor: pointer;
-    margin: 10px;
-    align-self: center;
-    width: 20%;
-    transition: 0.2s;
+  position: absolute;
+  bottom: 20px;
+  color: #fff;
+  padding: 10px 20px;
+  background-color: #edb254;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
+  align-self: center;
+  width: 20%;
+  transition: 0.2s;
 }
 
 .btn-changetheme:hover {
   transition: 0.2s;
-    background-color: #f5a43c; 
+  background-color: #f5a43c;
 }
 
 .fa-caret-left,
 .fa-caret-right {
-    font-size: 20px;
+  font-size: 20px;
 }
 
-.addMore{
-    background-color: #E5E5E5;
-    border: 5px solid #d2d2d2;
-    transition: 0.3s;
-    cursor: pointer;
+.addMore {
+  background-color: #e5e5e5;
+  border: 5px solid #d2d2d2;
+  transition: 0.3s;
+  cursor: pointer;
 }
 
-.addMore i{
-    font-size: 60px;
-    color: #c1bfbf;
+.addMore i {
+  font-size: 60px;
+  color: #c1bfbf;
 }
 
-.addMore:hover{
-    background-color: #d3d2d2;
-    border: 5px solid #d2d2d2;
-    transition: 0.3s;
-    cursor: pointer;
+.addMore:hover {
+  background-color: #d3d2d2;
+  border: 5px solid #d2d2d2;
+  transition: 0.3s;
+  cursor: pointer;
 }
 
 /* ---------------------- change theme ----------------------------- */
 
-.changetheme_container{
+.changetheme_container {
   width: 50%;
   height: 90vh;
   margin: 30px auto;
@@ -178,12 +178,12 @@ h1{
   justify-content: start;
   border-radius: 50px;
   flex-direction: column;
-  position: relative; 
+  position: relative;
 }
 
-.theme_button{
+.theme_button {
   position: absolute;
-  bottom: 20px; 
+  bottom: 20px;
   color: #fff;
   padding: 10px 20px;
   border: none;
@@ -191,30 +191,29 @@ h1{
   align-self: center;
 }
 
-.theme_button .btn{
+.theme_button .btn {
   margin-bottom: 0px;
 }
 
-.btn-cancel{
+.btn-cancel {
   background-color: #a8a8a8;
 }
 
-.btn-cancel:hover{
+.btn-cancel:hover {
   background-color: #c0c0c0;
 }
 
-.btn-next{
+.btn-next {
   transition: 0.2s;
-  background-color: #A1C554;
+  background-color: #a1c554;
 }
 
-.btn-next:hover{
+.btn-next:hover {
   transition: 0.2s;
   background-color: #91b445;
 }
 
-
-.bg-container{
+.bg-container {
   width: 70%;
   display: flex;
   flex-wrap: wrap;
@@ -223,30 +222,59 @@ h1{
   margin: 0px auto;
 }
 
-.bgImage{
-    width: 140px;
-    height: 140px;
-    margin: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none white;
-    border-radius: 20px;
-    background-size: 100%;
-    cursor: pointer;
-    transition: 0.3s;
+.bgImage {
+  width: 140px;
+  height: 140px;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none white;
+  border-radius: 20px;
+  background-size: 100%;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.bgImage:hover{
+.bgImage:hover {
   transition: 0.2s;
   border: 5px solid #ffffff;
 }
 
-.bgImage_selected{
+.Image_selected {
   border: 5px solid #ffffff;
 }
 
+/* ---------------------create activity----------------------------- */
 
+.icon-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  align-items: start;
+  margin-left: 8%;
+}
 
+.bgImage2 {
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none white;
+  border-radius: 20px;
+  background-size: 100%;
+  cursor: pointer;
+  transition: 0.3s;
+}
 
+.bgImage2:hover {
+  transition: 0.2s;
+  border: 5px solid #ffffff;
+}
 
+.Image_selected2 {
+  border: 5px solid #ffffff;
+}

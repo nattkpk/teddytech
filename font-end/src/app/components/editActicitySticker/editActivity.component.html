@@ -3,11 +3,11 @@
   <head> </head>
 
   <body>
-    <div class="container" *ngIf="changeThemeOn === false">
+    <div class="container" *ngIf="changeThemeOn === false && createStickerOn===false;">
       <button class="btn" routerLink="/board">
         <i class="fa-solid fa-caret-left"></i>&ensp;Back
       </button>
-      <h1>Activity Sticker</h1>
+      <h1>Activity Sticker&ensp;<i class="fa-solid fa-shapes"></i></h1>
       <div
         class="stickers-container"
         cdkDropList
@@ -30,7 +30,7 @@
           <p class="textSticker">{{ item.text }}</p>
           <img src="{{ item.imageUrl }}" alt="" class="icon" />
         </div>
-        <div class="sticker addMore">
+        <div class="sticker addMore" (click)="create_stickerOnOff()">
           <i class="fa-solid fa-circle-plus"></i>
         </div>
       </div>
@@ -67,7 +67,7 @@
           class="bgImage"
           *ngFor="let item of activityTheme ; let i = index"
           [style.background-image]="'url(' + item.bg + ')'"
-          [ngClass]="{ 'bgImage_selected': isBgSelected(i) }"
+          [ngClass]="{ 'Image_selected': isBgSelected(i) }"
           (click)="selectBg(i)"
         ></div>
       </div>
@@ -78,5 +78,51 @@
         <button class="btn btn-next" (click)="change_theme_confirm()">OK</button>
       </div>
     </div>
+
+      <!-- ------------------------------- Create Sticker -------------------------------------- -->
+
+    <div class="container" *ngIf="createStickerOn === true">
+      <h1>
+        Create Activity Sticker&ensp;<i class="fa-solid fa-circle-plus"></i>
+      </h1>
+      <h3>
+        <i class="fa-solid fa-circle-half-stroke"></i>&ensp;Select Icon&ensp;<i class="fa-solid fa-circle-half-stroke"></i>
+      </h3>
+      <div class="icon-container">
+        <div
+          class="bgImage2"
+          *ngFor="let item of getIconDataForPage(currentIconPage) ; let i = index"
+          [style.background-image]="'url(' + item + ')'"
+          [ngClass]="{ 'Image_selected2': isIconSelected(i) }"
+          (click)="selectIcon(i)"
+        >
+      </div>
+      </div>
+
+      <div class="d-flex justify-content-center my-1">
+        <button
+          *ngIf="currentIconPage > 1"
+          (click)="changeIconPage(-1)"
+          class="btn btn-warning"
+        >
+          <i class="fa-solid fa-caret-left"></i>&ensp;Previous Page
+        </button>
+        <button
+          *ngIf="currentIconPage < totalNumberOfIconPages"
+          (click)="changeIconPage(1)"
+          class="btn btn-warning"
+        >
+          Next Page&ensp;<i class="fa-solid fa-caret-right"></i>
+        </button>
+      </div>
+
+      <div class="d-flex justify-content-center my-1 theme_button">
+        <button class="btn btn-cancel" (click)="create_stickerOnOff()">
+          Cancel
+        </button>
+        <button class="btn btn-next">OK</button>
+      </div>
+    </div>
+
   </body>
 </html>
