@@ -1,33 +1,57 @@
-.col{
+.col {
     margin: 0px;
 }
 
-.bk{
-    background-color: FFFFFF, 0.8;
-    border: 10px solid #A1BD92;
+.bk {
+    background-color: #ffffffbb;
     border-radius: 20px;
-    width: 468px;
-    height: 350px;
     
+
 }
-.img-fluid{
-    
+
+
+.img-fluid {
+
     width: 150px;
-    padding: 10px;
+    padding: 5px;
     padding-bottom: 50px;
 }
 
 .text {
-    
+
     width: 430px;
     height: 100px;
     padding-bottom: 10px;
     border-radius: 25px;
     margin: 10px;
-  }
+}
 
-.image{
-    width: 500px;
-    
 
+
+.sticker {
+    border-radius: 25px;
+    width: 580px;
+    height: 120px;
+}
+
+.act {
+    width: 70px;
+    padding: 5px;
+}
+
+
+
+.col-lg-6 {
+	
+	min-height: 300px;
+}
+
+.col-lg-12 {
+	
+	min-height: 300px;
+}
+
+.row-lg-12 {
+	
+	min-height: 400px;
 }
