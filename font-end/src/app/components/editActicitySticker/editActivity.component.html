@@ -65,8 +65,8 @@
       <div class="bg-container">
         <div
           class="bgImage"
-          *ngFor="let item of bgImg; let i = index"
-          [style.background-image]="'url(' + item + ')'"
+          *ngFor="let item of activityTheme ; let i = index"
+          [style.background-image]="'url(' + item.bg + ')'"
           [ngClass]="{ 'bgImage_selected': isBgSelected(i) }"
           (click)="selectBg(i)"
         ></div>

@@ -25,21 +25,10 @@ export class EditActivity {
     this.changeThemeOn = false;
     this.activityBg = this.sticker_service.getActivityBg();
     this.activity_fontColor = this.sticker_service.getActivityFontColor();
-    this.bgImg = [
-      '../../../assets/img/BgSticker/Diamon1.png',
-      '../../../assets/img/BgSticker/Diamon2.png',
-      '../../../assets/img/BgSticker/Diamon3.png',
-      '../../../assets/img/BgSticker/Diamon4.png',
-      '../../../assets/img/BgSticker/Diamon5.png',
-      '../../../assets/img/BgSticker/Diamon6.png',
-      '../../../assets/img/BgSticker/Diamon7.png',
-      '../../../assets/img/BgSticker/Diamon8.png',
-      '../../../assets/img/BgSticker/Diamon9.png',
-    ];
-    this.fontColor = ["#775189","#678CA2","#444C96","#3F5236","#8F834F","#A46F4F","#AF5E5E","#AF5771","#645232"];
     this.selectedBgIndex = 3;
   }
 
+  activityTheme = this.sticker_service.getAllActivityTheme();
   itemsPerPage: number = 13;
   currentPage: number = 1;
   changeThemeOn: boolean = true;
@@ -47,9 +36,6 @@ export class EditActivity {
   activityBg = this.sticker_service.getActivityBg();
   activity_fontColor = this.sticker_service.getActivityFontColor();
   activityData: any[];
-
-  bgImg: any[];
-  fontColor: any[];
 
   get user(): User | null {
     return this.user_repository.getUserById(this.userDataService.getUserId());
@@ -92,7 +78,7 @@ export class EditActivity {
       cancelButtonColor: '#FC6F6F',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.sticker_service.setActivitySticker(this.bgImg[this.selectedBgIndex],this.fontColor[this.selectedBgIndex])
+        this.sticker_service.setActivitySticker(this.selectedBgIndex)
         this.activityBg = this.sticker_service.getActivityBg();
         this.activity_fontColor = this.sticker_service.getActivityFontColor();
         this.change_themeOnOff();

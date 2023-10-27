@@ -8,25 +8,39 @@ import { UserRepository } from '../models/userModel/user.repository';
 export class StickerDataService {
   
     constructor(){
-      this.activityBg = '../../../assets/img/BgSticker/Diamon4.png';
-      this.activityFontColor = '#3F5236';
+      this.activityTheme = [
+        { bg: '../../../assets/img/BgSticker/Diamon1.png' , font:"#775189"},
+        { bg: '../../../assets/img/BgSticker/Diamon2.png' , font:"#678CA2"},
+        { bg: '../../../assets/img/BgSticker/Diamon3.png' , font:"#444C96"},
+        { bg: '../../../assets/img/BgSticker/Diamon4.png' , font:"#3F5236"},
+        { bg: '../../../assets/img/BgSticker/Diamon5.png' , font:"#8F834F"},
+        { bg: '../../../assets/img/BgSticker/Diamon6.png' , font:"#A46F4F"},
+        { bg: '../../../assets/img/BgSticker/Diamon7.png' , font:"#AF5E5E"},
+        { bg: '../../../assets/img/BgSticker/Diamon8.png' , font:"#AF5771"},
+        { bg: '../../../assets/img/BgSticker/Diamon9.png' , font:"#645232"},
+      ];
     }
 
-    activityBg: string;
-    activityFontColor: string;
+    activityTheme: any[]
 
-    setActivitySticker(bg: string,font:string) {
-      this.activityBg = bg;
-      this.activityFontColor = font;
-      console.log("set!");
+    selectedThemeActivity = 3;
+
+
+    setActivitySticker(select:number) {
+      this.selectedThemeActivity = select;
+      console.log("set Theme complete!");
     }
   
     getActivityBg(): string {
-      return this.activityBg
+      return this.activityTheme[this.selectedThemeActivity].bg;
     }
 
     getActivityFontColor(): string {
-      return this.activityFontColor
+      return this.activityTheme[this.selectedThemeActivity].font;
+    }
+
+    getAllActivityTheme(){
+      return this.activityTheme;
     }
     
     
