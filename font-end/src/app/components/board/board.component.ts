@@ -4,8 +4,13 @@ import {
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
-import { Component } from '@angular/core';
-import { Sticker1 } from 'src/app/models/stickerModel/sticker.model';
+import { Component } from '@angular/core';import { User } from 'src/app/models/userModel/user.model';
+import { UserRepository } from 'src/app/models/userModel/user.repository';
+import { UserDataService } from 'src/app/services/user-data.service';
+import { Router } from '@angular/router';
+import { StickerDataService } from 'src/app/services/sticker-data.service';
+;
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'board',
@@ -13,11 +18,28 @@ import { Sticker1 } from 'src/app/models/stickerModel/sticker.model';
   styleUrls: ['./board.component.css'],
 })
 export class Board {
+  
   selectedgenre: string;
-  dataRows = new Array(5).fill({});
+  addBg = '';
+  itemsPerPage: number = 15;
+  currentPage: number = 1;
 
-  constructor() {
-    this.selectedgenre = 'Feeling';
+  constructor(
+    private router: Router,
+    private user_repository: UserRepository,
+    private userDataService: UserDataService,
+    private sticker_service: StickerDataService
+    ) {
+    this.selectedgenre = 'Activity';
+    this.activityData = this.user?.stickers?.activity ? this.user.stickers.activity : [];
+    this.praise_data = this.user?.stickers?.praise ? this.user.stickers.praise : [];
+    this.feelingData = this.user?.stickers?.feeling ? this.user.stickers.feeling : [];
+    this.pointData = this.user?.stickers?.point ? this.user.stickers.point : [];
+    this.rewardData = this.user?.stickers?.reward ? this.user.stickers.reward : [];
+  }
+
+  get user(): User | null {
+    return this.user_repository.getUserById(this.userDataService.getUserId());
   }
 
   dropSticker(event: CdkDragDrop<string[]>) {
@@ -28,15 +50,20 @@ export class Board {
         event.currentIndex
       );
     }
+  }  
+  
+  changePage(offset: number): void {
+    this.currentPage += offset;
   }
 
-  addBg = '';
+  goToEditActivity(){
+    this.router.navigate(['/edit_activity_sticker']); 
+  }
 
   // ---------------------------- Activity Sticker -------------------------------------
 
-  activityBg = '../../../assets/img/BgSticker/Diamon4.png';
-  activity_fontColor = 'black';
-  dataArray = ['ข้อความ1', 'ข้อความ2'];
+  activityBg = this.sticker_service.getActivityBg();
+  activity_fontColor = this.sticker_service.getActivityFontColor();
   activity_sticked: any[] = [
     { text: '' },
     { text: '' },
@@ -44,50 +71,26 @@ export class Board {
     { text: '' },
     { text: '' },
   ];
-  activityData: any[] = [
-    {
-      text: 'Take a Shower',
-      imageUrl: '../../../assets/img/ActivityIcon/shower.png',
-    },
-    {
-      text: 'Help to water the plant',
-      imageUrl: '../../../assets/img/ActivityIcon/watering-plants.png',
-    },
-    {
-      text: 'Brush teeth',
-      imageUrl: '../../../assets/img/ActivityIcon/tooth-brush.png',
-    },
-    {
-      text: 'Make the bed',
-      imageUrl: '../../../assets/img/ActivityIcon/make-the-bed.png',
-    },
-    {
-      text: 'Drink milk',
-      imageUrl: '../../../assets/img/ActivityIcon/milk-box.png',
-    },
-    {
-      text: 'Wash your hands',
-      imageUrl: '../../../assets/img/ActivityIcon/wash-your-hands.png',
-    },
-  ];
 
-  stickertext = '';
-  stickericon = '';
 
-  // addActivity(){
-  //   this.activity_sticked.unshift({
-  //     text: this.stickertext,
-  //     imageUrl: this.stickericon,
-  //   },)
-  //   this.activity_sticked.pop()
-  // }
+  activityData : any[]
 
-  addActivity() {
+  getActivityDataForPage(page: number): any[] {
+    const startIndex = (page - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return this.activityData.slice(startIndex, endIndex);
+  }
+  
+  get totalNumberOfActivityPages(): number {
+    return Math.ceil(this.activityData.length / this.itemsPerPage);
+  }
+  
+  addActivity(index: number) {
     for (let i = 0; i < this.activity_sticked.length; i++) {
       if (!this.activity_sticked[i].imageUrl) {
         this.activity_sticked[i] = {
-          text: this.stickertext,
-          imageUrl: this.stickericon,
+          text: this.activityData[index].text,
+          imageUrl: this.activityData[index].imageUrl,
         };
         break;
       }
@@ -100,27 +103,19 @@ export class Board {
     }
   }
 
-  // deleteByIndex(indexToDelete: number ,array: any[]): void {
-  //   if (indexToDelete >= 0 && indexToDelete < array.length) {
-  //     array.splice(indexToDelete, 1);
-  //   }
-  // }
 
-// --------------------------------Point Sticker---------------------------------------------
-  pointData: any[] = [
-    {
-      icon: '../../../assets/img/PointSticker/Icon/heart.png',
-      bgImage: '../../../assets/img/PointSticker/Bg/Bgpoint1.png',
-    },
-    {
-      icon: '../../../assets/img/PointSticker/Icon/star.png',
-      bgImage: '../../../assets/img/PointSticker/Bg/Bgpoint2.png',
-    },
-    {
-      icon: '../../../assets/img/PointSticker/Icon/shooting-star.png',
-      bgImage: '../../../assets/img/PointSticker/Bg/Bgpoint3.png',
-    },
-  ];
+  // --------------------------------Point Sticker---------------------------------------------
+  pointData: any[]
+
+  getPointDataForPage(page: number): any[] {
+    const startIndex = (page - 1) * 12;
+    const endIndex = startIndex + 12;
+    return this.pointData.slice(startIndex, endIndex);
+  }
+  
+  get totalNumberOfPointPages(): number {
+    return Math.ceil(this.pointData.length / 12);
+  }
 
   sun_sticked: any[] = [
     { text: '' },
@@ -172,9 +167,6 @@ export class Board {
     { text: '' },
   ];
 
-  point_bg = '';
-  point_icon = '';
-
   day = [
     'Sunday',
     'Monday',
@@ -186,15 +178,17 @@ export class Board {
   ];
   currentday = 0;
 
-  addPoint() {
+  addPoint(index: number) {
     switch (this.currentday) {
       case 0:
         for (let i = 0; i < this.sun_sticked.length; i++) {
           if (!this.sun_sticked[i].icon) {
             this.sun_sticked[i] = {
-              icon: this.point_icon,
-              bgImage: this.point_bg,
+              icon: this.pointData[index].icon,
+              bgImage: this.pointData[index].bgImage,
+              point: this.pointData[index].point,
             };
+            this.calculate_point(index);
             break;
           }
         }
@@ -203,9 +197,11 @@ export class Board {
         for (let i = 0; i < this.mon_sticked.length; i++) {
           if (!this.mon_sticked[i].icon) {
             this.mon_sticked[i] = {
-              icon: this.point_icon,
-              bgImage: this.point_bg,
+              icon: this.pointData[index].icon,
+              bgImage: this.pointData[index].bgImage,
+              point: this.pointData[index].point,
             };
+            this.calculate_point(index);
             break;
           }
         }
@@ -214,9 +210,11 @@ export class Board {
         for (let i = 0; i < this.tue_sticked.length; i++) {
           if (!this.tue_sticked[i].icon) {
             this.tue_sticked[i] = {
-              icon: this.point_icon,
-              bgImage: this.point_bg,
+              icon: this.pointData[index].icon,
+              bgImage: this.pointData[index].bgImage,
+              point: this.pointData[index].point,
             };
+            this.calculate_point(index);
             break;
           }
         }
@@ -225,9 +223,11 @@ export class Board {
         for (let i = 0; i < this.wed_sticked.length; i++) {
           if (!this.wed_sticked[i].icon) {
             this.wed_sticked[i] = {
-              icon: this.point_icon,
-              bgImage: this.point_bg,
+              icon: this.pointData[index].icon,
+              bgImage: this.pointData[index].bgImage,
+              point: this.pointData[index].point,
             };
+            this.calculate_point(index);
             break;
           }
         }
@@ -236,9 +236,11 @@ export class Board {
         for (let i = 0; i < this.thu_sticked.length; i++) {
           if (!this.thu_sticked[i].icon) {
             this.thu_sticked[i] = {
-              icon: this.point_icon,
-              bgImage: this.point_bg,
+              icon: this.pointData[index].icon,
+              bgImage: this.pointData[index].bgImage,
+              point: this.pointData[index].point,
             };
+            this.calculate_point(index);
             break;
           }
         }
@@ -247,9 +249,11 @@ export class Board {
         for (let i = 0; i < this.fri_sticked.length; i++) {
           if (!this.fri_sticked[i].icon) {
             this.fri_sticked[i] = {
-              icon: this.point_icon,
-              bgImage: this.point_bg,
+              icon: this.pointData[index].icon,
+              bgImage: this.pointData[index].bgImage,
+              point: this.pointData[index].point,
             };
+            this.calculate_point(index);
             break;
           }
         }
@@ -258,9 +262,11 @@ export class Board {
         for (let i = 0; i < this.sat_sticked.length; i++) {
           if (!this.sat_sticked[i].icon) {
             this.sat_sticked[i] = {
-              icon: this.point_icon,
-              bgImage: this.point_bg,
+              icon: this.pointData[index].icon,
+              bgImage: this.pointData[index].bgImage,
+              point: this.pointData[index].point,
             };
+            this.calculate_point(index);
             break;
           }
         }
@@ -271,41 +277,83 @@ export class Board {
   deletePoint(index: number): void {
     switch (this.currentday) {
       case 0:
-    if (index >= 0 && index < this.sun_sticked.length) {
-      this.sun_sticked[index] = { text: '' };
+        if (
+          index >= 0 &&
+          index < this.sun_sticked.length &&
+          this.sun_sticked[index].text != ''
+        ) {
+          const decrease = parseInt(this.sun_sticked[index].point);
+          this.now_points = this.now_points - decrease;
+          this.sun_sticked[index] = { text: '' };
+        }
+        break;
+      case 1:
+        if (
+          index >= 0 &&
+          index < this.mon_sticked.length &&
+          this.mon_sticked[index].text != ''
+        ) {
+          const decrease = parseInt(this.mon_sticked[index].point);
+          this.now_points = this.now_points - decrease;
+          this.mon_sticked[index] = { text: '' };
+        }
+        break;
+      case 2:
+        if (
+          index >= 0 &&
+          index < this.tue_sticked.length &&
+          this.tue_sticked[index].text != ''
+        ) {
+          const decrease = parseInt(this.tue_sticked[index].point);
+          this.now_points = this.now_points - decrease;
+          this.tue_sticked[index] = { text: '' };
+        }
+        break;
+      case 3:
+        if (
+          index >= 0 &&
+          index < this.wed_sticked.length &&
+          this.wed_sticked[index].text != ''
+        ) {
+          const decrease = parseInt(this.wed_sticked[index].point);
+          this.now_points = this.now_points - decrease;
+          this.wed_sticked[index] = { text: '' };
+        }
+        break;
+      case 4:
+        if (
+          index >= 0 &&
+          index < this.thu_sticked.length &&
+          this.thu_sticked[index].text != ''
+        ) {
+          const decrease = parseInt(this.thu_sticked[index].point);
+          this.now_points = this.now_points - decrease;
+          this.thu_sticked[index] = { text: '' };
+        }
+        break;
+      case 5:
+        if (
+          index >= 0 &&
+          index < this.fri_sticked.length &&
+          this.fri_sticked[index].text != ''
+        ) {
+          const decrease = parseInt(this.fri_sticked[index].point);
+          this.now_points = this.now_points - decrease;
+          this.fri_sticked[index] = { text: '' };
+        }
+        break;
+      case 6:
+        if (
+          index >= 0 &&
+          index < this.sat_sticked.length &&
+          this.sat_sticked[index].text != ''
+        ) {
+          const decrease = parseInt(this.sat_sticked[index].point);
+          this.now_points = this.now_points - decrease;
+          this.sat_sticked[index] = { text: '' };
+        }
+        break;
     }
-    break;
-    case 1:
-    if (index >= 0 && index < this.mon_sticked.length) {
-      this.mon_sticked[index] = { text: '' };
-    }
-    break;
-    case 2:
-    if (index >= 0 && index < this.tue_sticked.length) {
-      this.tue_sticked[index] = { text: '' };
-    }
-    break;
-    case 3:
-    if (index >= 0 && index < this.wed_sticked.length) {
-      this.wed_sticked[index] = { text: '' };
-    }
-    break;
-    case 4:
-    if (index >= 0 && index < this.thu_sticked.length) {
-      this.thu_sticked[index] = { text: '' };
-    }
-    break;
-    case 5:
-    if (index >= 0 && index < this.fri_sticked.length) {
-      this.fri_sticked[index] = { text: '' };
-    }
-    break;
-    case 6:
-    if (index >= 0 && index < this.sat_sticked.length) {
-      this.sat_sticked[index] = { text: '' };
-    }
-    break;
-  }
   }
 
   change_day_plus() {
@@ -324,84 +372,418 @@ export class Board {
     }
   }
 
+  // -------------------------------------Praise Sticker---------------------------------------------
+  praise_fontColor: string = '#dd689d';
+  praiseBg = '../../../assets/img/BgSticker/Heart8.png';
 
-// -------------------------------------Praise Sticker---------------------------------------------
-praise_fontColor: string = '#dd689d';
-praiseBg = '../../../assets/img/BgSticker/Heart8.png';
+  praise_data: any[]
 
-praise_data: any[] = [
-  { text: 'I am so proud of you' },
-  { text: 'You did a fantastic job!' },
-  { text: 'Thank you for your help' },
-  { text: 'I love you' },
-  { text: 'Your help means a lot' },
-  { text: 'You amaze me every day' },
-]
+  praise_sticked: any[] = [{ text: '' }, { text: '' }, { text: '' }];
 
+  getPraiseDataForPage(page: number): any[] {
+    const startIndex = (page - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return this.praise_data.slice(startIndex, endIndex);
+  }
+  
+  get totalNumberOfPraisePages(): number {
+    return Math.ceil(this.praise_data.length / this.itemsPerPage);
+  }
 
-
-praise_sticked: any[] = [
-  { text: '' },
-  { text: '' },
-  { text: '' },
-];
-
-addPraise(index:number){
-  for (let i = 0; i < this.praise_sticked.length; i++) {
-    if (this.praise_sticked[i].text == '') {
-      this.praise_sticked[i] = {
-        text: this.praise_data[index].text,
-      };
-      break;
+  addPraise(index: number) {
+    for (let i = 0; i < this.praise_sticked.length; i++) {
+      if (this.praise_sticked[i].text == '') {
+        this.praise_sticked[i] = {
+          text: this.praise_data[index].text,
+        };
+        break;
+      }
     }
   }
-}
 
-deletePraise(index: number): void {
-  if (index >= 0 && index < this.praise_sticked.length) {
-    this.praise_sticked[index] = { text: '' };
-  }
-}
-
-
-// -------------------------------------Feeling Sticker---------------------------------------------
-feeling_fontColor: string = '#947218';
-feelingBg = '../../../assets/img/BgSticker/Star5.png';
-
-feeling_data: any[] = [
-  { text: 'Good !' },
-  { text: 'Amazing !' },
-  { text: 'Bored' },
-  { text: 'Happy' },
-  { text: 'Sleepy' },
-  { text: 'Joyful' },
-]
-
-
-
-feeling_sticked: any[] = [
-  { text: '' },
-  { text: '' },
-  { text: '' },
-];
-
-addFeeling(index:number){
-  for (let i = 0; i < this.feeling_sticked.length; i++) {
-    if (this.feeling_sticked[i].text == '') {
-      this.feeling_sticked[i] = {
-        text: this.feeling_data[index].text,
-      };
-      break;
+  deletePraise(index: number): void {
+    if (index >= 0 && index < this.praise_sticked.length) {
+      this.praise_sticked[index] = { text: '' };
     }
   }
-}
 
-deleteFeeling(index: number): void {
-  if (index >= 0 && index < this.feeling_sticked.length) {
-    this.feeling_sticked[index] = { text: '' };
+  // -------------------------------------Feeling Sticker---------------------------------------------
+  feeling_fontColor: string = '#947218';
+  feelingBg = '../../../assets/img/BgSticker/Star5.png';
+
+  feelingData: any[]
+
+  getFeelingDataForPage(page: number): any[] {
+    const startIndex = (page - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return this.feelingData.slice(startIndex, endIndex);
   }
-}
+  
+  get totalNumberOfFeelingPages(): number {
+    return Math.ceil(this.feelingData.length / this.itemsPerPage);
+  }
+
+  feeling_sticked: any[] = [{ text: '' }, { text: '' }, { text: '' }];
+
+  addFeeling(index: number) {
+    for (let i = 0; i < this.feeling_sticked.length; i++) {
+      if (this.feeling_sticked[i].text == '') {
+        this.feeling_sticked[i] = {
+          text: this.feelingData[index].text,
+        };
+        break;
+      }
+    }
+  }
+
+  deleteFeeling(index: number): void {
+    if (index >= 0 && index < this.feeling_sticked.length) {
+      this.feeling_sticked[index] = { text: '' };
+    }
+  }
+
+  // -------------------------------------Reward Sticker---------------------------------------------
+
+  rewardBg = '../../../assets/img/BgSticker/wow2.png';
+  reward_fontColor = '#225E92';
+  reward_sticked: any[] = [{ text: '' }, { text: '' }];
+  rewardData: any[]
+
+  getRewardDataForPage(page: number): any[] {
+    const startIndex = (page - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return this.rewardData.slice(startIndex, endIndex);
+  }
+  
+  get totalNumberOfRewardPages(): number {
+    return Math.ceil(this.rewardData.length / this.itemsPerPage);
+  }
 
 
+  addReward(index: number) {
+    for (let i = 0; i < this.reward_sticked.length; i++) {
+      if (this.reward_sticked[i].text == '') {
+        this.reward_sticked[i] = {
+          text: this.rewardData[index].text,
+          imageUrl: this.rewardData[index].imageUrl,
+        };
+        break;
+      }
+    }
+  }
 
+  deleteReward(index: number): void {
+    if (index >= 0 && index < this.reward_sticked.length) {
+      this.reward_sticked[index] = { text: '' };
+    }
+  }
+  // -----------------------------------calculate point-------------------------------------------
+  now_points = 0;
+
+  pointA = 15;
+  rewardA = false;
+
+  pointB = 20;
+  rewardB = false;
+
+  change_pointA() {
+    Swal.fire({
+      title: 'Change Point',
+      input: 'number',
+      inputAttributes: {
+        autocapitalize: 'off',
+        step: 'any',
+      },
+      showCancelButton: true,
+      confirmButtonText: 'Change',
+      confirmButtonColor:'#A1C554',
+      cancelButtonColor: '#FC6F6F',
+      reverseButtons: true,
+      showLoaderOnConfirm: true,
+      preConfirm: (newValue) => {
+        if (newValue == '') {
+          this.pointA = 0;
+        } else {
+          this.pointA = newValue;
+        }
+      },
+      allowOutsideClick: () => !Swal.isLoading(),
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: 'Point Updated',
+          confirmButtonColor:'#A1C554',
+        });
+      }
+    });
+  }
+
+  change_pointB() {
+    Swal.fire({
+      title: 'Change Point',
+      input: 'number',
+      inputAttributes: {
+        autocapitalize: 'off',
+        step: 'any',
+      },
+      showCancelButton: true,
+      confirmButtonText: 'Change',
+      confirmButtonColor:'#A1C554',
+      cancelButtonColor: '#FC6F6F',
+      reverseButtons: true,
+      showLoaderOnConfirm: true,
+      preConfirm: (newValue) => {
+        if (newValue == '') {
+          this.pointB = 0;
+        } else {
+          this.pointB = newValue;
+        }
+      },
+      allowOutsideClick: () => !Swal.isLoading(),
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: 'Point Updated',
+          confirmButtonColor:'#A1C554',
+        });
+      }
+    });
+  }
+  calculate_point(index: number) {
+    if (this.now_points < this.pointA && this.rewardA == true) {
+      this.rewardA = false;
+    }
+    if (this.now_points < this.pointB && this.rewardB == true) {
+      this.rewardB = false;
+    }
+    const point = parseInt(this.pointData[index].point);
+    this.now_points = this.now_points + point;
+    this.check_point();
+  }
+
+  check_point() {
+    if (
+      this.now_points >= this.pointA &&
+      this.rewardA == false &&
+      this.now_points >= this.pointB &&
+      this.rewardB == false
+    ) {
+      const message = `You got a ${this.reward_sticked[0].text} !`;
+      Swal.fire({
+        title: 'Congratulations!',
+        text: this.reward_sticked[0].text,
+        imageUrl: this.reward_sticked[0].imageUrl,
+        imageHeight: 110,
+        imageWidth: 110,
+        imageAlt: 'A reward image',
+        confirmButtonText: 'Yay!',
+        confirmButtonColor: '#A1C554',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            title: 'Congratulations!',
+            text: this.reward_sticked[1].text,
+            imageUrl: this.reward_sticked[1].imageUrl,
+            imageHeight: 110,
+            imageWidth: 110,
+            imageAlt: 'A reward image',
+            confirmButtonText: 'Yay!',
+            confirmButtonColor: '#A1C554',
+          });
+        }
+      });
+      this.rewardB = true;
+      this.rewardA = true;
+    } else {
+      if (this.now_points >= this.pointA && this.rewardA == false) {
+        const message = `You got a ${this.reward_sticked[0].text} !`;
+        Swal.fire({
+          title: 'Congratulations!',
+          text: this.reward_sticked[0].text,
+          imageUrl: this.reward_sticked[0].imageUrl,
+          imageHeight: 110,
+          imageWidth: 110,
+          imageAlt: 'A reward image',
+          confirmButtonText: 'Yay!',
+          confirmButtonColor: '#A1C554',
+        });
+        this.rewardA = true;
+      }
+      if (this.now_points >= this.pointB && this.rewardB == false) {
+        const message = `You got a ${this.reward_sticked[1].text} !`;
+        Swal.fire({
+          title: 'Congratulations!',
+          text: this.reward_sticked[1].text,
+          imageUrl: this.reward_sticked[1].imageUrl,
+          imageHeight: 110,
+          imageWidth: 110,
+          imageAlt: 'A reward image',
+          confirmButtonText: 'Yay!',
+          confirmButtonColor: '#A1C554',
+        });
+        this.rewardB = true;
+      }
+    }
+  }
+
+  // -----------------------------------Clear buttons------------------------------------------
+
+  clear_activity() {
+    Swal.fire({
+        title: 'Clear activity on the board',
+        text: 'Are you sure?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes !',
+        cancelButtonText: 'cancel !',
+        reverseButtons: true,
+        confirmButtonColor:'#A1C554',
+        cancelButtonColor: '#FC6F6F',
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          this.activity_sticked = [
+            { text: '' },
+            { text: '' },
+            { text: '' },
+            { text: '' },
+            { text: '' },
+          ];
+            Swal.fire({
+              icon: 'success',
+              title: 'Clear!',
+              text: 'All activity have been deleted.',
+              confirmButtonColor:'#A1C554',
+            });
+        }
+      });
+  }
+
+  clear_point() {
+    Swal.fire({
+        title: 'Clear points on the board',
+        text: 'Are you sure?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes !',
+        cancelButtonText: 'cancel !',
+        reverseButtons: true,
+        confirmButtonColor:'#A1C554',
+        cancelButtonColor: '#FC6F6F',
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          this.clear_point_all();
+          Swal.fire({
+            icon: 'success',
+            title: 'Clear!',
+            text: 'All points have been deleted.',
+            confirmButtonColor:'#A1C554',
+          });
+        }
+      });
+  }
+
+  clear_point_all() {
+    this.sun_sticked = [
+      { text: '' },
+      { text: '' },
+      { text: '' },
+      { text: '' },
+      { text: '' },
+    ];
+    this.mon_sticked = [
+      { text: '' },
+      { text: '' },
+      { text: '' },
+      { text: '' },
+      { text: '' },
+    ];
+    this.tue_sticked = [
+      { text: '' },
+      { text: '' },
+      { text: '' },
+      { text: '' },
+      { text: '' },
+    ];
+    this.wed_sticked = [
+      { text: '' },
+      { text: '' },
+      { text: '' },
+      { text: '' },
+      { text: '' },
+    ];
+    this.thu_sticked = [
+      { text: '' },
+      { text: '' },
+      { text: '' },
+      { text: '' },
+      { text: '' },
+    ];
+    this.fri_sticked = [
+      { text: '' },
+      { text: '' },
+      { text: '' },
+      { text: '' },
+      { text: '' },
+    ];
+    this.sat_sticked = [
+      { text: '' },
+      { text: '' },
+      { text: '' },
+      { text: '' },
+      { text: '' },
+    ];
+    this.now_points = 0;
+  }
+
+  clear_praise() {
+    Swal.fire({
+        title: 'Clear praise sticker on the board',
+        text: 'Are you sure?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes !',
+        cancelButtonText: 'cancel !',
+        reverseButtons: true,
+        confirmButtonColor:'#A1C554',
+        cancelButtonColor: '#FC6F6F',
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          this.praise_sticked = [{ text: '' }, { text: '' }, { text: '' }];
+          Swal.fire({
+            icon: 'success',
+            title: 'Clear!',
+            text: 'All praise sticker have been deleted.',
+            confirmButtonColor:'#A1C554',
+          });
+        }
+      });
+  }
+
+  clear_feeling() {
+    Swal.fire({
+        title: 'Clear feeling sticker on the board',
+        text: 'Are you sure?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes !',
+        cancelButtonText: 'cancel !',
+        reverseButtons: true,
+        confirmButtonColor:'#A1C554',
+        cancelButtonColor: '#FC6F6F',
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          this.feeling_sticked = [{ text: '' }, { text: '' }, { text: '' }];
+          Swal.fire({
+            icon: 'success',
+            title: 'Clear!',
+            text: 'All feeling sticker have been deleted.',
+            confirmButtonColor:'#A1C554',
+          });
+        }
+      });
+  }
 }

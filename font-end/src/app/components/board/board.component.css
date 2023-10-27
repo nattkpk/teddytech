@@ -13,7 +13,6 @@
 .container-board .nav-link.active {
   color: #BB7979; 
   background-color: #FFDDDD;
-  font-size: 24px;
 }
 
 .container-board{
@@ -21,7 +20,7 @@
   background-color: #EFCCCC;
   margin: 20px 5px 0px 5px;
   width: 72vw;
-  height: 770px;
+  height: 830px;
 }
 
 .container-board h5{
@@ -42,7 +41,7 @@
   text-align: center;
   padding-top: 10px;
   border-radius: 10px;
-  width: 120px;
+  width: 8vw;
   height: 40px;
 }
 
@@ -166,6 +165,7 @@ td{
 .container-stickerBoard .nav-link {
   color: #BB7979;
   background-color: #EFCCCC;
+  padding: 10px;
   font-size: 16px;
 }
 
@@ -174,8 +174,39 @@ td{
   background-color: #FFDDDD;
 }
 
+.sticker {
+  width: 7.1vw;
+  height: 7.1vw;
+  background-size: cover;
+  background-position: center;
+  color: rgb(53, 53, 53);
+  text-align: center;
+  border-radius: 10px;
+  border: 3px solid rgb(255, 255, 255);
+  cursor: grab;
+  text-shadow: 2px 2px 1px rgba(255, 255, 255, 0.75);
+  margin: 1px;
+}
+
+.sticker:active{
+  cursor: grabbing;
+}
+
+
+.sticker .icon{
+    width: 3vw; 
+    margin: 0px;
+}
+
+.textSticker{
+    width: 100px;
+    font-size: 0.8vw;
+    font-weight: 500;
+    margin-top: 5px;
+    text-shadow: 2px 2px 1px rgba(255, 255, 255, 0.75);
+}
+
 .stickArea{
-  font-size: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -183,15 +214,12 @@ td{
   padding-top: 10px;
   border-radius: 10px;
   margin: 5px auto 5px auto;
-  width: 110px;
-  height: 110px;
+  width: 7.1vw;
+  height: 7.1vw;
   border: dashed  3px rgba(0, 0, 0, 0.1);
 }
 
-.center-sticker{
-  margin: 5px auto;
-  align-items: center;
-}
+
 
 .stickArea p{
   color: black;
@@ -243,8 +271,8 @@ td{
   /* background-color: rgb(96, 153, 203);  */
   justify-content: center;
   align-items: center;
-  margin: 20px;
-  margin-left: -22px;
+  margin-top: 15px;
+  margin-left: -5%;
 }
 
 .areaStick ul {
@@ -319,7 +347,7 @@ td{
   background-color: #EFCCCC;
   margin: 20px 5px 0px 5px;
   width: 23vw;
-  height: 770px;
+  height: 830px;
 }
 
 .stickers-container {
@@ -351,42 +379,14 @@ td{
   color: #8E3535;
 }
 
-.sticker {
-  width: 110px;
-  height: 110px;
-  background-size: cover;
-  background-position: center;
-  color: rgb(53, 53, 53);
-  text-align: center;
-  border-radius: 10px;
-  border: 3px solid rgb(255, 255, 255);
-  cursor: grab;
-}
 
-.sticker:active{
-  cursor: grabbing;
-}
-
-
-.sticker .icon{
-    width: 40px; 
-    margin: 0px;
-}
-
-.textSticker{
-    width: 100px;
-    font-size: 14px;
-    font-weight: 500;
-    margin-top: 5px;
-    text-shadow: 2px 2px 1px rgba(255, 255, 255, 0.75);
-}
 
 .point-sticker{
-  width: 110px;
-  height: 110px;
+  width: 7.1vw;
+  height: 7.1vw;
   background-size: cover;
   background-position: center;
-  color: rgb(53, 53, 53);
+  color: rgb(59, 59, 59);
   margin: 3px 1px;
   border-radius: 50%;
   border: 3px solid rgb(255, 255, 255);
@@ -394,6 +394,9 @@ td{
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 1vw;
+  flex-direction: column;
+  text-shadow: 2px 2px 1px rgba(255, 255, 255, 0.75);
 }
 
 .point-sticker:active{
@@ -401,8 +404,8 @@ td{
 }
 
 .point-sticker .icon{
-  width: 60px; 
-  margin: 0px;
+  margin-top: 20px;
+  max-width: 50%; 
 }
 
 .select-day{
@@ -426,7 +429,7 @@ td{
   background-color: #FFDDE9;
   margin: 5px 5px 20px 5px;
   width: 23vw;
-  height: 200px;
+  height: 260px;
 }
 
 
@@ -439,6 +442,7 @@ td{
   background-color: #ffcfe0;
   color: #C04890;
   border-radius: 10px;
+  height: 20%;
 }
 
 .praiseSticker-sticked{
@@ -449,11 +453,12 @@ td{
   /* background-color: #795682; */
   justify-content: start;
   align-items: center;
+  height: 60%;
 }
 
 .praiseSticker{
-  width: 110px;
-  height: 110px;
+  width: 7.1vw;
+  height: 7.1vw;
   margin: 3px 1px;
   background-size: cover;
   background-position: center;
@@ -469,8 +474,8 @@ td{
 .praiseSticker p{
   margin-top: 5px;
   /* background-color: #795682; */
+  font-size: 1vw;
   font-weight: 600;
-  font-size: 15px;
   padding: 8px;
   text-shadow: 2px 2px 1px rgba(255, 255, 255, 0.75);
 
@@ -490,8 +495,8 @@ td{
   text-align: center;
   padding-top: 10px;
   border-radius: 10px;
-  width: 110px;
-  height: 110px;
+  width: 7.1vw;
+  height: 7.1vw;
   border: dashed  3px rgba(0, 0, 0, 0.1);
   background-color: rgba(255, 255, 255, 0.5);;
 }
@@ -504,7 +509,7 @@ td{
   background-color: #FFF2E0;
   margin: 5px 5px 20px 5px;
   width: 23vw;
-  height: 200px;
+  height: 260px;
 }
 
 
@@ -517,6 +522,7 @@ td{
   background-color: #ffe7c6;
   color: #B57933;
   border-radius: 10px;
+  height: 20%;
 }
 
 .feelingStickers-sticked{
@@ -527,12 +533,13 @@ td{
   /* background-color: #795682; */
   justify-content: start;
   align-items: center;
+  height: 60%;
 }
 
 
 .feelingSticker{
-  width: 110px;
-  height: 110px;
+  width: 7.1vw;
+  height: 7.1vw;
   margin: 3px 1px;
   background-size: cover;
   background-position: center;
@@ -549,7 +556,7 @@ td{
   margin-top: 5px;
   /* background-color: #795682; */
   font-weight: 600;
-  font-size: 18px;
+  font-size: 1.2vw;
   padding: 8px;
   text-shadow: 2px 2px 1px rgba(255, 255, 255, 0.75);
 
@@ -558,4 +565,280 @@ td{
 
 .feelingSticker:active{
   cursor: grabbing;
+}
+
+/* ----------------------------------Reward Sticker------------------------------------ */
+.stickArea3{
+  margin: 3px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-top: 10px;
+  border-radius: 10px;
+  width: 7.1vw;
+  height: 7.1vw;
+  border: dashed  3px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.container-rewardStickers {
+  border-radius: 20px;
+  background-color: #DCF5FF;
+  margin: 5px 5px 20px 5px;
+  width: 23vw;
+  height: 260px;
+}
+
+
+.container-rewardStickers h5{
+  padding: 10px 3px 10px 3px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  display: flex;
+  justify-content: center;
+  background-color: #c1eefe;
+  color: #4B80D0;
+  border-radius: 10px;
+  height: 20%;
+}
+
+.rewardStickers-sticked{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 3px 10px;
+  width: 22vw;
+  /* background-color: #795682; */
+  justify-content: center;
+  align-items: center;
+}
+
+.Rewardsticker {
+  margin: 3px 20px;
+  width: 7.1vw;
+  height: 7.1vw;
+  background-size: cover;
+  background-position: center;
+  color: rgb(53, 53, 53);
+  text-align: center;
+  border-radius: 10px;
+  border: 3px solid rgb(255, 255, 255);
+  cursor: grab;
+  text-shadow: 2px 2px 1px rgba(255, 255, 255, 0.75);
+}
+
+
+.Rewardsticker:active{
+  cursor: grabbing;
+}
+
+
+.Rewardsticker .icon{
+    width: 3vw; 
+    margin: 0px;
+}
+
+.calpoint{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0px 20px;
+  color: #4B80D0;
+}
+
+.calpoint i{
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.calpoint i:hover{
+  cursor: pointer;
+  color: #3563a8;
+}
+
+.calpoint p{
+  margin-left: 20px;
+}
+
+.calpoint span{
+  text-align: center;
+  padding: 2px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  margin-left: 10px;
+  width: 3vw;
+  display: inline-block;
+}
+
+.center-sticker{
+  margin: 5px auto 5px auto;
+  align-items: center;
+}
+
+/* --------------------------clear button---------------------------- */
+.btn-clear-board{
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+
+.btn {
+  background-color: #daa2a2;
+  color: #FFFFFF;
+  border: none; 
+  padding: 10px 20px; 
+  border-radius: 5px;
+  cursor: pointer; 
+  margin-left: 10px;
+  width: 10vw;
+  font-size: 1vw;
+  box-shadow: 2px 2px 1px rgba(192, 192, 192, 0.75);
+}
+
+
+.btn_edit{
+  background-color: #A1C554;
+  color: #ffffff;
+  border: none; 
+  padding: 10px 20px; 
+  border-radius: 5px;
+  cursor: pointer; 
+  margin-left: 10px;
+  margin-top: 10px;
+  width: 14vw;
+  font-size: 1vw;
+  box-shadow: 2px 2px 1px rgba(162, 162, 162, 0.75);
+  transition: 0.2s;
+}
+
+.btn_edit:hover{
+  background-color: #90b53f;
+  transition: 0.2s;
+}
+
+.btn:hover {
+  background-color: #c98f8f;
+}
+
+.container_btn_clear{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 10px auto;
+}
+
+.btn_praise{
+  background-color: #fda7c5;
+}
+
+.btn_praise:hover {
+  background-color: #e897b3;
+}
+
+.btn_feeling{
+  background-color: #fcd196;
+}
+
+.btn_feeling:hover {
+  background-color: #f1c68a;
+}
+
+
+/* ------------------responsive อาจไม่ทำ------------------ */
+@media  screen and (max-width:480px) {
+
+  .containerAll{
+    display: block;
+  }
+
+  h5{
+    font-size: 14px;
+  }
+
+  .container-board{
+    margin-left: 0px;
+    width: 95vw;
+    height: 350px;
+  }
+
+  .container-board .nav-link {
+    font-size: 12px;
+  }
+
+  .btn-clear-board{
+    width: 95vw;
+  }
+
+  .btn-clear-board{
+    display: flex;
+    align-items: center;
+    width: 250px;
+    height: 15px;
+  }
+
+  .btn{
+    font-size: 10px;
+  }
+
+  .col-title{
+    width: 35px;
+    height: 20px;
+    font-size: 12px;
+  }
+
+  .stickArea{
+    width: 30px;
+    height: 30px;
+  }
+
+  .areaStick{
+    margin-left: -50px;
+    margin-right: 10px;
+  }
+/* 380 */
+
+.container-stickerBoard{
+  border-radius: 20px;
+  background-color: #EFCCCC;
+  margin: 20px 5px 0px 5px;
+  width: 50vw;
+  height: 350px;
+}
+
+.stickers-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px;
+  width: 22vw;
+  /* background-color: #795682; */
+  justify-content: start;
+}
+
+.container-stickerBoard .nav-link {
+  font-size: 12px;
+}
+
+
+.sticker {
+  width: 30px;
+  height: 30px;
+}
+
+
+.sticker .icon{
+    width: 40px; 
+    margin: 0px;
+}
+
+.textSticker{
+    width: 100px;
+    font-size: 10px;
+    font-weight: 500;
+    margin-top: 5px;
+    text-shadow: 2px 2px 1px rgba(255, 255, 255, 0.75);
+}
+
+
+  
 }
