@@ -8,7 +8,9 @@ import { Signin } from './components/signin/signin.component';
 import { ModelModule } from './models/userModel/model.module';
 import { EditActivity } from './components/editActicitySticker/editActivity.component';
 import { FormsModule } from '@angular/forms';
-
+import { NavbarComponent } from './component/navbar/navbar.component';
+import { FooterComponent } from './component/footer/footer.component';
+import { HomeComponent } from './component/home/home.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { FormsModule } from '@angular/forms';
     Board,
     Signin,
     EditActivity,
-
+    NavbarComponent,
+    FooterComponent,
+    HomeComponent
   ],
   imports: [
     ModelModule,

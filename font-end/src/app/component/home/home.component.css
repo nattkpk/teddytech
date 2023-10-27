@@ -1,0 +1,33 @@
+.col{
+    margin: 0px;
+}
+
+.bk{
+    background-color: FFFFFF, 0.8;
+    border: 10px solid #A1BD92;
+    border-radius: 20px;
+    width: 468px;
+    height: 350px;
+    
+}
+.img-fluid{
+    
+    width: 150px;
+    padding: 10px;
+    padding-bottom: 50px;
+}
+
+.text {
+    
+    width: 430px;
+    height: 100px;
+    padding-bottom: 10px;
+    border-radius: 25px;
+    margin: 10px;
+  }
+
+.image{
+    width: 500px;
+    
+
+}
