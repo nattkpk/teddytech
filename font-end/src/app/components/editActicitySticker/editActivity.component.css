@@ -267,14 +267,17 @@ h3 {
   border-radius: 20px;
   background-size: 100%;
   cursor: pointer;
+  background-color: #ffc9a7d9;
   transition: 0.3s;
 }
 
 .bgImage2:hover {
   transition: 0.2s;
   border: 5px solid #ffffff;
+  background-color: #ffe1ced9;
 }
 
 .Image_selected2 {
   border: 5px solid #ffffff;
 }
+

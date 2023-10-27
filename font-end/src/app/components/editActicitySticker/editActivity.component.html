@@ -3,7 +3,10 @@
   <head> </head>
 
   <body>
-    <div class="container" *ngIf="changeThemeOn === false && createStickerOn===false;">
+    <div
+      class="container"
+      *ngIf="changeThemeOn === false && createStickerOn === false"
+    >
       <button class="btn" routerLink="/board">
         <i class="fa-solid fa-caret-left"></i>&ensp;Back
       </button>
@@ -65,9 +68,9 @@
       <div class="bg-container">
         <div
           class="bgImage"
-          *ngFor="let item of activityTheme ; let i = index"
+          *ngFor="let item of activityTheme; let i = index"
           [style.background-image]="'url(' + item.bg + ')'"
-          [ngClass]="{ 'Image_selected': isBgSelected(i) }"
+          [ngClass]="{ Image_selected: isBgSelected(i) }"
           (click)="selectBg(i)"
         ></div>
       </div>
@@ -75,28 +78,51 @@
         <button class="btn btn-cancel" (click)="change_themeOnOff()">
           Cancel
         </button>
-        <button class="btn btn-next" (click)="change_theme_confirm()">OK</button>
+        <button class="btn btn-next" (click)="change_theme_confirm()">
+          OK
+        </button>
       </div>
     </div>
 
-      <!-- ------------------------------- Create Sticker -------------------------------------- -->
+    <!-- ------------------------------- Create Sticker -------------------------------------- -->
 
     <div class="container" *ngIf="createStickerOn === true">
       <h1>
         Create Activity Sticker&ensp;<i class="fa-solid fa-circle-plus"></i>
       </h1>
       <h3>
-        <i class="fa-solid fa-circle-half-stroke"></i>&ensp;Select Icon&ensp;<i class="fa-solid fa-circle-half-stroke"></i>
+        <div class="row g-3 align-items-center">
+          <div class="col-auto">
+            <label class="col-form-label">Activity Name : </label>
+          </div>
+          <div class="col-auto">
+            <input type="text" class="form-control" placeholder="Enter activity name">
+          </div>
+          <div class="col-auto">
+            <span class="form-text">
+            Max 20 characters
+            </span>
+          </div>
+        </div>
+
+      </h3>
+
+      <h3>
+        <i class="fa-solid fa-circle-half-stroke"></i>&ensp;Select Icon&ensp;<i
+          class="fa-solid fa-circle-half-stroke"
+        ></i>
       </h3>
       <div class="icon-container">
         <div
           class="bgImage2"
-          *ngFor="let item of getIconDataForPage(currentIconPage) ; let i = index"
+          *ngFor="
+            let item of getIconDataForPage(currentIconPage);
+            let i = index
+          "
           [style.background-image]="'url(' + item + ')'"
-          [ngClass]="{ 'Image_selected2': isIconSelected(i) }"
+          [ngClass]="{ Image_selected2: isIconSelected(i) }"
           (click)="selectIcon(i)"
-        >
-      </div>
+        ></div>
       </div>
 
       <div class="d-flex justify-content-center my-1">
@@ -123,6 +149,5 @@
         <button class="btn btn-next">OK</button>
       </div>
     </div>
-
   </body>
 </html>
