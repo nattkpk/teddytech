@@ -87,6 +87,7 @@ export class EditActivity {
       confirmButtonColor: '#A1C554',
       showCancelButton: true,
       cancelButtonColor: '#FC6F6F',
+      reverseButtons: true,
     }).then((result) => {
       if (result.isConfirmed) {
         this.sticker_service.setActivitySticker(this.selectedBgIndex)
@@ -110,7 +111,7 @@ export class EditActivity {
   //-------------------------------- create sticker ----------------------------
   selectedIconIndex: number = -1;
   currentIconPage: number = 1;
-  itemsIconPerPage: number = 27;
+  itemsIconPerPage: number = 18;
 
   create_stickerOnOff() {
     this.createStickerOn = this.createStickerOn ? false : true;
