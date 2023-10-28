@@ -17,13 +17,13 @@ export class EditActivity {
     private userDataService: UserDataService,
     private sticker_service: StickerDataService
   ) {
-    this.activityData = this.user?.stickers?.activity
-      ? this.user.stickers.activity
-      : [];
+    // this.activityData = this.user?.stickers?.activity
+    //   ? this.user.stickers.activity
+    //   : [];
     this.itemsPerPage = 13;
     this.currentPage = 1;
     this.changeThemeOn = false;
-    this.createStickerOn = true;
+    this.createStickerOn = false;
 
     this.activityBg = this.sticker_service.getActivityBg();
     this.activity_fontColor = this.sticker_service.getActivityFontColor();
@@ -41,10 +41,15 @@ export class EditActivity {
 
   activityBg = this.sticker_service.getActivityBg();
   activity_fontColor = this.sticker_service.getActivityFontColor();
-  activityData: any[];
+  user: any | null = {};
+  activityData: any[] = [];
 
-  get user(): User | null {
-    return this.user_repository.getUserById(this.userDataService.getUserId());
+  ngOnInit() {
+    // Fetch the user data when the component initializes
+    this.user_repository.getUserById(this.userDataService.getUserId()).subscribe((user) => {
+      this.user = user;
+      this.activityData = this.user?.stickers?.activity ? this.user.stickers.activity : [];
+    });
   }
 
   dropSticker(event: CdkDragDrop<string[]>) {

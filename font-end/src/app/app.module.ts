@@ -7,6 +7,7 @@ import {Board} from './components/board/board.component'
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ModelModule } from './models/userModel/model.module';
 import { EditActivity } from './components/editActicitySticker/editActivity.component';
+import { ServiceModule } from './services/model.module';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { EditActivity } from './components/editActicitySticker/editActivity.comp
     EditActivity,
   ],
   imports: [
+    ServiceModule,
     ModelModule,
     BrowserModule,
     DragDropModule,

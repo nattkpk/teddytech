@@ -4,18 +4,19 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mongoose = require('mongoose');
-const teddyusers = require('./routes/teddyUsers')
+const teddyusers = require('./routes/teddyUsers');
+const cors = require('cors');
 
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb+srv://imwee:teddy1234@cluster0.khe7cle.mongodb.net/Teddy-tech?retryWrites=true&w=majority')
   .then(() => console.log('Connection successfully!'))
-  .catch((error) => console.error(err))
-
+  .catch((err) => console.error(err)); // Fixed 'err' variable here
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+app.use(cors());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -47,5 +48,9 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+const port = process.env.PORT || 4000;
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
 
 module.exports = app;

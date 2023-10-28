@@ -19,27 +19,35 @@ import Swal from 'sweetalert2';
 })
 export class Board {
   
-  selectedgenre: string;
+  selectedgenre: string = "Activity";
   addBg = '';
   itemsPerPage: number = 15;
   currentPage: number = 1;
+
+  activityData: any[] = [];
+  praise_data: any[]= [];
+  feelingData: any[]= [];
+  pointData: any[]= [];
+  rewardData: any[]= [];
+  user: any | null = {};
 
   constructor(
     private router: Router,
     private user_repository: UserRepository,
     private userDataService: UserDataService,
     private sticker_service: StickerDataService
-    ) {
-    this.selectedgenre = 'Activity';
-    this.activityData = this.user?.stickers?.activity ? this.user.stickers.activity : [];
-    this.praise_data = this.user?.stickers?.praise ? this.user.stickers.praise : [];
-    this.feelingData = this.user?.stickers?.feeling ? this.user.stickers.feeling : [];
-    this.pointData = this.user?.stickers?.point ? this.user.stickers.point : [];
-    this.rewardData = this.user?.stickers?.reward ? this.user.stickers.reward : [];
-  }
+  ) {}
 
-  get user(): User | null {
-    return this.user_repository.getUserById(this.userDataService.getUserId());
+  ngOnInit() {
+    // Fetch the user data when the component initializes
+    this.user_repository.getUserById(this.userDataService.getUserId()).subscribe((user) => {
+      this.user = user;
+      this.activityData = this.user?.stickers?.activity ? this.user.stickers.activity : [];
+      this.praise_data = this.user?.stickers?.praise ? this.user.stickers.praise : [];
+      this.feelingData = this.user?.stickers?.feeling ? this.user.stickers.feeling : [];
+      this.pointData = this.user?.stickers?.point ? this.user.stickers.point : [];
+      this.rewardData = this.user?.stickers?.reward ? this.user.stickers.reward : [];
+    });
   }
 
   dropSticker(event: CdkDragDrop<string[]>) {
@@ -73,7 +81,6 @@ export class Board {
   ];
 
 
-  activityData : any[]
 
   getActivityDataForPage(page: number): any[] {
     const startIndex = (page - 1) * this.itemsPerPage;
@@ -105,7 +112,6 @@ export class Board {
 
 
   // --------------------------------Point Sticker---------------------------------------------
-  pointData: any[]
 
   getPointDataForPage(page: number): any[] {
     const startIndex = (page - 1) * 12;
@@ -376,7 +382,6 @@ export class Board {
   praise_fontColor: string = '#dd689d';
   praiseBg = '../../../assets/img/BgSticker/Heart8.png';
 
-  praise_data: any[]
 
   praise_sticked: any[] = [{ text: '' }, { text: '' }, { text: '' }];
 
@@ -411,7 +416,7 @@ export class Board {
   feeling_fontColor: string = '#947218';
   feelingBg = '../../../assets/img/BgSticker/Star5.png';
 
-  feelingData: any[]
+
 
   getFeelingDataForPage(page: number): any[] {
     const startIndex = (page - 1) * this.itemsPerPage;
@@ -447,7 +452,6 @@ export class Board {
   rewardBg = '../../../assets/img/BgSticker/wow2.png';
   reward_fontColor = '#225E92';
   reward_sticked: any[] = [{ text: '' }, { text: '' }];
-  rewardData: any[]
 
   getRewardDataForPage(page: number): any[] {
     const startIndex = (page - 1) * this.itemsPerPage;
