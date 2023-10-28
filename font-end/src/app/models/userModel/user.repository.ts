@@ -40,6 +40,17 @@ export class UserRepository {
       })
     );
   }
+
+  pushOrPullStickers(userId: string, arrayName: string, action: string, arrayItem: any): void {
+    this.apiData.updateStickers(userId, arrayName, action, arrayItem).subscribe(
+      (response) => {
+        console.log('Updated user data:', response);
+      },
+      (error) => {
+        console.error('Error updating stickers:', error);
+      }
+    );
+  }
   
 
   //get all users
@@ -47,25 +58,4 @@ export class UserRepository {
     return this.users;
   }
 
-  // updateUser(id: string, updatedUser: User): boolean {
-  //   const index = this.users.findIndex((user) => user.id === id);
-  //   if (index !== -1) {
-  //     this.users[index] = updatedUser;
-  //     return true;
-  //   }
-  //   return false;
-  // }
-
-  // deleteUser(id: string): boolean {
-  //   const index = this.users.findIndex((user) => user.id === id);
-  //   if (index !== -1) {
-  //     this.users.splice(index, 1);
-  //     return true;
-  //   }
-  //   return false;
-  // }
-
-  // addUser(user: User): void {
-  //     this.users.push(user);
-  //     }
 }

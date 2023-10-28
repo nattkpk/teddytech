@@ -16,8 +16,13 @@ export class ApiData {
   }
 
   // Get user by ID from the API
-  getUserById(id: string): Observable<User | null> {
-    return this.http.get<User>(`${this.apiUrl}/teddyusers/${id}`);
+  getUserById(userId: string): Observable<User | null> {
+    return this.http.get<User>(`${this.apiUrl}/teddyusers/${userId}`);
+  }
+
+  updateStickers(userId: string, arrayName: string, action: string, arrayItem: any): Observable<any> {
+    const url = `${this.apiUrl}/teddyusers/${userId}/${arrayName}`;
+    return this.http.patch(url, { action, arrayItem });
   }
   
 }

@@ -25,32 +25,7 @@ export class StickerDataService {
       '../../../assets/img/ActivityIcon/tooth-brush.png',
       '../../../assets/img/ActivityIcon/make-the-bed.png',
       '../../../assets/img/ActivityIcon/milk-box.png',
-
-      '../../../assets/img/ActivityIcon/shower.png',
-      '../../../assets/img/ActivityIcon/make-the-bed.png',
-      '../../../assets/img/ActivityIcon/clock.png',
-      '../../../assets/img/ActivityIcon/wash-your-hands.png',
-      '../../../assets/img/ActivityIcon/tooth-brush.png',
-      '../../../assets/img/ActivityIcon/make-the-bed.png',
-      '../../../assets/img/ActivityIcon/milk-box.png',
-      '../../../assets/img/ActivityIcon/shower.png',
-      '../../../assets/img/ActivityIcon/clock.png',
-      '../../../assets/img/ActivityIcon/wash-your-hands.png',
-      '../../../assets/img/ActivityIcon/tooth-brush.png',
-      '../../../assets/img/ActivityIcon/make-the-bed.png',
-      '../../../assets/img/ActivityIcon/milk-box.png',
-      '../../../assets/img/ActivityIcon/shower.png',
-      '../../../assets/img/ActivityIcon/clock.png',
-      '../../../assets/img/ActivityIcon/wash-your-hands.png',
-      '../../../assets/img/ActivityIcon/tooth-brush.png',
-      '../../../assets/img/ActivityIcon/make-the-bed.png',
-      '../../../assets/img/ActivityIcon/milk-box.png',
-      '../../../assets/img/ActivityIcon/shower.png',
-      '../../../assets/img/ActivityIcon/clock.png',
-      '../../../assets/img/ActivityIcon/wash-your-hands.png',
-      '../../../assets/img/ActivityIcon/tooth-brush.png',
-      '../../../assets/img/ActivityIcon/make-the-bed.png',
-      '../../../assets/img/ActivityIcon/milk-box.png',
+      '../../../assets/img/ActivityIcon/sleeping.png'
     ];
   }
 
