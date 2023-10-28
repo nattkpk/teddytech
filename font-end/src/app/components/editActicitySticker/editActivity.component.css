@@ -52,7 +52,9 @@ h3 {
   padding: 10px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: start;
+  width: 96%;
+  /* background-color: #91b445; */
 }
 
 .sticker {

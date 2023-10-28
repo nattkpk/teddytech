@@ -1,17 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Observable, from } from 'rxjs';
-import { User,PointSticker,RewardSticker,ActivitySticker,PraiseSticker,FeelingSticker } from './user.model';
+import { User,PointSticker,RewardSticker,ActivitySticker,PraiseSticker,FeelingSticker, Theme } from './user.model';
 
 @Injectable()
 export class userStaticData {
     private users: User[] = [
         new User(
-            "1",
             "user1",
+            "ducky.jpg",
             "user1@example.com",
             "password1",
             "Child1",
             "7",
+            new Theme("#3F5236","../../../assets/img/BgSticker/Diamon4"),
+            new Theme("#dd689d","../../../assets/img/BgSticker/Heart8.png"),
+            new Theme("#947218","../../../assets/img/BgSticker/Star5.png"),
+            new Theme("#225E92","../../../assets/img/BgSticker/wow2.png"),
+            
             {
               activity: [
                 new ActivitySticker("Take a Shower", "../../../assets/img/ActivityIcon/shower.png"),
@@ -78,7 +83,8 @@ export class userStaticData {
               
               
               
-            }
+            },
+            
         )
     ]
 

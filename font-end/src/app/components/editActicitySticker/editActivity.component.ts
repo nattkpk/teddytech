@@ -5,7 +5,6 @@ import { UserRepository } from 'src/app/models/userModel/user.repository';
 import { UserDataService } from 'src/app/services/user-data.service';
 import { StickerDataService } from 'src/app/services/sticker-data.service';
 import Swal from 'sweetalert2';
-import { ApiData } from 'src/app/services/apidata.service';
 
 @Component({
   selector: 'editActivity',
@@ -16,8 +15,7 @@ export class EditActivity {
   constructor(
     private user_repository: UserRepository,
     private userDataService: UserDataService,
-    private sticker_service: StickerDataService,
-    private apiData : ApiData
+    private sticker_service: StickerDataService
   ) {
     // this.activityData = this.user?.stickers?.activity
     //   ? this.user.stickers.activity
@@ -27,9 +25,7 @@ export class EditActivity {
     this.changeThemeOn = false;
     this.createStickerOn = false;
 
-    this.activityBg = this.sticker_service.getActivityBg();
-    this.activity_fontColor = this.sticker_service.getActivityFontColor();
-    this.selectedBgIndex = 3;
+    this.selectedBgIndex = -1;
 
     this.activityIcon = this.sticker_service.getAllActivityIcon();
   }
@@ -39,6 +35,8 @@ export class EditActivity {
     this.user_repository.getUserById(this.userDataService.getUserId()).subscribe((user) => {
       this.user = user;
       this.activityData = this.user?.stickers?.activity ? this.user.stickers.activity : [];
+      this.activityBg = this.user.activityTheme.bg;
+      this.activity_fontColor = this.user.activityTheme.font
     });
   }
 
@@ -49,8 +47,8 @@ export class EditActivity {
   changeThemeOn: boolean = false;
   createStickerOn: boolean = false;
 
-  activityBg = this.sticker_service.getActivityBg();
-  activity_fontColor = this.sticker_service.getActivityFontColor();
+  activityBg = '';
+  activity_fontColor = '';
   user: any | null = {};
   activityData: any[] = [];
 
@@ -100,14 +98,14 @@ export class EditActivity {
     }).then((result) => {
       if (result.isConfirmed) {
         this.sticker_service.setActivitySticker(this.selectedBgIndex)
-        this.activityBg = this.sticker_service.getActivityBg();
-        this.activity_fontColor = this.sticker_service.getActivityFontColor();
+        this.user_repository.updateUserFields(this.userDataService.getUserId(), this.sticker_service.getActivityTheme());
         this.change_themeOnOff();
+        window.location.reload();
       }
     });
   }
 
-  selectedBgIndex: number = 3;
+  selectedBgIndex: number = -1;
 
   selectBg(index: number) {
     this.selectedBgIndex = index;

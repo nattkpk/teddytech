@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { stringify } = require('querystring');
 
 const PointStickerSchema = new mongoose.Schema({
   icon: String,
@@ -20,17 +21,26 @@ const PraiseStickerSchema = new mongoose.Schema({
   text: String,
 });
 
+const Theme = new mongoose.Schema({
+  font: String,
+  bg: String
+});
+
 const FeelingStickerSchema = new mongoose.Schema({
   text: String,
 });
 
 const UserSchema = new mongoose.Schema({
-  id: String,
   username: String,
+  imgProfile: String,
   email: String,
   password: String,
   kid_name: String,
   kid_age: String,
+  activityTheme: Theme,
+  praiseTheme: Theme,
+  feelingTheme: Theme,
+  rewardTheme: Theme,
   stickers: {
     activity: [ActivityStickerSchema],
     praise: [PraiseStickerSchema],
@@ -38,6 +48,7 @@ const UserSchema = new mongoose.Schema({
     point: [PointStickerSchema],
     reward: [RewardStickerSchema],
   },
+  
 });
 
 

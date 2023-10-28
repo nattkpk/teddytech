@@ -20,9 +20,17 @@ export class ApiData {
     return this.http.get<User>(`${this.apiUrl}/teddyusers/${userId}`);
   }
 
+  //แก้ไขข้อมูล สติกเกอร์ push pull
   updateStickers(userId: string, arrayName: string, action: string, arrayItem: any): Observable<any> {
     const url = `${this.apiUrl}/teddyusers/${userId}/${arrayName}`;
     return this.http.patch(url, { action, arrayItem });
+  }
+
+
+  //แก้ไขข้อมูล user
+  updateUserFields(userId: string, updatedUserData: any): Observable<any> {
+    const url = `${this.apiUrl}/teddyusers/${userId}`;
+    return this.http.patch(url, updatedUserData);
   }
   
 }

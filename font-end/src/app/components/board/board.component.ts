@@ -41,8 +41,12 @@ export class Board {
   ngOnInit() {
     // Fetch the user data when the component initializes
     this.user_repository.getUserById(this.userDataService.getUserId()).subscribe((user) => {
+      console.log("User Data:", user);
       this.user = user;
       this.activityData = this.user?.stickers?.activity ? this.user.stickers.activity : [];
+      this.activityBg = this.user.activityTheme.bg;
+      this.activity_fontColor = this.user.activityTheme.font
+
       this.praise_data = this.user?.stickers?.praise ? this.user.stickers.praise : [];
       this.feelingData = this.user?.stickers?.feeling ? this.user.stickers.feeling : [];
       this.pointData = this.user?.stickers?.point ? this.user.stickers.point : [];
@@ -70,8 +74,8 @@ export class Board {
 
   // ---------------------------- Activity Sticker -------------------------------------
 
-  activityBg = this.sticker_service.getActivityBg();
-  activity_fontColor = this.sticker_service.getActivityFontColor();
+  activityBg = '';
+  activity_fontColor = '';
   activity_sticked: any[] = [
     { text: '' },
     { text: '' },

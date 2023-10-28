@@ -1,20 +1,33 @@
 export class User {
   constructor(
-    public id: string,
     public username: string,
+    public imgProfile: string,
     public email: string,
     public password: string,
     public kid_name: string,
-    public kid_age: string,
+    public kid_age: string,    
+    public activityTheme: Theme,
+    public praiseTheme: Theme,
+    public feelingTheme: Theme,
+    public rewardTheme: Theme,
     public stickers: {
       activity: ActivitySticker[];
       praise: PraiseSticker[];
       feeling: FeelingSticker[];
       point: PointSticker[];
       reward: RewardSticker[]; 
-    }
+    },
+
   ) {}
 }
+
+export class Theme {
+  constructor(
+    public font: string,
+    public bg: string,
+    ) {}
+}
+
 
 export class PointSticker {
   constructor(
