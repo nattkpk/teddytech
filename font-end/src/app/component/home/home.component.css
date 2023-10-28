@@ -34,10 +34,7 @@
     height: 120px;
 }
 
-.act {
-    width: 70px;
-    padding: 5px;
-}
+
 
 
 
@@ -54,4 +51,14 @@
 .row-lg-12 {
 	
 	min-height: 400px;
+}
+
+.col-lg-6 {
+	border: 1px solid red;
+	min-height: 200px;
+}
+
+.col-lg-12 {
+	border: 1px solid blue;
+	min-height: 200px;
 }
