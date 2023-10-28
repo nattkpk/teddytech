@@ -1,10 +1,11 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component } from '@angular/core';
-import { User } from 'src/app/models/userModel/user.model';
+import { ActivitySticker, User } from 'src/app/models/userModel/user.model';
 import { UserRepository } from 'src/app/models/userModel/user.repository';
 import { UserDataService } from 'src/app/services/user-data.service';
 import { StickerDataService } from 'src/app/services/sticker-data.service';
 import Swal from 'sweetalert2';
+import { ApiData } from 'src/app/services/apidata.service';
 
 @Component({
   selector: 'editActivity',
@@ -15,21 +16,30 @@ export class EditActivity {
   constructor(
     private user_repository: UserRepository,
     private userDataService: UserDataService,
-    private sticker_service: StickerDataService
+    private sticker_service: StickerDataService,
+    private apiData : ApiData
   ) {
-    this.activityData = this.user?.stickers?.activity
-      ? this.user.stickers.activity
-      : [];
+    // this.activityData = this.user?.stickers?.activity
+    //   ? this.user.stickers.activity
+    //   : [];
     this.itemsPerPage = 13;
     this.currentPage = 1;
     this.changeThemeOn = false;
-    this.createStickerOn = true;
+    this.createStickerOn = false;
 
     this.activityBg = this.sticker_service.getActivityBg();
     this.activity_fontColor = this.sticker_service.getActivityFontColor();
     this.selectedBgIndex = 3;
 
     this.activityIcon = this.sticker_service.getAllActivityIcon();
+  }
+  
+  ngOnInit() {
+    // Fetch the user data when the component initializes
+    this.user_repository.getUserById(this.userDataService.getUserId()).subscribe((user) => {
+      this.user = user;
+      this.activityData = this.user?.stickers?.activity ? this.user.stickers.activity : [];
+    });
   }
 
   activityTheme = this.sticker_service.getAllActivityTheme();
@@ -41,11 +51,10 @@ export class EditActivity {
 
   activityBg = this.sticker_service.getActivityBg();
   activity_fontColor = this.sticker_service.getActivityFontColor();
-  activityData: any[];
+  user: any | null = {};
+  activityData: any[] = [];
 
-  get user(): User | null {
-    return this.user_repository.getUserById(this.userDataService.getUserId());
-  }
+  
 
   dropSticker(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
@@ -109,9 +118,11 @@ export class EditActivity {
   }
 
   //-------------------------------- create sticker ----------------------------
+  activityName: string = '';
   selectedIconIndex: number = -1;
   currentIconPage: number = 1;
   itemsIconPerPage: number = 18;
+  newActivitySticker: ActivitySticker = {text:'', imageUrl:''}
 
   create_stickerOnOff() {
     this.createStickerOn = this.createStickerOn ? false : true;
@@ -138,6 +149,46 @@ export class EditActivity {
     const endIndex = startIndex + this.itemsIconPerPage;
     return this.activityIcon.slice(startIndex, endIndex);
   }
+
+  onSubmit() {
+    Swal.fire({
+      title: 'Create New Sticker?',
+      confirmButtonText: 'Yes',
+      confirmButtonColor: '#A1C554',
+      showCancelButton: true,
+      cancelButtonColor: '#FC6F6F',
+      reverseButtons: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        if(this.activityName!='' && this.selectedIconIndex != -1){
+          console.log('Activity Name: ' + this.activityName);
+          this.newActivitySticker.text = this.activityName;
+          this.newActivitySticker.imageUrl = this.activityIcon[this.selectedIconIndex];
+          this.user_repository.pushOrPullStickers(this.userDataService.getUserId() ,'activity', 'push',this.newActivitySticker);
+        }else{
+          if(this.activityName==''){
+              Swal.fire({
+              icon: 'warning',
+              title: 'Please enter activity name',
+              confirmButtonText: 'OK',
+              confirmButtonColor: '#A1C554',
+            })
+          }else if(this.selectedIconIndex == -1){
+            Swal.fire({
+              icon: 'warning',
+              title: 'Please select activity icon',
+              confirmButtonText: 'OK',
+              confirmButtonColor: '#A1C554',
+            })
+          }
+          
+        }
+      }
+    });
+    
+  }
+
+
 
   
 

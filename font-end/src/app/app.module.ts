@@ -11,6 +11,8 @@ import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
+import { ServiceModule } from './services/model.module';
+
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { HomeComponent } from './components/home/home.component';
     HomeComponent
   ],
   imports: [
+    FormsModule,
+    ServiceModule,
     ModelModule,
     BrowserModule,
     DragDropModule,
