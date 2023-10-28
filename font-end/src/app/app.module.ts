@@ -13,6 +13,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { ServiceModule } from './services/model.module';
 
+import { HowtouseComponent } from './component/howtouse/howtouse.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ServiceModule } from './services/model.module';
     EditActivity,
     NavbarComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    HowtouseComponent
   ],
   imports: [
     FormsModule,

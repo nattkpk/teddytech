@@ -1,0 +1,53 @@
+.col {
+    margin: 0px;
+}
+
+.bk {
+    background-color: #ffffffbb;
+    border-radius: 20px;
+    
+
+}
+
+
+.img-fluid {
+
+    width: 150px;
+    padding: 5px;
+    padding-bottom: 50px;
+}
+
+.text {
+
+    width: 430px;
+    height: 100px;
+    padding-bottom: 10px;
+    border-radius: 25px;
+    margin: 10px;
+}
+
+
+.col-lg-6 {
+	
+	min-height: 300px;
+}
+
+.col-lg-12 {
+	
+	min-height: 300px;
+}
+
+.row-lg-12 {
+	
+	min-height: 400px;
+}
+
+.col-lg-6 {
+	
+	min-height: 200px;
+}
+
+.col-lg-12 {
+	
+	min-height: 200px;
+}
