@@ -74,6 +74,10 @@ export class Board {
         this.feeling_sticked = this.user.feelingSticked;
         this.reward_sticked = this.user.rewardSticked;
         this.praise_sticked = this.user.praiseSticked;
+
+        this.pointA = this.user.pointA;
+        this.pointB = this.user.pointB;
+        this.now_points = this.user.currentPoint;
       });
   }
 
@@ -181,6 +185,7 @@ export class Board {
   updateSunData() {
     const updatedUserData = {
       sunSticked: this.sun_sticked,
+      currentPoint: this.now_points
     };
     this.user_repository.updateUserFields(
       this.userDataService.getUserId(),
@@ -190,6 +195,7 @@ export class Board {
   updateMonData() {
     const updatedUserData = {
       monSticked: this.mon_sticked,
+      currentPoint: this.now_points
     };
     this.user_repository.updateUserFields(
       this.userDataService.getUserId(),
@@ -199,6 +205,7 @@ export class Board {
   updateTueData() {
     const updatedUserData = {
       tueSticked: this.tue_sticked,
+      currentPoint: this.now_points
     };
     this.user_repository.updateUserFields(
       this.userDataService.getUserId(),
@@ -208,6 +215,7 @@ export class Board {
   updateWednData() {
     const updatedUserData = {
       wedSticked: this.wed_sticked,
+      currentPoint: this.now_points
     };
     this.user_repository.updateUserFields(
       this.userDataService.getUserId(),
@@ -217,6 +225,7 @@ export class Board {
   updateThuData() {
     const updatedUserData = {
       thuSticked: this.thu_sticked,
+      currentPoint: this.now_points
     };
     this.user_repository.updateUserFields(
       this.userDataService.getUserId(),
@@ -226,6 +235,7 @@ export class Board {
   updateFriData() {
     const updatedUserData = {
       friSticked: this.fri_sticked,
+      currentPoint: this.now_points
     };
     this.user_repository.updateUserFields(
       this.userDataService.getUserId(),
@@ -235,6 +245,7 @@ export class Board {
   updateSatData() {
     const updatedUserData = {
       satSticked: this.sat_sticked,
+      currentPoint: this.now_points
     };
     this.user_repository.updateUserFields(
       this.userDataService.getUserId(),
@@ -605,11 +616,32 @@ export class Board {
   // -----------------------------------calculate point-------------------------------------------
   now_points = 0;
 
-  pointA = 15;
+  pointA = 30;
   rewardA = false;
 
-  pointB = 20;
+  pointB = 40;
   rewardB = false;
+
+  updatePointA(){
+    const updatedUserData = {
+      pointA: this.pointA
+    };
+    this.user_repository.updateUserFields(
+      this.userDataService.getUserId(),
+      updatedUserData
+    );
+  }
+
+  updatePointB(){
+    const updatedUserData = {
+      pointB: this.pointB
+    };
+    this.user_repository.updateUserFields(
+      this.userDataService.getUserId(),
+      updatedUserData
+    );
+  }
+
 
   change_pointA() {
     Swal.fire({
@@ -639,6 +671,7 @@ export class Board {
           title: 'Point Updated',
           confirmButtonColor: '#A1C554',
         });
+        this.updatePointA();
       }
     });
   }
@@ -671,6 +704,7 @@ export class Board {
           title: 'Point Updated',
           confirmButtonColor: '#A1C554',
         });
+        this.updatePointB();
       }
     });
   }
