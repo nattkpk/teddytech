@@ -50,6 +50,7 @@ export class Board {
         this.activityBg = this.user.activityTheme.bg;
         this.activity_fontColor = this.user.activityTheme.font;
 
+
         this.praise_data = this.user?.stickers?.praise
           ? this.user.stickers.praise
           : [];
@@ -59,9 +60,14 @@ export class Board {
         this.pointData = this.user?.stickers?.point
           ? this.user.stickers.point
           : [];
+        this.rewardBg = this.user.rewardTheme.bg;
+        this.reward_fontColor = this.user.rewardTheme.font;
+
+
         this.rewardData = this.user?.stickers?.reward
           ? this.user.stickers.reward
           : [];
+
 
         this.activity_sticked = this.user.activitySticked;
         this.sun_sticked = this.user.sunSticked;
@@ -571,8 +577,8 @@ export class Board {
 
   // -------------------------------------Reward Sticker---------------------------------------------
 
-  rewardBg = '../../../assets/img/BgSticker/wow2.png';
-  reward_fontColor = '#225E92';
+  rewardBg = '';
+  reward_fontColor = '';
   reward_sticked: any[] = [];
   updaterewardData() {
     const updatedUserData = {
