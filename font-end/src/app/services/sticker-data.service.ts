@@ -52,6 +52,74 @@ export class StickerDataService {
       { bg: '../../../assets/img/BgSticker/Star8.png', font: '#AF5771' },
       { bg: '../../../assets/img/BgSticker/Star9.png', font: '#645232' },
     ];
+
+    //--------------------------- Point----------------------------
+    this.pointBg = [
+      '../../../assets/img/PointSticker/Bg/Bgpoint1.png',
+      '../../../assets/img/PointSticker/Bg/Bgpoint2.png',
+      '../../../assets/img/PointSticker/Bg/Bgpoint3.png',
+
+      '../../../assets/img/PointSticker/Bg/Bgpoint1.png',
+      '../../../assets/img/PointSticker/Bg/Bgpoint2.png',
+      '../../../assets/img/PointSticker/Bg/Bgpoint3.png',
+      '../../../assets/img/PointSticker/Bg/Bgpoint1.png',
+      '../../../assets/img/PointSticker/Bg/Bgpoint2.png',
+      '../../../assets/img/PointSticker/Bg/Bgpoint3.png',
+      '../../../assets/img/PointSticker/Bg/Bgpoint1.png',
+      '../../../assets/img/PointSticker/Bg/Bgpoint2.png',
+      '../../../assets/img/PointSticker/Bg/Bgpoint3.png',
+      '../../../assets/img/PointSticker/Bg/Bgpoint1.png',
+      '../../../assets/img/PointSticker/Bg/Bgpoint2.png',
+      '../../../assets/img/PointSticker/Bg/Bgpoint3.png',
+      '../../../assets/img/PointSticker/Bg/Bgpoint1.png',
+      '../../../assets/img/PointSticker/Bg/Bgpoint2.png',
+      '../../../assets/img/PointSticker/Bg/Bgpoint3.png',
+      '../../../assets/img/PointSticker/Bg/Bgpoint1.png',
+      '../../../assets/img/PointSticker/Bg/Bgpoint2.png',
+      '../../../assets/img/PointSticker/Bg/Bgpoint3.png',
+      '../../../assets/img/PointSticker/Bg/Bgpoint1.png',
+      '../../../assets/img/PointSticker/Bg/Bgpoint2.png',
+      '../../../assets/img/PointSticker/Bg/Bgpoint3.png',
+      '../../../assets/img/PointSticker/Bg/Bgpoint1.png',
+      '../../../assets/img/PointSticker/Bg/Bgpoint2.png',
+      '../../../assets/img/PointSticker/Bg/Bgpoint3.png',
+      '../../../assets/img/PointSticker/Bg/Bgpoint1.png',
+      '../../../assets/img/PointSticker/Bg/Bgpoint2.png',
+      '../../../assets/img/PointSticker/Bg/Bgpoint3.png',
+    ];
+    this.pointIcon = [
+      '../../../assets/img/PointSticker/Icon/heart.png',
+      '../../../assets/img/PointSticker/Icon/shooting-star.png',
+      '../../../assets/img/PointSticker/Icon/star.png',
+
+      '../../../assets/img/PointSticker/Icon/heart.png',
+      '../../../assets/img/PointSticker/Icon/shooting-star.png',
+      '../../../assets/img/PointSticker/Icon/star.png',
+      '../../../assets/img/PointSticker/Icon/heart.png',
+      '../../../assets/img/PointSticker/Icon/shooting-star.png',
+      '../../../assets/img/PointSticker/Icon/star.png',
+      '../../../assets/img/PointSticker/Icon/heart.png',
+      '../../../assets/img/PointSticker/Icon/shooting-star.png',
+      '../../../assets/img/PointSticker/Icon/star.png',
+      '../../../assets/img/PointSticker/Icon/heart.png',
+      '../../../assets/img/PointSticker/Icon/shooting-star.png',
+      '../../../assets/img/PointSticker/Icon/star.png',
+      '../../../assets/img/PointSticker/Icon/heart.png',
+      '../../../assets/img/PointSticker/Icon/shooting-star.png',
+      '../../../assets/img/PointSticker/Icon/star.png',
+      '../../../assets/img/PointSticker/Icon/heart.png',
+      '../../../assets/img/PointSticker/Icon/shooting-star.png',
+      '../../../assets/img/PointSticker/Icon/star.png',
+      '../../../assets/img/PointSticker/Icon/heart.png',
+      '../../../assets/img/PointSticker/Icon/shooting-star.png',
+      '../../../assets/img/PointSticker/Icon/star.png',
+      '../../../assets/img/PointSticker/Icon/heart.png',
+      '../../../assets/img/PointSticker/Icon/shooting-star.png',
+      '../../../assets/img/PointSticker/Icon/star.png',
+      '../../../assets/img/PointSticker/Icon/heart.png',
+      '../../../assets/img/PointSticker/Icon/shooting-star.png',
+      '../../../assets/img/PointSticker/Icon/star.png',
+    ];
     //--------------------------- reward----------------------------
 
     this.rewardTheme = [
@@ -142,6 +210,17 @@ export class StickerDataService {
     return this.feelingTheme;
   }
 
+  // --------------------------------- Point --------------------------------------------
+  pointIcon: any[];
+  pointBg: any[];
+
+  getAllPointBg() {
+    return this.pointBg;
+  }
+
+  getAllPointIcon() {
+    return this.pointIcon;
+  }
   // -------------------------------Reward---------------------------------------
 
   rewardIcon: any[];

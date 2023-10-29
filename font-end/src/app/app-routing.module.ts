@@ -5,6 +5,7 @@ import { EditActivity } from './components/editActicitySticker/editActivity.comp
 import { EditReward } from './components/editRewardSticker/editReward.component';
 import { EditFeeling } from './components/editFeelingSticker/editFeeling.component';
 import { EditPraise } from './components/editPraiseSticker/editPraise.component';
+import { EditPoint } from './components/editPointSticker/editPoint.component';
 
 const routes: Routes = [
   { path: 'board', component: Board },
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path: 'edit_reward_sticker', component: EditReward },
   { path: 'edit_feeling_sticker', component: EditFeeling },
   { path: 'edit_praise_sticker', component: EditPraise },
-  { path: '**', redirectTo: '/edit_praise_sticker' },
+  { path: 'edit_point_sticker', component: EditPoint },
+  { path: '**', redirectTo: '/board' },
 ];
 
 @NgModule({

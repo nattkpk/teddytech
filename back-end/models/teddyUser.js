@@ -4,7 +4,7 @@ const { stringify } = require('querystring');
 const PointStickerSchema = new mongoose.Schema({
   icon: String,
   bgImage: String,
-  point: String,
+  point: Number,
 });
 
 const RewardStickerSchema = new mongoose.Schema({

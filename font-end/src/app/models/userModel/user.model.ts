@@ -42,7 +42,7 @@ export class PointSticker {
   constructor(
     public icon: string,
     public bgImage: string,
-    public point: string
+    public point: number
   ) {}
 }
 

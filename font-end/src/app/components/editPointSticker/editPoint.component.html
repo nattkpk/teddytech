@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+
+  <body>
+    <div
+      class="container"
+      *ngIf="createStickerOn1 === false && createStickerOn2 === false"
+    >
+      <button class="btn" routerLink="/board">
+        <i class="fa-solid fa-caret-left"></i>&ensp;Back
+      </button>
+      <h1>Point Sticker&ensp;<i class="fa-solid fa-star"></i></h1>
+      <div
+        class="stickers-container"
+        cdkDropList
+        [cdkDropListData]="pointData"
+        (cdkDropListDropped)="dropSticker($event)"
+      >
+        <div
+          class="sticker"
+          cdkDrag
+          cdkDropListOrientation="horizontal"
+          cdkDragBoundary=".stickers-container"
+          *ngFor="let item of getPointDataForPage(currentPage); let i = index"
+          [style.color]="'#4C4C4C'"
+          [style.background-image]="'url(' + item.bgImage + ')'"
+        >
+          <div class="red-corner" (click)="deleteSticker(i)">
+            <i class="fa-solid fa-circle-xmark"></i>
+          </div>
+          <img src="{{ item.icon }}" alt="" class="icon" />
+          <p class="textSticker">{{ item.point }}&ensp;pts</p>
+        </div>
+        <div class="sticker addMore" (click)="create_stickerOnOff1()">
+          <i class="fa-solid fa-circle-plus"></i>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center my-1">
+        <button
+          *ngIf="currentPage > 1"
+          (click)="changePage(-1)"
+          class="btn btn-warning"
+        >
+          <i class="fa-solid fa-caret-left"></i>&ensp;Previous Page
+        </button>
+        <button
+          *ngIf="currentPage < totalNumberOfPointPages"
+          (click)="changePage(1)"
+          class="btn btn-warning"
+        >
+          Next Page&ensp;<i class="fa-solid fa-caret-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- ------------------------------- Create Sticker -------------------------------------- -->
+
+    <form (ngSubmit)="next()">
+      <div class="container-create" *ngIf="createStickerOn1 === true">
+        <h1>
+          Create Point Sticker&ensp;<i class="fa-solid fa-circle-plus"></i>
+        </h1>
+        <h3>
+          <div class="row g-3 align-items-center">
+            <div class="col-auto">
+              <label class="col-form-label">Number of point : </label>
+            </div>
+            <div class="col-auto">
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Point"
+                [(ngModel)]="numOfPoint"
+                [ngModelOptions]="{ standalone: true }"
+                min="1"
+                max="10"
+              />
+            </div>
+            <div class="col-auto">
+              <span class="form-text"> 1 - 20 characters </span>
+            </div>
+          </div>
+        </h3>
+
+        <h3>
+          <i class="fa-solid fa-circle-half-stroke"></i>&ensp;Select
+          Icon&ensp;<i class="fa-solid fa-circle-half-stroke"></i>
+        </h3>
+        <div class="icon-container">
+          <div
+            class="bgImage2"
+            *ngFor="
+              let item of getIconDataForPage(currentIconPage);
+              let i = index
+            "
+            [style.background-image]="'url(' + item + ')'"
+            [ngClass]="{ Image_selected2: isIconSelected(i) }"
+            (click)="selectIcon(i)"
+          ></div>
+        </div>
+
+        <div class="d-flex justify-content-center my-1">
+          <button
+            *ngIf="currentIconPage > 1"
+            (click)="changeIconPage(-1)"
+            class="btn btn-warning"
+          >
+            <i class="fa-solid fa-caret-left"></i>&ensp;Previous Page
+          </button>
+          <button
+            *ngIf="currentIconPage < totalNumberOfIconPages"
+            (click)="changeIconPage(1)"
+            class="btn btn-warning"
+          >
+            Next Page&ensp;<i class="fa-solid fa-caret-right"></i>
+          </button>
+        </div>
+
+        <div class="d-flex justify-content-center my-1 theme_button">
+          <button class="btn btn-cancel" (click)="create_stickerOnOff1()">
+            Cancel
+          </button>
+          <button class="btn btn-next" type="submit">Next</button>
+        </div>
+      </div>
+    </form>
+
+    <!--  form page 2 -->
+
+    <form>
+      <div class="container-create" *ngIf="createStickerOn2 === true">
+        <h1>
+          Create Point Sticker&ensp;<i class="fa-solid fa-circle-plus"></i>
+        </h1>
+        <h3>
+          <i class="fa-solid fa-circle-half-stroke"></i>&ensp;Select
+          Background&ensp;<i class="fa-solid fa-circle-half-stroke"></i>
+        </h3>
+        <div class="icon-container">
+          <div
+            class="bgImage3"
+            *ngFor="let item of getBgDataForPage(currentBgPage); let i = index"
+            [style.background-image]="'url(' + item + ')'"
+            [ngClass]="{ Image_selected3: isBgSelected(i) }"
+            (click)="selectBg(i)"
+          ></div>
+        </div>
+
+        <div class="d-flex justify-content-center my-1">
+          <button
+            *ngIf="currentBgPage > 1"
+            (click)="changeBgPage(-1)"
+            class="btn btn-warning"
+          >
+            <i class="fa-solid fa-caret-left"></i>&ensp;Previous Page
+          </button>
+          <button
+            *ngIf="currentBgPage < totalNumberOfBgPages"
+            (click)="changeBgPage(1)"
+            class="btn btn-warning"
+          >
+            Next Page&ensp;<i class="fa-solid fa-caret-right"></i>
+          </button>
+        </div>
+
+        <div class="d-flex justify-content-center my-1 theme_button">
+          <button
+            class="btn btn-cancel"
+            (click)="create_stickerOnOff2(); create_stickerOnOff1()"
+          >
+            Back
+          </button>
+          <button class="btn btn-next" type="submit" (click)="onSubmit()">
+            OK
+          </button>
+        </div>
+      </div>
+    </form>
+  </body>
+</html>
