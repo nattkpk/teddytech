@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+
+  <body>
+    <div
+      class="container"
+      *ngIf="changeThemeOn === false && createStickerOn === false"
+    >
+      <button class="btn" routerLink="/board">
+        <i class="fa-solid fa-caret-left"></i>&ensp;Back
+      </button>
+      <h1>Reward Sticker&ensp;<i class="fa-solid fa-award"></i></h1>
+      <div
+        class="stickers-container"
+        cdkDropList
+        [cdkDropListData]="rewardData"
+        (cdkDropListDropped)="dropSticker($event)"
+      >
+        <div
+          class="sticker"
+          cdkDrag
+          cdkDropListOrientation="horizontal"
+          cdkDragBoundary=".stickers-container"
+          *ngFor="
+            let item of getRewardDataForPage(currentPage);
+            let i = index
+          "
+          [style.color]="fontColor"
+          [style.background-image]="'url(' + bg + ')'"
+        >
+          <div class="red-corner" (click)="deleteSticker(i)">
+            <i class="fa-solid fa-circle-xmark"></i>
+          </div>
+          <p class="textSticker">{{ item.text }}</p>
+          <img src="{{ item.imageUrl }}" alt="" class="icon" />
+        </div>
+        <div class="sticker addMore" (click)="create_stickerOnOff()">
+          <i class="fa-solid fa-circle-plus"></i>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center my-1">
+        <button
+          *ngIf="currentPage > 1"
+          (click)="changePage(-1)"
+          class="btn btn-warning"
+        >
+          <i class="fa-solid fa-caret-left"></i>&ensp;Previous Page
+        </button>
+        <button
+          *ngIf="currentPage < totalNumberOfRewardPages"
+          (click)="changePage(1)"
+          class="btn btn-warning"
+        >
+          Next Page&ensp;<i class="fa-solid fa-caret-right"></i>
+        </button>
+      </div>
+      <button class="btn btn-changetheme" (click)="change_themeOnOff()">
+        Change Theme&ensp;<i class="fa-solid fa-paint-roller"></i>
+      </button>
+    </div>
+
+    <!-- ------------------------------- change Theme -------------------------------------- -->
+    <div class="container changetheme_container" *ngIf="changeThemeOn === true">
+      <h1>
+        Change Theme Reward Sticker&ensp;<i
+          class="fa-solid fa-paint-roller"
+        ></i>
+      </h1>
+      <div class="bg-container">
+        <div
+          class="bgImage"
+          *ngFor="let item of rewardTheme; let i = index"
+          [style.background-image]="'url(' + item.bg + ')'"
+          [ngClass]="{ Image_selected: isBgSelected(i) }"
+          (click)="selectBg(i)"
+        ></div>
+      </div>
+      <div class="d-flex justify-content-center my-1 theme_button">
+        <button class="btn btn-cancel" (click)="change_themeOnOff()">
+          Cancel
+        </button>
+        <button class="btn btn-next" (click)="change_theme_confirm()">
+          OK
+        </button>
+      </div>
+    </div>
+
+    <!-- ------------------------------- Create Sticker -------------------------------------- -->
+
+    <form (ngSubmit)="onSubmit()">
+      <div class="container" *ngIf="createStickerOn === true">
+        <h1>
+          Create Reward Sticker&ensp;<i class="fa-solid fa-circle-plus"></i>
+        </h1>
+        <h3>
+          <div class="row g-3 align-items-center">
+            <div class="col-auto">
+              <label class="col-form-label">Reward Name : </label>
+            </div>
+            <div class="col-auto">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter reward name"
+                [(ngModel)]="rewardName"
+                [ngModelOptions]="{ standalone: true }"
+                maxlength="20"
+              />
+            </div>
+            <div class="col-auto">
+              <span class="form-text"> 1 - 20 characters </span>
+            </div>
+          </div>
+        </h3>
+
+        <h3>
+          <i class="fa-solid fa-circle-half-stroke"></i>&ensp;Select
+          Icon&ensp;<i class="fa-solid fa-circle-half-stroke"></i>
+        </h3>
+        <div class="icon-container">
+          <div
+            class="bgImage2"
+            *ngFor="
+              let item of getIconDataForPage(currentIconPage);
+              let i = index
+            "
+            [style.background-image]="'url(' + item + ')'"
+            [ngClass]="{ Image_selected2: isIconSelected(i) }"
+            (click)="selectIcon(i)"
+          ></div>
+        </div>
+
+        <div class="d-flex justify-content-center my-1">
+          <button
+            *ngIf="currentIconPage > 1"
+            (click)="changeIconPage(-1)"
+            class="btn btn-warning"
+          >
+            <i class="fa-solid fa-caret-left"></i>&ensp;Previous Page
+          </button>
+          <button
+            *ngIf="currentIconPage < totalNumberOfIconPages"
+            (click)="changeIconPage(1)"
+            class="btn btn-warning"
+          >
+            Next Page&ensp;<i class="fa-solid fa-caret-right"></i>
+          </button>
+        </div>
+
+        <div class="d-flex justify-content-center my-1 theme_button">
+          <button class="btn btn-cancel" (click)="create_stickerOnOff()">
+            Cancel
+          </button>
+          <button type="submit" class="btn btn-next">OK</button>
+        </div>
+      </div>
+    </form>
+  </body>
+</html>

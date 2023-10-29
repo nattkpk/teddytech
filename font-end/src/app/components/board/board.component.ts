@@ -120,9 +120,9 @@ export class Board {
     this.currentPage += offset;
   }
 
-  goToEditActivity() {
-    this.router.navigate(['/edit_activity_sticker']);
-  }
+  // goToEditActivity() {
+  //   this.router.navigate(['/edit_activity_sticker']);
+  // }
 
   // ---------------------------- Activity Sticker -------------------------------------
 

@@ -9,13 +9,14 @@ import { ModelModule } from './models/userModel/model.module';
 import { EditActivity } from './components/editActicitySticker/editActivity.component';
 import { ServiceModule } from './services/model.module';
 import { FormsModule } from '@angular/forms';
+import { EditReward } from './components/editRewardSticker/editReward.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     Board,
     EditActivity,
-    
+    EditReward  
   ],
   imports: [
     FormsModule,
