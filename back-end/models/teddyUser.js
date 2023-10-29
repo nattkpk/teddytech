@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { stringify } = require('querystring');
 
 const PointStickerSchema = new mongoose.Schema({
   icon: String,
@@ -20,17 +21,29 @@ const PraiseStickerSchema = new mongoose.Schema({
   text: String,
 });
 
+const Theme = new mongoose.Schema({
+  font: String,
+  bg: String
+});
+
 const FeelingStickerSchema = new mongoose.Schema({
   text: String,
 });
 
 const UserSchema = new mongoose.Schema({
-  id: String,
   username: String,
+  imgProfile: String,
   email: String,
   password: String,
   kid_name: String,
-  kid_age: String,
+  kid_age: Number,
+  pointA: Number,
+  pointB: Number,
+  currentPoint: Number,
+  activityTheme: Theme,
+  praiseTheme: Theme,
+  feelingTheme: Theme,
+  rewardTheme: Theme,
   stickers: {
     activity: [ActivityStickerSchema],
     praise: [PraiseStickerSchema],
@@ -38,7 +51,20 @@ const UserSchema = new mongoose.Schema({
     point: [PointStickerSchema],
     reward: [RewardStickerSchema],
   },
+  sunSticked:[mongoose.Schema.Types.Mixed],
+  monSticked:[mongoose.Schema.Types.Mixed],
+  tueSticked:[mongoose.Schema.Types.Mixed],
+  wedSticked:[mongoose.Schema.Types.Mixed],
+  thuSticked:[mongoose.Schema.Types.Mixed],
+  friSticked:[mongoose.Schema.Types.Mixed],
+  satSticked:[mongoose.Schema.Types.Mixed],
+  activitySticked:[mongoose.Schema.Types.Mixed],
+  praiseSticked:[mongoose.Schema.Types.Mixed],
+  feelingSticked:[mongoose.Schema.Types.Mixed],
+  rewardSticked:[mongoose.Schema.Types.Mixed]
 });
 
 
 module.exports =  mongoose.model('TeddyUser', UserSchema);
+
+

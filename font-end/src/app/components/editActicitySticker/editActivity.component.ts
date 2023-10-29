@@ -5,7 +5,6 @@ import { UserRepository } from 'src/app/models/userModel/user.repository';
 import { UserDataService } from 'src/app/services/user-data.service';
 import { StickerDataService } from 'src/app/services/sticker-data.service';
 import Swal from 'sweetalert2';
-import { ApiData } from 'src/app/services/apidata.service';
 
 @Component({
   selector: 'editActivity',
@@ -16,8 +15,7 @@ export class EditActivity {
   constructor(
     private user_repository: UserRepository,
     private userDataService: UserDataService,
-    private sticker_service: StickerDataService,
-    private apiData : ApiData
+    private sticker_service: StickerDataService
   ) {
     // this.activityData = this.user?.stickers?.activity
     //   ? this.user.stickers.activity
@@ -27,19 +25,23 @@ export class EditActivity {
     this.changeThemeOn = false;
     this.createStickerOn = false;
 
-    this.activityBg = this.sticker_service.getActivityBg();
-    this.activity_fontColor = this.sticker_service.getActivityFontColor();
-    this.selectedBgIndex = 3;
+    this.selectedBgIndex = -1;
 
     this.activityIcon = this.sticker_service.getAllActivityIcon();
   }
-  
+
   ngOnInit() {
     // Fetch the user data when the component initializes
-    this.user_repository.getUserById(this.userDataService.getUserId()).subscribe((user) => {
-      this.user = user;
-      this.activityData = this.user?.stickers?.activity ? this.user.stickers.activity : [];
-    });
+    this.user_repository
+      .getUserById(this.userDataService.getUserId())
+      .subscribe((user) => {
+        this.user = user;
+        this.activityData = this.user?.stickers?.activity
+          ? this.user.stickers.activity
+          : [];
+        this.activityBg = this.user.activityTheme.bg;
+        this.activity_fontColor = this.user.activityTheme.font;
+      });
   }
 
   activityTheme = this.sticker_service.getAllActivityTheme();
@@ -49,12 +51,10 @@ export class EditActivity {
   changeThemeOn: boolean = false;
   createStickerOn: boolean = false;
 
-  activityBg = this.sticker_service.getActivityBg();
-  activity_fontColor = this.sticker_service.getActivityFontColor();
+  activityBg = '';
+  activity_fontColor = '';
   user: any | null = {};
   activityData: any[] = [];
-
-  
 
   dropSticker(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
@@ -66,14 +66,12 @@ export class EditActivity {
     }
   }
 
-  
-
   getActivityDataForPage(page: number): any[] {
     const startIndex = (page - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
     return this.activityData.slice(startIndex, endIndex);
   }
-  
+
   changePage(offset: number): void {
     this.currentPage += offset;
   }
@@ -89,25 +87,41 @@ export class EditActivity {
     this.changeThemeOn = this.changeThemeOn ? false : true;
   }
 
-  change_theme_confirm(){
-    Swal.fire({
+  async change_theme_confirm() {
+    const result = await Swal.fire({
       title: 'Do you want to save the changes?',
       confirmButtonText: 'Yes',
       confirmButtonColor: '#A1C554',
       showCancelButton: true,
       cancelButtonColor: '#FC6F6F',
       reverseButtons: true,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.sticker_service.setActivitySticker(this.selectedBgIndex)
-        this.activityBg = this.sticker_service.getActivityBg();
-        this.activity_fontColor = this.sticker_service.getActivityFontColor();
-        this.change_themeOnOff();
-      }
     });
+  
+    if (result.isConfirmed) {
+      this.sticker_service.setActivitySticker(this.selectedBgIndex);
+      try {
+        await this.user_repository.updateUserFields(
+          this.userDataService.getUserId(),
+          this.sticker_service.getActivityTheme()
+        );
+  
+        await Swal.fire({
+          icon: 'success',
+          title: 'Change Theme Success',
+          confirmButtonText: 'OK',
+          confirmButtonColor: '#A1C554',
+        });
+  
+        this.change_themeOnOff();
+        this.reloadpage();
+      } catch (error) {
+        console.error(error);
+      }
+    }
   }
+  
 
-  selectedBgIndex: number = 3;
+  selectedBgIndex: number = -1;
 
   selectBg(index: number) {
     this.selectedBgIndex = index;
@@ -122,7 +136,7 @@ export class EditActivity {
   selectedIconIndex: number = -1;
   currentIconPage: number = 1;
   itemsIconPerPage: number = 18;
-  newActivitySticker: ActivitySticker = {text:'', imageUrl:''}
+  newActivitySticker: ActivitySticker = { text: '', imageUrl: '' };
 
   create_stickerOnOff() {
     this.createStickerOn = this.createStickerOn ? false : true;
@@ -150,46 +164,102 @@ export class EditActivity {
     return this.activityIcon.slice(startIndex, endIndex);
   }
 
-  onSubmit() {
-    Swal.fire({
+  async onSubmit() {
+    const result = await Swal.fire({
       title: 'Create New Sticker?',
       confirmButtonText: 'Yes',
       confirmButtonColor: '#A1C554',
       showCancelButton: true,
       cancelButtonColor: '#FC6F6F',
       reverseButtons: true,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        if(this.activityName!='' && this.selectedIconIndex != -1){
-          console.log('Activity Name: ' + this.activityName);
-          this.newActivitySticker.text = this.activityName;
-          this.newActivitySticker.imageUrl = this.activityIcon[this.selectedIconIndex];
-          this.user_repository.pushOrPullStickers(this.userDataService.getUserId() ,'activity', 'push',this.newActivitySticker);
-        }else{
-          if(this.activityName==''){
-              Swal.fire({
-              icon: 'warning',
-              title: 'Please enter activity name',
-              confirmButtonText: 'OK',
-              confirmButtonColor: '#A1C554',
-            })
-          }else if(this.selectedIconIndex == -1){
-            Swal.fire({
-              icon: 'warning',
-              title: 'Please select activity icon',
-              confirmButtonText: 'OK',
-              confirmButtonColor: '#A1C554',
-            })
-          }
-          
+    });
+  
+    if (result.isConfirmed) {
+      if (this.activityName !== '' && this.selectedIconIndex !== -1) {
+        console.log('Activity Name: ' + this.activityName);
+        this.newActivitySticker.text = this.activityName;
+        this.newActivitySticker.imageUrl = this.activityIcon[this.selectedIconIndex];
+  
+        try {
+          await this.user_repository.pushOrPullStickers(
+            this.userDataService.getUserId(),
+            'activity',
+            'push',
+            this.newActivitySticker
+          );
+  
+          await Swal.fire({
+            icon: 'success',
+            title: 'Create Success',
+            confirmButtonText: 'OK',
+            confirmButtonColor: '#A1C554',
+          });
+  
+          this.create_stickerOnOff();
+          this.reloadpage();
+        } catch (error) {
+          // Handle any errors that might occur during the operations
+          console.error(error);
+        }
+      } else {
+        if (this.activityName === '') {
+          await Swal.fire({
+            icon: 'warning',
+            title: 'Please enter activity name',
+            confirmButtonText: 'OK',
+            confirmButtonColor: '#A1C554',
+          });
+        } else if (this.selectedIconIndex === -1) {
+          await Swal.fire({
+            icon: 'warning',
+            title: 'Please select activity icon',
+            confirmButtonText: 'OK',
+            confirmButtonColor: '#A1C554',
+          });
         }
       }
-    });
-    
+    }
   }
-
-
-
   
 
+  reloadpage() {
+    window.location.reload();
+  }
+
+  async deleteSticker(index: number) {
+    try {
+      const confirmationResult = await Swal.fire({
+        icon: 'warning',
+        title: 'Delete this Sticker?',
+        confirmButtonText: 'Yes',
+        confirmButtonColor: '#A1C554',
+        showCancelButton: true,
+        cancelButtonColor: '#FC6F6F',
+        reverseButtons: true,
+      });
+  
+      if (confirmationResult.isConfirmed) {
+        await Swal.fire({
+          icon: 'success',
+          title: 'Delete Success',
+          confirmButtonText: 'OK',
+          confirmButtonColor: '#A1C554',
+        });
+  
+        const pulledSticker = this.activityData[index];
+        await this.user_repository.pushOrPullStickers(
+          this.userDataService.getUserId(),
+          'activity',
+          'pull',
+          pulledSticker
+        );
+  
+        this.reloadpage();
+      }
+    } catch (error) {
+      // Handle any errors that might occur during the operations
+      console.error(error);
+    }
+  }
+  
 }

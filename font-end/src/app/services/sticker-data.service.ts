@@ -39,12 +39,9 @@ export class StickerDataService {
     console.log('set Theme complete!');
   }
 
-  getActivityBg(): string {
-    return this.activityTheme[this.selectedThemeActivity].bg;
-  }
-
-  getActivityFontColor(): string {
-    return this.activityTheme[this.selectedThemeActivity].font;
+  getActivityTheme(){
+    const themeA = {activityTheme : this.activityTheme[this.selectedThemeActivity]};
+    return themeA;
   }
 
   getAllActivityTheme() {

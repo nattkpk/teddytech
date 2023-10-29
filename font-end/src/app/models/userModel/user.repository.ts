@@ -22,6 +22,11 @@ export class UserRepository {
     //   this.users = data;
     // });
   }
+  
+  //get all users
+  getAllUsers(): User[] {
+    return this.users;
+  }
 
   //get by ID
   getUserById(id: string): Observable<User | null> {
@@ -51,12 +56,20 @@ export class UserRepository {
       }
     );
   }
+
+  updateUserFields(userId: string, updatedUserData: any) {
+    this.apiData.updateUserFields(userId, updatedUserData).subscribe(
+      (updatedUser) => {
+        console.log('User data updated:', updatedUser);
+      },
+      (error) => {
+        console.error('Error updating user data:', error);
+      }
+    );
+  }
   
 
-  //get all users
-  getAllUsers(): User[] {
-    return this.users;
-  }
+ 
 
   loginUser(username: string, password: string): boolean {
     const user = this.users.find(
