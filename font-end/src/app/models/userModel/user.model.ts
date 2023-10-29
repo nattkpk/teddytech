@@ -5,7 +5,7 @@ export class User {
     public email: string,
     public password: string,
     public kid_name: string,
-    public kid_age: string,
+    public kid_age: number,
     public stickers: {
       activity: ActivitySticker[];
       praise: PraiseSticker[];

@@ -5,6 +5,7 @@ import { Signin } from './components/signin/signin.component';
 import { HowtouseComponent } from './components/howtouse/howtouse.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { EditActivity } from './components/editActicitySticker/editActivity.component';
+import{EditProfileComponent} from'./components/edit-profile/edit-profile.component';
 
 
 const routes: Routes = [
@@ -13,7 +14,7 @@ const routes: Routes = [
   { path: 'signin', component: Signin },
   { path: 'howto', component: HowtouseComponent },
   { path: 'profile', component: ProfileComponent },
-  { path: '**', redirectTo: 'profile' },
+  { path: '**', redirectTo: 'signin' },
  
 ];
 

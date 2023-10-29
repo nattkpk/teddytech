@@ -11,7 +11,7 @@ export class userStaticData {
             "user1@example.com",
             "password1",
             "Child1",
-            "7",
+            7,
             {
               activity: [
                 new ActivitySticker("Take a Shower", "../../../assets/img/ActivityIcon/shower.png"),

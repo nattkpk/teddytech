@@ -71,49 +71,49 @@ export class UserRepository {
     }
   }
 
-  // registerUser(
-  //   username: string,
-  //   email: string,
-  //   password: string,
-  //   checkPassword: string,
-  //   kid_name: string,
-  //   kid_age: number
-  // ): boolean {
+  registerUser(
+    username: string,
+    email: string,
+    password: string,
+    checkPassword: string,
+    kid_name: string,
+    kid_age: number
+  ): boolean {
+    const userExists = this.users.some((u) => u.username === username);
+    if (userExists) {
+      return false;
+    }
+
+    if (password !== checkPassword) {
+      return false;
+    }
+  
+    const randomId = function(length = 6) {
+      return Math.random().toString(36).substring(2, length + 2);
+    };
     
-  //   const userExists = this.users.some((u) => u.username === username);
+    const newUser = {
+      id: randomId(),
+      username: username,
+      email: email,
+      password: password,
+      kid_name: kid_name,
+      kid_age: kid_age,
+      stickers: {
+        activity: [],
+        praise: [],
+        feeling: [],
+        point: [],
+        reward: []
+      }
+    };
+    console.log(newUser)
+    this.users.push(newUser);
+    return true;
+    
+  }
   
-  //   if (userExists) {
-  //     return false; 
-  //   }
-  
-  //   if (password !== checkPassword) {
-  //     return false; 
-  //   }
-  
-  //   const randomId = function(length = 6) {
-  //     return Math.random().toString(36).substring(2, length+2);
-  //   };
-  //   const newUser = {
-  //     id: randomId,
-  //     username: username,
-  //     email: email,
-  //     password: password,
-  //     kid_name: kid_name,
-  //     kid_age: kid_age,
-  //     stickers: {
-  //       activity: [],
-  //       praise: [],
-  //       feeling: [],
-  //       point: [],
-  //       reward: []
-  //     }
-  //   };
-  
-  //   this.users.push(newUser);
-  
-  //   return true; 
-  // }
-  
+
 
   // updateUser(id: string, updatedUser: User): boolean {
   //   const index = this.users.findIndex((user) => user.id === id);

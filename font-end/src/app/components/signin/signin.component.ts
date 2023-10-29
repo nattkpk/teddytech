@@ -13,6 +13,8 @@ export class Signin {
   password = '';
   email = '';
   checkPassword = '';
+  kid_name = '';
+  kid_age : number = 0;
 
   constructor(
     private elementRef: ElementRef,
@@ -35,7 +37,20 @@ export class Signin {
   }
 
   register() {
+    const isRegister = this.userRepository.registerUser(
+      this.username,
+      this.email,
+      this.password,
+      this.checkPassword,
+      this.kid_name,
+      this.kid_age
 
+    );
+    if (isRegister) {
+      this.calcuLogin();
+    }else {
+    console.log("ERROR: Login failed");
+    }
   }
 
  

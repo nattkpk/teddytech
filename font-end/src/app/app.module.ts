@@ -15,6 +15,7 @@ import { ServiceModule } from './services/model.module';
 
 import { HowtouseComponent } from './components/howtouse/howtouse.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     FooterComponent,
     HomeComponent,
     HowtouseComponent,
-    ProfileComponent
+    ProfileComponent,
+    EditProfileComponent
   ],
   imports: [
     FormsModule,
