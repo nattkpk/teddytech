@@ -54,19 +54,24 @@ export class Board {
         this.praise_data = this.user?.stickers?.praise
           ? this.user.stickers.praise
           : [];
+
+        this.feelingBg = this.user.feelingTheme.bg;
+        this.feeling_fontColor = this.user.feelingTheme.font;
         this.feelingData = this.user?.stickers?.feeling
           ? this.user.stickers.feeling
           : [];
+
+
         this.pointData = this.user?.stickers?.point
           ? this.user.stickers.point
           : [];
-        this.rewardBg = this.user.rewardTheme.bg;
-        this.reward_fontColor = this.user.rewardTheme.font;
 
 
         this.rewardData = this.user?.stickers?.reward
           ? this.user.stickers.reward
           : [];
+        this.rewardBg = this.user.rewardTheme.bg;
+        this.reward_fontColor = this.user.rewardTheme.font;
 
 
         this.activity_sticked = this.user.activitySticked;
@@ -531,8 +536,8 @@ export class Board {
   }
 
   // -------------------------------------Feeling Sticker---------------------------------------------
-  feeling_fontColor: string = '#947218';
-  feelingBg = '../../../assets/img/BgSticker/Star5.png';
+  feeling_fontColor: string = '';
+  feelingBg = '';
 
   getFeelingDataForPage(page: number): any[] {
     const startIndex = (page - 1) * this.itemsPerPage;

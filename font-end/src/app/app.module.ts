@@ -10,13 +10,15 @@ import { EditActivity } from './components/editActicitySticker/editActivity.comp
 import { ServiceModule } from './services/model.module';
 import { FormsModule } from '@angular/forms';
 import { EditReward } from './components/editRewardSticker/editReward.component';
+import { EditFeeling } from './components/editFeelingSticker/editFeeling.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     Board,
     EditActivity,
-    EditReward  
+    EditReward ,
+    EditFeeling 
   ],
   imports: [
     FormsModule,

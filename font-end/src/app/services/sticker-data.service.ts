@@ -7,6 +7,7 @@ import { UserRepository } from '../models/userModel/user.repository';
 })
 export class StickerDataService {
   constructor() {
+    //--------------------------- activity----------------------------
     this.activityTheme = [
       { bg: '../../../assets/img/BgSticker/Diamon1.png', font: '#775189' },
       { bg: '../../../assets/img/BgSticker/Diamon2.png', font: '#678CA2' },
@@ -27,6 +28,19 @@ export class StickerDataService {
       '../../../assets/img/ActivityIcon/milk-box.png',
       '../../../assets/img/ActivityIcon/sleeping.png'
     ];
+    //--------------------------- feeling----------------------------
+    this.feelingTheme = [
+      { bg: '../../../assets/img/BgSticker/Star1.png', font: '#775189' },
+      { bg: '../../../assets/img/BgSticker/Star2.png', font: '#678CA2' },
+      { bg: '../../../assets/img/BgSticker/Star3.png', font: '#444C96' },
+      { bg: '../../../assets/img/BgSticker/Star4.png', font: '#3F5236' },
+      { bg: '../../../assets/img/BgSticker/Star5.png', font: '#8F834F' },
+      { bg: '../../../assets/img/BgSticker/Star6.png', font: '#A46F4F' },
+      { bg: '../../../assets/img/BgSticker/Star7.png', font: '#AF5E5E' },
+      { bg: '../../../assets/img/BgSticker/Star8.png', font: '#AF5771' },
+      { bg: '../../../assets/img/BgSticker/Star9.png', font: '#645232' },
+    ];
+    //--------------------------- reward----------------------------
 
     this.rewardTheme = [
       { bg: '../../../assets/img/BgSticker/wow1.png', font: '#775189' },
@@ -48,6 +62,8 @@ export class StickerDataService {
       '../../../assets/img/RewardIcon/storage-box.png',
       '../../../assets/img/RewardIcon/teddy-bear.png',
     ];
+
+
   }
 
   activityIcon: any[];
@@ -72,6 +88,25 @@ export class StickerDataService {
 
   getAllActivityIcon() {
     return this.activityIcon;
+  }
+  // ---------------------------------- Feeling -----------------------------------------
+  feelingTheme: any[];
+
+
+  selectedThemefeeling = -1;
+
+  setfeelingSticker(select: number) {
+    this.selectedThemefeeling = select;
+    console.log('set Theme complete!');
+  }
+
+  getfeelingTheme(){
+    const themeA = {feelingTheme : this.feelingTheme[this.selectedThemefeeling]};
+    return themeA;
+  }
+
+  getAllfeelingTheme() {
+    return this.feelingTheme;
   }
 
   // -------------------------------Reward---------------------------------------
