@@ -68,7 +68,7 @@ h3 {
   align-items: center;
   justify-content: center;
   border: 3px solid #ffffff;
-  border-radius: 20px;
+  border-radius: 100%;
   cursor: grab;
 }
 
@@ -80,8 +80,8 @@ h3 {
   margin-top: 10px;
   /* background-color: #795682; */
   font-weight: 600;
-  font-size: 1.5vw;
-  padding: 8px;
+  font-size: 1.2vw;
+  padding: 10px;
   text-shadow: 2px 2px 1px rgba(255, 255, 255, 0.75);
 }
 
@@ -235,7 +235,7 @@ h3 {
   align-items: center;
   justify-content: center;
   border: none white;
-  border-radius: 20px;
+  border-radius: 100%;
   background-size: 100%;
   cursor: pointer;
   transition: 0.3s;

@@ -11,6 +11,7 @@ import { ServiceModule } from './services/model.module';
 import { FormsModule } from '@angular/forms';
 import { EditReward } from './components/editRewardSticker/editReward.component';
 import { EditFeeling } from './components/editFeelingSticker/editFeeling.component';
+import { EditPraise } from './components/editPraiseSticker/editPraise.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { EditFeeling } from './components/editFeelingSticker/editFeeling.compone
     Board,
     EditActivity,
     EditReward ,
-    EditFeeling 
+    EditFeeling ,
+    EditPraise
   ],
   imports: [
     FormsModule,

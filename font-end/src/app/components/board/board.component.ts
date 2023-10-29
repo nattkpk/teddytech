@@ -54,12 +54,15 @@ export class Board {
         this.praise_data = this.user?.stickers?.praise
           ? this.user.stickers.praise
           : [];
+        this.praiseBg = this.user.praiseTheme.bg;
+        this.praise_fontColor = this.user.praiseTheme.font;
 
-        this.feelingBg = this.user.feelingTheme.bg;
-        this.feeling_fontColor = this.user.feelingTheme.font;
+       
         this.feelingData = this.user?.stickers?.feeling
           ? this.user.stickers.feeling
           : [];
+        this.feelingBg = this.user.feelingTheme.bg;
+        this.feeling_fontColor = this.user.feelingTheme.font;
 
 
         this.pointData = this.user?.stickers?.point
@@ -492,8 +495,8 @@ export class Board {
   }
 
   // -------------------------------------Praise Sticker---------------------------------------------
-  praise_fontColor: string = '#dd689d';
-  praiseBg = '../../../assets/img/BgSticker/Heart8.png';
+  praise_fontColor: string = '';
+  praiseBg = '';
 
   praise_sticked: any[] = [{ text: '' }, { text: '' }, { text: '' }];
 

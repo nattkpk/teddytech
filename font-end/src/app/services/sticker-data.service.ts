@@ -28,6 +28,18 @@ export class StickerDataService {
       '../../../assets/img/ActivityIcon/milk-box.png',
       '../../../assets/img/ActivityIcon/sleeping.png'
     ];
+    //--------------------------- Praise----------------------------
+    this.praiseTheme = [
+      { bg: '../../../assets/img/BgSticker/Heart1.png', font: '#775189' },
+      { bg: '../../../assets/img/BgSticker/Heart2.png', font: '#678CA2' },
+      { bg: '../../../assets/img/BgSticker/Heart3.png', font: '#444C96' },
+      { bg: '../../../assets/img/BgSticker/Heart4.png', font: '#3F5236' },
+      { bg: '../../../assets/img/BgSticker/Heart5.png', font: '#8F834F' },
+      { bg: '../../../assets/img/BgSticker/Heart6.png', font: '#A46F4F' },
+      { bg: '../../../assets/img/BgSticker/Heart7.png', font: '#AF5E5E' },
+      { bg: '../../../assets/img/BgSticker/Heart8.png', font: '#AF5771' },
+      { bg: '../../../assets/img/BgSticker/Heart9.png', font: '#645232' },
+    ];
     //--------------------------- feeling----------------------------
     this.feelingTheme = [
       { bg: '../../../assets/img/BgSticker/Star1.png', font: '#775189' },
@@ -89,6 +101,27 @@ export class StickerDataService {
   getAllActivityIcon() {
     return this.activityIcon;
   }
+
+    // ---------------------------------- Praise -----------------------------------------
+    praiseTheme: any[];
+
+
+    selectedThemepraise = -1;
+  
+    setpraiseSticker(select: number) {
+      this.selectedThemepraise = select;
+      console.log('set Theme complete!');
+    }
+  
+    getpraiseTheme(){
+      const themeA = {praiseTheme : this.praiseTheme[this.selectedThemepraise]};
+      return themeA;
+    }
+  
+    getAllpraiseTheme() {
+      return this.praiseTheme;
+    }
+
   // ---------------------------------- Feeling -----------------------------------------
   feelingTheme: any[];
 
