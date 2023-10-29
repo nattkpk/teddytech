@@ -51,6 +51,18 @@ export class Board {
       this.feelingData = this.user?.stickers?.feeling ? this.user.stickers.feeling : [];
       this.pointData = this.user?.stickers?.point ? this.user.stickers.point : [];
       this.rewardData = this.user?.stickers?.reward ? this.user.stickers.reward : [];
+
+      this.activity_sticked = this.user.activitySticked
+      this.sun_sticked = this.user.sunSticked
+      this.mon_sticked = this.user.monSticked
+      this.tue_sticked = this.user.tueSticked
+      this.wed_sticked = this.user.wedSticked
+      this.thu_sticked = this.user.thuSticked
+      this.fri_sticked = this.user.friSticked
+      this.sat_sticked = this.user.satSticked
+      this.feeling_sticked = this.user.feelingSticked
+      this.reward_sticked = this.user.rewardSticked
+      this.praise_sticked = this.user.praiseSticked
     });
   }
 
@@ -62,6 +74,19 @@ export class Board {
         event.currentIndex
       );
     }
+      this.updateActivityData();
+
+      this.updateSunData();
+      this.updateMonData();
+      this.updateTueData();
+      this.updateWednData();
+      this.updateThuData();
+      this.updateFriData();
+      this.updateSatData();
+
+      this.updatepraiseData();
+      this.updatefeelingData();
+      this.updaterewardData();
   }  
   
   changePage(offset: number): void {
@@ -77,14 +102,15 @@ export class Board {
   activityBg = '';
   activity_fontColor = '';
   activity_sticked: any[] = [
-    { text: '' },
-    { text: '' },
-    { text: '' },
-    { text: '' },
-    { text: '' },
-  ];
+];
 
 
+updateActivityData(){
+    const updatedUserData = {
+      activitySticked : this.activity_sticked
+    }
+    this.user_repository.updateUserFields(this.userDataService.getUserId(), updatedUserData);
+  }
 
   getActivityDataForPage(page: number): any[] {
     const startIndex = (page - 1) * this.itemsPerPage;
@@ -103,15 +129,17 @@ export class Board {
           text: this.activityData[index].text,
           imageUrl: this.activityData[index].imageUrl,
         };
+        this.updateActivityData();
         break;
       }
     }
   }
-
+  
   deleteActivity(index: number): void {
     if (index >= 0 && index < this.activity_sticked.length) {
       this.activity_sticked[index] = { text: '' };
     }
+    this.updateActivityData()
   }
 
 
@@ -127,55 +155,57 @@ export class Board {
     return Math.ceil(this.pointData.length / 12);
   }
 
-  sun_sticked: any[] = [
-    { text: '' },
-    { text: '' },
-    { text: '' },
-    { text: '' },
-    { text: '' },
-  ];
-  mon_sticked: any[] = [
-    { text: '' },
-    { text: '' },
-    { text: '' },
-    { text: '' },
-    { text: '' },
-  ];
-  tue_sticked: any[] = [
-    { text: '' },
-    { text: '' },
-    { text: '' },
-    { text: '' },
-    { text: '' },
-  ];
-  wed_sticked: any[] = [
-    { text: '' },
-    { text: '' },
-    { text: '' },
-    { text: '' },
-    { text: '' },
-  ];
-  thu_sticked: any[] = [
-    { text: '' },
-    { text: '' },
-    { text: '' },
-    { text: '' },
-    { text: '' },
-  ];
-  fri_sticked: any[] = [
-    { text: '' },
-    { text: '' },
-    { text: '' },
-    { text: '' },
-    { text: '' },
-  ];
-  sat_sticked: any[] = [
-    { text: '' },
-    { text: '' },
-    { text: '' },
-    { text: '' },
-    { text: '' },
-  ];
+  updateSunData(){
+    const updatedUserData = {
+      sunSticked : this.sun_sticked
+    }
+    this.user_repository.updateUserFields(this.userDataService.getUserId(), updatedUserData);
+  }
+  updateMonData(){
+    const updatedUserData = {
+      monSticked : this.mon_sticked
+    }
+    this.user_repository.updateUserFields(this.userDataService.getUserId(), updatedUserData);
+  }
+  updateTueData(){
+    const updatedUserData = {
+      tueSticked : this.tue_sticked
+    }
+    this.user_repository.updateUserFields(this.userDataService.getUserId(), updatedUserData);
+  }
+  updateWednData(){
+    const updatedUserData = {
+      wedSticked : this.wed_sticked
+    }
+    this.user_repository.updateUserFields(this.userDataService.getUserId(), updatedUserData);
+  }
+  updateThuData(){
+    const updatedUserData = {
+      thuSticked : this.thu_sticked
+    }
+    this.user_repository.updateUserFields(this.userDataService.getUserId(), updatedUserData);
+  }
+  updateFriData(){
+    const updatedUserData = {
+      friSticked : this.fri_sticked
+    }
+    this.user_repository.updateUserFields(this.userDataService.getUserId(), updatedUserData);
+  }
+  updateSatData(){
+    const updatedUserData = {
+      satSticked : this.sat_sticked
+    }
+    this.user_repository.updateUserFields(this.userDataService.getUserId(), updatedUserData);
+  }
+
+
+  sun_sticked: any[] = [];
+  mon_sticked: any[] = [];
+  tue_sticked: any[] = [];
+  wed_sticked: any[] = [];
+  thu_sticked: any[] = [];
+  fri_sticked: any[] = [];
+  sat_sticked: any[] = [];
 
   day = [
     'Sunday',
@@ -199,6 +229,7 @@ export class Board {
               point: this.pointData[index].point,
             };
             this.calculate_point(index);
+            this.updateSunData();
             break;
           }
         }
@@ -212,6 +243,7 @@ export class Board {
               point: this.pointData[index].point,
             };
             this.calculate_point(index);
+            this.updateMonData();
             break;
           }
         }
@@ -225,6 +257,7 @@ export class Board {
               point: this.pointData[index].point,
             };
             this.calculate_point(index);
+            this.updateThuData();
             break;
           }
         }
@@ -238,6 +271,7 @@ export class Board {
               point: this.pointData[index].point,
             };
             this.calculate_point(index);
+            this.updateWednData();
             break;
           }
         }
@@ -251,6 +285,7 @@ export class Board {
               point: this.pointData[index].point,
             };
             this.calculate_point(index);
+            this.updateThuData();
             break;
           }
         }
@@ -264,6 +299,7 @@ export class Board {
               point: this.pointData[index].point,
             };
             this.calculate_point(index);
+            this.updateFriData();
             break;
           }
         }
@@ -277,6 +313,7 @@ export class Board {
               point: this.pointData[index].point,
             };
             this.calculate_point(index);
+            this.updateSatData();
             break;
           }
         }
@@ -296,6 +333,7 @@ export class Board {
           this.now_points = this.now_points - decrease;
           this.sun_sticked[index] = { text: '' };
         }
+        this.updateSunData();
         break;
       case 1:
         if (
@@ -307,6 +345,7 @@ export class Board {
           this.now_points = this.now_points - decrease;
           this.mon_sticked[index] = { text: '' };
         }
+        this.updateMonData();
         break;
       case 2:
         if (
@@ -318,6 +357,7 @@ export class Board {
           this.now_points = this.now_points - decrease;
           this.tue_sticked[index] = { text: '' };
         }
+        this.updateTueData();
         break;
       case 3:
         if (
@@ -329,6 +369,7 @@ export class Board {
           this.now_points = this.now_points - decrease;
           this.wed_sticked[index] = { text: '' };
         }
+        this.updateWednData();
         break;
       case 4:
         if (
@@ -340,6 +381,7 @@ export class Board {
           this.now_points = this.now_points - decrease;
           this.thu_sticked[index] = { text: '' };
         }
+        this.updateThuData();
         break;
       case 5:
         if (
@@ -351,6 +393,7 @@ export class Board {
           this.now_points = this.now_points - decrease;
           this.fri_sticked[index] = { text: '' };
         }
+        this.updateFriData();
         break;
       case 6:
         if (
@@ -362,6 +405,7 @@ export class Board {
           this.now_points = this.now_points - decrease;
           this.sat_sticked[index] = { text: '' };
         }
+        this.updateSatData();
         break;
     }
   }
@@ -389,6 +433,12 @@ export class Board {
 
   praise_sticked: any[] = [{ text: '' }, { text: '' }, { text: '' }];
 
+  updatepraiseData(){
+    const updatedUserData = {
+      praiseSticked : this.praise_sticked
+    }
+    this.user_repository.updateUserFields(this.userDataService.getUserId(), updatedUserData);
+  }
   getPraiseDataForPage(page: number): any[] {
     const startIndex = (page - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
@@ -405,6 +455,7 @@ export class Board {
         this.praise_sticked[i] = {
           text: this.praise_data[index].text,
         };
+        this.updatepraiseData();
         break;
       }
     }
@@ -414,6 +465,7 @@ export class Board {
     if (index >= 0 && index < this.praise_sticked.length) {
       this.praise_sticked[index] = { text: '' };
     }
+    this.updatepraiseData();
   }
 
   // -------------------------------------Feeling Sticker---------------------------------------------
@@ -432,7 +484,14 @@ export class Board {
     return Math.ceil(this.feelingData.length / this.itemsPerPage);
   }
 
-  feeling_sticked: any[] = [{ text: '' }, { text: '' }, { text: '' }];
+  feeling_sticked: any[] = [];
+
+  updatefeelingData(){
+    const updatedUserData = {
+      feelingSticked : this.feeling_sticked
+    }
+    this.user_repository.updateUserFields(this.userDataService.getUserId(), updatedUserData);
+  }
 
   addFeeling(index: number) {
     for (let i = 0; i < this.feeling_sticked.length; i++) {
@@ -440,6 +499,7 @@ export class Board {
         this.feeling_sticked[i] = {
           text: this.feelingData[index].text,
         };
+        this.updatefeelingData();
         break;
       }
     }
@@ -449,13 +509,20 @@ export class Board {
     if (index >= 0 && index < this.feeling_sticked.length) {
       this.feeling_sticked[index] = { text: '' };
     }
+    this.updatefeelingData();
   }
 
   // -------------------------------------Reward Sticker---------------------------------------------
 
   rewardBg = '../../../assets/img/BgSticker/wow2.png';
   reward_fontColor = '#225E92';
-  reward_sticked: any[] = [{ text: '' }, { text: '' }];
+  reward_sticked: any[] = [];
+  updaterewardData(){
+    const updatedUserData = {
+      rewardSticked : this.reward_sticked
+    }
+    this.user_repository.updateUserFields(this.userDataService.getUserId(), updatedUserData);
+  }
 
   getRewardDataForPage(page: number): any[] {
     const startIndex = (page - 1) * this.itemsPerPage;
@@ -475,6 +542,7 @@ export class Board {
           text: this.rewardData[index].text,
           imageUrl: this.rewardData[index].imageUrl,
         };
+        this.updaterewardData();
         break;
       }
     }
@@ -484,7 +552,7 @@ export class Board {
     if (index >= 0 && index < this.reward_sticked.length) {
       this.reward_sticked[index] = { text: '' };
     }
-  }
+    this.updaterewardData();  }
   // -----------------------------------calculate point-------------------------------------------
   now_points = 0;
 
@@ -663,6 +731,7 @@ export class Board {
               text: 'All activity have been deleted.',
               confirmButtonColor:'#A1C554',
             });
+            this.updateActivityData();
         }
       });
   }
@@ -688,6 +757,7 @@ export class Board {
             text: 'All points have been deleted.',
             confirmButtonColor:'#A1C554',
           });
+          
         }
       });
   }
@@ -743,6 +813,13 @@ export class Board {
       { text: '' },
     ];
     this.now_points = 0;
+    this.updateSunData();
+    this.updateMonData();
+    this.updateTueData();
+    this.updateWednData();
+    this.updateThuData();
+    this.updateFriData();
+    this.updateSatData();
   }
 
   clear_praise() {
@@ -766,6 +843,7 @@ export class Board {
             text: 'All praise sticker have been deleted.',
             confirmButtonColor:'#A1C554',
           });
+          this.updatepraiseData();
         }
       });
   }
@@ -791,6 +869,7 @@ export class Board {
             text: 'All feeling sticker have been deleted.',
             confirmButtonColor:'#A1C554',
           });
+          this.updatefeelingData();
         }
       });
   }

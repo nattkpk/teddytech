@@ -48,8 +48,20 @@ const UserSchema = new mongoose.Schema({
     point: [PointStickerSchema],
     reward: [RewardStickerSchema],
   },
-  
+  sunSticked:[mongoose.Schema.Types.Mixed],
+  monSticked:[mongoose.Schema.Types.Mixed],
+  tueSticked:[mongoose.Schema.Types.Mixed],
+  wedSticked:[mongoose.Schema.Types.Mixed],
+  thuSticked:[mongoose.Schema.Types.Mixed],
+  friSticked:[mongoose.Schema.Types.Mixed],
+  satSticked:[mongoose.Schema.Types.Mixed],
+  activitySticked:[mongoose.Schema.Types.Mixed],
+  praiseSticked:[mongoose.Schema.Types.Mixed],
+  feelingSticked:[mongoose.Schema.Types.Mixed],
+  rewardSticked:[mongoose.Schema.Types.Mixed]
 });
 
 
 module.exports =  mongoose.model('TeddyUser', UserSchema);
+
+
