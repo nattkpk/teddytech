@@ -11,12 +11,11 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #ddd;
   font-size: 14px;
 }
 
 .container {
-  background-color: #fff;
+ 
   width: 100%;
   max-width: 100vw;
   height: 100vh;
@@ -113,7 +112,7 @@ body {
   flex-direction: column;
   height: 100vh;
   color: #fff;
-  background: linear-gradient(170deg, #34d3998f, #0596698f);
+  /* background: linear-gradient(170deg, #34d3998f, #0596698f); */
   transition: all 0.5s ease-in;
 }
 .container .intros-container .intro-control .intro-control__inner {
@@ -163,7 +162,7 @@ body {
 }
 .change .intros-container .intro-control {
   transform: translateX(-100%);
-  background: linear-gradient(170deg, #3b82f68f, #2563eb8f);
+  /* background: linear-gradient(170deg, #3b82f68f, #2563eb8f); */
 }
 .change .intros-container .intro-control #signin-btn {
   background-color: #2563eb !important;

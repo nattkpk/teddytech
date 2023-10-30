@@ -12,7 +12,6 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { ServiceModule } from './services/model.module';
-
 import { HowtouseComponent } from './components/howtouse/howtouse.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
@@ -37,7 +36,6 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
     BrowserModule,
     DragDropModule,
     AppRoutingModule,
-    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

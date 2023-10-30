@@ -1,4 +1,7 @@
 export class User {
+  id(id: any) {
+    throw new Error('Method not implemented.');
+  }
   constructor(
     public username: string,
     public imgProfile: string,

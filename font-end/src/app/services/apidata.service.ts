@@ -26,11 +26,14 @@ export class ApiData {
     return this.http.patch(url, { action, arrayItem });
   }
 
-
   //แก้ไขข้อมูล user
   updateUserFields(userId: string, updatedUserData: any): Observable<any> {
     const url = `${this.apiUrl}/teddyusers/${userId}`;
     return this.http.patch(url, updatedUserData);
+  }
+
+  registerUser(newUser: any): Observable<User> {
+    return this.http.post<User>(`${this.apiUrl}/teddyusers/`,newUser);
   }
   
 }

@@ -8,6 +8,7 @@ import { EditActivity } from './components/editActicitySticker/editActivity.comp
 import{EditProfileComponent} from'./components/edit-profile/edit-profile.component';
 
 
+
 const routes: Routes = [
   { path: 'board', component: Board },
   { path: 'edit_activity_sticker', component: EditActivity },
