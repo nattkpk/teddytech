@@ -1,0 +1,25 @@
+.navbar {
+    justify-items: end;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    padding: 10px;
+    ;
+  }
+  
+
+
+.nav-link {
+  background-color: #C2F9A3;
+  margin-left: 100px;
+  width: 100%;
+  height: 40px;
+  padding-bottom: 10px;
+  border-radius: 100px;
+}
+
+
+
+.navbar {
+  background-color: #A0D583;
+}

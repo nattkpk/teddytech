@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {Board} from './components/board/board.component'
+import { Board } from './components/board/board.component';
+import { Signin } from './components/signin/signin.component';
+import { HowtouseComponent } from './components/howtouse/howtouse.component';
+import { ProfileComponent } from './components/profile/profile.component';
 import { EditActivity } from './components/editActicitySticker/editActivity.component';
 import { EditReward } from './components/editRewardSticker/editReward.component';
 import { EditFeeling } from './components/editFeelingSticker/editFeeling.component';
 import { EditPraise } from './components/editPraiseSticker/editPraise.component';
 import { EditPoint } from './components/editPointSticker/editPoint.component';
+
+
 
 const routes: Routes = [
   { path: 'board', component: Board },
@@ -14,7 +19,11 @@ const routes: Routes = [
   { path: 'edit_feeling_sticker', component: EditFeeling },
   { path: 'edit_praise_sticker', component: EditPraise },
   { path: 'edit_point_sticker', component: EditPoint },
+  { path: 'signin', component: Signin },
+  { path: 'howto', component: HowtouseComponent },
+  { path: 'profile', component: ProfileComponent },
   { path: '**', redirectTo: '/board' },
+ 
 ];
 
 @NgModule({

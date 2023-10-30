@@ -8,21 +8,17 @@ import { Observable, map } from 'rxjs';
 
 @Injectable()
 export class UserRepository {
-  private users: User[] = [];
+  private users: any[] = [];
 
   constructor(
-    private dataSource: userStaticData,
     private userDataService: UserDataService,
-    private apiData : ApiData
+    private apiData: ApiData
   ) {
-    this.apiData.getUsers().subscribe(users => {
+    this.apiData.getUsers().subscribe((users) => {
       this.users = users;
     });
-    // this.dataSource.getUsers().subscribe((data) => {
-    //   this.users = data;
-    // });
   }
-  
+
   //get all users
   getAllUsers(): User[] {
     return this.users;
@@ -46,7 +42,12 @@ export class UserRepository {
     );
   }
 
-  pushOrPullStickers(userId: string, arrayName: string, action: string, arrayItem: any): void {
+  pushOrPullStickers(
+    userId: string,
+    arrayName: string,
+    action: string,
+    arrayItem: any
+  ): void {
     this.apiData.updateStickers(userId, arrayName, action, arrayItem).subscribe(
       (response) => {
         console.log('Updated user data:', response);
@@ -67,8 +68,83 @@ export class UserRepository {
       }
     );
   }
+
+  loginUser(username: string, password: string): boolean {
+    const user = this.users.find(
+      (u) => u.username === username && u.password === password
+      
+    );
+   
+
+    if (user) {
+      this.userDataService.setUserId(user._id)
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  registerUser(
+    username: string,
+    email: string,
+    password: string,
+    checkPassword: string,
+    kid_name: string,
+    kid_age: number
+  ){
+    if (!username || !email || !password || !checkPassword) {
+    return false; 
+  }
+    const userExists = this.users.find((u) => u.username === username);
+    if (userExists || password !== checkPassword) {
+      return false;
+    }
+
+    const newUser = {
+      username: username,
+      imgProfile:
+        'https://images.pexels.com/photos/7211201/pexels-photo-7211201.jpeg?auto=compress&cs=tinysrgb&w=1200',
+      email: email,
+      password: password,
+      // kid_name: kid_name,
+      // kid_age: kid_age,
+    };
+
+    console.log('New User Details:', newUser);
+
+    this.apiData.registerUser(newUser).subscribe(
+      (response) => {
+        console.log('User registered:', response);
+      },
+      (error) => {
+        console.error('User registration failed:', error);
+      }
+    );
+
+    return true;
+  }
+
   
 
- 
+  // updateUser(id: string, updatedUser: User): boolean {
+  //   const index = this.users.findIndex((user) => user.id === id);
+  //   if (index !== -1) {
+  //     this.users[index] = updatedUser;
+  //     return true;
+  //   }
+  //   return false;
+  // }
 
+  // deleteUser(id: string): boolean {
+  //   const index = this.users.findIndex((user) => user.id === id);
+  //   if (index !== -1) {
+  //     this.users.splice(index, 1);
+  //     return true;
+  //   }
+  //   return false;
+  // }
+
+  // addUser(user: User): void {
+  //     this.users.push(user);
+  //     }
 }
