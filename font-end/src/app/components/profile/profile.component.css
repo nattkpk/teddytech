@@ -43,3 +43,12 @@
     z-index: 999; 
     background: rgba(0, 0, 0, 0.5); 
   }
+.col-lg-6 {
+	border: 1px solid red;
+	min-height: 200px;
+}
+
+.col-lg-12 {
+	border: 1px solid blue;
+	min-height: 200px;
+}
