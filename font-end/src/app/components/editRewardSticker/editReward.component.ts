@@ -133,12 +133,14 @@ export class EditReward {
   currentIconPage: number = 1;
   itemsIconPerPage: number = 18;
   newRewardSticker: RewardSticker = { text: '', imageUrl: '' };
+  chooseIcon: number = -1;
 
   create_stickerOnOff() {
     this.createStickerOn = this.createStickerOn ? false : true;
   }
 
   selectIcon(index: number) {
+    this.chooseIcon = index+((this.currentIconPage-1)*this.itemsIconPerPage)
     this.selectedIconIndex = index;
   }
 
@@ -171,10 +173,10 @@ export class EditReward {
     });
   
     if (result.isConfirmed) {
-      if (this.rewardName !== '' && this.selectedIconIndex !== -1) {
+      if (this.rewardName !== '' && this.chooseIcon !== -1) {
         console.log('Reward Name: ' + this.rewardName);
         this.newRewardSticker.text = this.rewardName;
-        this.newRewardSticker.imageUrl = this.rewardIcon[this.selectedIconIndex];
+        this.newRewardSticker.imageUrl = this.rewardIcon[this.chooseIcon];
   
         try {
           await this.user_repository.pushOrPullStickers(
@@ -205,7 +207,7 @@ export class EditReward {
             confirmButtonText: 'OK',
             confirmButtonColor: '#A1C554',
           });
-        } else if (this.selectedIconIndex === -1) {
+        } else if (this.chooseIcon === -1) {
           await Swal.fire({
             icon: 'warning',
             title: 'Please select reward icon',

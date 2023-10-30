@@ -137,12 +137,14 @@ export class EditActivity {
   currentIconPage: number = 1;
   itemsIconPerPage: number = 18;
   newActivitySticker: ActivitySticker = { text: '', imageUrl: '' };
+  chooseIcon: number = -1;
 
   create_stickerOnOff() {
     this.createStickerOn = this.createStickerOn ? false : true;
   }
 
   selectIcon(index: number) {
+    this.chooseIcon = index+((this.currentIconPage-1)*this.itemsIconPerPage)
     this.selectedIconIndex = index;
   }
 
@@ -175,10 +177,10 @@ export class EditActivity {
     });
   
     if (result.isConfirmed) {
-      if (this.activityName !== '' && this.selectedIconIndex !== -1) {
+      if (this.activityName !== '' && this.chooseIcon !== -1) {
         console.log('Activity Name: ' + this.activityName);
         this.newActivitySticker.text = this.activityName;
-        this.newActivitySticker.imageUrl = this.activityIcon[this.selectedIconIndex];
+        this.newActivitySticker.imageUrl = this.activityIcon[this.chooseIcon];
   
         try {
           await this.user_repository.pushOrPullStickers(
@@ -209,7 +211,7 @@ export class EditActivity {
             confirmButtonText: 'OK',
             confirmButtonColor: '#A1C554',
           });
-        } else if (this.selectedIconIndex === -1) {
+        } else if (this.chooseIcon === -1) {
           await Swal.fire({
             icon: 'warning',
             title: 'Please select activity icon',

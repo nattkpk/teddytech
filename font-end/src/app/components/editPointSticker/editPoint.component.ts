@@ -82,6 +82,7 @@ export class EditPoint {
   currentIconPage: number = 1;
   itemsIconPerPage: number = 18;
   newPointSticker: PointSticker = { icon: '', bgImage: '' , point:0};
+  chooseIcon:  number = -1;
 
   create_stickerOnOff1() {
     this.createStickerOn1 = this.createStickerOn1 ? false : true;
@@ -92,7 +93,9 @@ export class EditPoint {
   }
 
   selectIcon(index: number) {
+    this.chooseIcon = index+((this.currentIconPage-1)*this.itemsIconPerPage)
     this.selectedIconIndex = index;
+
   }
 
   isIconSelected(index: number) {
@@ -119,9 +122,10 @@ export class EditPoint {
   selectedBgIndex: number = -1;
   currentBgPage: number = 1;
   itemsBgPerPage: number = 14;
-
+  chooseBg: number =-1;
 
   selectBg(index: number) {
+    this.chooseBg = index+((this.currentBgPage-1)*this.itemsBgPerPage)
     this.selectedBgIndex = index;
   }
 
@@ -161,10 +165,10 @@ export class EditPoint {
     });
   
     if (result.isConfirmed) {
-      if (this.numOfPoint > 0 && this.numOfPoint <= 10 && this.selectedIconIndex !== -1 && this.selectedBgIndex !== -1) {
+      if (this.numOfPoint > 0 && this.numOfPoint <= 10 && this.chooseIcon !== -1 && this.chooseBg !== -1) {
         console.log('Point: ' + this.numOfPoint);
-        this.newPointSticker.bgImage = this.pointBg[this.selectedBgIndex];
-        this.newPointSticker.icon = this.pointIcon[this.selectedIconIndex];
+        this.newPointSticker.bgImage = this.pointBg[this.chooseBg];
+        this.newPointSticker.icon = this.pointIcon[this.chooseIcon];
         this.newPointSticker.point = this.numOfPoint;
 
         try {
@@ -196,14 +200,14 @@ export class EditPoint {
             confirmButtonText: 'OK',
             confirmButtonColor: '#A1C554',
           });
-        } else if (this.selectedIconIndex === -1) {
+        } else if (this.chooseIcon === -1) {
           await Swal.fire({
             icon: 'warning',
             title: 'Please select point icon',
             confirmButtonText: 'OK',
             confirmButtonColor: '#A1C554',
           });
-        } else if (this.selectedBgIndex === -1) {
+        } else if (this.chooseBg === -1) {
           await Swal.fire({
             icon: 'warning',
             title: 'Please select point background',
