@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+
+  <body>
+    <div
+      class="container"
+      *ngIf="changeThemeOn === false && createStickerOn === false"
+    >
+      <button class="btn" routerLink="/board">
+        <i class="fa-solid fa-caret-left"></i>&ensp;Back
+      </button>
+      <h1>Feeling Sticker&ensp;<i class="fa-solid fa-face-laugh"></i></h1>
+      <div
+        class="stickers-container"
+        cdkDropList
+        [cdkDropListData]="feelingData"
+        (cdkDropListDropped)="dropSticker($event)"
+      >
+        <div
+          class="sticker"
+          cdkDrag
+          cdkDropListOrientation="horizontal"
+          cdkDragBoundary=".stickers-container"
+          *ngFor="
+            let item of getFeelingDataForPage(currentPage);
+            let i = index
+          "
+          [style.color]="fontColor"
+          [style.background-image]="'url(' + bg + ')'"
+        >
+          <div class="red-corner" (click)="deleteSticker(i)">
+            <i class="fa-solid fa-circle-xmark"></i>
+          </div>
+          <p class="textSticker">{{ item.text }}</p>
+        </div>
+        <div class="sticker addMore" (click)="create_stickerOnOff()">
+          <i class="fa-solid fa-circle-plus"></i>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center my-1">
+        <button
+          *ngIf="currentPage > 1"
+          (click)="changePage(-1)"
+          class="btn btn-warning"
+        >
+          <i class="fa-solid fa-caret-left"></i>&ensp;Previous Page
+        </button>
+        <button
+          *ngIf="currentPage < totalNumberOfFeelingPages"
+          (click)="changePage(1)"
+          class="btn btn-warning"
+        >
+          Next Page&ensp;<i class="fa-solid fa-caret-right"></i>
+        </button>
+      </div>
+      <button class="btn btn-changetheme" (click)="change_themeOnOff()">
+        Change Theme&ensp;<i class="fa-solid fa-paint-roller"></i>
+      </button>
+    </div>
+
+    <!-- ------------------------------- change Theme -------------------------------------- -->
+    <div class="container changetheme_container" *ngIf="changeThemeOn === true">
+      <h1>
+        Change Theme Feeling Sticker&ensp;<i
+          class="fa-solid fa-paint-roller"
+        ></i>
+      </h1>
+      <div class="bg-container">
+        <div
+          class="bgImage"
+          *ngFor="let item of feelingTheme; let i = index"
+          [style.background-image]="'url(' + item.bg + ')'"
+          [ngClass]="{ Image_selected: isBgSelected(i) }"
+          (click)="selectBg(i)"
+        ></div>
+      </div>
+      <div class="d-flex justify-content-center my-1 theme_button">
+        <button class="btn btn-cancel" (click)="change_themeOnOff()">
+          Cancel
+        </button>
+        <button class="btn btn-next" (click)="change_theme_confirm()">
+          OK
+        </button>
+      </div>
+    </div>
+
+    <!-- ------------------------------- Create Sticker -------------------------------------- -->
+
+    <form (ngSubmit)="onSubmit()">
+      <div class="container-create" *ngIf="createStickerOn === true">
+        <h1>
+          Create Feeling Sticker&ensp;<i class="fa-solid fa-circle-plus"></i>
+        </h1>
+        <h3>
+          <div class="row g-3 align-items-center enterName">
+            <div class="col-auto">
+              <label class="col-form-label">Your feeling : </label>
+            </div>
+            <div class="col-auto">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter feeling"
+                [(ngModel)]="feelingName"
+                [ngModelOptions]="{ standalone: true }"
+                maxlength="12"
+              />
+            </div>
+            <div class="col-auto">
+              <span class="form-text"> 1 - 12 characters </span>
+            </div>
+          </div>
+        </h3>
+
+        <div class="d-flex justify-content-center my-1 theme_button">
+          <button class="btn btn-cancel" (click)="create_stickerOnOff()">
+            Cancel
+          </button>
+          <button type="submit" class="btn btn-next">OK</button>
+        </div>
+      </div>
+    </form>
+  </body>
+</html>
