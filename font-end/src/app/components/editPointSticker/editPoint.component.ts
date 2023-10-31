@@ -35,6 +35,11 @@ export class EditPoint {
       .subscribe((user) => {
         this.user = user;
         this.pointData =  this.user.stickers.point;
+
+        this.praise_data = this.user?.stickers?.praise
+        this.feelingData = this.user?.stickers?.feeling
+        this.rewardData = this.user?.stickers?.reward
+        this.activityData = this.user?.stickers?.activity
       });
   }
 
@@ -45,7 +50,12 @@ export class EditPoint {
   createStickerOn2: boolean = false;
 
   user: any | null = {};
+
   pointData: any[] = [];
+  activityData: any[] = [];
+  praise_data: any[] = [];
+  feelingData: any[] = [];
+  rewardData: any[] = [];
 
   dropSticker(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
@@ -55,6 +65,24 @@ export class EditPoint {
         event.currentIndex
       );
     }
+    this.updatePosition();
+  }
+
+  
+  updatePosition(){
+    const updatedUserData = {
+      stickers: {
+        activity: this.activityData,
+        praise: this.praise_data,
+        feeling: this.feelingData,
+        point: this.pointData,
+        reward: this.rewardData
+      }
+    };
+    this.user_repository.updateUserFields(
+      this.userDataService.getUserId(),
+      updatedUserData
+    );
   }
 
   getPointDataForPage(page: number): any[] {

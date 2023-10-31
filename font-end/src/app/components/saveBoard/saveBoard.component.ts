@@ -4,6 +4,7 @@ import { UserDataService } from 'src/app/services/user-data.service';
 import { StickerDataService } from 'src/app/services/sticker-data.service';
 import Swal from 'sweetalert2';
 import { ConnectionClosedEvent } from 'mongodb';
+import { Board } from '../board/board.component';
 
 @Component({
   selector: 'saveBoard',
@@ -12,6 +13,7 @@ import { ConnectionClosedEvent } from 'mongodb';
 })
 export class SaveBoard {
   constructor(
+    private methodBoard: Board,
     private user_repository: UserRepository,
     private userDataService: UserDataService,
     private sticker_service: StickerDataService
@@ -19,10 +21,13 @@ export class SaveBoard {
     this.currentWeek = '';
     this.initializeWeek();
     this.note = '';
+    
   }
+
 
   note: string;
   currentWeek: string;
+
 
   initializeWeek() {
     // Get the current date
@@ -42,16 +47,17 @@ export class SaveBoard {
   }
 
   saveAlert() {
-    // Swal.fire({
-    //   title: 'Save this week?',
-    //   text: 'All sticker on board will be clear , are you sure? ',
-    //   icon: 'warning',
-    //   showCancelButton: true,
-    //   confirmButtonText: 'Yes !',
-    //   cancelButtonText: 'cancel !',
-    //   reverseButtons: true,
-    //   confirmButtonColor: '#A1C554',
-    //   cancelButtonColor: '#FC6F6F',
-    // })
+    console.log()
+    Swal.fire({
+      title: 'Save this week?',
+      text: 'All sticker on board will be clear , are you sure? ',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes !',
+      cancelButtonText: 'cancel !',
+      reverseButtons: true,
+      confirmButtonColor: '#A1C554',
+      cancelButtonColor: '#FC6F6F',
+    })
   }
 }

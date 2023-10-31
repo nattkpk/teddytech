@@ -34,6 +34,11 @@ export class EditReward {
       .subscribe((user) => {
         this.user = user;
 
+        this.pointData =  this.user.stickers.point;
+        this.feelingData = this.user?.stickers?.feeling
+        this.activityData = this.user?.stickers?.activity
+        this.praiseData = this.user.stickers.praise;
+
         this.rewardData = this.user.stickers.reward;
         this.bg = this.user.rewardTheme.bg;
         this.fontColor = this.user.rewardTheme.font;
@@ -50,7 +55,12 @@ export class EditReward {
   bg = '';
   fontColor = '';
   user: any | null = {};
+
  rewardData: any[] = [];
+ praiseData: any[] = [];
+ pointData: any[] = [];
+ activityData: any[] = [];
+ feelingData: any[] = [];
 
   dropSticker(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
@@ -60,6 +70,23 @@ export class EditReward {
         event.currentIndex
       );
     }
+    this.updatePosition();
+  }
+
+  updatePosition(){
+    const updatedUserData = {
+      stickers: {
+        activity: this.activityData,
+        praise: this.praiseData,
+        feeling: this.feelingData,
+        point: this.pointData,
+        reward: this.rewardData
+      }
+    };
+    this.user_repository.updateUserFields(
+      this.userDataService.getUserId(),
+      updatedUserData
+    );
   }
 
   getRewardDataForPage(page: number): any[] {

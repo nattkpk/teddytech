@@ -11,8 +11,8 @@
 }
 
 .save-card {
-  width: 50vw;
-  height: 50vh;
+  width: 40vw;
+  height: 55vh;
   background-color: #ffffff;
   border-radius: 20px;
   display: flex;
@@ -26,8 +26,8 @@
   align-items: center;
   background-color: rgb(228, 228, 228);
   border-radius: 0px 0px 20px 20px ;
-  width: 50vw;
-  height: 50vh;
+  width: 40vw;
+  height: 55vh;
 }
 
 .btn {
@@ -75,16 +75,16 @@ textarea{
 }
 
 .btn-save {
-    position: absolute;
+    
     bottom: 25vh;
     color: #fff;
     padding: 10px 20px;
     background-color: #a1c554;
     border: none;
     cursor: pointer;
-    margin: 10px;
+    margin-top: 30px;
     align-self: center;
-    width: 10%;
+    width: 20%;
     transition: 0.2s;
   }
 

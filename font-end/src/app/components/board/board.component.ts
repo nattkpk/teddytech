@@ -4,7 +4,7 @@ import {
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
-import { Component } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { User } from 'src/app/models/userModel/user.model';
 import { UserRepository } from 'src/app/models/userModel/user.repository';
 import { UserDataService } from 'src/app/services/user-data.service';
@@ -12,6 +12,9 @@ import { Router } from '@angular/router';
 import { StickerDataService } from 'src/app/services/sticker-data.service';
 import Swal from 'sweetalert2';
 
+@Injectable({
+  providedIn: 'root',
+})
 @Component({
   selector: 'board',
   templateUrl: './board.component.html',
@@ -126,12 +129,30 @@ export class Board {
       this.updatefeelingData();
     }else if (event.previousContainer.data == this.reward_sticked) {
       this.updaterewardData();
+    }else{
+      this.updatePosition();
     }
 
   }
 
   changePage(offset: number): void {
     this.currentPage += offset;
+  }
+
+  updatePosition(){
+    const updatedUserData = {
+      stickers: {
+        activity: this.activityData,
+        praise: this.praise_data,
+        feeling: this.feelingData,
+        point: this.pointData,
+        reward: this.rewardData
+      }
+    };
+      this.user_repository.updateUserFields(
+      this.userDataService.getUserId(),
+      updatedUserData
+    );
   }
 
   // goToEditActivity() {

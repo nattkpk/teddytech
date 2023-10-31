@@ -36,6 +36,12 @@ export class EditActivity {
       .getUserById(this.userDataService.getUserId())
       .subscribe((user) => {
         this.user = user;
+
+        this.praise_data = this.user?.stickers?.praise
+        this.feelingData = this.user?.stickers?.feeling
+        this.pointData = this.user?.stickers?.point
+        this.rewardData = this.user?.stickers?.reward
+
         this.activityData = this.user?.stickers?.activity
           ? this.user.stickers.activity
           : [];
@@ -55,7 +61,12 @@ export class EditActivity {
   activity_fontColor = '';
   user: any | null = {};
   activityData: any[] = [];
+  praise_data: any[] = [];
+  feelingData: any[] = [];
+  pointData: any[] = [];
+  rewardData: any[] = [];
 
+ 
   dropSticker(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(
@@ -64,6 +75,23 @@ export class EditActivity {
         event.currentIndex
       );
     }
+    this.updatePosition();
+  }
+
+ updatePosition(){
+    const updatedUserData = {
+      stickers: {
+        activity: this.activityData,
+        praise: this.praise_data,
+        feeling: this.feelingData,
+        point: this.pointData,
+        reward: this.rewardData
+      }
+    };
+    this.user_repository.updateUserFields(
+      this.userDataService.getUserId(),
+      updatedUserData
+    );
   }
 
   getActivityDataForPage(page: number): any[] {
