@@ -18,8 +18,10 @@ export class SaveBoard {
   ) {
     this.currentWeek = '';
     this.initializeWeek();
+    this.note = '';
   }
 
+  note: string;
   currentWeek: string;
 
   initializeWeek() {

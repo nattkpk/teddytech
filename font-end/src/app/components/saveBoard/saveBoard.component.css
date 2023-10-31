@@ -12,7 +12,7 @@
 
 .save-card {
   width: 50vw;
-  height: 30vh;
+  height: 50vh;
   background-color: #ffffff;
   border-radius: 20px;
   display: flex;
@@ -21,12 +21,13 @@
 
 .save-input {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgb(241, 241, 241);
+  background-color: rgb(228, 228, 228);
   border-radius: 0px 0px 20px 20px ;
   width: 50vw;
-  height: 30vh;
+  height: 50vh;
 }
 
 .btn {
@@ -48,4 +49,49 @@
     background-color: #ececec;
     transition: 0.2s;
 }
+
+label{
+    display: flex;
+    font-size: 20px;
+    margin: 10px;
+}
+
+input{
+    padding: 0px 10px;
+    border-radius: 10px;
+    border: 0px;
+    background-color: #ffffff;
+}
+
+textarea{
+    padding: 0px 10px;
+    border-radius: 10px;
+    border: 0px;
+    background-color: #ffffff;
+    
+    height: 15vh;
+    min-height: 15vh;
+    max-height: 15vh;
+}
+
+.btn-save {
+    position: absolute;
+    bottom: 25vh;
+    color: #fff;
+    padding: 10px 20px;
+    background-color: #a1c554;
+    border: none;
+    cursor: pointer;
+    margin: 10px;
+    align-self: center;
+    width: 10%;
+    transition: 0.2s;
+  }
+
+.btn-save:hover{
+    transition: 0.2s;
+    background-color: #90b148;
+}
+  
+
 

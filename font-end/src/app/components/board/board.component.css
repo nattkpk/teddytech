@@ -677,10 +677,6 @@ td{
   box-shadow: 2px 2px 1px rgba(192, 192, 192, 0.75);
 }
 
-.btn_save {
-  background-color: #a1c554;
-}
-
 .btn_edit {
   background-color: #58b8eb;
   color: #ffffff;
@@ -728,6 +724,14 @@ td{
   background-color: #f1c68a;
 }
 
+
+.btn_save {
+  background-color: #a1c554;
+}
+
+.btn_save:hover {
+  background-color: #90b148;
+}
 
 
 /* ------------------responsive อาจไม่ทำ------------------ */

@@ -9,8 +9,25 @@
           <i class="fa-solid fa-caret-left"></i>&ensp;Back
         </button>
         <div class="save-input">
-            <label for="week">Select week :&ensp;<input id="week" type="week" name="week" [(ngModel)]="currentWeek" /></label>
-            
+          <label for="week"
+            >Select week :&ensp;<input
+              id="week"
+              type="week"
+              name="week"
+              [(ngModel)]="currentWeek"
+          /></label>
+          <label for="note"
+            >Note :&ensp;<textarea
+              maxlength="60"
+              id="note"
+              type="note"
+              name="note"
+              [(ngModel)]="note"
+            ></textarea>
+          </label>
+          <button class="btn btn-save">
+           Save&ensp;<i class="fa-solid fa-floppy-disk"></i>
+          </button>
         </div>
       </div>
     </div>
