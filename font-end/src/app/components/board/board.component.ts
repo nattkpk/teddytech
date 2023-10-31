@@ -284,7 +284,7 @@ export class Board {
     'Friday',
     'Saturday',
   ];
-  currentday = 0;
+  currentday = 1;
 
   addPoint(index: number) {
     switch (this.currentday) {
