@@ -165,11 +165,12 @@ export class Board {
   }
 
   addActivity(index: number) {
+    const stickerIndex = index+((this.currentPage-1)*this.itemsPerPage)
     for (let i = 0; i < this.activity_sticked.length; i++) {
       if (!this.activity_sticked[i].imageUrl) {
         this.activity_sticked[i] = {
-          text: this.activityData[index].text,
-          imageUrl: this.activityData[index].imageUrl,
+          text: this.activityData[stickerIndex].text,
+          imageUrl: this.activityData[stickerIndex].imageUrl,
         };
         this.updateActivityData();
         break;
@@ -287,16 +288,17 @@ export class Board {
   currentday = 1;
 
   addPoint(index: number) {
+    const stickerIndex = index+((this.currentPage-1)*this.itemsPerPage)
     switch (this.currentday) {
       case 0:
         for (let i = 0; i < this.sun_sticked.length; i++) {
           if (!this.sun_sticked[i].icon) {
             this.sun_sticked[i] = {
-              icon: this.pointData[index].icon,
-              bgImage: this.pointData[index].bgImage,
-              point: this.pointData[index].point,
+              icon: this.pointData[stickerIndex].icon,
+              bgImage: this.pointData[stickerIndex].bgImage,
+              point: this.pointData[stickerIndex].point,
             };
-            this.calculate_point(index);
+            this.calculate_point(stickerIndex);
             this.updateSunData();
             break;
           }
@@ -306,11 +308,11 @@ export class Board {
         for (let i = 0; i < this.mon_sticked.length; i++) {
           if (!this.mon_sticked[i].icon) {
             this.mon_sticked[i] = {
-              icon: this.pointData[index].icon,
-              bgImage: this.pointData[index].bgImage,
-              point: this.pointData[index].point,
+              icon: this.pointData[stickerIndex].icon,
+              bgImage: this.pointData[stickerIndex].bgImage,
+              point: this.pointData[stickerIndex].point,
             };
-            this.calculate_point(index);
+            this.calculate_point(stickerIndex);
             this.updateMonData();
             break;
           }
@@ -320,11 +322,11 @@ export class Board {
         for (let i = 0; i < this.tue_sticked.length; i++) {
           if (!this.tue_sticked[i].icon) {
             this.tue_sticked[i] = {
-              icon: this.pointData[index].icon,
-              bgImage: this.pointData[index].bgImage,
-              point: this.pointData[index].point,
+              icon: this.pointData[stickerIndex].icon,
+              bgImage: this.pointData[stickerIndex].bgImage,
+              point: this.pointData[stickerIndex].point,
             };
-            this.calculate_point(index);
+            this.calculate_point(stickerIndex);
             this.updateThuData();
             break;
           }
@@ -334,11 +336,11 @@ export class Board {
         for (let i = 0; i < this.wed_sticked.length; i++) {
           if (!this.wed_sticked[i].icon) {
             this.wed_sticked[i] = {
-              icon: this.pointData[index].icon,
-              bgImage: this.pointData[index].bgImage,
-              point: this.pointData[index].point,
+              icon: this.pointData[stickerIndex].icon,
+              bgImage: this.pointData[stickerIndex].bgImage,
+              point: this.pointData[stickerIndex].point,
             };
-            this.calculate_point(index);
+            this.calculate_point(stickerIndex);
             this.updateWednData();
             break;
           }
@@ -348,11 +350,11 @@ export class Board {
         for (let i = 0; i < this.thu_sticked.length; i++) {
           if (!this.thu_sticked[i].icon) {
             this.thu_sticked[i] = {
-              icon: this.pointData[index].icon,
-              bgImage: this.pointData[index].bgImage,
-              point: this.pointData[index].point,
+              icon: this.pointData[stickerIndex].icon,
+              bgImage: this.pointData[stickerIndex].bgImage,
+              point: this.pointData[stickerIndex].point,
             };
-            this.calculate_point(index);
+            this.calculate_point(stickerIndex);
             this.updateThuData();
             break;
           }
@@ -362,11 +364,11 @@ export class Board {
         for (let i = 0; i < this.fri_sticked.length; i++) {
           if (!this.fri_sticked[i].icon) {
             this.fri_sticked[i] = {
-              icon: this.pointData[index].icon,
-              bgImage: this.pointData[index].bgImage,
-              point: this.pointData[index].point,
+              icon: this.pointData[stickerIndex].icon,
+              bgImage: this.pointData[stickerIndex].bgImage,
+              point: this.pointData[stickerIndex].point,
             };
-            this.calculate_point(index);
+            this.calculate_point(stickerIndex);
             this.updateFriData();
             break;
           }
@@ -376,11 +378,11 @@ export class Board {
         for (let i = 0; i < this.sat_sticked.length; i++) {
           if (!this.sat_sticked[i].icon) {
             this.sat_sticked[i] = {
-              icon: this.pointData[index].icon,
-              bgImage: this.pointData[index].bgImage,
-              point: this.pointData[index].point,
+              icon: this.pointData[stickerIndex].icon,
+              bgImage: this.pointData[stickerIndex].bgImage,
+              point: this.pointData[stickerIndex].point,
             };
-            this.calculate_point(index);
+            this.calculate_point(stickerIndex);
             this.updateSatData();
             break;
           }
@@ -520,10 +522,11 @@ export class Board {
   }
 
   addPraise(index: number) {
+    const stickerIndex = index+((this.currentPage-1)*this.itemsPerPage)
     for (let i = 0; i < this.praise_sticked.length; i++) {
       if (this.praise_sticked[i].text == '') {
         this.praise_sticked[i] = {
-          text: this.praise_data[index].text,
+          text: this.praise_data[stickerIndex].text,
         };
         this.updatepraiseData();
         break;
@@ -565,10 +568,11 @@ export class Board {
   }
 
   addFeeling(index: number) {
+    const stickerIndex = index+((this.currentPage-1)*this.itemsPerPage)
     for (let i = 0; i < this.feeling_sticked.length; i++) {
       if (this.feeling_sticked[i].text == '') {
         this.feeling_sticked[i] = {
-          text: this.feelingData[index].text,
+          text: this.feelingData[stickerIndex].text,
         };
         this.updatefeelingData();
         break;
@@ -609,11 +613,12 @@ export class Board {
   }
 
   addReward(index: number) {
+    const stickerIndex = index+((this.currentPage-1)*this.itemsPerPage)
     for (let i = 0; i < this.reward_sticked.length; i++) {
       if (this.reward_sticked[i].text == '') {
         this.reward_sticked[i] = {
-          text: this.rewardData[index].text,
-          imageUrl: this.rewardData[index].imageUrl,
+          text: this.rewardData[stickerIndex].text,
+          imageUrl: this.rewardData[stickerIndex].imageUrl,
         };
         this.updaterewardData();
         break;

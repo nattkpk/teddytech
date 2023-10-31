@@ -13,6 +13,7 @@ import { EditReward } from './components/editRewardSticker/editReward.component'
 import { EditFeeling } from './components/editFeelingSticker/editFeeling.component';
 import { EditPraise } from './components/editPraiseSticker/editPraise.component';
 import { EditPoint } from './components/editPointSticker/editPoint.component';
+import { History } from './components/history/history.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { EditPoint } from './components/editPointSticker/editPoint.component';
     EditReward ,
     EditFeeling ,
     EditPraise,
-    EditPoint
+    EditPoint,
+    History
   ],
   imports: [
     FormsModule,

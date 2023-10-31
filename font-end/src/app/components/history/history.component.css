@@ -1,0 +1,86 @@
+
+.container{
+    display: flex;
+    justify-content: center;
+}
+
+.container-board .nav-link {
+    color: #BB7979;
+    background-color: #EFCCCC;
+    font-size: 24px;
+  }
+  
+  .container-board .nav-link.active {
+    color: #BB7979; 
+    background-color: #FFDDDD;
+  }
+  
+  .container-board{
+    border-radius: 20px;
+    background-color: #EFCCCC;
+    margin: 20px 5px 20px 5px;
+    width: 72vw;
+    height: 830px;
+  }
+  
+  .history-container{
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+  }
+
+  .history-card{
+    background-color: #fde2e2;
+    margin: 10px;
+    border-radius: 20px;
+    width: 50vw;
+    height: 180px;
+  }
+
+  .history-card h5{
+    padding: 10px 3px 10px 20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    display: flex;
+    justify-content: start;
+    background-color: #fbf0f0;
+    color: #8E3535;
+    border-radius: 20px;
+  }
+
+  .history-info{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 140px;
+    color: #5f3737;  
+}
+
+  .column{
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    width: 20vw;
+  }
+
+  .column .fa-circle-check{
+    color: #6fa34f;
+  }
+
+  .column .fa-circle-xmark{
+    color: #c25959;
+  }
+
+  .column-arrow{
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    width: 3vw;
+  }
+
+  .column-arrow i{
+    font-size: 30px;
+  }
+
+
+  
