@@ -1,11 +1,21 @@
 .transparent-container {
     background-color: rgba(255, 255, 255, 0.448); /* Transparent white */
     padding: 50px;
-    max-width: 1200px;
+    max-width: 1000px;
     border-radius: 15px;
     margin-top: 20px;
   }
-  .card{
+  .cardProfile{
+    background-color: lightgreen;
+    border-radius: 15px;
+    z-index: 0;
+  }
+  .cardMedium{
+    background-color: lightgreen;
+    border-radius: 15px;
+    z-index: 0;
+  }
+  .cardLenge{
     background-color: lightgreen;
     border-radius: 15px;
     z-index: 0;
@@ -18,37 +28,80 @@
     object-fit: cover; 
   }
 
-  .taskPoint{
-    background-color: bisque;
+  .progre{
+    margin-left: 5px;
+  }
+
+
+
+
+
+  .name{
+    margin-left: -5px;
     border-radius: 15px;
-    height: 130px;
-  }
-
-  .btn-block{
-    margin-top: -30px;
-    z-index: 1;
-  }
-
-  .kid-name{
     background-color: bisque;
-    border-radius: 15px;
+    width:160px;
+    height: 35px;
   }
 
-  .edit-profile-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 999; 
-    background: rgba(0, 0, 0, 0.5); 
+  .name {
+    padding: 10px 0 0 10px;
   }
+
+  .pen{
+    padding-top: 10px;
+
+  }
+
+
+
 .col-lg-6 {
 	border: 1px solid red;
-	min-height: 200px;
+	min-height: 160px;
 }
 
 .col-lg-12 {
 	border: 1px solid blue;
-	min-height: 200px;
+	min-height: 160px;
 }
+
+.col{
+  border: 1px solid green;
+}
+
+
+ 
+.taskPoint{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: bisque;
+  border-radius: 15px;
+  text-align: center;
+  height: 130px;
+}
+
+.cx{
+  margin-bottom: -6px;
+}
+
+.cv{
+  margin-top: -12px;
+}
+
+
+
+
+.edit-profile-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999; 
+  background: rgba(0, 0, 0, 0.5); 
+}
+
+
