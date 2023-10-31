@@ -1,21 +1,51 @@
 /* save */
 
 .save-container {
-    position: absolute;
-    position:relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* กำหนดความสูงให้เท่ากับความสูงของหน้าจอ */
-    overflow-y: auto;
-  }
-  
-  .save-input {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50vw;
-    height: 30vh;
-    background-color: #ffffff;
-    border-radius: 20px;
-  }
+  position: absolute;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* กำหนดความสูงให้เท่ากับความสูงของหน้าจอ */
+  overflow-y: auto;
+}
+
+.save-card {
+  width: 50vw;
+  height: 30vh;
+  background-color: #ffffff;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.save-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(241, 241, 241);
+  border-radius: 0px 0px 20px 20px ;
+  width: 50vw;
+  height: 30vh;
+}
+
+.btn {
+  align-self: flex-start;
+  background-color: #ffffff;
+  color: #494949;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  margin-left: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  width: 100px;
+  transition: 0.2s;
+}
+
+.btn:hover{
+    background-color: #ececec;
+    transition: 0.2s;
+}
+

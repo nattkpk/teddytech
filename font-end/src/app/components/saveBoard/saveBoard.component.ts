@@ -15,7 +15,29 @@ export class SaveBoard {
     private user_repository: UserRepository,
     private userDataService: UserDataService,
     private sticker_service: StickerDataService
-  ) {}
+  ) {
+    this.currentWeek = '';
+    this.initializeWeek();
+  }
+
+  currentWeek: string;
+
+  initializeWeek() {
+    // Get the current date
+    const currentDate = new Date();
+
+    // Calculate the week number based on the date
+    const januaryFirst = new Date(currentDate.getFullYear(), 0, 1);
+    const days = Math.floor(
+      (currentDate.getTime() - januaryFirst.getTime()) / (24 * 60 * 60 * 1000)
+    );
+    const currentWeek = Math.ceil((days + januaryFirst.getDay() + 1) / 7);
+
+    // Format the year and week as "yyyy-Www"
+    this.currentWeek = `${currentDate.getFullYear()}-W${currentWeek
+      .toString()
+      .padStart(2, '0')}`;
+  }
 
   saveAlert() {
     // Swal.fire({

@@ -4,8 +4,14 @@
 
   <body>
     <div class="save-container">
-      <div class="save-input">
-        <input type="week" />
+      <div class="save-card">
+        <button class="btn" routerLink="/board">
+          <i class="fa-solid fa-caret-left"></i>&ensp;Back
+        </button>
+        <div class="save-input">
+            <label for="week">Select week :&ensp;<input id="week" type="week" name="week" [(ngModel)]="currentWeek" /></label>
+            
+        </div>
       </div>
     </div>
   </body>
