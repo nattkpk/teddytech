@@ -70,41 +70,7 @@
             </li>
           </ul>
 
-          <!-- Sunday -->
-          <ul class="stickto">
-            <li>
-              <div class="col-title sun" (click)="currentday = 0">
-                <p>Sun.</p>
-              </div>
-              <div
-                class="day"
-                [class.border-sun]="currentday == 0"
-                cdkDropList
-                [cdkDropListData]="sun_sticked"
-                (cdkDropListDropped)="dropSticker($event)"
-              >
-                <div
-                  [class.center-sticker]="item.icon"
-                  [class.point-sticker]="item.icon"
-                  [class.stickArea]="!item.icon"
-                  [class.sunday-stick]="!item.icon"
-                  cdkDrag
-                  cdkDragBoundary=".stickto"
-                  *ngFor="let item of sun_sticked; let i = index"
-                  (dblclick)="deletePoint(i)"
-                  [style.background-image]="
-                    item.bgImage
-                      ? 'url(' + item.bgImage + ')'
-                      : 'url(' + addBg + ')'
-                  "
-                >
-                  <img src="{{ item.icon }}" alt="" class="icon" />
-                  <p *ngIf="item.point">{{ item.point }} pts</p>
-                </div>
-              </div>
-            </li>
-          </ul>
-
+          
           <!-- Monday -->
           <ul class="stickto">
             <li>
@@ -315,6 +281,42 @@
             </li>
           </ul>
 
+          <!-- Sunday -->
+          <ul class="stickto">
+            <li>
+              <div class="col-title sun" (click)="currentday = 0">
+                <p>Sun.</p>
+              </div>
+              <div
+                class="day"
+                [class.border-sun]="currentday == 0"
+                cdkDropList
+                [cdkDropListData]="sun_sticked"
+                (cdkDropListDropped)="dropSticker($event)"
+              >
+                <div
+                  [class.center-sticker]="item.icon"
+                  [class.point-sticker]="item.icon"
+                  [class.stickArea]="!item.icon"
+                  [class.sunday-stick]="!item.icon"
+                  cdkDrag
+                  cdkDragBoundary=".stickto"
+                  *ngFor="let item of sun_sticked; let i = index"
+                  (dblclick)="deletePoint(i)"
+                  [style.background-image]="
+                    item.bgImage
+                      ? 'url(' + item.bgImage + ')'
+                      : 'url(' + addBg + ')'
+                  "
+                >
+                  <img src="{{ item.icon }}" alt="" class="icon" />
+                  <p *ngIf="item.point">{{ item.point }} pts</p>
+                </div>
+              </div>
+            </li>
+          </ul>
+
+
           <div class="btn-clear-board">
             <button class="btn btn_act" (click)="clear_activity()">
               <i class="fa-solid fa-xmark"></i>&ensp;Clear Activity
@@ -323,8 +325,14 @@
               <i class="fa-solid fa-xmark"></i>&ensp;Clear Poins
             </button>
           </div>
+
+
         </div>
+
+        
       </div>
+
+      
 
       <!--------------------------------stickerBoard----------------------------------->
 

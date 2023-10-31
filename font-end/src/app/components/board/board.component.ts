@@ -660,6 +660,7 @@ export class Board {
   change_pointA() {
     Swal.fire({
       title: 'Change Point',
+      text: '1-100',
       input: 'number',
       inputAttributes: {
         autocapitalize: 'off',
@@ -673,26 +674,40 @@ export class Board {
       showLoaderOnConfirm: true,
       preConfirm: (newValue) => {
         if (newValue == '') {
-          this.pointA = 0;
-        } else {
+          Swal.fire({
+            icon: "error",
+            title: 'min point is 1',
+            text: 'Try again',
+            confirmButtonColor: '#A1C554',
+          });
+          return;
+        } else if(newValue > 100){
+          Swal.fire({
+            icon: "error",
+            title: 'max point is 100',
+            text: 'Try again',
+            confirmButtonColor: '#A1C554',
+          });
+          return;
+        }
+        else {
           this.pointA = newValue;
+            Swal.fire({
+            title: 'Point Updated',
+            confirmButtonColor: '#A1C554',
+            });
+            this.updatePointA();
         }
       },
-      allowOutsideClick: () => !Swal.isLoading(),
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire({
-          title: 'Point Updated',
-          confirmButtonColor: '#A1C554',
-        });
-        this.updatePointA();
-      }
-    });
+    })
   }
+
+
 
   change_pointB() {
     Swal.fire({
       title: 'Change Point',
+      text: '1-100',
       input: 'number',
       inputAttributes: {
         autocapitalize: 'off',
@@ -706,21 +721,32 @@ export class Board {
       showLoaderOnConfirm: true,
       preConfirm: (newValue) => {
         if (newValue == '') {
-          this.pointB = 0;
-        } else {
+          Swal.fire({
+            icon: "error",
+            title: 'min point is 1',
+            text: 'Try again',
+            confirmButtonColor: '#A1C554',
+          });
+        } else if(newValue > 100){
+          Swal.fire({
+            icon: "error",
+            title: 'max point is 100',
+            text: 'Try again',
+            confirmButtonColor: '#A1C554',
+          });
+          return;
+        }
+        else {
           this.pointB = newValue;
+          Swal.fire({
+            title: 'Point Updated',
+            confirmButtonColor: '#A1C554',
+          });
+          this.updatePointB();
         }
       },
-      allowOutsideClick: () => !Swal.isLoading(),
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire({
-          title: 'Point Updated',
-          confirmButtonColor: '#A1C554',
-        });
-        this.updatePointB();
-      }
-    });
+     
+    })
   }
   calculate_point(index: number) {
     if (this.now_points < this.pointA && this.rewardA == true) {
