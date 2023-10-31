@@ -14,6 +14,7 @@ import { EditFeeling } from './components/editFeelingSticker/editFeeling.compone
 import { EditPraise } from './components/editPraiseSticker/editPraise.component';
 import { EditPoint } from './components/editPointSticker/editPoint.component';
 import { History } from './components/history/history.component';
+import { SaveBoard } from './components/saveBoard/saveBoard.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { History } from './components/history/history.component';
     EditFeeling ,
     EditPraise,
     EditPoint,
+    SaveBoard,
     History
   ],
   imports: [

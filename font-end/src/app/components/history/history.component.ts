@@ -1,6 +1,4 @@
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component } from '@angular/core';
-import { PointSticker} from 'src/app/models/userModel/user.model';
 import { UserRepository } from 'src/app/models/userModel/user.repository';
 import { UserDataService } from 'src/app/services/user-data.service';
 import { StickerDataService } from 'src/app/services/sticker-data.service';

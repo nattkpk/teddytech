@@ -7,6 +7,7 @@ import { EditFeeling } from './components/editFeelingSticker/editFeeling.compone
 import { EditPraise } from './components/editPraiseSticker/editPraise.component';
 import { EditPoint } from './components/editPointSticker/editPoint.component';
 import { History } from './components/history/history.component';
+import { SaveBoard } from './components/saveBoard/saveBoard.component';
 
 const routes: Routes = [
   { path: 'board', component: Board },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'edit_feeling_sticker', component: EditFeeling },
   { path: 'edit_praise_sticker', component: EditPraise },
   { path: 'edit_point_sticker', component: EditPoint },
+  { path: 'save_board', component: SaveBoard },
   { path: 'history', component: History },
   { path: '**', redirectTo: '/board' },
 ];

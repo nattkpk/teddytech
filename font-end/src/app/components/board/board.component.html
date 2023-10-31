@@ -3,7 +3,7 @@
   <head> </head>
 
   <body>
-    <div class="containerAll" cdkDropListGroup>
+    <div class="containerAll" cdkDropListGroup> 
       <div class="container-board">
         <ul class="nav nav-tabs">
           <li class="nav-item">
@@ -11,16 +11,18 @@
               class="nav-link active"
               aria-current="page"
               href="javascript:void"
-              >Board&ensp;<i class="fa-solid fa-chalkboard"></i></a
-            >
+              >Board&ensp;<i class="fa-solid fa-chalkboard"></i
+            ></a>
           </li>
 
           <li class="nav-item">
-            <a 
+            <a
               routerLink="/history"
-              class="nav-link" aria-current="page" href="javascript:void"
-              >History&ensp;<i class="fa-solid fa-clock-rotate-left"></i></a
-            >
+              class="nav-link"
+              aria-current="page"
+              href="javascript:void"
+              >History&ensp;<i class="fa-solid fa-clock-rotate-left"></i
+            ></a>
           </li>
         </ul>
 
@@ -72,7 +74,6 @@
             </li>
           </ul>
 
-          
           <!-- Monday -->
           <ul class="stickto">
             <li>
@@ -318,7 +319,6 @@
             </li>
           </ul>
 
-
           <div class="btn-clear-board">
             <button class="btn btn_act" (click)="clear_activity()">
               <i class="fa-solid fa-xmark"></i>&ensp;Clear Activity
@@ -326,15 +326,12 @@
             <button class="btn btn_pts" (click)="clear_point()">
               <i class="fa-solid fa-xmark"></i>&ensp;Clear Poins
             </button>
+            <button class="btn btn_save" routerLink="/save_board">
+              <i class="fa-solid fa-floppy-disk"></i>&ensp;Save!
+            </button>
           </div>
-
-
         </div>
-
-        
       </div>
-
-      
 
       <!--------------------------------stickerBoard----------------------------------->
 
@@ -439,13 +436,13 @@
               Next Page&ensp;<i class="fa-solid fa-caret-right"></i>
             </button>
           </div>
-          
-          <div class="d-flex align-items-end justify-content-center  my-1">
+
+          <div class="d-flex align-items-end justify-content-center my-1">
             <button class="btn_edit" routerLink="/edit_activity_sticker">
-              <i class="fa-solid fa-pencil"></i>&ensp;Edit&ensp;Activity&ensp;Sticker
+              <i class="fa-solid fa-pencil"></i
+              >&ensp;Edit&ensp;Activity&ensp;Sticker
             </button>
           </div>
-    
         </div>
 
         <!-- ----------------------- Praise ------------------------------------>
@@ -487,13 +484,13 @@
               Next Page&ensp;<i class="fa-solid fa-caret-right"></i>
             </button>
           </div>
-          
-          <div class="d-flex align-items-end justify-content-center  my-1">
+
+          <div class="d-flex align-items-end justify-content-center my-1">
             <button class="btn_edit" routerLink="/edit_praise_sticker">
-              <i class="fa-solid fa-pencil"></i>&ensp;Edit&ensp;Praise&ensp;Sticker
+              <i class="fa-solid fa-pencil"></i
+              >&ensp;Edit&ensp;Praise&ensp;Sticker
             </button>
           </div>
-
         </div>
 
         <!-- ----------------------- Feeling ------------------------------------>
@@ -535,12 +532,12 @@
             </button>
           </div>
 
-          <div class="d-flex align-items-end justify-content-center  my-1">
+          <div class="d-flex align-items-end justify-content-center my-1">
             <button class="btn_edit" routerLink="/edit_feeling_sticker">
-              <i class="fa-solid fa-pencil"></i>&ensp;Edit&ensp;Feeling&ensp;Sticker
+              <i class="fa-solid fa-pencil"></i
+              >&ensp;Edit&ensp;Feeling&ensp;Sticker
             </button>
           </div>
-
         </div>
         <!-- ----------------------- Point ------------------------------------>
 
@@ -593,12 +590,12 @@
             </button>
           </div>
 
-          <div class="d-flex align-items-end justify-content-center  my-1">
+          <div class="d-flex align-items-end justify-content-center my-1">
             <button class="btn_edit" routerLink="/edit_point_sticker">
-              <i class="fa-solid fa-pencil"></i>&ensp;Edit&ensp;Point&ensp;Sticker
+              <i class="fa-solid fa-pencil"></i
+              >&ensp;Edit&ensp;Point&ensp;Sticker
             </button>
           </div>
-
         </div>
 
         <!-- ----------------------- Reward ------------------------------------>
@@ -614,7 +611,10 @@
               class="sticker"
               cdkDrag
               cdkDragBoundary=".stickers-container"
-              *ngFor="let item of getRewardDataForPage(currentPage); let i = index"
+              *ngFor="
+                let item of getRewardDataForPage(currentPage);
+                let i = index
+              "
               [style.color]="reward_fontColor"
               [style.background-image]="'url(' + rewardBg + ')'"
               (click)="addReward(i)"
@@ -640,12 +640,12 @@
             </button>
           </div>
 
-          <div class="d-flex align-items-end justify-content-center  my-1">
-            <button class="btn_edit"  routerLink="/edit_reward_sticker">
-              <i class="fa-solid fa-pencil"></i>&ensp;Edit&ensp;Reward&ensp;Sticker
+          <div class="d-flex align-items-end justify-content-center my-1">
+            <button class="btn_edit" routerLink="/edit_reward_sticker">
+              <i class="fa-solid fa-pencil"></i
+              >&ensp;Edit&ensp;Reward&ensp;Sticker
             </button>
           </div>
-
         </div>
         <!-- ------------------------------------------------------- -->
       </div>
