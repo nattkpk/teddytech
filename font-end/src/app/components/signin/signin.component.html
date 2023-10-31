@@ -10,13 +10,9 @@
         <input type="password" placeholder="Confirm password" [(ngModel)]="checkPassword" name="checkPassword" required />
         <button type="submit">Signup</button>
       </form>
-      <span>or signup with</span>
-      <div class="socials">
-        <i class="fab fa-facebook-f"></i>
-        <i class="fab fa-google-g"></i>
-        
-      </div>
     </div>
+
+
 
     <div class="form-control signin-form">
       <form (submit)="login()">
@@ -25,11 +21,6 @@
         <input type="password" placeholder="Password" [(ngModel)]="password" name="password" required />
         <button type="submit">Signin</button>
       </form>
-      <span>or signin with</span>
-      <div class="socials">
-        <i class="fab fa-facebook-f"></i>
-        <i class="fab fa-google-g"></i>
-      </div>
     </div>
   </div>
 
@@ -50,7 +41,6 @@
             We are so excited to have you here.If you haven't already, create an account to get access to exclusive offers, rewards, and discounts.
           </p>
           <button id="signin-btn" (click)="toggleChangeClass()">Already have an account? Signin.</button>
-
         </div>
       </div>
     </div>
