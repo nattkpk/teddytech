@@ -33,7 +33,7 @@
           >
             <h5>Date : {{ item.startDate }}&ensp;-&ensp;{{ item.endDate }}</h5>
 
-            <div class="history-info">
+            <div class="history-info" (click)="checkBoard(i)">
               <div class="column">
                 <p>All points collected : {{ item.allpoint }} pts</p>
                 <p>Note : {{ item.note }}</p>

@@ -8,6 +8,7 @@ import { EditPraise } from './components/editPraiseSticker/editPraise.component'
 import { EditPoint } from './components/editPointSticker/editPoint.component';
 import { History } from './components/history/history.component';
 import { SaveBoard } from './components/saveBoard/saveBoard.component';
+import { HistoryBoard } from './components/historyBoard/historyBoard.component';
 
 const routes: Routes = [
   { path: 'board', component: Board },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'edit_point_sticker', component: EditPoint },
   { path: 'save_board', component: SaveBoard },
   { path: 'history', component: History },
+  { path: 'history_board', component: HistoryBoard },
   { path: '**', redirectTo: '/board' },
 ];
 

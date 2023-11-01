@@ -3,7 +3,8 @@ import { UserRepository } from 'src/app/models/userModel/user.repository';
 import { UserDataService } from 'src/app/services/user-data.service';
 import { StickerDataService } from 'src/app/services/sticker-data.service';
 import Swal from 'sweetalert2';
-import { ConnectionClosedEvent } from 'mongodb';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'history',
@@ -12,6 +13,7 @@ import { ConnectionClosedEvent } from 'mongodb';
 })
 export class History {
   constructor(
+    private router: Router,
     private user_repository: UserRepository,
     private userDataService: UserDataService,
     private sticker_service: StickerDataService
@@ -98,6 +100,12 @@ export class History {
         if (index >= 0 && index < this.historyData.length) {
           this.historyData.splice(index, 1);
         }
+      }
+
+    checkBoard(index: number){
+        const chooseIndex = index+((this.currentPage-1)*this.itemsPerPage)
+        this.sticker_service.setHistoryIndex(chooseIndex);
+        this.router.navigate(['/history_board']);
       }
 
 }

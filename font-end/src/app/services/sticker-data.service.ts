@@ -229,4 +229,14 @@ export class StickerDataService {
     return this.rewardIcon;
   }
 
+  // -------------------------- history ------------------------------
+  historyIndex = 0;
+  setHistoryIndex(index:number){
+    this.historyIndex = index;
+  }
+
+  getHistoryIndex(){
+    return this.historyIndex;
+  }
+
 }

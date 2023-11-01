@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+
+  <body>
+    <div class="containerAll">
+    <div class="container-board">
+        <button class="btn" routerLink="/history">
+            <i class="fa-solid fa-caret-left"></i>&ensp;Back
+          </button>
+          <h5>{{startDate}}&ensp;-&ensp;{{endDate}}</h5>
+        <div class="areaStick">
+          <ul class="stickto">
+            <li>
+              <div class="col-title activity">
+                <p>Activity</p>
+              </div>
+              <div
+                class="day border-activity"
+              >
+                <div
+                  [class.center-sticker]="item.imageUrl"
+                  [class.sticker]="item.imageUrl"
+                  [class.stickArea]="!item.imageUrl"
+                  [class.activity-stick]="!item.imageUrl"
+                  *ngFor="let item of activity_sticked; let i = index"
+                  [style.color]="activity_fontColor"
+                  [style.background-image]="
+                    item.imageUrl
+                      ? 'url(' + activityBg + ')'
+                      : 'url(' + addBg + ')'
+                  "
+                >
+                  <p class="textSticker">{{ item.text }}</p>
+                  <img [src]="item.imageUrl" alt="" class="icon" />
+                </div>
+              </div>
+            </li>
+          </ul>
+
+          <!-- Monday -->
+          <ul class="stickto">
+            <li>
+              <div class="col-title mon">
+                <p>Mon.</p>
+              </div>
+              <div
+                class="day"
+              >
+                <div
+                  [class.center-sticker]="item.icon"
+                  [class.point-sticker]="item.icon"
+                  [class.stickArea]="!item.icon"
+                  [class.mon-stick]="!item.icon"
+                  *ngFor="let item of mon_sticked; let i = index"
+                  [style.background-image]="
+                    item.bgImage
+                      ? 'url(' + item.bgImage + ')'
+                      : 'url(' + addBg + ')'
+                  "
+                >
+                  <img src="{{ item.icon }}" alt="" class="icon" />
+                  <p *ngIf="item.point">{{ item.point }} pts</p>
+                </div>
+              </div>
+            </li>
+          </ul>
+
+          <!-- Tuesday -->
+          <ul class="stickto">
+            <li>
+              <div class="col-title tue">
+                <p>Tue.</p>
+              </div>
+              <div
+                class="day"
+                
+              >
+                <div
+                  [class.center-sticker]="item.icon"
+                  [class.point-sticker]="item.icon"
+                  [class.stickArea]="!item.icon"
+                  [class.tue-stick]="!item.icon"
+                  *ngFor="let item of tue_sticked; let i = index"
+                  [style.background-image]="
+                    item.bgImage
+                      ? 'url(' + item.bgImage + ')'
+                      : 'url(' + addBg + ')'
+                  "
+                >
+                  <img src="{{ item.icon }}" alt="" class="icon" />
+                  <p *ngIf="item.point">{{ item.point }} pts</p>
+                </div>
+              </div>
+            </li>
+          </ul>
+
+          <!-- Wednesday -->
+          <ul class="stickto">
+            <li>
+              <div class="col-title wed">
+                <p>Wed.</p>
+              </div>
+              <div
+                class="day"
+                
+              >
+                <div
+                  [class.center-sticker]="item.icon"
+                  [class.point-sticker]="item.icon"
+                  [class.stickArea]="!item.icon"
+                  [class.wed-stick]="!item.icon"
+                  *ngFor="let item of wed_sticked; let i = index"
+                  [style.background-image]="
+                    item.bgImage
+                      ? 'url(' + item.bgImage + ')'
+                      : 'url(' + addBg + ')'
+                  "
+                >
+                  <img src="{{ item.icon }}" alt="" class="icon" />
+                  <p *ngIf="item.point">{{ item.point }} pts</p>
+                </div>
+              </div>
+            </li>
+          </ul>
+
+          <!-- Thursday -->
+          <ul class="stickto">
+            <li>
+              <div class="col-title thu">
+                <p>Thu.</p>
+              </div>
+              <div
+                class="day"
+              >
+                <div
+                  [class.center-sticker]="item.icon"
+                  [class.point-sticker]="item.icon"
+                  [class.stickArea]="!item.icon"
+                  [class.thu-stick]="!item.icon"
+                  *ngFor="let item of thu_sticked; let i = index"
+                  [style.background-image]="
+                    item.bgImage
+                      ? 'url(' + item.bgImage + ')'
+                      : 'url(' + addBg + ')'
+                  "
+                >
+                  <img src="{{ item.icon }}" alt="" class="icon" />
+                  <p *ngIf="item.point">{{ item.point }} pts</p>
+                </div>
+              </div>
+            </li>
+          </ul>
+
+          <!-- Friday -->
+          <ul class="stickto">
+            <li>
+              <div class="col-title fri">
+                <p>Fri.</p>
+              </div>
+              <div
+                class="day"
+              >
+                <div
+                  [class.center-sticker]="item.icon"
+                  [class.point-sticker]="item.icon"
+                  [class.stickArea]="!item.icon"
+                  [class.fri-stick]="!item.icon"
+                  *ngFor="let item of fri_sticked; let i = index"
+                  [style.background-image]="
+                    item.bgImage
+                      ? 'url(' + item.bgImage + ')'
+                      : 'url(' + addBg + ')'
+                  "
+                >
+                  <img src="{{ item.icon }}" alt="" class="icon" />
+                  <p *ngIf="item.point">{{ item.point }} pts</p>
+                </div>
+              </div>
+            </li>
+          </ul>
+
+          <!-- Saturday -->
+          <ul class="stickto">
+            <li>
+              <div class="col-title sat">
+                <p>Sat.</p>
+              </div>
+              <div
+                class="day"
+              >
+                <div
+                  [class.center-sticker]="item.icon"
+                  [class.point-sticker]="item.icon"
+                  [class.stickArea]="!item.icon"
+                  [class.sat-stick]="!item.icon"
+                  *ngFor="let item of sat_sticked; let i = index"
+                  [style.background-image]="
+                    item.bgImage
+                      ? 'url(' + item.bgImage + ')'
+                      : 'url(' + addBg + ')'
+                  "
+                >
+                  <img src="{{ item.icon }}" alt="" class="icon" />
+                  <p *ngIf="item.point">{{ item.point }} pts</p>
+                </div>
+              </div>
+            </li>
+          </ul>
+
+          <!-- Sunday -->
+          <ul class="stickto">
+            <li>
+              <div class="col-title sun">
+                <p>Sun.</p>
+              </div>
+              <div
+                class="day"
+              >
+                <div
+                  [class.center-sticker]="item.icon"
+                  [class.point-sticker]="item.icon"
+                  [class.stickArea]="!item.icon"
+                  [class.sunday-stick]="!item.icon"
+                  *ngFor="let item of sun_sticked; let i = index"
+                  [style.background-image]="
+                    item.bgImage
+                      ? 'url(' + item.bgImage + ')'
+                      : 'url(' + addBg + ')'
+                  "
+                >
+                  <img src="{{ item.icon }}" alt="" class="icon" />
+                  <p *ngIf="item.point">{{ item.point }} pts</p>
+                </div>
+              </div>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+
+
+      <div class="container-rewardStickers">
+        <h5>Reward of the week&ensp;<i class="fa-solid fa-award"></i></h5>
+
+        <div
+          class="rewardStickers-sticked"
+        >
+          <div
+            [class.stickArea3]="item.text == ''"
+            [class.Rewardsticker]="item.text != ''"
+            *ngFor="let item of reward_sticked; let i = index"
+            [style.background-image]="
+              item.text != '' ? 'url(' + rewardBg + ')' : 'url(' + addBg + ')'
+            "
+          >
+            <p [style.color]="reward_fontColor" class="textSticker">
+              {{ item.text }}
+            </p>
+            <img src="{{ item.imageUrl }}" alt="" class="icon" />
+          </div>
+        </div>
+        <div class="calpoint">
+          <p>
+            Point :<span>{{ pointA }}</span>
+          </p>
+          <p>
+            Point :<span>{{ pointB }}</span>
+          </p>
+        </div>
+        <div class="calpoint">
+          <p>
+            Collected Point :<span>{{ collectedPoint }}</span>
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </body>
+  
+</html>

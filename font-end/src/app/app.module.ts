@@ -15,6 +15,7 @@ import { EditPraise } from './components/editPraiseSticker/editPraise.component'
 import { EditPoint } from './components/editPointSticker/editPoint.component';
 import { History } from './components/history/history.component';
 import { SaveBoard } from './components/saveBoard/saveBoard.component';
+import { HistoryBoard } from './components/historyBoard/historyBoard.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { SaveBoard } from './components/saveBoard/saveBoard.component';
     EditPraise,
     EditPoint,
     SaveBoard,
-    History
+    History,
+    HistoryBoard
   ],
   imports: [
     FormsModule,
