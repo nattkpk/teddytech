@@ -54,6 +54,21 @@ export class StickerDataService {
       '../../../assets/img/ActivityIcon/trash.png',
       '../../../assets/img/ActivityIcon/triangle.png',
       '../../../assets/img/ActivityIcon/walking-the-dog.png',
+      '../../../assets/img/ActivityIcon/watering-plants.png',
+
+      '../../../assets/img/ActivityIcon/art.png',
+      '../../../assets/img/ActivityIcon/bike.png',
+      '../../../assets/img/ActivityIcon/clean-up.png',
+      '../../../assets/img/ActivityIcon/exercise.png',
+      '../../../assets/img/ActivityIcon/fruits.png',
+      '../../../assets/img/ActivityIcon/guitar.png',
+      '../../../assets/img/ActivityIcon/keyboard.png',
+      '../../../assets/img/ActivityIcon/laundry1.png',
+      '../../../assets/img/ActivityIcon/laundry2.png',
+      '../../../assets/img/ActivityIcon/triangle2.png',
+      '../../../assets/img/ActivityIcon/palette.png',
+      '../../../assets/img/ActivityIcon/vegetables.png',
+
     ];
     //--------------------------- Praise----------------------------
     this.praiseTheme = [

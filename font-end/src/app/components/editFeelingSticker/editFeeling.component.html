@@ -87,7 +87,7 @@
 
     <!-- ------------------------------- Create Sticker -------------------------------------- -->
 
-    <form (ngSubmit)="onSubmit()">
+    <form>
       <div class="container-create" *ngIf="createStickerOn === true">
         <h1>
           Create Feeling Sticker&ensp;<i class="fa-solid fa-circle-plus"></i>
@@ -117,7 +117,7 @@
           <button class="btn btn-cancel" (click)="create_stickerOnOff()">
             Cancel
           </button>
-          <button type="submit" class="btn btn-next">OK</button>
+          <button type="submit" class="btn btn-next" (click)="onSubmit();">OK</button>
         </div>
       </div>
     </form>
