@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
 })
 export class CheckProfileComponent {
 
-  userHasID:boolean = false;
+  userHasID:boolean = true;
 
 }

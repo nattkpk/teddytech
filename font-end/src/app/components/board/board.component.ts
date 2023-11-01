@@ -45,7 +45,7 @@ export class Board {
     this.user_repository
       .getUserById(this.userDataService.getUserId())
       .subscribe((user) => {
-        console.log('User Data:', user);
+        // console.log('User Data:', user);
         this.user = user;
         this.activityData = this.user?.stickers?.activity
           ? this.user.stickers.activity

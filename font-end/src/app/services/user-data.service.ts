@@ -6,16 +6,31 @@ import { Injectable } from '@angular/core';
 })
 export class UserDataService {
   private userId! : string;
+  private userIdKey = 'userId';
+
+  // setUserId(id: string) {
+  //   this.userId = id;
+  // }
+
+  // getUserId(): string {
+  //   return this.userId;
+  // }
 
   setUserId(id: string) {
     this.userId = id;
+    localStorage.setItem(this.userIdKey, this.userId);
   }
 
   getUserId(): string {
+    if (!this.userId) {
+      this.userId = localStorage.getItem(this.userIdKey) || '';
+    }
     return this.userId;
-    // return '653dc1d95075548a7f6a797f'
   }
-
   
+  clearUserId(): void {
+    localStorage.removeItem(this.userIdKey);
+    this.userId = '';
+  }
    
 }

@@ -3,12 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../models/userModel/user.model'; // Import your User model
 
+
 @Injectable()
 export class ApiData {
-  private apiUrl = 'http://localhost:4000'; // Replace with your API URL
+  private apiUrl = 'http://localhost:4000'; 
+ 
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
+
 
   // Fetch users from the API
   getUsers(): Observable<User[]> {
@@ -33,7 +35,7 @@ export class ApiData {
   }
 
   registerUser(newUser: any): Observable<User> {
-    return this.http.post<User>(`${this.apiUrl}/teddyusers/`,newUser);
+    return this.http.post<User>(`${this.apiUrl}/teddyusers`,newUser);
   }
 
   updateUser(userId: string, updatedUser: any): Observable<any> {
