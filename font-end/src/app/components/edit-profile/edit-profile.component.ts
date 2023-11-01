@@ -1,37 +1,43 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import Swal from 'sweetalert2';
 import { UserRepository } from '../../models/userModel/user.repository';
 import { UserDataService } from '../../services/user-data.service';
-import {ProfileService} from '../../services/auth-user.service';
- 
+import { ProfileService } from '../../services/auth-user.service';
+
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
   styleUrls: ['./edit-profile.component.css'],
 })
-export class EditProfileComponent{
+export class EditProfileComponent {
   user: any;
-  id: any; 
-  username = "";
-  email="";
-  password="";
-  kid_age="";
- 
+  id: any;
+  username = '';
+  email = '';
+  password = '';
+  kid_name = '';
+  kid_age: number = 0;
+  fakePassword = '********';
 
   constructor(
     private userRepository: UserRepository,
     private userDataService: UserDataService,
-    private profileService: ProfileService,
+    private profileService: ProfileService
   ) {}
 
   ngOnInit() {
-    // Fetch the user data when the component initializes
-    this.userRepository.getUserById(this.userDataService.getUserId())
+    this.userRepository
+      .getUserById(this.userDataService.getUserId())
       .subscribe((user) => {
-        this.user = user
+        this.user = user;
         this.username = this.user.username;
-        console.log(this.user)
-        console.log(this.username);
+        
+        this.password = this.user.password;
+        this.email = this.user.email;
+        this.kid_name = this.user.kid_name;
+        this.kid_age = this.user.kid_age;
+
+        console.log(this.kid_name);
       });
   }
 
@@ -40,7 +46,7 @@ export class EditProfileComponent{
   }
 
   async confirmEdit(): Promise<void> {
-    const { value: password, isConfirmed } = await Swal.fire({
+    await Swal.fire({
       title: 'Are you sure you want to update your profile?',
       text: 'This action cannot be undone.',
       icon: 'warning',
@@ -53,46 +59,43 @@ export class EditProfileComponent{
       reverseButtons: true,
       confirmButtonColor: '#A1C554',
       cancelButtonColor: '#FC6F6F',
+    }).then((userResult) => {
+      if (userResult.isConfirmed) {
+        if (userResult.value === this.password) {
+          Swal.fire({
+            title: 'Go to the board',
+            icon: 'success',
+            text: 'Success!',
+            confirmButtonColor: '#A1C554',
+          });
+
+          this.updateProfile();
+          this.profileService.updateShowEditProfile(false);
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Incorrect',
+            text: 'Please try again',
+            confirmButtonColor: '#A1C554',
+          });
+        }
+      }
     });
-
-    if (isConfirmed) {
-     
   }
-}
 
-updateProfile(){
-//   const detail: any = {
-//     newUsername: this.newUsername,
-//     newEmail: this.newEmail,
-//     newPassword: this.newPassword,
-//     newKid_age: this.newKid_age,
-//   };
-
-//   const isDone = await this.userRepository.updateUser(this.id, detail, password);
-
-//   if (isDone) {
-//     Swal.fire({
-//       title: 'Profile Updated',
-//       text: 'Your profile has been successfully updated.',
-//       icon: 'success',
-//       confirmButtonText: 'OK',
-//       confirmButtonColor: '#A1C554',
-//     });
-//   } else {
-//     Swal.fire({
-//       title: 'Update failed',
-//       text: 'There was an error updating your profile.',
-//       icon: 'error',
-//       confirmButtonText: 'OK',
-//       confirmButtonColor: '#FC6F6F',
-//     });
-//   }
-// }
-}
-
-  
-
-
-
+  updateProfile() {
+    const updatedUserDetails = {
+      id: this.user.id,
+      username: this.username,
+      password: this.fakePassword,
+      email: this.email,
+      kid_name: this.kid_name,
+      kid_age: this.kid_age,
+    };
+    this.userRepository.updateUserFields(
+      this.userDataService.getUserId(),
+      updatedUserDetails
+    );
+  }
 
 }
