@@ -90,16 +90,12 @@ export class ProfileComponent {
   }
 
   addNewBoard() {
-    Swal.fire({
-      title: 'Clear feeling sticker on the board',
-      text: 'Are you sure?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Yes !',
-      cancelButtonText: 'cancel !',
-      reverseButtons: true,
-      confirmButtonColor: '#A1C554',
-      cancelButtonColor: '#FC6F6F',
-    });
+
+      Swal.fire({
+        title: 'Board Full',
+        text: 'Your board is full. Please subscribe to add more boards.',
+        icon: 'error'
+      });
+
   }
 }

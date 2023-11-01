@@ -24,7 +24,6 @@ export class Signin {
   ) {}
 
   login() {
-    console.log(this.username + this.password);
     const isAuthenticated = this.userRepository.loginUser(
       this.username,
       this.password
@@ -75,7 +74,6 @@ export class Signin {
             confirmButtonText: 'Yes!',
             confirmButtonColor: '#A1C554',
           });
-  
           this.router.navigate(['/board']);
         } else {
           Swal.fire({
