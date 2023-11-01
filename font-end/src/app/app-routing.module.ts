@@ -5,13 +5,13 @@ import { Signin } from './components/signin/signin.component';
 import { HomeComponent } from './components/home/home.component';
 import { HowtouseComponent } from './components/howtouse/howtouse.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { CheckProfileComponent} from './components/check-profile/check-profile.component';
+import { CheckProfileComponent} from './check-profile/check-profile.component';
 import { EditActivity } from './components/editActicitySticker/editActivity.component';
 import { EditReward } from './components/editRewardSticker/editReward.component';
 import { EditFeeling } from './components/editFeelingSticker/editFeeling.component';
 import { EditPraise } from './components/editPraiseSticker/editPraise.component';
 import { EditPoint } from './components/editPointSticker/editPoint.component';
-import {ProfileService} from './services/profile.service'
+import {ProfileService} from './services/auth-user.service'
 
 
 

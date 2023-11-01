@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import Swal from 'sweetalert2';
 import { ThemePalette } from '@angular/material/core';
-import {ProfileService} from '../../services/profile.service'
+import { ProfileService } from '../../services/auth-user.service';
 import { UserRepository } from '../../models/userModel/user.repository';
+import { UserDataService } from 'src/app/services/user-data.service';
 
 @Component({
   selector: 'app-profile',
@@ -20,9 +21,59 @@ export class ProfileComponent {
   constructor(
     private userRepository: UserRepository,
     private profileStateService: ProfileService,
-    ) {}
+    private userDataService: UserDataService
+  ) {}
+  user: any = {};
+  username: string = '';
+  password: string = '';
+  email: string = '';
+  kid_name: string = '';
+  activityPoint: any[] = [];
+
+  kid_age: number = 0;
+  activitiesCount = 0;
+  stickersCount = 0;
+  stickersPoint = 0;
+  rewardCount = 0;
+
 
   ngOnInit(): void {
+    // Fetch the user data when the component initializes
+    this.userRepository
+      .getUserById(this.userDataService.getUserId())
+      .subscribe((user) => {
+        this.user = user;
+        this.username = this.user.username;
+        this.password = this.user.password;
+        this.email = this.user.email;
+        this.kid_age = this.user.kid_age;
+        this.kid_name = this.user.kid_name;
+        this.activityPoint = this.user.activitySticked;
+        this.stickersPoint = this.user.currentPoint;
+        const totalStickers = [
+          ...this.user.sunSticked,
+          ...this.user.monSticked,
+          ...this.user.tueSticked,
+          ...this.user.wedSticked,
+          ...this.user.thuSticked,
+          ...this.user.friSticked,
+          ...this.user.satSticked,
+        ];
+
+        this.activitiesCount = this.activityPoint.filter(
+          (a: any) => a.imageUrl && a.imageUrl.trim() !== ''
+        ).length;
+
+        this.stickersCount = totalStickers.filter(
+          (sticker) => sticker.icon && sticker.icon !== ''
+        ).length;
+
+        console.log(user)
+
+
+
+      });
+
     this.profileStateService.showEditProfile$.subscribe((showEditProfile) => {
       this.showEditProfile = showEditProfile;
     });
@@ -35,11 +86,10 @@ export class ProfileComponent {
   }
 
   editProfile(): void {
-    this.profileStateService.updateShowEditProfile(true); 
+    this.profileStateService.updateShowEditProfile(true);
   }
 
   addNewBoard() {
-
     Swal.fire({
       title: 'Clear feeling sticker on the board',
       text: 'Are you sure?',

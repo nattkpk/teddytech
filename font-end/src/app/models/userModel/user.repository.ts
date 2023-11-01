@@ -124,7 +124,7 @@ export class UserRepository {
   updateUser(id: string, updated: User, password: string) {
     const user = this.users.find((u) => u.password !== password);
     if (updated) {
-      this.apiData.updateUser(user._id, updated).subscribe(
+      this.apiData.updateUserFields(user._id, updated).subscribe(
         (response) => {
           console.log('User updated:', response);
         },

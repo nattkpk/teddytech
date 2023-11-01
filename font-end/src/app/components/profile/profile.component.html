@@ -17,7 +17,7 @@
           <div class="col-6 mt-5">
             <h3 class="">Profile</h3>
             <div class="row">
-              <div class="name"><h5>Ant</h5></div>
+              <div class="name"><h5>{{ username }}</h5></div>
               <i class="col pen fa-solid fa-pencil pointer-cursor " (click)="editProfile()"></i>
             </div>
           </div>
@@ -31,14 +31,14 @@
             <div class="taskPoint">
               <i class="cx far fa-square fa-2x mt-3"></i>
               <i class="fa fa-minus fa-3x"></i>
-              <h2 class="cv">20</h2>
+              <h2 class="cv">{{ activitiesCount * 7 }}</h2>
             </div>
           </div>
           <div class="col">
             <div class="taskPoint">
               <i class="cx far fa-check-square fa-2x mt-3"></i>
               <i class="fa fa-minus fa-3x"></i>
-              <h2 class="cv">20</h2>
+              <h2 class="cv">{{stickersCount}}</h2>
             </div>
           </div>
           <div class="col">
@@ -46,7 +46,7 @@
               <div class="taskPoint">
                 <i class="cx fa fa-certificate fa-2x mt-3"></i>
                 <i class="fa fa-minus fa-3x"></i>
-                <h2 class="cv">20</h2>
+                <h2 class="cv">{{stickersPoint}}</h2>
               </div>
             </div>
           </div>
@@ -54,7 +54,7 @@
             <div class="taskPoint">
               <i class="cx fa fa-gift fa-2x mt-3"></i>
               <i class="fa fa-minus fa-3x"></i>
-              <h2 class="cv">20</h2>
+              <h2 class="cv">{{rewardCount}}</h2>
             </div>
           </div>
         </div>
@@ -107,9 +107,8 @@
         <h2>Kid Board</h2>
       </div>
       <div class="d-flex justify-content-center mt-4">
-        <h5 class="bk mx-2">Ant</h5>
-        <h5 class="bk mx-2">Ann</h5>
-        <h5 class="bk mx-2">Kom</h5>
+        <h5 class="bk mx-2">{{ kid_name }}</h5>
+       
         <h5 class="bk mx-2"><i class="fa fa-plus pointer-cursor " (click)="addNewBoard()"></i></h5>
       </div>
     </div>

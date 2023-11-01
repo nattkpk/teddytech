@@ -1,27 +1,42 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import Swal from 'sweetalert2';
-import { ProfileService } from '../../services/profile.service';
 import { UserRepository } from '../../models/userModel/user.repository';
-
+import { UserDataService } from '../../services/user-data.service';
+import {ProfileService} from '../../services/auth-user.service';
+ 
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
   styleUrls: ['./edit-profile.component.css'],
 })
-export class EditProfileComponent {
-  id = '';
-  newUsername = '';
-  newEmail = '';
-  newPassword = '';
-  newKid_age = 0;
+export class EditProfileComponent{
+  user: any;
+  id: any; 
+  username = "";
+  email="";
+  password="";
+  kid_age="";
+ 
 
   constructor(
-    private profileStateService: ProfileService,
-    private userRepository: UserRepository
+    private userRepository: UserRepository,
+    private userDataService: UserDataService,
+    private profileService: ProfileService,
   ) {}
 
+  ngOnInit() {
+    // Fetch the user data when the component initializes
+    this.userRepository.getUserById(this.userDataService.getUserId())
+      .subscribe((user) => {
+        this.user = user
+        this.username = this.user.username;
+        console.log(this.user)
+        console.log(this.username);
+      });
+  }
+
   cancelEdit(): void {
-    this.profileStateService.updateShowEditProfile(false);
+    this.profileService.updateShowEditProfile(false);
   }
 
   async confirmEdit(): Promise<void> {
@@ -41,18 +56,43 @@ export class EditProfileComponent {
     });
 
     if (isConfirmed) {
-      const detail: any = {
-        newUsername: this.newUsername,
-        newEmail: this.newEmail,
-        newPassword: this.newPassword,
-        newKid_age: this.newKid_age,
-      };
-
-      const isDone = await this.userRepository.updateUser(
-        this.id,
-        detail,
-        password
-      );
-    }
+     
   }
+}
+
+updateProfile(){
+//   const detail: any = {
+//     newUsername: this.newUsername,
+//     newEmail: this.newEmail,
+//     newPassword: this.newPassword,
+//     newKid_age: this.newKid_age,
+//   };
+
+//   const isDone = await this.userRepository.updateUser(this.id, detail, password);
+
+//   if (isDone) {
+//     Swal.fire({
+//       title: 'Profile Updated',
+//       text: 'Your profile has been successfully updated.',
+//       icon: 'success',
+//       confirmButtonText: 'OK',
+//       confirmButtonColor: '#A1C554',
+//     });
+//   } else {
+//     Swal.fire({
+//       title: 'Update failed',
+//       text: 'There was an error updating your profile.',
+//       icon: 'error',
+//       confirmButtonText: 'OK',
+//       confirmButtonColor: '#FC6F6F',
+//     });
+//   }
+// }
+}
+
+  
+
+
+
+
 }
