@@ -35,5 +35,10 @@ export class ApiData {
   registerUser(newUser: any): Observable<User> {
     return this.http.post<User>(`${this.apiUrl}/teddyusers/`,newUser);
   }
+
+  updateUser(userId: string, updatedUser: any): Observable<any> {
+    const url = `${this.apiUrl}/teddyusers/${userId}`; 
+    return this.http.patch(url, updatedUser);
+  }
   
 }

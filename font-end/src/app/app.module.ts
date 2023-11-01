@@ -1,13 +1,16 @@
+//module
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ModelModule } from './models/userModel/model.module';
-import { Signin } from './components/signin/signin.component';
+import { AppRoutingModule } from './app-routing.module';
+import { ServiceModule } from './services/model.module';
+//component
+import { AppComponent } from './app.component';
 import {Board} from './components/board/board.component'
+import { Signin } from './components/signin/signin.component';
 import { EditActivity } from './components/editActicitySticker/editActivity.component';
-import { FormsModule } from '@angular/forms';
 import { EditReward } from './components/editRewardSticker/editReward.component';
 import { EditFeeling } from './components/editFeelingSticker/editFeeling.component';
 import { EditPraise } from './components/editPraiseSticker/editPraise.component';
@@ -15,13 +18,17 @@ import { EditPoint } from './components/editPointSticker/editPoint.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
-import { ServiceModule } from './services/model.module';
 import { HowtouseComponent } from './components/howtouse/howtouse.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { History } from './components/history/history.component';
 import { SaveBoard } from './components/saveBoard/saveBoard.component';
 import { HistoryBoard } from './components/historyBoard/historyBoard.component';
+// material
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { CheckProfileComponent } from './check-profile/check-profile.component';
+
 
 @NgModule({
   declarations: [
@@ -41,7 +48,8 @@ import { HistoryBoard } from './components/historyBoard/historyBoard.component';
     EditProfileComponent,
     SaveBoard,
     History,
-    HistoryBoard
+    HistoryBoard,
+    CheckProfileComponent,
   ],
   imports: [
     FormsModule,
@@ -50,6 +58,8 @@ import { HistoryBoard } from './components/historyBoard/historyBoard.component';
     BrowserModule,
     DragDropModule,
     AppRoutingModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -5,6 +5,7 @@ import { Signin } from './components/signin/signin.component';
 import { HomeComponent } from './components/home/home.component';
 import { HowtouseComponent } from './components/howtouse/howtouse.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { CheckProfileComponent} from './check-profile/check-profile.component';
 import { EditActivity } from './components/editActicitySticker/editActivity.component';
 import { EditReward } from './components/editRewardSticker/editReward.component';
 import { EditFeeling } from './components/editFeelingSticker/editFeeling.component';
@@ -13,6 +14,7 @@ import { EditPoint } from './components/editPointSticker/editPoint.component';
 import { History } from './components/history/history.component';
 import { SaveBoard } from './components/saveBoard/saveBoard.component';
 import { HistoryBoard } from './components/historyBoard/historyBoard.component';
+import {ProfileService} from './services/auth-user.service';
 
 
 
@@ -25,7 +27,7 @@ const routes: Routes = [
   { path: 'edit_point_sticker', component: EditPoint },
   { path: 'signin', component: Signin },
   { path: 'howto', component: HowtouseComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'profile', component: CheckProfileComponent },
   { path: 'home', component: HomeComponent },
   { path: 'save_board', component: SaveBoard },
   { path: 'history', component: History },
@@ -36,6 +38,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [ProfileService],
 })
 export class AppRoutingModule { }

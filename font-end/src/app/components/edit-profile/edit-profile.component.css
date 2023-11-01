@@ -1,27 +1,59 @@
- .transparent-container {
-    background-color: rgba(255, 255, 255, 0.448); /* Transparent white */
-    padding: 50px;
-    border-radius: 15px;
-    margin: 20px auto; 
+ h1 ,h2 ,h3 ,h4 ,h5 ,h6{
+color: #466B22;;
+ }
+ .container {
     position: relative;
     display: flex; 
     justify-content: center; 
     align-items: center; 
+   
 }
 
-.card {
-    max-width: 540px;
-    background-color: lightgreen;
+.sticky-center {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+   
+  }
+  
+.transparent-container{
+    background-color: rgba(255, 255, 255, 0.448);
+    padding: 30px;
     border-radius: 15px;
-    position: relative; 
-    z-index: 0; 
+    
 }
+.cardProfile {
+    background-color:  #C2F9A3;
+    border-radius: 15px;
+    z-index: 0;
+    height: 320px;
+    width: 600px;
 
-.cycle {
+
+  }
+
+  .cycle {
     border-radius: 50%;
     width: 150px;
     height: 150px;
     object-fit: cover;
-    position: relative; 
-    z-index: 0; 
-}
+    margin-left: 20px;
+  }
+
+  .name {
+    margin-left: -5px;
+    border-radius: 15px;
+    background-color: bisque;
+    width: 160px;
+    height: 35px;
+  }
+  
+ 
+
+input{
+    margin-top: -5px;
+ }
+ .btn{
+    width: 100px;
+ }
