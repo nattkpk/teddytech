@@ -5,6 +5,7 @@ import { StickerDataService } from 'src/app/services/sticker-data.service';
 import Swal from 'sweetalert2';
 import { ConnectionClosedEvent } from 'mongodb';
 import { Board } from '../board/board.component';
+import { infoSave } from 'src/app/models/userModel/user.model';
 
 @Component({
   selector: 'saveBoard',
@@ -18,36 +19,130 @@ export class SaveBoard {
     private userDataService: UserDataService,
     private sticker_service: StickerDataService
   ) {
-    this.currentWeek = '';
+    this.selectedWeek = '';
     this.initializeWeek();
     this.note = '';
-    
+    this.historyData = [];
   }
 
+  ngOnInit() {
+    // Fetch the user data when the component initializes
+    this.user_repository
+      .getUserById(this.userDataService.getUserId())
+      .subscribe((user) => {
+        console.log('User Data:', user);
+        this.user = user;
+
+        this.newHistory.activitySticked = this.user.activitySticked;
+        this.newHistory.sunSticked = this.user.sunSticked;
+        this.newHistory.monSticked = this.user.monSticked;
+        this.newHistory.tueSticked = this.user.tueSticked;
+        this.newHistory.wedSticked = this.user.wedSticked;
+        this.newHistory.thuSticked = this.user.thuSticked;
+        this.newHistory.friSticked = this.user.friSticked;
+        this.newHistory.satSticked = this.user.satSticked;
+        this.newHistory.feelingSticked = this.user.feelingSticked;
+        this.newHistory.rewardSticked = this.user.rewardSticked;
+        this.newHistory.praiseSticked = this.user.praiseSticked;
+
+        this.newHistory.rewardA.point = this.user.pointA;
+        this.newHistory.rewardB.point = this.user.pointB;
+        this.newHistory.rewardA.rewardName = this.user.reward_sticked[0].text;
+        this.newHistory.rewardB.rewardName = this.user.reward_fontColor[1].text;
+        this.newHistory.allpoint = this.user.currentPoint;
+        this.newHistory.note = this.note;
+
+        this.historyData = this.user.stickerHistory;
+        this.initializeWeek();
+      });
+  }
+
+  user: any | null = {};
 
   note: string;
-  currentWeek: string;
-
+  selectedWeek: string;
+  newHistory: infoSave = {
+    startDate: '',
+    endDate: '',
+    note: '',
+    allpoint: 0,
+    rewardA: { rewardName: '', point: 0 },
+    rewardB: { rewardName: '', point: 0 },
+    sunSticked: [],
+    monSticked: [],
+    tueSticked: [],
+    wedSticked: [],
+    thuSticked: [],
+    friSticked: [],
+    satSticked: [],
+    activitySticked: [],
+    praiseSticked: [],
+    feelingSticked: [],
+    rewardSticked: [],
+  };
 
   initializeWeek() {
-    // Get the current date
     const currentDate = new Date();
-
-    // Calculate the week number based on the date
     const januaryFirst = new Date(currentDate.getFullYear(), 0, 1);
     const days = Math.floor(
       (currentDate.getTime() - januaryFirst.getTime()) / (24 * 60 * 60 * 1000)
     );
-    const currentWeek = Math.ceil((days + januaryFirst.getDay() + 1) / 7);
-
-    // Format the year and week as "yyyy-Www"
-    this.currentWeek = `${currentDate.getFullYear()}-W${currentWeek
+    const selectedWeek = Math.ceil((days + januaryFirst.getDay() + 1) / 7);
+    this.selectedWeek = `${currentDate.getFullYear()}-W${selectedWeek
       .toString()
       .padStart(2, '0')}`;
   }
 
+  setDate() {
+    const [year, week] = this.selectedWeek.split('-W');
+    const yearNumber = parseInt(year, 10);
+    const weekNumber = parseInt(week, 10);
+
+    const startDay = 1 + (weekNumber - 1) * 7;
+    const endDay = startDay + 6;
+
+    const startDate = new Date(yearNumber, 0, startDay);
+    const endDate = new Date(yearNumber, 0, endDay);
+
+    const dayOfWeek = startDate.getDay();
+    const daysToMonday = dayOfWeek === 0 ? 1 : 7 - dayOfWeek;
+
+    startDate.setDate(startDate.getDate() + daysToMonday);
+    endDate.setDate(endDate.getDate() + daysToMonday);
+
+    this.convertDateToString(startDate, endDate);
+  }
+
+  convertDateToString(strat: Date, end: Date) {
+    const sDate = strat.toString();
+    const sdateParts = sDate.split(' ');
+    const sformattedDate = sdateParts.slice(0, 4).join(' ');
+
+    const eDate = end.toString();
+    const edateParts = eDate.split(' ');
+    const eformattedDate = edateParts.slice(0, 4).join(' ');
+
+    this.newHistory.startDate = sformattedDate;
+    this.newHistory.endDate = eformattedDate;
+  }
+
+    historyData: any[]
+
+    updatehistoryData() {
+      const updatedHistoryData = {
+          stickerHistory: this.historyData,
+      };
+      this.user_repository.updateUserFields(
+        this.userDataService.getUserId(),
+        updatedHistoryData
+      );
+    }
+
   saveAlert() {
-    console.log()
+    this.setDate();
+    this.newHistory.note = this.note;
+    this.historyData = this.user.stickerHistory;
+    this.historyData.push(this.newHistory);
     Swal.fire({
       title: 'Save this week?',
       text: 'All sticker on board will be clear , are you sure? ',
@@ -58,6 +153,23 @@ export class SaveBoard {
       reverseButtons: true,
       confirmButtonColor: '#A1C554',
       cancelButtonColor: '#FC6F6F',
-    })
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          console.log(this.historyData)
+          this.updatehistoryData();
+
+          await Swal.fire({
+            icon: 'success',
+            title: 'Create Success',
+            confirmButtonText: 'OK',
+            confirmButtonColor: '#A1C554',
+          });
+        } catch (error) {
+          console.error(error);
+        }
+      } else {
+      }
+    });
   }
 }

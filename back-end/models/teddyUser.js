@@ -36,7 +36,8 @@ const reward = new mongoose.Schema({
 });
 
 const infoSave = new mongoose.Schema({
-  week: String,
+  startDate: String,
+  endDate: String,
   note: String,
   allpoint: Number,
   rewardA: reward,
@@ -86,9 +87,8 @@ const UserSchema = new mongoose.Schema({
   praiseSticked:[mongoose.Schema.Types.Mixed],
   feelingSticked:[mongoose.Schema.Types.Mixed],
   rewardSticked:[mongoose.Schema.Types.Mixed],
-  saveSticker:[{infoSave}]
+  stickerHistory:[infoSave]
     
-  
 });
 
 
