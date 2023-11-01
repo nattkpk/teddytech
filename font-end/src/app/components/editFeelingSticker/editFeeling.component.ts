@@ -34,12 +34,22 @@ export class EditFeeling {
         this.user = user;
 
         this.feelingData = this.user.stickers.feeling;
+        this.praise_data = this.user?.stickers?.praise
+        this.pointData = this.user?.stickers?.point
+        this.rewardData = this.user?.stickers?.reward
+        this.activityData = this.user?.stickers?.activity
+
         this.bg = this.user.feelingTheme.bg;
         this.fontColor = this.user.feelingTheme.font;
       });
   }
 
   feelingTheme: any[];
+  praise_data: any[] = [];
+  pointData: any[] = [];
+  rewardData: any[] = [];
+  activityData: any[] = [];
+
   itemsPerPage: number = 13;
   currentPage: number = 1;
 
@@ -59,6 +69,23 @@ export class EditFeeling {
         event.currentIndex
       );
     }
+    this.updatePosition();
+  }
+
+  updatePosition(){
+    const updatedUserData = {
+      stickers: {
+        activity: this.activityData,
+        praise: this.praise_data,
+        feeling: this.feelingData,
+        point: this.pointData,
+        reward: this.rewardData
+      }
+    };
+    this.user_repository.updateUserFields(
+      this.userDataService.getUserId(),
+      updatedUserData
+    );
   }
 
   getFeelingDataForPage(page: number): any[] {

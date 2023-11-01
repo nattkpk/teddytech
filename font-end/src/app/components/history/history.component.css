@@ -1,0 +1,142 @@
+.containerAll {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+  }
+  
+.container{
+    display: flex;
+    justify-content: center;
+}
+
+.container-board .nav-link {
+    color: #BB7979;
+    background-color: #EFCCCC;
+    font-size: 24px;
+  }
+  
+  .container-board .nav-link.active {
+    color: #BB7979; 
+    background-color: #FFDDDD;
+  }
+  
+  .container-board{
+    border-radius: 20px;
+    background-color: #EFCCCC;
+    margin: 20px 5px 20px 5px;
+    width: 72vw;
+    height: 100vh;
+  }
+  
+  .history-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+  }
+
+  .history-card{
+    background-color: #fde2e2;
+    margin: 10px;
+    border-radius: 20px;
+    width: 50vw;
+    height: 180px;
+    transition: 0.2s;
+  }
+
+
+  .history-card h5{
+    padding: 10px 3px 10px 20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    display: flex;
+    justify-content: start;
+    background-color: #fbf0f0;
+    color: #8E3535;
+    border-radius: 20px;
+  }
+
+  .history-info{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 140px;
+    color: #5f3737;  
+}
+
+  .column{
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    width: 15vw;
+    /* background-color: #6fa34f; */
+  }
+
+  .column .fa-circle-check{
+    color: #6fa34f;
+  }
+
+  .column .fa-circle-xmark{
+    color: #c25959;
+  }
+
+  .column-arrow{
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    width: 3vw;
+    transition: 0.2s;
+  }
+
+
+  .fa-circle-chevron-right{
+    font-size: 30px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .fa-circle-chevron-right:hover{
+    color: #8b5959;
+  }
+
+
+  .btnDelete{
+    background-color: #c25959;
+    color: #ffff;
+    border: none;
+    border-radius: 10px;
+    width: 6vw;
+    margin-top: 4vh;
+    transition: 0.2s;
+  }
+
+  .btnDelete:hover{
+    background-color: #a74646;
+    transition: 0.2s;
+  }
+
+  /* reward.component.css */
+.pagination-container {
+    text-align: center;
+    margin-top: 5px;
+  }
+  
+  .pagination-button {
+    background-color: #BB7979; /* Background color for the buttons */
+    color: #fff; /* Text color for the buttons */
+    border: none;
+    border-radius: 20px;
+    padding: 8px 12px;
+    margin: 0 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .pagination-button:hover {
+    background-color: #d18b8b; /* Background color on hover */
+  }
+  
+
+
+  

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+
+  <body>
+    <div class="save-container">
+      <div class="save-card">
+        <button class="btn" routerLink="/board">
+          <i class="fa-solid fa-caret-left"></i>&ensp;Back
+        </button>
+        <div class="save-input">
+          <label for="week"
+            >Select week :&ensp;<input
+              id="week"
+              type="week"
+              name="week"
+              [(ngModel)]="selectedWeek"
+          /></label>
+          <label for="note"
+            >Note :&ensp;<textarea
+              maxlength="60"
+              id="note"
+              type="note"
+              name="note"
+              [(ngModel)]="note"
+            ></textarea>
+          </label>
+          <button class="btn btn-save" (click)="saveAlert()">
+            <i class="fa-solid fa-floppy-disk"></i>&ensp;Save!
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

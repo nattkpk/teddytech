@@ -33,6 +33,11 @@ export class EditPraise {
       .subscribe((user) => {
         this.user = user;
 
+        this.pointData =  this.user.stickers.point;
+        this.feelingData = this.user?.stickers?.feeling
+        this.rewardData = this.user?.stickers?.reward
+        this.activityData = this.user?.stickers?.activity
+
         this.praiseData = this.user.stickers.praise;
         this.bg = this.user.praiseTheme.bg;
         this.fontColor = this.user.praiseTheme.font;
@@ -49,7 +54,12 @@ export class EditPraise {
   bg = '';
   fontColor = '';
   user: any | null = {};
+
   praiseData: any[] = [];
+  pointData: any[] = [];
+  activityData: any[] = [];
+  feelingData: any[] = [];
+  rewardData: any[] = [];
 
   dropSticker(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
@@ -59,6 +69,23 @@ export class EditPraise {
         event.currentIndex
       );
     }
+    this.updatePosition();
+  }
+
+  updatePosition(){
+    const updatedUserData = {
+      stickers: {
+        activity: this.activityData,
+        praise: this.praiseData,
+        feeling: this.feelingData,
+        point: this.pointData,
+        reward: this.rewardData
+      }
+    };
+    this.user_repository.updateUserFields(
+      this.userDataService.getUserId(),
+      updatedUserData
+    );
   }
 
   getPraiseDataForPage(page: number): any[] {

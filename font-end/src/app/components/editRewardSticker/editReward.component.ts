@@ -34,6 +34,11 @@ export class EditReward {
       .subscribe((user) => {
         this.user = user;
 
+        this.pointData =  this.user.stickers.point;
+        this.feelingData = this.user?.stickers?.feeling
+        this.activityData = this.user?.stickers?.activity
+        this.praiseData = this.user.stickers.praise;
+
         this.rewardData = this.user.stickers.reward;
         this.bg = this.user.rewardTheme.bg;
         this.fontColor = this.user.rewardTheme.font;
@@ -50,7 +55,12 @@ export class EditReward {
   bg = '';
   fontColor = '';
   user: any | null = {};
+
  rewardData: any[] = [];
+ praiseData: any[] = [];
+ pointData: any[] = [];
+ activityData: any[] = [];
+ feelingData: any[] = [];
 
   dropSticker(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
@@ -60,6 +70,23 @@ export class EditReward {
         event.currentIndex
       );
     }
+    this.updatePosition();
+  }
+
+  updatePosition(){
+    const updatedUserData = {
+      stickers: {
+        activity: this.activityData,
+        praise: this.praiseData,
+        feeling: this.feelingData,
+        point: this.pointData,
+        reward: this.rewardData
+      }
+    };
+    this.user_repository.updateUserFields(
+      this.userDataService.getUserId(),
+      updatedUserData
+    );
   }
 
   getRewardDataForPage(page: number): any[] {
@@ -133,12 +160,14 @@ export class EditReward {
   currentIconPage: number = 1;
   itemsIconPerPage: number = 18;
   newRewardSticker: RewardSticker = { text: '', imageUrl: '' };
+  chooseIcon: number = -1;
 
   create_stickerOnOff() {
     this.createStickerOn = this.createStickerOn ? false : true;
   }
 
   selectIcon(index: number) {
+    this.chooseIcon = index+((this.currentIconPage-1)*this.itemsIconPerPage)
     this.selectedIconIndex = index;
   }
 
@@ -171,10 +200,10 @@ export class EditReward {
     });
   
     if (result.isConfirmed) {
-      if (this.rewardName !== '' && this.selectedIconIndex !== -1) {
+      if (this.rewardName !== '' && this.chooseIcon !== -1) {
         console.log('Reward Name: ' + this.rewardName);
         this.newRewardSticker.text = this.rewardName;
-        this.newRewardSticker.imageUrl = this.rewardIcon[this.selectedIconIndex];
+        this.newRewardSticker.imageUrl = this.rewardIcon[this.chooseIcon];
   
         try {
           await this.user_repository.pushOrPullStickers(
@@ -205,7 +234,7 @@ export class EditReward {
             confirmButtonText: 'OK',
             confirmButtonColor: '#A1C554',
           });
-        } else if (this.selectedIconIndex === -1) {
+        } else if (this.chooseIcon === -1) {
           await Swal.fire({
             icon: 'warning',
             title: 'Please select reward icon',

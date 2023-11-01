@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <body>
-    <div class="containerAll" cdkDropListGroup>
+    <div class="containerAll" cdkDropListGroup> 
       <div class="container-board">
         <ul class="nav nav-tabs">
           <li class="nav-item">
@@ -9,14 +9,18 @@
               class="nav-link active"
               aria-current="page"
               href="javascript:void"
-              >Board</a
-            >
+              >Board&ensp;<i class="fa-solid fa-chalkboard"></i
+            ></a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="javascript:void"
-              >Carlendar</a
-            >
+            <a
+              routerLink="/history"
+              class="nav-link"
+              aria-current="page"
+              href="javascript:void"
+              >History&ensp;<i class="fa-solid fa-clock-rotate-left"></i
+            ></a>
           </li>
         </ul>
 
@@ -65,41 +69,6 @@
                 </p>
               </div>
                -->
-            </li>
-          </ul>
-
-          <!-- Sunday -->
-          <ul class="stickto">
-            <li>
-              <div class="col-title sun" (click)="currentday = 0">
-                <p>Sun.</p>
-              </div>
-              <div
-                class="day"
-                [class.border-sun]="currentday == 0"
-                cdkDropList
-                [cdkDropListData]="sun_sticked"
-                (cdkDropListDropped)="dropSticker($event)"
-              >
-                <div
-                  [class.center-sticker]="item.icon"
-                  [class.point-sticker]="item.icon"
-                  [class.stickArea]="!item.icon"
-                  [class.sunday-stick]="!item.icon"
-                  cdkDrag
-                  cdkDragBoundary=".stickto"
-                  *ngFor="let item of sun_sticked; let i = index"
-                  (dblclick)="deletePoint(i)"
-                  [style.background-image]="
-                    item.bgImage
-                      ? 'url(' + item.bgImage + ')'
-                      : 'url(' + addBg + ')'
-                  "
-                >
-                  <img src="{{ item.icon }}" alt="" class="icon" />
-                  <p *ngIf="item.point">{{ item.point }} pts</p>
-                </div>
-              </div>
             </li>
           </ul>
 
@@ -313,12 +282,50 @@
             </li>
           </ul>
 
+          <!-- Sunday -->
+          <ul class="stickto">
+            <li>
+              <div class="col-title sun" (click)="currentday = 0">
+                <p>Sun.</p>
+              </div>
+              <div
+                class="day"
+                [class.border-sun]="currentday == 0"
+                cdkDropList
+                [cdkDropListData]="sun_sticked"
+                (cdkDropListDropped)="dropSticker($event)"
+              >
+                <div
+                  [class.center-sticker]="item.icon"
+                  [class.point-sticker]="item.icon"
+                  [class.stickArea]="!item.icon"
+                  [class.sunday-stick]="!item.icon"
+                  cdkDrag
+                  cdkDragBoundary=".stickto"
+                  *ngFor="let item of sun_sticked; let i = index"
+                  (dblclick)="deletePoint(i)"
+                  [style.background-image]="
+                    item.bgImage
+                      ? 'url(' + item.bgImage + ')'
+                      : 'url(' + addBg + ')'
+                  "
+                >
+                  <img src="{{ item.icon }}" alt="" class="icon" />
+                  <p *ngIf="item.point">{{ item.point }} pts</p>
+                </div>
+              </div>
+            </li>
+          </ul>
+
           <div class="btn-clear-board">
             <button class="btn btn_act" (click)="clear_activity()">
               <i class="fa-solid fa-xmark"></i>&ensp;Clear Activity
             </button>
             <button class="btn btn_pts" (click)="clear_point()">
               <i class="fa-solid fa-xmark"></i>&ensp;Clear Poins
+            </button>
+            <button class="btn btn_save" routerLink="/save_board">
+              <i class="fa-solid fa-floppy-disk"></i>&ensp;Save!
             </button>
           </div>
         </div>
@@ -427,13 +434,13 @@
               Next Page&ensp;<i class="fa-solid fa-caret-right"></i>
             </button>
           </div>
-          
-          <div class="d-flex align-items-end justify-content-center  my-1">
+
+          <div class="d-flex align-items-end justify-content-center my-1">
             <button class="btn_edit" routerLink="/edit_activity_sticker">
-              <i class="fa-solid fa-pencil"></i>&ensp;Edit&ensp;Activity&ensp;Sticker
+              <i class="fa-solid fa-pencil"></i
+              >&ensp;Edit&ensp;Activity&ensp;Sticker
             </button>
           </div>
-    
         </div>
 
         <!-- ----------------------- Praise ------------------------------------>
@@ -475,13 +482,13 @@
               Next Page&ensp;<i class="fa-solid fa-caret-right"></i>
             </button>
           </div>
-          
-          <div class="d-flex align-items-end justify-content-center  my-1">
+
+          <div class="d-flex align-items-end justify-content-center my-1">
             <button class="btn_edit" routerLink="/edit_praise_sticker">
-              <i class="fa-solid fa-pencil"></i>&ensp;Edit&ensp;Praise&ensp;Sticker
+              <i class="fa-solid fa-pencil"></i
+              >&ensp;Edit&ensp;Praise&ensp;Sticker
             </button>
           </div>
-
         </div>
 
         <!-- ----------------------- Feeling ------------------------------------>
@@ -523,12 +530,12 @@
             </button>
           </div>
 
-          <div class="d-flex align-items-end justify-content-center  my-1">
+          <div class="d-flex align-items-end justify-content-center my-1">
             <button class="btn_edit" routerLink="/edit_feeling_sticker">
-              <i class="fa-solid fa-pencil"></i>&ensp;Edit&ensp;Feeling&ensp;Sticker
+              <i class="fa-solid fa-pencil"></i
+              >&ensp;Edit&ensp;Feeling&ensp;Sticker
             </button>
           </div>
-
         </div>
         <!-- ----------------------- Point ------------------------------------>
 
@@ -581,12 +588,12 @@
             </button>
           </div>
 
-          <div class="d-flex align-items-end justify-content-center  my-1">
+          <div class="d-flex align-items-end justify-content-center my-1">
             <button class="btn_edit" routerLink="/edit_point_sticker">
-              <i class="fa-solid fa-pencil"></i>&ensp;Edit&ensp;Point&ensp;Sticker
+              <i class="fa-solid fa-pencil"></i
+              >&ensp;Edit&ensp;Point&ensp;Sticker
             </button>
           </div>
-
         </div>
 
         <!-- ----------------------- Reward ------------------------------------>
@@ -602,7 +609,10 @@
               class="sticker"
               cdkDrag
               cdkDragBoundary=".stickers-container"
-              *ngFor="let item of getRewardDataForPage(currentPage); let i = index"
+              *ngFor="
+                let item of getRewardDataForPage(currentPage);
+                let i = index
+              "
               [style.color]="reward_fontColor"
               [style.background-image]="'url(' + rewardBg + ')'"
               (click)="addReward(i)"
@@ -628,12 +638,12 @@
             </button>
           </div>
 
-          <div class="d-flex align-items-end justify-content-center  my-1">
-            <button class="btn_edit"  routerLink="/edit_reward_sticker">
-              <i class="fa-solid fa-pencil"></i>&ensp;Edit&ensp;Reward&ensp;Sticker
+          <div class="d-flex align-items-end justify-content-center my-1">
+            <button class="btn_edit" routerLink="/edit_reward_sticker">
+              <i class="fa-solid fa-pencil"></i
+              >&ensp;Edit&ensp;Reward&ensp;Sticker
             </button>
           </div>
-
         </div>
         <!-- ------------------------------------------------------- -->
       </div>

@@ -19,6 +19,9 @@ import { ServiceModule } from './services/model.module';
 import { HowtouseComponent } from './components/howtouse/howtouse.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { History } from './components/history/history.component';
+import { SaveBoard } from './components/saveBoard/saveBoard.component';
+import { HistoryBoard } from './components/historyBoard/historyBoard.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,10 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
     HomeComponent,
     HowtouseComponent,
     ProfileComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    SaveBoard,
+    History,
+    HistoryBoard
   ],
   imports: [
     FormsModule,

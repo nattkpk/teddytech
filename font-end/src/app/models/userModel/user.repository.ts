@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { User } from './user.model';
-import { userStaticData } from './user_static_data';
 import { UserDataService } from 'src/app/services/user-data.service';
 import { ApiData } from 'src/app/services/apidata.service';
 import Swal from 'sweetalert2';

@@ -36,6 +36,12 @@ export class EditActivity {
       .getUserById(this.userDataService.getUserId())
       .subscribe((user) => {
         this.user = user;
+
+        this.praise_data = this.user?.stickers?.praise
+        this.feelingData = this.user?.stickers?.feeling
+        this.pointData = this.user?.stickers?.point
+        this.rewardData = this.user?.stickers?.reward
+
         this.activityData = this.user?.stickers?.activity
           ? this.user.stickers.activity
           : [];
@@ -55,7 +61,12 @@ export class EditActivity {
   activity_fontColor = '';
   user: any | null = {};
   activityData: any[] = [];
+  praise_data: any[] = [];
+  feelingData: any[] = [];
+  pointData: any[] = [];
+  rewardData: any[] = [];
 
+ 
   dropSticker(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(
@@ -64,6 +75,23 @@ export class EditActivity {
         event.currentIndex
       );
     }
+    this.updatePosition();
+  }
+
+ updatePosition(){
+    const updatedUserData = {
+      stickers: {
+        activity: this.activityData,
+        praise: this.praise_data,
+        feeling: this.feelingData,
+        point: this.pointData,
+        reward: this.rewardData
+      }
+    };
+    this.user_repository.updateUserFields(
+      this.userDataService.getUserId(),
+      updatedUserData
+    );
   }
 
   getActivityDataForPage(page: number): any[] {
@@ -137,12 +165,14 @@ export class EditActivity {
   currentIconPage: number = 1;
   itemsIconPerPage: number = 18;
   newActivitySticker: ActivitySticker = { text: '', imageUrl: '' };
+  chooseIcon: number = -1;
 
   create_stickerOnOff() {
     this.createStickerOn = this.createStickerOn ? false : true;
   }
 
   selectIcon(index: number) {
+    this.chooseIcon = index+((this.currentIconPage-1)*this.itemsIconPerPage)
     this.selectedIconIndex = index;
   }
 
@@ -175,10 +205,10 @@ export class EditActivity {
     });
   
     if (result.isConfirmed) {
-      if (this.activityName !== '' && this.selectedIconIndex !== -1) {
+      if (this.activityName !== '' && this.chooseIcon !== -1) {
         console.log('Activity Name: ' + this.activityName);
         this.newActivitySticker.text = this.activityName;
-        this.newActivitySticker.imageUrl = this.activityIcon[this.selectedIconIndex];
+        this.newActivitySticker.imageUrl = this.activityIcon[this.chooseIcon];
   
         try {
           await this.user_repository.pushOrPullStickers(
@@ -209,7 +239,7 @@ export class EditActivity {
             confirmButtonText: 'OK',
             confirmButtonColor: '#A1C554',
           });
-        } else if (this.selectedIconIndex === -1) {
+        } else if (this.chooseIcon === -1) {
           await Swal.fire({
             icon: 'warning',
             title: 'Please select activity icon',

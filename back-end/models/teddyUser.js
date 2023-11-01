@@ -30,6 +30,31 @@ const FeelingStickerSchema = new mongoose.Schema({
   text: String,
 });
 
+const reward = new mongoose.Schema({
+  rewardName: String,
+  point: Number
+});
+
+const infoSave = new mongoose.Schema({
+  startDate: String,
+  endDate: String,
+  note: String,
+  allpoint: Number,
+  rewardA: reward,
+  rewardB: reward,
+  sunSticked:[mongoose.Schema.Types.Mixed],
+  monSticked:[mongoose.Schema.Types.Mixed],
+  tueSticked:[mongoose.Schema.Types.Mixed],
+  wedSticked:[mongoose.Schema.Types.Mixed],
+  thuSticked:[mongoose.Schema.Types.Mixed],
+  friSticked:[mongoose.Schema.Types.Mixed],
+  satSticked:[mongoose.Schema.Types.Mixed],
+  activitySticked:[mongoose.Schema.Types.Mixed],
+  praiseSticked:[mongoose.Schema.Types.Mixed],
+  feelingSticked:[mongoose.Schema.Types.Mixed],
+  rewardSticked:[mongoose.Schema.Types.Mixed],
+});
+
 const UserSchema = new mongoose.Schema({
   username: String,
   imgProfile: String,
@@ -61,7 +86,9 @@ const UserSchema = new mongoose.Schema({
   activitySticked:[mongoose.Schema.Types.Mixed],
   praiseSticked:[mongoose.Schema.Types.Mixed],
   feelingSticked:[mongoose.Schema.Types.Mixed],
-  rewardSticked:[mongoose.Schema.Types.Mixed]
+  rewardSticked:[mongoose.Schema.Types.Mixed],
+  stickerHistory:[infoSave]
+    
 });
 
 

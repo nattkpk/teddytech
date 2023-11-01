@@ -1,3 +1,5 @@
+import { Data } from "@angular/router";
+
 export class User {
   id(id: any) {
     throw new Error('Method not implemented.');
@@ -33,9 +35,40 @@ export class User {
     public activitySticked: any[],
     public praiseSticked: any[],
     public feelingSticked: any[],
-    public rewardSticked: any[]
+    public rewardSticked: any[],
+    public stickerHistory:infoSave[]
   ) {}
 }
+
+export class infoSave {
+  constructor( 
+    public startDate:string,
+    public endDate:string,
+    public note: string,
+    public allpoint: number,
+    public rewardA: reward,
+    public rewardB: reward,
+    public sunSticked:any[],
+    public monSticked:any[],
+    public tueSticked:any[],
+    public wedSticked:any[],
+    public thuSticked:any[],
+    public friSticked:any[],
+    public satSticked:any[],
+    public activitySticked:any[],
+    public praiseSticked:any[],
+    public feelingSticked:any[],
+    public rewardSticked:any[],
+    ) {}
+}
+
+export class reward {
+  constructor(
+    public rewardName: string,
+    public point: number
+    ) {}
+}
+
 
 export class Theme {
   constructor(public font: string, public bg: string) {}
