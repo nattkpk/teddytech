@@ -20,6 +20,7 @@ export class SaveBoard {
     this.initializeWeek();
     this.note = '';
     this.historyData = [];
+
   }
 
   ngOnInit() {
@@ -44,8 +45,8 @@ export class SaveBoard {
 
         this.newHistory.rewardA.point = this.user.pointA;
         this.newHistory.rewardB.point = this.user.pointB;
-        this.newHistory.rewardA.rewardName = this.user.reward_sticked[0].text;
-        this.newHistory.rewardB.rewardName = this.user.reward_fontColor[1].text;
+        this.newHistory.rewardA.rewardName = this.user.rewardSticked[0].text;
+        this.newHistory.rewardB.rewardName = this.user.rewardSticked[1].text;
         this.newHistory.allpoint = this.user.currentPoint;
         this.newHistory.note = this.note;
 
@@ -63,7 +64,7 @@ export class SaveBoard {
     endDate: '',
     note: '',
     allpoint: 0,
-    rewardA: { rewardName: '', point: 0 },
+    rewardA: { rewardName: this.user.re, point: 0 },
     rewardB: { rewardName: '', point: 0 },
     sunSticked: [],
     monSticked: [],
@@ -235,7 +236,7 @@ export class SaveBoard {
       thuSticked: this.thu_sticked,
       friSticked: this.fri_sticked,
       satSticked: this.sat_sticked,
-      currentPoint: 0
+      currentPoint: 0,
     };
     this.user_repository.updateUserFields(
       this.userDataService.getUserId(),
@@ -245,9 +246,10 @@ export class SaveBoard {
 
   saveAlert() {
     this.setDate();
+    this.newHistory.allpoint = this.user.currentPoint;
     this.newHistory.note = this.note;
     this.historyData = this.user.stickerHistory;
-    this.historyData.push(this.newHistory);
+    this.historyData.unshift(this.newHistory);
     Swal.fire({
       title: 'Save this week?',
       text: 'All sticker on board will be clear , are you sure? ',
@@ -266,7 +268,7 @@ export class SaveBoard {
 
           await Swal.fire({
             icon: 'success',
-            title: 'Create Success',
+            title: 'Save Success',
             confirmButtonText: 'OK',
             confirmButtonColor: '#A1C554',
           });

@@ -20,13 +20,15 @@
     background-color: #EFCCCC;
     margin: 20px 5px 20px 5px;
     width: 72vw;
-    height: 830px;
+    height: 100vh;
   }
   
   .history-container{
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    margin: 20px;
+    align-items: center;
+    margin: 20px auto;
   }
 
   .history-card{
@@ -35,6 +37,14 @@
     border-radius: 20px;
     width: 50vw;
     height: 180px;
+    transition: 0.2s;
+    cursor: pointer;
+  }
+
+  .history-card:hover{
+    /* border: solid 5px #d18b8b; */
+    background-color: #feeeee;
+    transition: 0.2s;
   }
 
   .history-card h5{
@@ -60,7 +70,8 @@
     display: flex;
     flex-direction: column;
     margin: 20px;
-    width: 20vw;
+    width: 15vw;
+    /* background-color: #6fa34f; */
   }
 
   .column .fa-circle-check{
@@ -78,9 +89,46 @@
     width: 3vw;
   }
 
-  .column-arrow i{
+  .column-arrow .fa-chevron-right{
     font-size: 30px;
   }
+
+  .btnDelete{
+    background-color: #c25959;
+    color: #ffff;
+    border: none;
+    border-radius: 10px;
+    width: 6vw;
+    margin-top: 4vh;
+    transition: 0.2s;
+  }
+
+  .btnDelete:hover{
+    background-color: #b44d4d;
+    transition: 0.2s;
+  }
+
+  /* reward.component.css */
+.pagination-container {
+    text-align: center;
+    margin-top: 5px;
+  }
+  
+  .pagination-button {
+    background-color: #BB7979; /* Background color for the buttons */
+    color: #fff; /* Text color for the buttons */
+    border: none;
+    border-radius: 20px;
+    padding: 8px 12px;
+    margin: 0 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .pagination-button:hover {
+    background-color: #d18b8b; /* Background color on hover */
+  }
+  
 
 
   

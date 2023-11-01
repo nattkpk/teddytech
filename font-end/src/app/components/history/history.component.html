@@ -27,26 +27,60 @@
         </ul>
 
         <div class="history-container">
-          <div class="history-card">
-            <h5>Date : 1/1/2222 - 7/1/2222</h5>
+          <div
+            class="history-card"
+            *ngFor="let item of getDataForPage(currentPage); let i = index"
+          >
+            <h5>Date : {{ item.startDate }}&ensp;-&ensp;{{ item.endDate }}</h5>
 
             <div class="history-info">
               <div class="column">
-                <p>All points collected : 20 pts</p>
-                <p>Note :</p>
+                <p>All points collected : {{ item.allpoint }} pts</p>
+                <p>Note : {{ item.note }}</p>
               </div>
               <div class="column">
                 <p>Reward</p>
-                <p><i class="fa-solid fa-circle-check"></i> Teddy</p>
-                <p><i class="fa-solid fa-circle-xmark"></i> Candy</p>
+                <p>
+                  <i
+                    class="fa-solid fa-circle-check"
+                    *ngIf="item.allpoint >= item.rewardA.point"
+                  ></i>
+                  <i
+                    class="fa-solid fa-circle-xmark"
+                    *ngIf="item.allpoint < item.rewardA.point"
+                  ></i>
+                  {{ item.rewardA.rewardName }}
+                </p>
+                <p>
+                  <i
+                    class="fa-solid fa-circle-check"
+                    *ngIf="item.allpoint >= item.rewardB.point"
+                  ></i>
+                  <i
+                    class="fa-solid fa-circle-xmark"
+                    *ngIf="item.allpoint < item.rewardB.point"
+                  ></i>
+                  {{ item.rewardB.rewardName }}
+                </p>
               </div>
               <div class="column-arrow">
-                <i class="fa-solid fa-chevron-right"></i>
+                <i class="fa-solid fa-chevron-right"> </i
+                ><button class="btnDelete" (click)="deleteHistory(i)">
+                  <i class="fa-solid fa-trash"></i>&ensp;Delete
+                </button>
               </div>
             </div>
+          </div>
 
+          <div class="pagination-container">
+            <ng-container *ngFor="let page of getPageNumbers()">
+              <button class="pagination-button" (click)="changePage(page - currentPage)">
+                {{ page }}
+              </button>
+            </ng-container>
           </div>
         </div>
+
       </div>
     </div>
   </body>
