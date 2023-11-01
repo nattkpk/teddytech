@@ -101,6 +101,29 @@ export class StickerDataService {
       '../../../assets/img/PointSticker/Icon/heart.png',
       '../../../assets/img/PointSticker/Icon/shooting-star.png',
       '../../../assets/img/PointSticker/Icon/star.png',
+
+      '../../../assets/img/PointSticker/Icon/cat.png',
+      '../../../assets/img/PointSticker/Icon/comic.png',
+      '../../../assets/img/PointSticker/Icon/dinosaur.png',
+      '../../../assets/img/PointSticker/Icon/dog.png',
+      '../../../assets/img/PointSticker/Icon/falling-star.png',
+      '../../../assets/img/PointSticker/Icon/fire.png',
+      '../../../assets/img/PointSticker/Icon/good-job.png',
+      '../../../assets/img/PointSticker/Icon/happy.png',
+      '../../../assets/img/PointSticker/Icon/happy2.png',
+      '../../../assets/img/PointSticker/Icon/heart2.png',
+      '../../../assets/img/PointSticker/Icon/pawprint.png',
+      '../../../assets/img/PointSticker/Icon/star1.png',
+      '../../../assets/img/PointSticker/Icon/star2.png',
+      '../../../assets/img/PointSticker/Icon/rabbit.png',
+      '../../../assets/img/PointSticker/Icon/thumbs-up.png',
+      '../../../assets/img/PointSticker/Icon/toy.png',
+
+      '../../../assets/img/PointSticker/Icon/unicorn.png',
+      '../../../assets/img/PointSticker/Icon/wink1.png',
+      '../../../assets/img/PointSticker/Icon/wink.png',
+      '../../../assets/img/PointSticker/Icon/wow.png',
+      '../../../assets/img/PointSticker/Icon/yay2.png',
     ];
     //--------------------------- reward----------------------------
 
