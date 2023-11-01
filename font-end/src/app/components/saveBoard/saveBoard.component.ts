@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
 import { UserRepository } from 'src/app/models/userModel/user.repository';
 import { UserDataService } from 'src/app/services/user-data.service';
-import { StickerDataService } from 'src/app/services/sticker-data.service';
 import Swal from 'sweetalert2';
-import { ConnectionClosedEvent } from 'mongodb';
-import { Board } from '../board/board.component';
 import { infoSave } from 'src/app/models/userModel/user.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'saveBoard',
@@ -14,10 +12,9 @@ import { infoSave } from 'src/app/models/userModel/user.model';
 })
 export class SaveBoard {
   constructor(
-    private methodBoard: Board,
+    private router: Router,
     private user_repository: UserRepository,
-    private userDataService: UserDataService,
-    private sticker_service: StickerDataService
+    private userDataService: UserDataService
   ) {
     this.selectedWeek = '';
     this.initializeWeek();
@@ -126,17 +123,125 @@ export class SaveBoard {
     this.newHistory.endDate = eformattedDate;
   }
 
-    historyData: any[]
+  historyData: any[];
 
-    updatehistoryData() {
-      const updatedHistoryData = {
-          stickerHistory: this.historyData,
-      };
-      this.user_repository.updateUserFields(
-        this.userDataService.getUserId(),
-        updatedHistoryData
-      );
-    }
+  updatehistoryData() {
+    const updatedHistoryData = {
+      stickerHistory: this.historyData,
+    };
+    this.user_repository.updateUserFields(
+      this.userDataService.getUserId(),
+      updatedHistoryData
+    );
+  }
+  sun_sticked = [
+    { text: '' },
+    { text: '' },
+    { text: '' },
+    { text: '' },
+    { text: '' },
+  ];
+  mon_sticked = [
+    { text: '' },
+    { text: '' },
+    { text: '' },
+    { text: '' },
+    { text: '' },
+  ];
+  tue_sticked = [
+    { text: '' },
+    { text: '' },
+    { text: '' },
+    { text: '' },
+    { text: '' },
+  ];
+  wed_sticked = [
+    { text: '' },
+    { text: '' },
+    { text: '' },
+    { text: '' },
+    { text: '' },
+  ];
+  thu_sticked = [
+    { text: '' },
+    { text: '' },
+    { text: '' },
+    { text: '' },
+    { text: '' },
+  ];
+  fri_sticked = [
+    { text: '' },
+    { text: '' },
+    { text: '' },
+    { text: '' },
+    { text: '' },
+  ];
+  sat_sticked = [
+    { text: '' },
+    { text: '' },
+    { text: '' },
+    { text: '' },
+    { text: '' },
+  ];
+
+  reward_Sticked = [
+    {
+      text: '',
+      imageUrl: '',
+    },
+    {
+      text: '',
+      imageUrl: '',
+    },
+  ];
+
+  feeling_Sticked = [{ text: '' }, { text: '' }, { text: '' }];
+
+  praise_Sticked = [{ text: '' }, { text: '' }, { text: '' }];
+
+  activity_Sticked = [
+    {
+      text: '',
+      imageUrl: '',
+    },
+    {
+      text: '',
+      imageUrl: '',
+    },
+    {
+      text: '',
+      imageUrl: '',
+    },
+    {
+      text: '',
+      imageUrl: '',
+    },
+    {
+      text: '',
+      imageUrl: '',
+    },
+  ];
+
+  clearBoard() {
+    const updatedUserData = {
+      activitySticked: this.activity_Sticked,
+      praiseSticked: this.praise_Sticked,
+      feelingSticked: this.feeling_Sticked,
+      rewardSticked: this.reward_Sticked,
+      sunSticked: this.sun_sticked,
+      monSticked: this.mon_sticked,
+      tueSticked: this.tue_sticked,
+      wedSticked: this.wed_sticked,
+      thuSticked: this.thu_sticked,
+      friSticked: this.fri_sticked,
+      satSticked: this.sat_sticked,
+      currentPoint: 0
+    };
+    this.user_repository.updateUserFields(
+      this.userDataService.getUserId(),
+      updatedUserData
+    );
+  }
 
   saveAlert() {
     this.setDate();
@@ -156,7 +261,7 @@ export class SaveBoard {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          console.log(this.historyData)
+          console.log(this.historyData);
           this.updatehistoryData();
 
           await Swal.fire({
@@ -168,7 +273,8 @@ export class SaveBoard {
         } catch (error) {
           console.error(error);
         }
-      } else {
+        this.clearBoard();
+        this.router.navigate(['/board']);
       }
     });
   }
