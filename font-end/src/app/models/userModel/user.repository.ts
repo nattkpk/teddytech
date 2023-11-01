@@ -72,12 +72,9 @@ export class UserRepository {
   loginUser(username: string, password: string): boolean {
     const user = this.users.find(
       (u) => u.username === username && u.password === password
-      
     );
-   
-
     if (user) {
-      this.userDataService.setUserId(user._id)
+      this.userDataService.setUserId(user._id);
       return true;
     } else {
       return false;
@@ -91,10 +88,10 @@ export class UserRepository {
     checkPassword: string,
     kid_name: string,
     kid_age: number
-  ){
+  ) {
     if (!username || !email || !password || !checkPassword) {
-    return false; 
-  }
+      return false;
+    }
     const userExists = this.users.find((u) => u.username === username);
     if (userExists || password !== checkPassword) {
       return false;
@@ -124,16 +121,21 @@ export class UserRepository {
     return true;
   }
 
-  
-
-  // updateUser(id: string, updatedUser: User): boolean {
-  //   const index = this.users.findIndex((user) => user.id === id);
-  //   if (index !== -1) {
-  //     this.users[index] = updatedUser;
-  //     return true;
-  //   }
-  //   return false;
-  // }
+  updateUser(id: string, updated: User, password: string) {
+    const user = this.users.find((u) => u.password !== password);
+    if (updated) {
+      this.apiData.updateUser(user._id, updated).subscribe(
+        (response) => {
+          console.log('User updated:', response);
+        },
+        (error) => {
+          console.error('User update failed:', error);
+        }
+      );
+    } else {
+      console.log('User update failed');
+    }
+  }
 
   // deleteUser(id: string): boolean {
   //   const index = this.users.findIndex((user) => user.id === id);

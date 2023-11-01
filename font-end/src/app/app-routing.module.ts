@@ -5,11 +5,13 @@ import { Signin } from './components/signin/signin.component';
 import { HomeComponent } from './components/home/home.component';
 import { HowtouseComponent } from './components/howtouse/howtouse.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { CheckProfileComponent} from './components/check-profile/check-profile.component';
 import { EditActivity } from './components/editActicitySticker/editActivity.component';
 import { EditReward } from './components/editRewardSticker/editReward.component';
 import { EditFeeling } from './components/editFeelingSticker/editFeeling.component';
 import { EditPraise } from './components/editPraiseSticker/editPraise.component';
 import { EditPoint } from './components/editPointSticker/editPoint.component';
+import {ProfileService} from './services/profile.service'
 
 
 
@@ -22,7 +24,7 @@ const routes: Routes = [
   { path: 'edit_point_sticker', component: EditPoint },
   { path: 'signin', component: Signin },
   { path: 'howto', component: HowtouseComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'profile', component: CheckProfileComponent },
   { path: 'home', component: HomeComponent },
   { path: '**', redirectTo: '/board' },
  
@@ -30,6 +32,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [ProfileService],
 })
 export class AppRoutingModule { }

@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import Swal from 'sweetalert2';
+import { ThemePalette } from '@angular/material/core';
+import {ProfileService} from '../../services/profile.service'
+import { UserRepository } from '../../models/userModel/user.repository';
 
 @Component({
   selector: 'app-profile',
@@ -9,24 +12,34 @@ import Swal from 'sweetalert2';
 export class ProfileComponent {
   showEditProfile: boolean = false;
   determinate1: number = 0;
-  targetValue1: number = 80;
   determinate2: number = 0;
+  targetValue1: number = 80;
   targetValue2: number = 80;
+  color: ThemePalette = 'primary';
 
+  constructor(
+    private userRepository: UserRepository,
+    private profileStateService: ProfileService,
+    ) {}
 
-  constructor() { }
-
-  async ngOnInit(): Promise<void> {
-    await setInterval(() => {
+  ngOnInit(): void {
+    this.profileStateService.showEditProfile$.subscribe((showEditProfile) => {
+      this.showEditProfile = showEditProfile;
+    });
+    setInterval(() => {
       this.determinate1 = this.targetValue1;
     }, 500);
-    await setInterval(() => {
+    setInterval(() => {
       this.determinate2 = this.targetValue2;
     }, 600);
   }
 
+  editProfile(): void {
+    this.profileStateService.updateShowEditProfile(true); 
+  }
 
-  editProfile() {
+  addNewBoard() {
+
     Swal.fire({
       title: 'Clear feeling sticker on the board',
       text: 'Are you sure?',
@@ -38,13 +51,5 @@ export class ProfileComponent {
       confirmButtonColor: '#A1C554',
       cancelButtonColor: '#FC6F6F',
     });
-
-   
-
-    
-
-
-
-
   }
 }

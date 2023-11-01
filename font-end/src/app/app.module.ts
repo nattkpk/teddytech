@@ -25,6 +25,7 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
 // material
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { CheckProfileComponent } from './components/check-profile/check-profile.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     HomeComponent,
     HowtouseComponent,
     ProfileComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    CheckProfileComponent,
   ],
   imports: [
     FormsModule,
