@@ -33,8 +33,8 @@
           >
             <h5>Date : {{ item.startDate }}&ensp;-&ensp;{{ item.endDate }}</h5>
 
-            <div class="history-info" (click)="checkBoard(i)">
-              <div class="column">
+            <div class="history-info">
+              <div class="column" >
                 <p>All points collected : {{ item.allpoint }} pts</p>
                 <p>Note : {{ item.note }}</p>
               </div>
@@ -64,7 +64,7 @@
                 </p>
               </div>
               <div class="column-arrow">
-                <i class="fa-solid fa-chevron-right"> </i
+                <i class="fa-solid fa-circle-chevron-right" (click)="checkBoard(i)"> </i
                 ><button class="btnDelete" (click)="deleteHistory(i)">
                   <i class="fa-solid fa-trash"></i>&ensp;Delete
                 </button>

@@ -43,14 +43,8 @@
     width: 50vw;
     height: 180px;
     transition: 0.2s;
-    cursor: pointer;
   }
 
-  .history-card:hover{
-    /* border: solid 5px #d18b8b; */
-    background-color: #feeeee;
-    transition: 0.2s;
-  }
 
   .history-card h5{
     padding: 10px 3px 10px 20px;
@@ -92,11 +86,20 @@
     flex-direction: column;
     margin: 20px;
     width: 3vw;
+    transition: 0.2s;
   }
 
-  .column-arrow .fa-chevron-right{
+
+  .fa-circle-chevron-right{
     font-size: 30px;
+    cursor: pointer;
+    transition: 0.2s;
   }
+
+  .fa-circle-chevron-right:hover{
+    color: #8b5959;
+  }
+
 
   .btnDelete{
     background-color: #c25959;
@@ -109,7 +112,7 @@
   }
 
   .btnDelete:hover{
-    background-color: #b44d4d;
+    background-color: #a74646;
     transition: 0.2s;
   }
 
