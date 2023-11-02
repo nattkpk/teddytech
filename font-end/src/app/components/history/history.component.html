@@ -25,6 +25,9 @@
             ></a>
           </li>
         </ul>
+        <div *ngIf="historyData.length == 0" class="history-container noHistory">
+          <h3>No History&ensp;<i class="fa-regular fa-circle-xmark"></i></h3>
+        </div>
 
         <div class="history-container">
           <div

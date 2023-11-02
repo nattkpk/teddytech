@@ -138,5 +138,9 @@
   }
   
 
-
+  .noHistory{
+    color: #b57979;
+    height: 90vh;
+    /* background-color: #8E3535; */
+  }
   
