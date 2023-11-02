@@ -20,6 +20,7 @@
   .container-board {
     border-radius: 20px;
     background-color: #efcccc;
+    border: solid 5px #d7b0b0;
     margin: 20px 5px 0px 5px;
     width: 72vw;
     height: 800px;
@@ -348,6 +349,7 @@
   }
   
   .container-rewardStickers {
+    border: solid 5px #baddeb;
     border-radius: 20px;
     background-color: #dcf5ff;
     margin: 5px 5px 20px 5px;
