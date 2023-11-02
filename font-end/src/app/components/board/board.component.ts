@@ -35,6 +35,7 @@ export class Board {
   guest: boolean = true;
   id: string = '';
 
+  
   constructor(
     private router: Router,
     private user_repository: UserRepository,
