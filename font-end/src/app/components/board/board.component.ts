@@ -49,24 +49,17 @@ export class Board {
     this.user_repository
       .getUserById(this.userDataService.getUserId())
       .subscribe((user) => {
-        // console.log('User Data:', user);
         this.user = user;
 
-        this.activityData = this.user?.stickers?.activity
-          ? this.user.stickers.activity
-          : [];
+        this.activityData = this.user.stickers.activity;
         this.activityBg = this.user.activityTheme.bg;
         this.activity_fontColor = this.user.activityTheme.font;
 
-        this.praise_data = this.user?.stickers?.praise
-          ? this.user.stickers.praise
-          : [];
+        this.praise_data = this.user.stickers.praise;
         this.praiseBg = this.user.praiseTheme.bg;
         this.praise_fontColor = this.user.praiseTheme.font;
 
-        this.feelingData = this.user?.stickers?.feeling
-          ? this.user.stickers.feeling
-          : [];
+        this.feelingData = this.user.stickers.feeling;
         this.feelingBg = this.user.feelingTheme.bg;
         this.feeling_fontColor = this.user.feelingTheme.font;
 
@@ -74,9 +67,7 @@ export class Board {
           ? this.user.stickers.point
           : [];
 
-        this.rewardData = this.user?.stickers?.reward
-          ? this.user.stickers.reward
-          : [];
+        this.rewardData = this.user.stickers.reward;
         this.rewardBg = this.user.rewardTheme.bg;
         this.reward_fontColor = this.user.rewardTheme.font;
 
@@ -343,6 +334,7 @@ export class Board {
       updatedUserData
     );
   }
+
 
   getActivityDataForPage(page: number): any[] {
     const startIndex = (page - 1) * this.itemsPerPage;
