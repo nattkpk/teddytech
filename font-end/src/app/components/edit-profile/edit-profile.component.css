@@ -33,7 +33,7 @@ color: #466B22;;
 
   }
 
-  .cycle {
+  .circle {
     border-radius: 50%;
     width: 150px;
     height: 150px;
@@ -49,6 +49,25 @@ color: #466B22;;
     height: 35px;
   }
   
+  .image-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.image-item {
+    text-align: center;
+}
+
+.rounded-image {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
  
 
 input{

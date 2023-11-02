@@ -76,6 +76,7 @@ export class UserRepository {
       this.userDataService.setUserId(user._id);
       return true;
     } else {
+      console.log('Error : User Non-found');
       return false;
     }
   }
@@ -89,10 +90,16 @@ export class UserRepository {
     kid_age: number
   ) {
     if (!username || !email || !password || !checkPassword) {
+      console.log('Error : Please enter a username email password and check password');
       return false;
     }
     const userExists = this.users.find((u) => u.username === username);
-    if (userExists || password !== checkPassword) {
+    if (userExists) {
+      console.log('Error : userExists');
+      return false;
+    }
+    if(password !== checkPassword){
+      console.log('Error : incoorect');
       return false;
     }
 
@@ -100,7 +107,7 @@ export class UserRepository {
       
         
           username: username,
-          imgProfile: "ducky.jpg",
+          imgProfile: "../../../assets/profile/Profile1.png",
           email: email,
           password: password,
           kid_name: kid_name,
@@ -436,20 +443,18 @@ export class UserRepository {
           stickerHistory: []
         }
       
-    
-
-    console.log('New User Details:', newUser);
 
     this.apiData.registerUser(newUser).subscribe(
       (response) => {
         console.log('User registered:', response);
-        this.loginUser
+       this.loginUser(newUser.username,newUser.password);
+       console.log(newUser.username,newUser.password);
       },
       (error) => {
         console.error('User registration failed:', error);
+        return false;
       }
     );
-
     return true;
   }
 

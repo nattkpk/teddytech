@@ -29,8 +29,9 @@ export class UserDataService {
   }
   
   clearUserId(): void {
-    localStorage.removeItem(this.userIdKey);
     this.userId = '';
+    localStorage.removeItem(this.userIdKey);
+  
   }
    
 }

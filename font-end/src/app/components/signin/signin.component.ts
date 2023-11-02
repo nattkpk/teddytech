@@ -14,7 +14,7 @@ export class Signin {
   email = '';
   checkPassword = '';
   kid_name = '';
-  kid_age : number = 0;
+  kid_age: number = 0;
 
   constructor(
     private elementRef: ElementRef,
@@ -24,17 +24,19 @@ export class Signin {
   ) {}
 
   login() {
-    const isAuthenticated = this.userRepository.loginUser(
+    const isAuthenticated =  this.userRepository.loginUser(
       this.username,
       this.password
     );
     if (isAuthenticated) {
       this.calcuLogin();
-    }else {
-    console.log("ERROR: Login failed");
+    } else {
+      console.log('ERROR: Login failed');
     }
   }
 
+
+  ///[บัค]
   register() {
     const isRegister = this.userRepository.registerUser(
       this.username,
@@ -43,22 +45,20 @@ export class Signin {
       this.checkPassword,
       this.kid_name,
       this.kid_age
-
     );
     if (isRegister) {
-      this.calcuLogin();
-    }else {
-    console.log("ERROR: Login failed");
+       this.login();
+      console.log('Pass : registration and login done');
+    } else {
+      console.log('ERROR: registration failed');
     }
   }
-
- 
 
   calcuLogin() {
     const num1: number = Math.floor(Math.random() * 13) + 3;
     const num2: number = Math.floor(Math.random() * 6) + 4;
     const result: number = num1 * num2;
-  
+
     Swal.fire({
       title: 'Go to the board',
       text: `Calculate: ${result} ÷ ${num1} = ?`,
@@ -67,7 +67,7 @@ export class Signin {
       confirmButtonColor: '#A1C554',
     }).then((userResult) => {
       if (userResult.isConfirmed) {
-        if (userResult.value == num2) { 
+        if (userResult.value == num2) {
           Swal.fire({
             title: 'Go to the board',
             icon: 'success',
@@ -86,7 +86,6 @@ export class Signin {
       }
     });
   }
-  
 
   toggleChangeClass() {
     const mainContainer =

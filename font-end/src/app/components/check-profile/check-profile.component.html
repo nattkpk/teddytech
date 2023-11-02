@@ -1,8 +1,8 @@
-<div *ngIf="!userHasID"> 
+<div *ngIf="username"> 
     <app-profile></app-profile>
   </div>
   
-  <div *ngIf="userHasID">
+  <div *ngIf="!username">
     <div class="container">
       <div class="transparent-container">
         <div class="col-lg-12 cardProfile  text-center">
