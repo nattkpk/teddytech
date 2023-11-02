@@ -39,7 +39,7 @@
             <div class="history-info">
               <div class="column" >
                 <p>All points collected : {{ item.allpoint }} pts</p>
-                <p>Note : {{ item.note }}</p>
+                <p>Note : {{ item.note.length > 10 ? item.note.slice(0, 20) + '...' : item.note }}</p>
               </div>
               <div class="column">
                 <p>Reward</p>

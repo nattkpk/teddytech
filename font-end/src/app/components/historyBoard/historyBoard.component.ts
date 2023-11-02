@@ -53,9 +53,11 @@ export class HistoryBoard {
         this.pointA = this.user.stickerHistory[this.stickerService.getHistoryIndex()].rewardA.point;
         this.pointB = this.user.stickerHistory[this.stickerService.getHistoryIndex()].rewardB.point;
         this.collectedPoint = this.user.stickerHistory[this.stickerService.getHistoryIndex()].allpoint;
+        this.note = this.user.stickerHistory[this.stickerService.getHistoryIndex()].note;
       });
   }
 
+  note:string = '';
   addBg = '';
   activityBg: string = '';
   activity_fontColor: string = '';
