@@ -97,7 +97,7 @@ export class Board {
         this.now_points = this.user.currentPoint;
       });
 
-    if (this.id != undefined) {
+    if (this.id != '') {
       this.guest = false;
     }
     if (this.guest) {
