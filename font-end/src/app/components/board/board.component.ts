@@ -32,6 +32,8 @@ export class Board {
   pointData: any[] = [];
   rewardData: any[] = [];
   user: any | null = {};
+  guest: boolean = true;
+  id: string = '';
 
   constructor(
     private router: Router,
@@ -41,18 +43,19 @@ export class Board {
   ) {}
 
   ngOnInit() {
-    // Fetch the user data when the component initializes
+    this.id = this.userDataService.getUserId();
+
     this.user_repository
       .getUserById(this.userDataService.getUserId())
       .subscribe((user) => {
         console.log('User Data:', user);
         this.user = user;
+
         this.activityData = this.user?.stickers?.activity
           ? this.user.stickers.activity
           : [];
         this.activityBg = this.user.activityTheme.bg;
         this.activity_fontColor = this.user.activityTheme.font;
-
 
         this.praise_data = this.user?.stickers?.praise
           ? this.user.stickers.praise
@@ -60,25 +63,21 @@ export class Board {
         this.praiseBg = this.user.praiseTheme.bg;
         this.praise_fontColor = this.user.praiseTheme.font;
 
-       
         this.feelingData = this.user?.stickers?.feeling
           ? this.user.stickers.feeling
           : [];
         this.feelingBg = this.user.feelingTheme.bg;
         this.feeling_fontColor = this.user.feelingTheme.font;
 
-
         this.pointData = this.user?.stickers?.point
           ? this.user.stickers.point
           : [];
-
 
         this.rewardData = this.user?.stickers?.reward
           ? this.user.stickers.reward
           : [];
         this.rewardBg = this.user.rewardTheme.bg;
         this.reward_fontColor = this.user.rewardTheme.font;
-
 
         this.activity_sticked = this.user.activitySticked;
         this.sun_sticked = this.user.sunSticked;
@@ -96,7 +95,175 @@ export class Board {
         this.pointB = this.user.pointB;
         this.now_points = this.user.currentPoint;
       });
+
+    if (this.id != undefined) {
+      this.guest = false;
+    }
+    if (this.guest) {
+      this.guestData();
+    }
+    console.log('Guest : ', this.guest);
   }
+  // ---------------------------------For guest-----------------------------------------
+
+  guestData() {
+    this.activity_sticked = [
+      { text: '' },
+      { text: '' },
+      { text: '' },
+      { text: '' },
+      { text: '' },
+    ];
+    this.sun_sticked = [
+      { text: '' },
+      { text: '' },
+      { text: '' },
+      { text: '' },
+      { text: '' },
+    ];
+    this.mon_sticked = [
+      { text: '' },
+      { text: '' },
+      { text: '' },
+      { text: '' },
+      { text: '' },
+    ];
+    this.tue_sticked = [
+      { text: '' },
+      { text: '' },
+      { text: '' },
+      { text: '' },
+      { text: '' },
+    ];
+    this.wed_sticked = [
+      { text: '' },
+      { text: '' },
+      { text: '' },
+      { text: '' },
+      { text: '' },
+    ];
+    this.thu_sticked = [
+      { text: '' },
+      { text: '' },
+      { text: '' },
+      { text: '' },
+      { text: '' },
+    ];
+    this.fri_sticked = [
+      { text: '' },
+      { text: '' },
+      { text: '' },
+      { text: '' },
+      { text: '' },
+    ];
+    this.sat_sticked = [
+      { text: '' },
+      { text: '' },
+      { text: '' },
+      { text: '' },
+      { text: '' },
+    ];
+    this.praise_sticked = [{ text: '' }, { text: '' }, { text: '' }];
+    this.feeling_sticked = [{ text: '' }, { text: '' }, { text: '' }];
+    this.reward_sticked = [{ text: '' }, { text: '' }];
+
+    this.activityData = [
+      {
+        text: 'Take a Shower',
+        imageUrl: '../../../assets/img/ActivityIcon/shower.png',
+      },
+      {
+        text: 'Wake up on time',
+        imageUrl: '../../../assets/img/ActivityIcon/clock.png',
+      },
+      {
+        text: 'Wash hands',
+        imageUrl: '../../../assets/img/ActivityIcon/wash-your-hands.png',
+      },
+      {
+        text: 'Brush teeth',
+        imageUrl: '../../../assets/img/ActivityIcon/tooth-brush.png',
+      },
+      {
+        text: 'Make the bed',
+        imageUrl: '../../../assets/img/ActivityIcon/make-the-bed.png',
+      },
+      {
+        text: 'Drink milk',
+        imageUrl: '../../../assets/img/ActivityIcon/milk-box.png',
+      },
+    ];
+    this.activityBg = '../../../assets/img/BgSticker/Diamon4.png';
+    this.activity_fontColor = '#3F5236';
+
+    this.praise_data = [
+      { text: "You're Amazing!" },
+      { text: "I'm so proud of you" },
+      { text: 'You did a fantastic job!' },
+      { text: 'Thank you for your help' },
+      { text: 'I love you' },
+      { text: 'You amaze me every day' },
+    ];
+    this.praiseBg = '../../../assets/img/BgSticker/Heart8.png';
+    this.praise_fontColor = '#AF5771';
+
+    this.feelingData = [
+      { text: 'Good !' },
+      { text: 'Amazing !' },
+      { text: 'Bored' },
+      { text: 'Happy' },
+      { text: 'Sleepy' },
+      { text: 'Joyful' },
+    ];
+    this.feelingBg = '../../../assets/img/BgSticker/Star5.png';
+    this.feeling_fontColor = '#8F834F';
+
+    this.pointData = [
+      {
+        icon: '../../../assets/img/PointSticker/Icon/heart.png',
+        bgImage: '../../../assets/img/PointSticker/Bg/Bgpoint1.png',
+        point: 1,
+      },
+      {
+        icon: '../../../assets/img/PointSticker/Icon/star.png',
+        bgImage: '../../../assets/img/PointSticker/Bg/Bgpoint2.png',
+        point: 2,
+      },
+      {
+        icon: '../../../assets/img/PointSticker/Icon/shooting-star.png',
+        bgImage: '../../../assets/img/PointSticker/Bg/Bgpoint3.png',
+        point: 3,
+      },
+    ];
+
+    this.rewardData = [
+      {
+        text: 'Teddy doll',
+        imageUrl: '../../../assets/img/RewardIcon/teddy-bear.png',
+      },
+      { text: 'New book', imageUrl: '../../../assets/img/RewardIcon/book.png' },
+      {
+        text: 'Cotton candy',
+        imageUrl: '../../../assets/img/RewardIcon/cotton-candy.png',
+      },
+      {
+        text: 'Ice cream',
+        imageUrl: '../../../assets/img/RewardIcon/ice-cream1.png',
+      },
+      {
+        text: 'New Pencil',
+        imageUrl: '../../../assets/img/RewardIcon/pencil-case.png',
+      },
+      {
+        text: 'New Toy',
+        imageUrl: '../../../assets/img/RewardIcon/storage-box.png',
+      },
+    ];
+
+    this.rewardBg = '../../../assets/img/BgSticker/wow2.png';
+    this.reward_fontColor = '#678CA2';
+  }
+  // ------------------------------------------------------------
 
   dropSticker(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
@@ -107,49 +274,50 @@ export class Board {
       );
     }
     console.log(event.previousContainer);
-    if (event.previousContainer.data == this.activity_sticked) {
-      this.updateActivityData();
-    }else if (event.previousContainer.data == this.sun_sticked) {
-      this.updateSunData();
-    }else if (event.previousContainer.data == this.mon_sticked) {
-      this.updateMonData();
-    }else if (event.previousContainer.data == this.tue_sticked) {
-      this.updateTueData();
-    }else if (event.previousContainer.data == this.wed_sticked) {
-      this.updateWednData();
-    }else if (event.previousContainer.data == this.thu_sticked) {
-      this.updateThuData();
-    }else if (event.previousContainer.data == this.fri_sticked) {
-      this.updateFriData();
-    }else if (event.previousContainer.data == this.sat_sticked) {
-      this.updateSatData();
-    }else if (event.previousContainer.data == this.praise_sticked) {
-      this.updatepraiseData();
-    }else if (event.previousContainer.data == this.feeling_sticked) {
-      this.updatefeelingData();
-    }else if (event.previousContainer.data == this.reward_sticked) {
-      this.updaterewardData();
-    }else{
-      this.updatePosition();
+    if (!this.guest) {
+      if (event.previousContainer.data == this.activity_sticked) {
+        this.updateActivityData();
+      } else if (event.previousContainer.data == this.sun_sticked) {
+        this.updateSunData();
+      } else if (event.previousContainer.data == this.mon_sticked) {
+        this.updateMonData();
+      } else if (event.previousContainer.data == this.tue_sticked) {
+        this.updateTueData();
+      } else if (event.previousContainer.data == this.wed_sticked) {
+        this.updateWednData();
+      } else if (event.previousContainer.data == this.thu_sticked) {
+        this.updateThuData();
+      } else if (event.previousContainer.data == this.fri_sticked) {
+        this.updateFriData();
+      } else if (event.previousContainer.data == this.sat_sticked) {
+        this.updateSatData();
+      } else if (event.previousContainer.data == this.praise_sticked) {
+        this.updatepraiseData();
+      } else if (event.previousContainer.data == this.feeling_sticked) {
+        this.updatefeelingData();
+      } else if (event.previousContainer.data == this.reward_sticked) {
+        this.updaterewardData();
+      } else {
+        this.updatePosition();
+      }
     }
-
   }
 
   changePage(offset: number): void {
     this.currentPage += offset;
   }
 
-  updatePosition(){
+  updatePosition() {
     const updatedUserData = {
       stickers: {
         activity: this.activityData,
         praise: this.praise_data,
         feeling: this.feelingData,
         point: this.pointData,
-        reward: this.rewardData
-      }
+        reward: this.rewardData,
+      },
     };
-      this.user_repository.updateUserFields(
+    this.user_repository.updateUserFields(
       this.userDataService.getUserId(),
       updatedUserData
     );
@@ -186,14 +354,17 @@ export class Board {
   }
 
   addActivity(index: number) {
-    const stickerIndex = index+((this.currentPage-1)*this.itemsPerPage)
+    const stickerIndex = index + (this.currentPage - 1) * this.itemsPerPage;
     for (let i = 0; i < this.activity_sticked.length; i++) {
       if (!this.activity_sticked[i].imageUrl) {
         this.activity_sticked[i] = {
           text: this.activityData[stickerIndex].text,
           imageUrl: this.activityData[stickerIndex].imageUrl,
         };
-        this.updateActivityData();
+        if (!this.guest) {
+          this.updateActivityData();
+        }
+
         break;
       }
     }
@@ -203,7 +374,9 @@ export class Board {
     if (index >= 0 && index < this.activity_sticked.length) {
       this.activity_sticked[index] = { text: '' };
     }
-    this.updateActivityData();
+    if (!this.guest) {
+      this.updateActivityData();
+    }
   }
 
   // --------------------------------Point Sticker---------------------------------------------
@@ -221,7 +394,7 @@ export class Board {
   updateSunData() {
     const updatedUserData = {
       sunSticked: this.sun_sticked,
-      currentPoint: this.now_points
+      currentPoint: this.now_points,
     };
     this.user_repository.updateUserFields(
       this.userDataService.getUserId(),
@@ -231,7 +404,7 @@ export class Board {
   updateMonData() {
     const updatedUserData = {
       monSticked: this.mon_sticked,
-      currentPoint: this.now_points
+      currentPoint: this.now_points,
     };
     this.user_repository.updateUserFields(
       this.userDataService.getUserId(),
@@ -241,7 +414,7 @@ export class Board {
   updateTueData() {
     const updatedUserData = {
       tueSticked: this.tue_sticked,
-      currentPoint: this.now_points
+      currentPoint: this.now_points,
     };
     this.user_repository.updateUserFields(
       this.userDataService.getUserId(),
@@ -251,7 +424,7 @@ export class Board {
   updateWednData() {
     const updatedUserData = {
       wedSticked: this.wed_sticked,
-      currentPoint: this.now_points
+      currentPoint: this.now_points,
     };
     this.user_repository.updateUserFields(
       this.userDataService.getUserId(),
@@ -261,7 +434,7 @@ export class Board {
   updateThuData() {
     const updatedUserData = {
       thuSticked: this.thu_sticked,
-      currentPoint: this.now_points
+      currentPoint: this.now_points,
     };
     this.user_repository.updateUserFields(
       this.userDataService.getUserId(),
@@ -271,7 +444,7 @@ export class Board {
   updateFriData() {
     const updatedUserData = {
       friSticked: this.fri_sticked,
-      currentPoint: this.now_points
+      currentPoint: this.now_points,
     };
     this.user_repository.updateUserFields(
       this.userDataService.getUserId(),
@@ -281,7 +454,7 @@ export class Board {
   updateSatData() {
     const updatedUserData = {
       satSticked: this.sat_sticked,
-      currentPoint: this.now_points
+      currentPoint: this.now_points,
     };
     this.user_repository.updateUserFields(
       this.userDataService.getUserId(),
@@ -309,7 +482,7 @@ export class Board {
   currentday = 1;
 
   addPoint(index: number) {
-    const stickerIndex = index+((this.currentPage-1)*this.itemsPerPage)
+    const stickerIndex = index + (this.currentPage - 1) * this.itemsPerPage;
     switch (this.currentday) {
       case 0:
         for (let i = 0; i < this.sun_sticked.length; i++) {
@@ -320,7 +493,9 @@ export class Board {
               point: this.pointData[stickerIndex].point,
             };
             this.calculate_point(stickerIndex);
-            this.updateSunData();
+            if (!this.guest) {
+              this.updateSunData();
+            }
             break;
           }
         }
@@ -334,7 +509,9 @@ export class Board {
               point: this.pointData[stickerIndex].point,
             };
             this.calculate_point(stickerIndex);
-            this.updateMonData();
+            if (!this.guest) {
+              this.updateMonData();
+            }
             break;
           }
         }
@@ -348,7 +525,9 @@ export class Board {
               point: this.pointData[stickerIndex].point,
             };
             this.calculate_point(stickerIndex);
-            this.updateThuData();
+            if (!this.guest) {
+              this.updateThuData();
+            }
             break;
           }
         }
@@ -362,7 +541,9 @@ export class Board {
               point: this.pointData[stickerIndex].point,
             };
             this.calculate_point(stickerIndex);
-            this.updateWednData();
+            if (!this.guest) {
+              this.updateWednData();
+            }
             break;
           }
         }
@@ -376,7 +557,9 @@ export class Board {
               point: this.pointData[stickerIndex].point,
             };
             this.calculate_point(stickerIndex);
-            this.updateThuData();
+            if (!this.guest) {
+              this.updateThuData();
+            }
             break;
           }
         }
@@ -390,7 +573,9 @@ export class Board {
               point: this.pointData[stickerIndex].point,
             };
             this.calculate_point(stickerIndex);
-            this.updateFriData();
+            if (!this.guest) {
+              this.updateFriData();
+            }
             break;
           }
         }
@@ -404,7 +589,9 @@ export class Board {
               point: this.pointData[stickerIndex].point,
             };
             this.calculate_point(stickerIndex);
-            this.updateSatData();
+            if (!this.guest) {
+              this.updateSatData();
+            }
             break;
           }
         }
@@ -424,7 +611,9 @@ export class Board {
           this.now_points = this.now_points - decrease;
           this.sun_sticked[index] = { text: '' };
         }
-        this.updateSunData();
+        if (!this.guest) {
+          this.updateSunData();
+        }
         break;
       case 1:
         if (
@@ -436,7 +625,9 @@ export class Board {
           this.now_points = this.now_points - decrease;
           this.mon_sticked[index] = { text: '' };
         }
-        this.updateMonData();
+        if (!this.guest) {
+          this.updateMonData();
+        }
         break;
       case 2:
         if (
@@ -448,7 +639,9 @@ export class Board {
           this.now_points = this.now_points - decrease;
           this.tue_sticked[index] = { text: '' };
         }
-        this.updateTueData();
+        if (!this.guest) {
+          this.updateTueData();
+        }
         break;
       case 3:
         if (
@@ -460,7 +653,9 @@ export class Board {
           this.now_points = this.now_points - decrease;
           this.wed_sticked[index] = { text: '' };
         }
-        this.updateWednData();
+        if (!this.guest) {
+          this.updateWednData();
+        }
         break;
       case 4:
         if (
@@ -472,7 +667,9 @@ export class Board {
           this.now_points = this.now_points - decrease;
           this.thu_sticked[index] = { text: '' };
         }
-        this.updateThuData();
+        if (!this.guest) {
+          this.updateThuData();
+        }
         break;
       case 5:
         if (
@@ -484,7 +681,9 @@ export class Board {
           this.now_points = this.now_points - decrease;
           this.fri_sticked[index] = { text: '' };
         }
-        this.updateFriData();
+        if (!this.guest) {
+          this.updateFriData();
+        }
         break;
       case 6:
         if (
@@ -496,7 +695,9 @@ export class Board {
           this.now_points = this.now_points - decrease;
           this.sat_sticked[index] = { text: '' };
         }
-        this.updateSatData();
+        if (!this.guest) {
+          this.updateSatData();
+        }
         break;
     }
   }
@@ -521,7 +722,7 @@ export class Board {
   praise_fontColor: string = '';
   praiseBg = '';
 
-  praise_sticked: any[] = [{ text: '' }, { text: '' }, { text: '' }];
+  praise_sticked: any[] = [];
 
   updatepraiseData() {
     const updatedUserData = {
@@ -543,13 +744,15 @@ export class Board {
   }
 
   addPraise(index: number) {
-    const stickerIndex = index+((this.currentPage-1)*this.itemsPerPage)
+    const stickerIndex = index + (this.currentPage - 1) * this.itemsPerPage;
     for (let i = 0; i < this.praise_sticked.length; i++) {
       if (this.praise_sticked[i].text == '') {
         this.praise_sticked[i] = {
           text: this.praise_data[stickerIndex].text,
         };
-        this.updatepraiseData();
+        if (!this.guest) {
+          this.updatepraiseData();
+        }
         break;
       }
     }
@@ -559,7 +762,9 @@ export class Board {
     if (index >= 0 && index < this.praise_sticked.length) {
       this.praise_sticked[index] = { text: '' };
     }
-    this.updatepraiseData();
+    if (!this.guest) {
+      this.updatepraiseData();
+    }
   }
 
   // -------------------------------------Feeling Sticker---------------------------------------------
@@ -589,13 +794,15 @@ export class Board {
   }
 
   addFeeling(index: number) {
-    const stickerIndex = index+((this.currentPage-1)*this.itemsPerPage)
+    const stickerIndex = index + (this.currentPage - 1) * this.itemsPerPage;
     for (let i = 0; i < this.feeling_sticked.length; i++) {
       if (this.feeling_sticked[i].text == '') {
         this.feeling_sticked[i] = {
           text: this.feelingData[stickerIndex].text,
         };
-        this.updatefeelingData();
+        if (!this.guest) {
+          this.updatefeelingData();
+        }
         break;
       }
     }
@@ -605,7 +812,9 @@ export class Board {
     if (index >= 0 && index < this.feeling_sticked.length) {
       this.feeling_sticked[index] = { text: '' };
     }
-    this.updatefeelingData();
+    if (!this.guest) {
+      this.updatefeelingData();
+    }
   }
 
   // -------------------------------------Reward Sticker---------------------------------------------
@@ -634,14 +843,16 @@ export class Board {
   }
 
   addReward(index: number) {
-    const stickerIndex = index+((this.currentPage-1)*this.itemsPerPage)
+    const stickerIndex = index + (this.currentPage - 1) * this.itemsPerPage;
     for (let i = 0; i < this.reward_sticked.length; i++) {
       if (this.reward_sticked[i].text == '') {
         this.reward_sticked[i] = {
           text: this.rewardData[stickerIndex].text,
           imageUrl: this.rewardData[stickerIndex].imageUrl,
         };
-        this.updaterewardData();
+        if (!this.guest) {
+          this.updaterewardData();
+        }
         break;
       }
     }
@@ -651,7 +862,9 @@ export class Board {
     if (index >= 0 && index < this.reward_sticked.length) {
       this.reward_sticked[index] = { text: '' };
     }
-    this.updaterewardData();
+    if (!this.guest) {
+      this.updaterewardData();
+    }
   }
   // -----------------------------------calculate point-------------------------------------------
   now_points = 0;
@@ -662,9 +875,9 @@ export class Board {
   pointB = 40;
   rewardB = false;
 
-  updatePointA(){
+  updatePointA() {
     const updatedUserData = {
-      pointA: this.pointA
+      pointA: this.pointA,
     };
     this.user_repository.updateUserFields(
       this.userDataService.getUserId(),
@@ -672,16 +885,15 @@ export class Board {
     );
   }
 
-  updatePointB(){
+  updatePointB() {
     const updatedUserData = {
-      pointB: this.pointB
+      pointB: this.pointB,
     };
     this.user_repository.updateUserFields(
       this.userDataService.getUserId(),
       updatedUserData
     );
   }
-
 
   change_pointA() {
     Swal.fire({
@@ -701,34 +913,33 @@ export class Board {
       preConfirm: (newValue) => {
         if (newValue == '') {
           Swal.fire({
-            icon: "error",
+            icon: 'error',
             title: 'min point is 1',
             text: 'Try again',
             confirmButtonColor: '#A1C554',
           });
           return;
-        } else if(newValue > 100){
+        } else if (newValue > 100) {
           Swal.fire({
-            icon: "error",
+            icon: 'error',
             title: 'max point is 100',
             text: 'Try again',
             confirmButtonColor: '#A1C554',
           });
           return;
-        }
-        else {
+        } else {
           this.pointA = newValue;
-            Swal.fire({
+          Swal.fire({
             title: 'Point Updated',
             confirmButtonColor: '#A1C554',
-            });
+          });
+          if (!this.guest) {
             this.updatePointA();
+          }
         }
       },
-    })
+    });
   }
-
-
 
   change_pointB() {
     Swal.fire({
@@ -748,31 +959,31 @@ export class Board {
       preConfirm: (newValue) => {
         if (newValue == '') {
           Swal.fire({
-            icon: "error",
+            icon: 'error',
             title: 'min point is 1',
             text: 'Try again',
             confirmButtonColor: '#A1C554',
           });
-        } else if(newValue > 100){
+        } else if (newValue > 100) {
           Swal.fire({
-            icon: "error",
+            icon: 'error',
             title: 'max point is 100',
             text: 'Try again',
             confirmButtonColor: '#A1C554',
           });
           return;
-        }
-        else {
+        } else {
           this.pointB = newValue;
           Swal.fire({
             title: 'Point Updated',
             confirmButtonColor: '#A1C554',
           });
-          this.updatePointB();
+          if (!this.guest) {
+            this.updatePointB();
+          }
         }
       },
-     
-    })
+    });
   }
   calculate_point(index: number) {
     if (this.now_points < this.pointA && this.rewardA == true) {
@@ -879,7 +1090,9 @@ export class Board {
           text: 'All activity have been deleted.',
           confirmButtonColor: '#A1C554',
         });
-        this.updateActivityData();
+        if (!this.guest) {
+          this.updateActivityData();
+        }
       }
     });
   }
@@ -959,13 +1172,15 @@ export class Board {
       { text: '' },
     ];
     this.now_points = 0;
-    this.updateSunData();
-    this.updateMonData();
-    this.updateTueData();
-    this.updateWednData();
-    this.updateThuData();
-    this.updateFriData();
-    this.updateSatData();
+    if (!this.guest) {
+      this.updateSunData();
+      this.updateMonData();
+      this.updateTueData();
+      this.updateWednData();
+      this.updateThuData();
+      this.updateFriData();
+      this.updateSatData();
+    }
   }
 
   clear_praise() {
@@ -988,7 +1203,9 @@ export class Board {
           text: 'All praise sticker have been deleted.',
           confirmButtonColor: '#A1C554',
         });
-        this.updatepraiseData();
+        if (!this.guest) {
+          this.updatepraiseData();
+        }
       }
     });
   }
@@ -1013,9 +1230,36 @@ export class Board {
           text: 'All feeling sticker have been deleted.',
           confirmButtonColor: '#A1C554',
         });
-        this.updatefeelingData();
+        if (!this.guest) {
+          this.updatefeelingData();
+        }
       }
     });
+  }
+
+  // ----------------------------------------------------------------------------------------------
+
+  linkPage(link:string){
+    if(this.guest){
+      Swal.fire({
+        imageUrl: 'https://cdn-icons-png.flaticon.com/512/5448/5448404.png',
+        imageWidth: 120,
+        imageHeight: 120,
+        title: 'Please SignIn to unlock!',
+        showCancelButton: true,
+        confirmButtonText: 'Sign In !',
+        cancelButtonText: 'No,thanks',
+        reverseButtons: true,
+        confirmButtonColor: '#A1C554',
+        cancelButtonColor: '#FC6F6F',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.router.navigate(['/signin']);
+        }
+      });
+    }else{
+      this.router.navigate([link]);
+    }
   }
 
 

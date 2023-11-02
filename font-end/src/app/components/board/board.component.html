@@ -15,7 +15,7 @@
 
           <li class="nav-item">
             <a
-              routerLink="/history"
+              (click)="linkPage('/history')"
               class="nav-link"
               aria-current="page"
               href="javascript:void"
@@ -324,7 +324,7 @@
             <button class="btn btn_pts" (click)="clear_point()">
               <i class="fa-solid fa-xmark"></i>&ensp;Clear Poins
             </button>
-            <button class="btn btn_save" routerLink="/save_board">
+            <button class="btn btn_save" (click)="linkPage('/save_board')">
               <i class="fa-solid fa-floppy-disk"></i>&ensp;Save!
             </button>
           </div>
@@ -436,7 +436,7 @@
           </div>
 
           <div class="d-flex align-items-end justify-content-center my-1">
-            <button class="btn_edit" routerLink="/edit_activity_sticker">
+            <button class="btn_edit" (click)="linkPage('/edit_activity_sticker')">
               <i class="fa-solid fa-pencil"></i
               >&ensp;Edit&ensp;Activity&ensp;Sticker
             </button>
@@ -484,7 +484,7 @@
           </div>
 
           <div class="d-flex align-items-end justify-content-center my-1">
-            <button class="btn_edit" routerLink="/edit_praise_sticker">
+            <button class="btn_edit" (click)="linkPage('/edit_praise_sticker')">
               <i class="fa-solid fa-pencil"></i
               >&ensp;Edit&ensp;Praise&ensp;Sticker
             </button>
@@ -531,7 +531,7 @@
           </div>
 
           <div class="d-flex align-items-end justify-content-center my-1">
-            <button class="btn_edit" routerLink="/edit_feeling_sticker">
+            <button class="btn_edit" (click)="linkPage('/edit_feeling_sticker')">
               <i class="fa-solid fa-pencil"></i
               >&ensp;Edit&ensp;Feeling&ensp;Sticker
             </button>
@@ -589,7 +589,7 @@
           </div>
 
           <div class="d-flex align-items-end justify-content-center my-1">
-            <button class="btn_edit" routerLink="/edit_point_sticker">
+            <button class="btn_edit" (click)="linkPage('/edit_point_sticker')">
               <i class="fa-solid fa-pencil"></i
               >&ensp;Edit&ensp;Point&ensp;Sticker
             </button>
@@ -639,7 +639,7 @@
           </div>
 
           <div class="d-flex align-items-end justify-content-center my-1">
-            <button class="btn_edit" routerLink="/edit_reward_sticker">
+            <button class="btn_edit" (click)="linkPage('/edit_reward_sticker')">
               <i class="fa-solid fa-pencil"></i
               >&ensp;Edit&ensp;Reward&ensp;Sticker
             </button>
