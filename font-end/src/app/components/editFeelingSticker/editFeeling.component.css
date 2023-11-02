@@ -53,8 +53,8 @@ h3 {
   display: flex;
   flex-wrap: wrap;
   justify-content: start;
-  width: 96%;
-  /* background-color: #91b445; */
+  margin-left: 20px;
+  width: 100%;
 }
 
 .sticker {
