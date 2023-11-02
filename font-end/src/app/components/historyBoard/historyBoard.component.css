@@ -450,9 +450,9 @@
   }
 
   .container-note {
-    border: solid 5px #baddeb;
+    border: solid 5px #d7baeb;
     border-radius: 20px;
-    background-color: #dcf5ff;
+    background-color: #f7dcff;
     margin: 5px 5px 20px 5px;
     width: 30vw;
     height: 260px;
@@ -464,8 +464,8 @@
     margin-bottom: 0px;
     display: flex;
     justify-content: center;
-    background-color: #c1eefe;
-    color: #4b80d0;
+    background-color: #f2c1fe;
+    color: #aa4bd0;
     border-radius: 10px;
     height: 20%;
   }
@@ -473,7 +473,7 @@
   .container-note p {
     overflow-wrap: break-word;
     padding: 20px;
-    color: #4b80d0;
+    color: #aa4bd0;
   }
   
 
