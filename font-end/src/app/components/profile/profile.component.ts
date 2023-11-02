@@ -24,6 +24,7 @@ export class ProfileComponent {
     private userDataService: UserDataService
   ) {}
   user: any = {};
+  img:any = '';
   username: string = '';
   password: string = '';
   email: string = '';
@@ -45,6 +46,7 @@ export class ProfileComponent {
         this.user = user;
         this.username = this.user.username;
         this.password = this.user.password;
+        this.img = this.user.imgProfile;
         this.email = this.user.email;
         this.kid_age = this.user.kid_age;
         this.kid_name = this.user.kid_name;
@@ -68,7 +70,7 @@ export class ProfileComponent {
           (sticker) => sticker.icon && sticker.icon !== ''
         ).length;
 
-        console.log(user)
+        console.log(this.img)
 
 
 

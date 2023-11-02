@@ -1,0 +1,30 @@
+h1 ,h2 ,h3 ,h4 ,h5 ,h6{
+    color: #466B22;;
+     }
+     .container {
+        position: relative;
+        display: flex; 
+        justify-content: center; 
+        align-items: center; 
+        padding-bottom: 50px;
+    }
+
+      
+    .transparent-container{
+        background-color: rgba(255, 255, 255, 0.448);
+        padding: 30px;
+        border-radius: 15px;
+        
+    }
+    .cardProfile {
+        background-color:  #C2F9A3;
+        border-radius: 15px;
+        z-index: 0;
+        height: 320px;
+        width: 600px;
+    
+    
+      }
+    
+    
+     
