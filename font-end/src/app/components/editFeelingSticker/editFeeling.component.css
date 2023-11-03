@@ -27,6 +27,7 @@ h3 {
   text-shadow: 2px 2px 1px rgba(255, 255, 255, 0.75);
   border-radius: 10px;
   padding: 10px;
+  margin-top: 10vh;
 }
 
 .btn {
@@ -254,10 +255,10 @@ h3 {
 
 .container-create {
   width: 60%;
-  height: 50vh;
+  height: 60vh;
   margin: auto;
   margin-top: 25vh;
-  padding: 20px;
+  margin-bottom: 25vh;
   text-align: center;
   background-color: #ffe1cfd9;
   display: flex;
@@ -265,11 +266,6 @@ h3 {
   justify-content: start;
   border-radius: 50px;
   flex-direction: column;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
 }
 
 .enterName{
