@@ -214,7 +214,8 @@ export class EditPraise {
     window.location.reload();
   }
 
-  async deleteSticker(index: number) {
+  async deleteSticker(indexselect: number) {
+    const index = indexselect+((this.currentPage-1)*this.itemsPerPage)
     try {
       const confirmationResult = await Swal.fire({
         icon: 'warning',

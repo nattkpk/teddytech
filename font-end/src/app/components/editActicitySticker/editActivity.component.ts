@@ -37,12 +37,12 @@ export class EditActivity {
       .subscribe((user) => {
         this.user = user;
 
-        this.praise_data = this.user?.stickers?.praise
-        this.feelingData = this.user?.stickers?.feeling
-        this.pointData = this.user?.stickers?.point
-        this.rewardData = this.user?.stickers?.reward
+        this.praise_data = this.user.stickers.praise
+        this.feelingData = this.user.stickers.feeling
+        this.pointData = this.user.stickers.point
+        this.rewardData = this.user.stickers.reward
 
-        this.activityData = this.user?.stickers?.activity
+        this.activityData = this.user.stickers.activity
           ? this.user.stickers.activity
           : [];
         this.activityBg = this.user.activityTheme.bg;
@@ -256,7 +256,8 @@ export class EditActivity {
     window.location.reload();
   }
 
-  async deleteSticker(index: number) {
+  async deleteSticker(indexselect: number) {
+    const index = indexselect+((this.currentPage-1)*this.itemsPerPage)
     try {
       const confirmationResult = await Swal.fire({
         icon: 'warning',
