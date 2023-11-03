@@ -9,13 +9,18 @@
       <div class="col-lg-12 mt-3">
         <div class="row">
           <div class="col-5">
-            <img [src]="img"  class="circle">
+            <img [src]="img" class="circle" />
           </div>
           <div class="col-6 mt-5">
             <h3 class="">Profile</h3>
             <div class="row">
-              <div class="name"><h5>{{ username }}</h5></div>
-              <i class="col pen fa-solid fa-pencil pointer-cursor " (click)="editProfile()"></i>
+              <div class="name">
+                <h5>{{ username }}</h5>
+              </div>
+              <i
+                class="col pen fa-solid fa-pencil pointer-cursor"
+                (click)="editProfile()"
+              ></i>
             </div>
           </div>
         </div>
@@ -35,7 +40,7 @@
             <div class="taskPoint">
               <i class="cx far fa-check-square fa-2x mt-3"></i>
               <i class="fa fa-minus fa-3x"></i>
-              <h2 class="cv">{{stickersCount}}</h2>
+              <h2 class="cv">{{ stickersCount }}</h2>
             </div>
           </div>
           <div class="col">
@@ -43,7 +48,7 @@
               <div class="taskPoint">
                 <i class="cx fa fa-certificate fa-2x mt-3"></i>
                 <i class="fa fa-minus fa-3x"></i>
-                <h2 class="cv">{{stickersPoint}}</h2>
+                <h2 class="cv">{{ stickersPoint }}</h2>
               </div>
             </div>
           </div>
@@ -51,7 +56,7 @@
             <div class="taskPoint">
               <i class="cx fa fa-gift fa-2x mt-3"></i>
               <i class="fa fa-minus fa-3x"></i>
-              <h2 class="cv">{{rewardCount}}</h2>
+              <h2 class="cv">{{ rewardCount }}</h2>
             </div>
           </div>
         </div>
@@ -63,41 +68,65 @@
         <!-- Progress Bar -->
         <div class="col-lg-12 cardMedium mb-3">
           <div class="col-12">
-            <h4>Activity Point</h4>
-            <mat-progress-bar
-              mode="determinate"
-              [value]="determinate1"
-            ></mat-progress-bar>
+            <h4>Activity Points</h4>
+            <div
+              class="progress"
+              role="progressbar"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              <div class="progress-bar" [style.width.%]="determinate1">
+                {{ determinate1 }}%
+              </div>
+            </div>
           </div>
 
           <div class="col-12">
-            <h4>Activity Susses</h4>
-            <mat-progress-bar
-              mode="determinate"
-              [value]="determinate2"
-            ></mat-progress-bar>
+            <h4>Activity Success</h4>
+            <div
+              class="progress"
+              role="progressbar"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              <div class="progress-bar" [style.width.%]="determinate2">
+                {{ determinate2 }}%
+              </div>
+            </div>
           </div>
         </div>
-      
 
-      <!-- Progress Ring -->
-      <div class="col-lg-12 cardMedium">
-        <div class="row ring">
-          <div class="col-6 ">
-            <h4>Activity Point</h4>
-            <mat-progress-spinner mode="determinate" [value]="determinate1" [color]="color"></mat-progress-spinner>
+        <!-- Circular Progress Bar -->
+        <div class="col-lg-12 cardMedium">
+          <div class="row ring">
+              <div class="col-6">
+                  <h4>Activity Point</h4>
+                  <div class="progress-ring mx-auto" data-value=`determinate2`>
+                    <span class="progress-left">
+                                  <span class="progress-bar border-primary"></span>
+                    </span>
+                    <span class="progress-right">
+                                  <span class="progress-bar border-primary"></span>
+                    </span>
+                    <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
+                      <div class="h2 font-weight-bold">80<sup class="small">%</sup></div>
+                    </div>
+                  </div>
+                  
+
+              </div>
+              <div class="col-6">
+                  <h4>Activity Success</h4>
+                  
+
+              </div>
           </div>
-          <div class="col-6 ">
-            <h4>Activity Point</h4>
-            <mat-progress-spinner mode="determinate" [value]="determinate2" [color]="color"></mat-progress-spinner>
-          </div>
-        </div>
       </div>
       
 
-    </div>
-  </div>
 
+      </div>
+    </div>
     <!-- addkid -->
     <div class="col-lg-12 cardLenge mt-3 text-center">
       <div class="mt-3">
@@ -105,11 +134,11 @@
       </div>
       <div class="d-flex justify-content-center mt-4">
         <h5 class="bk mx-2">{{ kid_name }}</h5>
-       
-        <h5 class="bk mx-2"><i class="fa fa-plus pointer-cursor " (click)="addNewBoard()"></i></h5>
+
+        <h5 class="bk mx-2">
+          <i class="fa fa-plus pointer-cursor" (click)="addNewBoard()"></i>
+        </h5>
       </div>
     </div>
-
-
   </div>
 </div>

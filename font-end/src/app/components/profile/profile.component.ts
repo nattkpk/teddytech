@@ -14,7 +14,7 @@ export class ProfileComponent {
   showEditProfile: boolean = false;
   determinate1: number = 0;
   determinate2: number = 0;
-  targetValue1: number = 80;
+  targetValue1: number = 60;
   targetValue2: number = 80;
   color: ThemePalette = 'primary';
 
@@ -24,7 +24,7 @@ export class ProfileComponent {
     private userDataService: UserDataService
   ) {}
   user: any = {};
-  img:any = '';
+  img: any = '';
   username: string = '';
   password: string = '';
   email: string = '';
@@ -36,7 +36,6 @@ export class ProfileComponent {
   stickersCount = 0;
   stickersPoint = 0;
   rewardCount = 0;
-
 
   ngOnInit(): void {
     // Fetch the user data when the component initializes
@@ -70,10 +69,8 @@ export class ProfileComponent {
           (sticker) => sticker.icon && sticker.icon !== ''
         ).length;
 
-        console.log(this.img)
-
-
-
+        console.log(this.img);
+        
       });
 
     this.profileStateService.showEditProfile$.subscribe((showEditProfile) => {
@@ -92,12 +89,15 @@ export class ProfileComponent {
   }
 
   addNewBoard() {
-
-      Swal.fire({
-        title: 'Board Full',
-        text: 'Your board is full. Please subscribe to add more boards.',
-        icon: 'error'
-      });
-
+    Swal.fire({
+      title: 'Board Full',
+      text: 'Your board is full. Please subscribe to add more boards.',
+      icon: 'error',
+    });
   }
+
+ 
+
+
+  
 }
