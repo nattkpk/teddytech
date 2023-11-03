@@ -224,7 +224,7 @@ export class EditPoint {
         if (this.numOfPoint <=0 || this.numOfPoint > 10) {
           await Swal.fire({
             icon: 'warning',
-            title: 'Please enter point 1 - 10',
+            title: 'Please enter point 1 - 100',
             confirmButtonText: 'OK',
             confirmButtonColor: '#A1C554',
           });
