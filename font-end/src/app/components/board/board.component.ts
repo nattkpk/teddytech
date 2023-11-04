@@ -94,6 +94,7 @@ export class Board {
     if (this.guest) {
       this.guestData();
     }
+    console.log('ID : ', this.id);
     console.log('Guest : ', this.guest);
   }
   // ---------------------------------For guest-----------------------------------------
@@ -920,6 +921,14 @@ export class Board {
             confirmButtonColor: '#A1C554',
           });
           return;
+        }else if (newValue < 1) {
+          Swal.fire({
+            icon: 'error',
+            title: 'min point is 1',
+            text: 'Try again',
+            confirmButtonColor: '#A1C554',
+          });
+          return;
         } else {
           this.pointA = newValue;
           Swal.fire({
@@ -965,7 +974,15 @@ export class Board {
             confirmButtonColor: '#A1C554',
           });
           return;
-        } else {
+        }else if (newValue < 1) {
+          Swal.fire({
+            icon: 'error',
+            title: 'min point is 1',
+            text: 'Try again',
+            confirmButtonColor: '#A1C554',
+          });
+          return;
+        }  else {
           this.pointB = newValue;
           Swal.fire({
             title: 'Point Updated',
