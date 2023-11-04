@@ -33,6 +33,7 @@ const routes: Routes = [
   { path: 'history', component: History },
   { path: 'history_board', component: HistoryBoard },
   { path: '**', redirectTo: '/board' },
+  
  
 ];
 
