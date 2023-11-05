@@ -39,6 +39,7 @@ export class Signin {
   ///[บัค]
   register() {
     const isRegister = this.userRepository.registerUser(
+      0, //เลือกแพ็ค [0 = 3-6 ขวบ] , [1 = 7-9 ขวบ]
       this.username,
       this.email,
       this.password,
@@ -49,10 +50,14 @@ export class Signin {
     if (isRegister) {
        this.login();
       console.log('Pass : registration and login done');
+      window.location.reload(); 
+      //บัคที่ต้อง reload ก่อน เพราะข้อมูลยังไม่เข้า อาจะใช้  sweet alert ช่วยกด ok แล้ว reload หน้าให้ smooth ขึ้น
+      this.toggleChangeClass();
     } else {
       console.log('ERROR: registration failed');
     }
   }
+
 
   calcuLogin() {
     const num1: number = Math.floor(Math.random() * 13) + 3;

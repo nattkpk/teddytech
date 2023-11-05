@@ -182,6 +182,10 @@ export class EditPoint {
     this.create_stickerOnOff2();
   }
 
+  isInteger(value: number): boolean {
+    return /^\d+$/.test(value.toString());
+  }  
+
   async onSubmit() {
     const result = await Swal.fire({
       title: 'Create New Sticker?',
@@ -193,7 +197,15 @@ export class EditPoint {
     });
   
     if (result.isConfirmed) {
-      if (this.numOfPoint > 0 && this.numOfPoint <= 10 && this.chooseIcon !== -1 && this.chooseBg !== -1) {
+      if (!(this.isInteger(this.numOfPoint))) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Please enter integer',
+          text: 'Try again',
+          confirmButtonColor: '#A1C554',
+        });
+        return;
+      }else if (this.numOfPoint > 0 && this.numOfPoint <= 10 && this.chooseIcon !== -1 && this.chooseBg !== -1) {
         console.log('Point: ' + this.numOfPoint);
         this.newPointSticker.bgImage = this.pointBg[this.chooseBg];
         this.newPointSticker.icon = this.pointIcon[this.chooseIcon];
@@ -228,7 +240,7 @@ export class EditPoint {
             confirmButtonText: 'OK',
             confirmButtonColor: '#A1C554',
           });
-        } else if (this.chooseIcon === -1) {
+        }  else if (this.chooseIcon === -1) {
           await Swal.fire({
             icon: 'warning',
             title: 'Please select point icon',
