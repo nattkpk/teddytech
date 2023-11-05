@@ -24,10 +24,13 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
 import { History } from './components/history/history.component';
 import { SaveBoard } from './components/saveBoard/saveBoard.component';
 import { HistoryBoard } from './components/historyBoard/historyBoard.component';
+import { AboutmeComponent } from './components/aboutme/aboutme.component';
+
 // material
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { CheckProfileComponent } from './components/check-profile/check-profile.component';
+
 
 
 @NgModule({
@@ -50,6 +53,7 @@ import { CheckProfileComponent } from './components/check-profile/check-profile.
     History,
     HistoryBoard,
     CheckProfileComponent,
+    AboutmeComponent,
   ],
   imports: [
     FormsModule,
