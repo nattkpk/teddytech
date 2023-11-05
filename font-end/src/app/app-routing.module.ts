@@ -33,10 +33,9 @@ const routes: Routes = [
   { path: 'save_board', component: SaveBoard },
   { path: 'history', component: History },
   { path: 'history_board', component: HistoryBoard },
+  { path: 'aboutme', component: AboutmeComponent},
   { path: '**', redirectTo: '/board' },
-  { path: 'aboutme', component: AboutmeComponent}
-  
- 
+
 ];
 
 @NgModule({
