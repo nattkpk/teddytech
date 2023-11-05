@@ -47,10 +47,11 @@ export class Signin {
       this.kid_age
     );
     if (isRegister) {
-       this.login();
-      console.log('Pass : registration and login done');
+       this.toggleChangeClass();
+      console.log('Pass : registration is done');
+      
     } else {
-      console.log('ERROR: registration failed');
+      console.log('ERROR: registration is failed');
     }
   }
 

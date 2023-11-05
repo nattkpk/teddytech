@@ -70,7 +70,7 @@ export class UserRepository {
 
   loginUser(username: string, password: string): boolean {
     const user = this.users.find(
-      (u) => u.username === username && u.password === password
+      (u) => u.username == username && u.password == password
     );
     if (user) {
       this.userDataService.setUserId(user._id);
@@ -447,8 +447,6 @@ export class UserRepository {
     this.apiData.registerUser(newUser).subscribe(
       (response) => {
         console.log('User registered:', response);
-       this.loginUser(newUser.username,newUser.password);
-       console.log(newUser.username,newUser.password);
       },
       (error) => {
         console.error('User registration failed:', error);
