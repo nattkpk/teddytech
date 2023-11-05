@@ -44,6 +44,24 @@ export class Board {
   ) {}
 
   ngOnInit() {
+
+    Swal.fire({
+      imageUrl: 'https://media.tenor.com/9Ez46wr-voMAAAAC/lock.gif',
+      imageWidth: 249,
+      title: 'Unlock More Features Sign In Now!',
+      text: 'Sign in to unlock a world of enhanced features and the ability to save your board pages',
+      showCancelButton: true,
+      confirmButtonText: 'Sign In !',
+      cancelButtonText: 'No,thanks',
+      reverseButtons: true,
+      confirmButtonColor: '#A1C554',
+      cancelButtonColor: '#FC6F6F',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.router.navigate(['/signin']);
+      }
+    });
+
     this.id = this.userDataService.getUserId();
 
     this.user_repository
@@ -1252,10 +1270,10 @@ export class Board {
   linkPage(link:string){
     if(this.guest){
       Swal.fire({
-        imageUrl: 'https://cdn-icons-png.flaticon.com/512/5448/5448404.png',
-        imageWidth: 120,
-        imageHeight: 120,
-        title: 'Please SignIn to unlock!',
+        imageUrl: 'https://media.tenor.com/9Ez46wr-voMAAAAC/lock.gif',
+        imageWidth: 249,
+        title: 'Sign In Now !',
+        text: 'To unlock More Features',
         showCancelButton: true,
         confirmButtonText: 'Sign In !',
         cancelButtonText: 'No,thanks',
