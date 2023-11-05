@@ -35,7 +35,6 @@ export class Board {
   guest: boolean = true;
   id: string = '';
 
-  
   constructor(
     private router: Router,
     private user_repository: UserRepository,
@@ -44,24 +43,6 @@ export class Board {
   ) {}
 
   ngOnInit() {
-
-    Swal.fire({
-      imageUrl: 'https://media.tenor.com/9Ez46wr-voMAAAAC/lock.gif',
-      imageWidth: 249,
-      title: 'Unlock More Features Sign In Now!',
-      text: 'Sign in to unlock a world of enhanced features and the ability to save your board pages',
-      showCancelButton: true,
-      confirmButtonText: 'Sign In !',
-      cancelButtonText: 'No,thanks',
-      reverseButtons: true,
-      confirmButtonColor: '#A1C554',
-      cancelButtonColor: '#FC6F6F',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.router.navigate(['/signin']);
-      }
-    });
-
     this.id = this.userDataService.getUserId();
 
     this.user_repository
@@ -104,20 +85,36 @@ export class Board {
         this.pointA = this.user.pointA;
         this.pointB = this.user.pointB;
         this.now_points = this.user.currentPoint;
-      });
 
-    if (this.id != '') {
-      this.guest = false;
-    }
-    if (this.guest) {
-      this.guestData();
-    }
-    console.log('ID : ', this.id);
-    console.log('Guest : ', this.guest);
+        if (this.id != '') {
+          this.guest = false;
+        }
+        if (this.guest) {
+          this.guestData();
+        }
+        console.log('ID : ', this.id);
+        console.log('Guest : ', this.guest);
+      });
   }
   // ---------------------------------For guest-----------------------------------------
 
   guestData() {
+    Swal.fire({
+      imageUrl: 'https://media.tenor.com/9Ez46wr-voMAAAAC/lock.gif',
+      imageWidth: 249,
+      title: 'Unlock More Features Sign In Now!',
+      text: 'Sign in to unlock a world of enhanced features and the ability to save your board pages',
+      showCancelButton: true,
+      confirmButtonText: 'Sign In !',
+      cancelButtonText: 'No,thanks',
+      reverseButtons: true,
+      confirmButtonColor: '#A1C554',
+      cancelButtonColor: '#FC6F6F',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.router.navigate(['/signin']);
+      }
+    });
     this.activity_sticked = [
       { text: '' },
       { text: '' },
@@ -353,7 +350,6 @@ export class Board {
       updatedUserData
     );
   }
-
 
   getActivityDataForPage(page: number): any[] {
     const startIndex = (page - 1) * this.itemsPerPage;
@@ -887,6 +883,10 @@ export class Board {
   pointB = 40;
   rewardB = false;
 
+  isInteger(value: number): boolean {
+    return /^\d+$/.test(value.toString());
+  }
+
   updatePointA() {
     const updatedUserData = {
       pointA: this.pointA,
@@ -939,10 +939,18 @@ export class Board {
             confirmButtonColor: '#A1C554',
           });
           return;
-        }else if (newValue < 1) {
+        } else if (newValue < 1) {
           Swal.fire({
             icon: 'error',
             title: 'min point is 1',
+            text: 'Try again',
+            confirmButtonColor: '#A1C554',
+          });
+          return;
+        } else if (!this.isInteger(newValue)) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Please enter integer',
             text: 'Try again',
             confirmButtonColor: '#A1C554',
           });
@@ -992,7 +1000,7 @@ export class Board {
             confirmButtonColor: '#A1C554',
           });
           return;
-        }else if (newValue < 1) {
+        } else if (newValue < 1) {
           Swal.fire({
             icon: 'error',
             title: 'min point is 1',
@@ -1000,7 +1008,15 @@ export class Board {
             confirmButtonColor: '#A1C554',
           });
           return;
-        }  else {
+        } else if (!this.isInteger(newValue)) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Please enter integer',
+            text: 'Try again',
+            confirmButtonColor: '#A1C554',
+          });
+          return;
+        } else {
           this.pointB = newValue;
           Swal.fire({
             title: 'Point Updated',
@@ -1267,8 +1283,8 @@ export class Board {
 
   // ----------------------------------------------------------------------------------------------
 
-  linkPage(link:string){
-    if(this.guest){
+  linkPage(link: string) {
+    if (this.guest) {
       Swal.fire({
         imageUrl: 'https://media.tenor.com/9Ez46wr-voMAAAAC/lock.gif',
         imageWidth: 249,
@@ -1285,11 +1301,8 @@ export class Board {
           this.router.navigate(['/signin']);
         }
       });
-    }else{
+    } else {
       this.router.navigate([link]);
     }
   }
-
-
-
 }
