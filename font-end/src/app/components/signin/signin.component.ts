@@ -32,6 +32,12 @@ export class Signin {
       this.calcuLogin();
     } else {
       console.log('ERROR: Login failed');
+      Swal.fire({
+        icon: 'error',
+        title: 'Incorrect',
+        text: '',
+        confirmButtonColor: '#A1C554',
+      });
     }
   }
 
@@ -47,9 +53,11 @@ export class Signin {
       this.kid_name,
       this.kid_age
     );
+
     if (isRegister) {
        this.toggleChangeClass();
       console.log('Pass : registration is done');
+      
       
       //  this.login();
       // console.log('Pass : registration and login done');
@@ -58,6 +66,12 @@ export class Signin {
       this.toggleChangeClass();
     } else {
       console.log('ERROR: registration is failed');
+      Swal.fire({
+        icon: 'error',
+        title: '',
+        text: 'Please try again',
+        confirmButtonColor: '#A1C554',
+      });
     }
   }
 

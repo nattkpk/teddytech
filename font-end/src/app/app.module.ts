@@ -30,6 +30,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { CheckProfileComponent } from './components/check-profile/check-profile.component';
 import { AboutmeComponent } from './components/aboutme/aboutme.component';
+import { ChoosePacketComponent } from './components/choose-packet/choose-packet.component';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { AboutmeComponent } from './components/aboutme/aboutme.component';
     HistoryBoard,
     CheckProfileComponent,
     AboutmeComponent,
+    ChoosePacketComponent,
   ],
   imports: [
     FormsModule,
