@@ -86,15 +86,17 @@ export class Board {
         this.pointB = this.user.pointB;
         this.now_points = this.user.currentPoint;
 
-        if (this.id != '') {
-          this.guest = false;
-        }
-        if (this.guest) {
-          this.guestData();
-        }
-        console.log('ID : ', this.id);
-        console.log('Guest : ', this.guest);
+       
       });
+
+      if (this.id != '') {
+        this.guest = false;
+      }
+      if (this.guest) {
+        this.guestData();
+      }
+      console.log('ID : ', this.id);
+      console.log('Guest : ', this.guest);
   }
   // ---------------------------------For guest-----------------------------------------
 

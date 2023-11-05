@@ -5,7 +5,6 @@ import { UserRepository } from '../../models/userModel/user.repository';
 import { UserDataService } from 'src/app/services/user-data.service';
 
 
-
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',

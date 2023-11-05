@@ -1,3 +1,8 @@
+body{
+  margin-top: 80px;
+  margin-bottom: 25vh;
+}
+
 .container {
   width: 80%;
   height: 90vh;
@@ -256,7 +261,6 @@ h3 {
 .container-create {
   width: 60%;
   height: 60vh;
-  margin: auto;
   margin-top: 25vh;
   margin-bottom: 25vh;
   text-align: center;
