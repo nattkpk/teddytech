@@ -32,6 +32,12 @@ export class Signin {
       this.calcuLogin();
     } else {
       console.log('ERROR: Login failed');
+      Swal.fire({
+        icon: 'error',
+        title: 'Incorrect',
+        text: '',
+        confirmButtonColor: '#A1C554',
+      });
     }
   }
 
@@ -47,14 +53,25 @@ export class Signin {
       this.kid_name,
       this.kid_age
     );
+
     if (isRegister) {
-       this.login();
-      console.log('Pass : registration and login done');
-      window.location.reload(); 
+       this.toggleChangeClass();
+      console.log('Pass : registration is done');
+      
+      
+      //  this.login();
+      // console.log('Pass : registration and login done');
+      // window.location.reload(); 
       //บัคที่ต้อง reload ก่อน เพราะข้อมูลยังไม่เข้า อาจะใช้  sweet alert ช่วยกด ok แล้ว reload หน้าให้ smooth ขึ้น
       this.toggleChangeClass();
     } else {
-      console.log('ERROR: registration failed');
+      console.log('ERROR: registration is failed');
+      Swal.fire({
+        icon: 'error',
+        title: '',
+        text: 'Please try again',
+        confirmButtonColor: '#A1C554',
+      });
     }
   }
 

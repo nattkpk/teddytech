@@ -1,0 +1,29 @@
+.container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cardProfile {
+  background-color: #ffffffed;
+  border-radius: 15px;
+  z-index: 0;
+  height: 320px;
+  width: 600px;
+}
+
+
+
+
+  .preschool, .primaryschool {
+    
+    height: 320px;
+    border-radius: 15px;
+  }
+  
+  .choose {
+    background-color: #a1c554;
+    transition: 0.8s;
+    
+  }

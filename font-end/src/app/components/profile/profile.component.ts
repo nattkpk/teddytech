@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import Swal from 'sweetalert2';
-import { ThemePalette } from '@angular/material/core';
 import { ProfileService } from '../../services/auth-user.service';
 import { UserRepository } from '../../models/userModel/user.repository';
 import { UserDataService } from 'src/app/services/user-data.service';
+import { Chart } from 'chart.js';
+
 
 @Component({
   selector: 'app-profile',
@@ -14,9 +15,9 @@ export class ProfileComponent {
   showEditProfile: boolean = false;
   determinate1: number = 0;
   determinate2: number = 0;
-  targetValue1: number = 80;
+  targetValue1: number = 60;
   targetValue2: number = 80;
-  color: ThemePalette = 'primary';
+  
 
   constructor(
     private userRepository: UserRepository,
@@ -24,7 +25,7 @@ export class ProfileComponent {
     private userDataService: UserDataService
   ) {}
   user: any = {};
-  img:any = '';
+  img: any = '';
   username: string = '';
   password: string = '';
   email: string = '';
@@ -36,7 +37,6 @@ export class ProfileComponent {
   stickersCount = 0;
   stickersPoint = 0;
   rewardCount = 0;
-
 
   ngOnInit(): void {
     // Fetch the user data when the component initializes
@@ -70,10 +70,10 @@ export class ProfileComponent {
           (sticker) => sticker.icon && sticker.icon !== ''
         ).length;
 
-        console.log(this.img)
+        console.log(this.img);
 
-
-
+        this.createChart();
+        
       });
 
     this.profileStateService.showEditProfile$.subscribe((showEditProfile) => {
@@ -92,12 +92,62 @@ export class ProfileComponent {
   }
 
   addNewBoard() {
-
-      Swal.fire({
-        title: 'Board Full',
-        text: 'Your board is full. Please subscribe to add more boards.',
-        icon: 'error'
-      });
-
+    Swal.fire({
+      title: 'Board Full',
+      text: 'Your board is full. Please subscribe to add more boards.',
+      icon: 'error',
+    });
   }
+
+  createChart() {
+    const ctx = document.getElementById('myChart') as HTMLCanvasElement;
+
+    if (ctx) {
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+          datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(153, 102, 255, 0.2)',
+              'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+              'rgba(255, 99, 132, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(153, 102, 255, 1)',
+              'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    } else {
+      console.error('Canvas not found');
+    }
+  }
+
+
+  
 }
+
+ 
+
+
+  
+

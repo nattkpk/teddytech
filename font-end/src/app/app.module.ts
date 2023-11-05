@@ -6,6 +6,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ModelModule } from './models/userModel/model.module';
 import { AppRoutingModule } from './app-routing.module';
 import { ServiceModule } from './services/model.module';
+
 //component
 import { AppComponent } from './app.component';
 import {Board} from './components/board/board.component'
@@ -25,6 +26,7 @@ import { History } from './components/history/history.component';
 import { SaveBoard } from './components/saveBoard/saveBoard.component';
 import { HistoryBoard } from './components/historyBoard/historyBoard.component';
 import { AboutmeComponent } from './components/aboutme/aboutme.component';
+import { ChoosePacketComponent } from './components/choose-packet/choose-packet.component';
 
 // material
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -54,6 +56,7 @@ import { CheckProfileComponent } from './components/check-profile/check-profile.
     HistoryBoard,
     CheckProfileComponent,
     AboutmeComponent,
+    ChoosePacketComponent,
   ],
   imports: [
     FormsModule,
