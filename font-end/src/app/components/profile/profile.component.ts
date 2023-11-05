@@ -3,7 +3,7 @@ import Swal from 'sweetalert2';
 import { ProfileService } from '../../services/auth-user.service';
 import { UserRepository } from '../../models/userModel/user.repository';
 import { UserDataService } from 'src/app/services/user-data.service';
-
+import Chart from 'chart.js/auto';
 
 @Component({
   selector: 'app-profile',
@@ -11,12 +11,12 @@ import { UserDataService } from 'src/app/services/user-data.service';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent {
+  chart: Chart | undefined;
   showEditProfile: boolean = false;
   determinate1: number = 0;
   determinate2: number = 0;
   targetValue1: number = 60;
   targetValue2: number = 80;
-  
 
   constructor(
     private userRepository: UserRepository,
@@ -72,7 +72,6 @@ export class ProfileComponent {
         console.log(this.img);
 
         this.createChart();
-        
       });
 
     this.profileStateService.showEditProfile$.subscribe((showEditProfile) => {
@@ -99,14 +98,50 @@ export class ProfileComponent {
   }
 
   createChart() {
+    const xValues = ['Oct', 'Nov', 'Dec', 'Jan', 'Feb'];
+
+    const chartData = {
+      labels: xValues,
+      datasets: [
+        {
+          label: 'Task',
+          data: [20, 15, 27, 19, 9],
+          borderColor: 'red',
+          fill: false,
+        },
+        {
+          label: 'Done',
+          data: [3, 13, 23, 19, 6],
+          borderColor: 'green',
+          fill: false,
+        },
+        {
+          label: 'Points',
+          data: [9, 30, 55, 54, 18],
+          borderColor: 'blue',
+          fill: false,
+        },
+      ],
+    };
+
+    const canvasElement = document.getElementById(
+      'myChart'
+    ) as HTMLCanvasElement;
+
+    if (canvasElement) {
+      if (this.chart) {
+        this.chart.data = chartData;
+        this.chart.update();
+      } else {
+        this.chart = new Chart(canvasElement, {
+          type: 'line',
+          data: chartData,
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+          },
+        });
+      }
+    }
   }
-
-
-  
 }
-
- 
-
-
-  
-
