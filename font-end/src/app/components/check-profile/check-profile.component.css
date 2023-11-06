@@ -11,7 +11,8 @@ h6 {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-bottom: 50px;
+  margin-top: 150px;
+  padding-bottom: 100px;
 }
 
 .transparent-container {

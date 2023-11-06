@@ -1,4 +1,9 @@
-import { Component, ElementRef, Renderer2 } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { UserRepository } from '../../models/userModel/user.repository';
 import Swal from 'sweetalert2';
@@ -9,6 +14,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./signin.component.css'],
 })
 export class Signin {
+  pack: boolean = false;
+  package = 0;
   username = '';
   password = '';
   email = '';
@@ -23,8 +30,34 @@ export class Signin {
     private router: Router
   ) {}
 
+
+    
+
+  toggleChangeClass() {
+    const mainContainer =
+      this.elementRef.nativeElement.querySelector('.container');
+    if (mainContainer) {
+      if (mainContainer.classList.contains('change')) {
+        this.renderer.removeClass(mainContainer, 'change');
+      } else {
+        this.renderer.addClass(mainContainer, 'change');
+      }
+    }
+  }
+
+  changeBackgroundColor(section: string) {
+    const element = document.querySelector(`.${section}`);
+    if (element) {
+      element.classList.toggle('choose');
+    }
+  }
+
+  packChange() {
+    this.pack = !this.pack;
+  }
+
   login() {
-    const isAuthenticated =  this.userRepository.loginUser(
+    const isAuthenticated = this.userRepository.loginUser(
       this.username,
       this.password
     );
@@ -41,11 +74,10 @@ export class Signin {
     }
   }
 
-
   ///[บัค]
   register() {
     const isRegister = this.userRepository.registerUser(
-      0, //เลือกแพ็ค [0 = 3-6 ขวบ] , [1 = 7-9 ขวบ]
+      this.package, //เลือกแพ็ค [0 = 3-6 ขวบ] , [1 = 7-9 ขวบ]
       this.username,
       this.email,
       this.password,
@@ -55,15 +87,13 @@ export class Signin {
     );
 
     if (isRegister) {
-       this.toggleChangeClass();
+      this.toggleChangeClass();
       console.log('Pass : registration is done');
-      
-      
+
       //  this.login();
       // console.log('Pass : registration and login done');
-      // window.location.reload(); 
+      // window.location.reload();
       //บัคที่ต้อง reload ก่อน เพราะข้อมูลยังไม่เข้า อาจะใช้  sweet alert ช่วยกด ok แล้ว reload หน้าให้ smooth ขึ้น
-      this.toggleChangeClass();
     } else {
       console.log('ERROR: registration is failed');
       Swal.fire({
@@ -74,7 +104,6 @@ export class Signin {
       });
     }
   }
-
 
   calcuLogin() {
     const num1: number = Math.floor(Math.random() * 13) + 3;
@@ -107,17 +136,5 @@ export class Signin {
         }
       }
     });
-  }
-
-  toggleChangeClass() {
-    const mainContainer =
-      this.elementRef.nativeElement.querySelector('.container');
-    if (mainContainer) {
-      if (mainContainer.classList.contains('change')) {
-        this.renderer.removeClass(mainContainer, 'change');
-      } else {
-        this.renderer.addClass(mainContainer, 'change');
-      }
-    }
   }
 }
