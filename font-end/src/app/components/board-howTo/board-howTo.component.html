@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div class="container">
+      <div class="transparent-container sticky-center">
+        <carousel class="tutorial">
+            <slide *ngFor="let slide of slides">
+              <img [src]="slide.image" alt="Carousel Slide">
+            </slide>
+          </carousel>
+          <div class="close-button" (click)="close()"><i class="fa-solid fa-circle-xmark"></i></div>
+          <!-- <input type="checkbox" [(ngModel)]="isChecked"> Don't show again -->
+      </div>
+    </div>
+  </body>
+</html>

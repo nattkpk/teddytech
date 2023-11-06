@@ -2,7 +2,11 @@
 <html>
   <body>
     
+    <div class="tutorial-overlay" *ngIf="tutorial==true">
+      <board-howTo></board-howTo>
+    </div>
     <div class="containerAll" cdkDropListGroup> 
+      
       <div class="container-board">
         <ul class="nav nav-tabs">
           <li class="nav-item">

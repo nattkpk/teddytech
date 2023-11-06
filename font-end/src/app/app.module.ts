@@ -32,6 +32,8 @@ import { ChoosePacketComponent } from './components/choose-packet/choose-packet.
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { CheckProfileComponent } from './components/check-profile/check-profile.component';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { BoardHowTo } from './components/board-howTo/board-howTo.component';
 
 
 
@@ -39,6 +41,7 @@ import { CheckProfileComponent } from './components/check-profile/check-profile.
   declarations: [
     AppComponent,
     Board,
+    BoardHowTo,
     Signin,
     EditActivity,
     EditReward ,
@@ -59,6 +62,7 @@ import { CheckProfileComponent } from './components/check-profile/check-profile.
     ChoosePacketComponent,
   ],
   imports: [
+    CarouselModule.forRoot(),
     FormsModule,
     ServiceModule,
     ModelModule,

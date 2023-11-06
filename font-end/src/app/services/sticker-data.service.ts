@@ -344,4 +344,18 @@ export class StickerDataService {
     return this.historyIndex;
   }
 
+  // --------------------------- Tutorial -------------------------------------
+
+  showTutorial = true;
+
+  getshowtutorial(){
+    return this.showTutorial
+  }
+
+  setshowtutorial(show:boolean){
+    this.showTutorial = show;
+  }
+
+  
+
 }
