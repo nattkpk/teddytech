@@ -103,6 +103,10 @@ export class Board {
       console.log('ID : ', this.id);
       console.log('Guest : ', this.guest);
   }
+
+  showHow(){
+    this.sticker_service.setshowtutorial(true);
+  }
   // ---------------------------------For guest-----------------------------------------
 
  
@@ -123,6 +127,7 @@ export class Board {
         this.router.navigate(['/signin']);
       }
     });
+    this.sticker_service.setshowtutorial(true);
     this.activity_sticked = [
       { text: '' },
       { text: '' },

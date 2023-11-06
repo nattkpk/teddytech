@@ -346,7 +346,7 @@ export class StickerDataService {
 
   // --------------------------- Tutorial -------------------------------------
 
-  showTutorial = true;
+  showTutorial = false;
 
   getshowtutorial(){
     return this.showTutorial
