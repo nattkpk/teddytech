@@ -6,6 +6,7 @@ var logger = require('morgan');
 const mongoose = require('mongoose');
 const teddyusers = require('./routes/teddyUsers');
 const cors = require('cors');
+const path = require('path');
 
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb+srv://Pud:11112@cluster0.khe7cle.mongodb.net/Teddy-tech?retryWrites=true&w=majority')
@@ -26,12 +27,13 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/teddyusers', teddyusers);
-
+app.get("*",(req, res)=>{
+  res.sendFile(path.resolve(__dirname,'font-end','dist','index.html'));
+})
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
