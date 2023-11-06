@@ -1,0 +1,45 @@
+.container {
+    position: relative;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+}
+
+.sticky-center {
+    position: fixed;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+.transparent-container{
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 30px;
+    border-radius: 30px;
+}
+
+.tutorial img{
+    height: 60vh;
+}
+
+.carousel {
+    position: relative;
+  }
+  
+  .close-button {
+    color: #919191;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    font-size: 45px;
+    border-radius: 100%;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  
+  .close-button:hover {
+    color: #656565;
+    transition: 0.2s;
+  }
+  
+  
